@@ -1,0 +1,11 @@
+{
+	"name": "language-roff",
+	"version": "0.0.1",
+	"description": "[GTN]?Roff language support for Atom",
+	"keywords": ["Roff", "Groff", "Troff", "Nroff", "Unix Manual Page"],
+	"repository": "https://github.com/Alhadis/language-roff",
+	"engines": {
+		"atom": "*"
+	},
+	"dependencies": {}
+}
