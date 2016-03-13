@@ -1,3 +1,27 @@
 name: "Roff"
 scopeName: "source.roff"
-fileTypes: ["1"]
+fileTypes: [
+	"1", "1b", "1c", "1has", "1in", "1m", "1s", "1x",
+	"2",
+	"3", "3avl", "3bsm", "3c", "3in", "3m", "3qt", "3x",
+	"4",
+	"5",
+	"6",
+	"7", "7d", "7fs", "7i", "7ipp", "7m", "7p",
+	"8",
+	"9", "9e", "9f", "9p", "9s",
+	"chem",
+	"eqn",
+	"groff",
+	"man",
+	"mandoc",
+	"mdoc",
+	"me",
+	"ms",
+	"mom",
+	"n",
+	"rno",
+	"roff",
+	"t",
+	"tr"
+]
