@@ -20,8 +20,10 @@ fileTypes: [
 	"ms",
 	"mom",
 	"n",
+	"rnh",
 	"rno",
 	"roff",
+	"run",
 	"t",
 	"tr"
 ]
