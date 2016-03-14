@@ -1,0 +1,163 @@
+.LM0.RM80
+.NPA
+The following reflects
+Kermit-10 version 3(123).
+.B
+.C;New features and changes in Kermit-10
+.C;-------------------------------------
+.B
+There have been a number of new features which have been added to
+Kermit-10.
+.LS
+.LE;The "SET PROMPT xxx" command has been added.
+.le;When running as a user Kermit (i.e., talking to a server), it is
+possible to access all of the generic command functions (REMOTE commands)
+that were specified in edition 4 of the protocol manual.
+.le;When Kermit-10 is running as a remote Kermit (i.e., transferring
+over a terminal other than the controlling terminal line), typing a control-A
+will give a single status line, typing a control-D will toggle debugging
+on or off, and typing a carriage return will force a timeout (usually causing
+a NAK or retransmission).
+.LE;There is now a SET SERVER-TIMER command
+to set the period for NAKs to be sent when the server is idle.  If this
+value is set to zero, the server will only send out NAKs if it receives
+a bad message.  This is useful when the Kermit on the other end cannot
+clear its buffers.
+.le;It is now possible to assign a terminal other than the jobs controlling
+terminal as the default device for file transfers.  If the logical name
+"KERMIT" is assigned to a terminal, that terminal will be the default
+device for all transfer operations (and for the CONNECT command).  This
+acts as if a "SET LINE KERMIT:" command was given upon startup.
+.le;Kermit-10 should now work correctly on non-network systems.
+.le;A few bugs in wild-card file specification processing have been fixed.
+Kermit-10 should now handle pathological and ersatz device names correctly.
+.le;A TAKE command has been added.  Note that a file being "TAKEn" cannot
+contain TAKE commands, since OPRPAR does not handle more than one level
+of indirection.
+.le;A DEFINE commands has been added.  This allows macros to be defined
+for collections of setable parameters.  Any items which can be SET with
+the SET command can be used within a macro definition.  Commas are used
+to separate parameters.  The SET command can also now take multiple
+parameters separated by commas.
+.le;The SET FILE-BYTE-SIZE and SET FILE-WARNING commands have been
+changed to SET FILE BYTE-SIZE and SET FILE WARNING.  This is both to make the
+commands easier to type (SET F B instead of SET FILE-B), and to allow for
+the new command SET FILE NAMING.  The new command specifies how file names
+being sent and received are to be treated.
+The possible arguments are:
+.LS1.LE;FULL-FILE-SPECIFICATION - include the device name and path
+in any file name being sent.  When receiving a file name, do not do
+any special processing on the name before trying to use it as a file name.
+.LE;NORMAL-FORM - include only the file name and extension (no device or path)
+in any file name being sent.  Convert any non-alphanumeric characters to
+"X".  When receiving a file specification, convert any non-alphanumeric
+characters to "X".
+.LE;UNTRANSLATED - include only the file name and extension when sending
+a file name, do not change any characters in the file name or extension.
+When receiving a file specification, do not do any special processing on the
+name before trying to use it.
+.ELS
+.LE;The KL10 only instructions (ADJBP's) have been replaced with more
+acceptable
+ones.  This should make Kermit-10 run on KI10s without problems.
+.le;When running as a server Kermit, some of the generic command functions
+are processed.
+The following generic server commands (REMOTE commands) are supported
+in server mode (and as LOCAL commands):
+.LS1
+.LE;CWD - Change working directory.  The default path for the job will be
+set to the path supplied as an argument.  Any password supplied is ignored.
+If no arguments are supplied, the default path is set to that which was
+in effect when Kermit-10 was started (not necessarily the user's PPN).
+.LE;DELETE/ERASE - Delete files.  The files specified by the (possibly wildcard)
+file specification supplied as an argument are deleted.  For each file that
+matches the file specification Kermit-10 will reply with the file specification
+and size of file (in blocks).
+.le;DIRECTORY - List directory.  The files which match the file specification
+supplied as an argument are listed along with their size (in blocks) and
+their creation dates.
+.LE;HELP - Give help message. Kermit-10 will reply with a help message
+indicating which server commands are supported, and what the arguments should
+be.  Any argument to the HELP command are ignored.
+.LE;SPACE - Show disk space usage.  Kermit-10 will reply with a message
+indicating the amount of space in use and amount remaining with respect
+to logged in and logged out quotas, and total free space remaining on the
+structure.  If no argument is given, the values will be listed for all
+structures for the user's PPN.
+.LE;STATUS - Status of Kermit-10.  Kermit-10 will reply with a message
+that indicates the amount of data that has been sent or received.
+.LE;TYPE - Type a file or files.  The file specification supplied
+may be wild-carded.
+.ELS
+.le;The LOG command has been added to support log files.  There are currently
+two types of log files implemented - SESSION and DEBUG.  The SESSION log is
+used in connection with the CONNECT command to log all characters which are
+being typed on the user's terminal.  The DEBUG log is used for debugging output
+(when debugging is enabled).  The LOG DEBUG command is an alternative to the
+previous SET DEBUGGING-LOG, but does not enable debugging output.
+With both types of log files, the user may specify whether the file should
+supersede an already existing file by the same name, or append to it.
+Since Kermit-10 only opens the file during either a connect session (the
+SESSION log) or a file transfer transaction (the DEBUG log), it will switch
+to appending to the file after it has initially opened it.
+.ELS
+.b
+.c;Kermit Sources
+.c;------ -------
+.b
+The following describes the various source files which make up Kermit-10.
+The names used are those which are normally used when Kermit-10 is distributed
+along with other Kermits.  Before using these files, the "K10" prefix must
+be changed to "KER" (i.e., K10MSG.MAC ==> KERMSG.MAC).
+Note that the .BLI files are common to Kermit-10, VAX/VMS Kermit-32, and
+Pro/Kermit.  In certain cases, the K10xxx.BLI files may only contain
+a pointer to the actual file containing the full source (for example,
+K10MSG.BLI may say "The complete source may be found in VMSMSG.BLI.").
+.b
+Common BLISS source modules:
+.ls
+.LE;K10TT.BLI - Common BLISS source for the terminal text output support.
+This module produces K10TT.MAC.
+.LE;K10GLB.BLI - Common BLISS source for the global storage
+for K10MSG.BLI.  This module produces K10GLB.MAC.
+.LE;K10MSG.BLI - Common BLISS source for the protocol
+handling module.  This module produces K10MSG.MAC.
+.LE;K10COM.REQ - Common BLISS require file which defines various common
+parameters.  This is required by K10MSG.BLI. This must be renamed to
+KERMSG.BLI.
+.els
+
+The following files are specific to Kermit-10:
+.LS
+.LE;K10UNV.MAC - Definitions of common symbols. Must be renamed to KERUNV.MAC.
+.LE;K10MIT.MAC - Command parser, basic support routines for file and terminal
+I/O.
+.le;K10WLD.MAC - Wild-card file processor (derived from WILD).
+.LE;K10SYS.MAC - System interface routines. This contains
+system dependent routines for K10MSG for handling various server commands.
+.le;K10MSG.MAC - Protocol handling module.  This is actually produced by
+BLISS-36 from K10MSG.BLI.
+.LE;K10MSG.MAI - KI10 verison of K10MSG.MAC.  This contains no KL10
+only instructions.
+.le;K10GLB.MAC - Global storage used by the message processing.
+.le;K10ERR.R36 - BLISS-36 require file needed by K10MSG.BLI to define the
+error codes passed between the protocol module and the rest of Kermit-10.
+This file must be renamed to KERERR.R36.
+.LE;K10TT.MAC - Terminal text output support routines for the protocol
+module.  This are used for debugging output as well as file specification
+and packet number typeout.  This file is generated by BLISS-36 from K10TT.BLI.
+.LE;K10TT.MAI - KI10 version of K10TT.MAC.
+.LE;K10MIT.RNH - RUNOFF (DSR) source for Kermit-10 help file.
+.LE;K10MIT.HLP - Help file for Kermit-10.  This is formatted for the
+OPRPAR help subroutine.
+.LE;K10MIT.CCL - Command file for Link-10 to load Kermit-10.
+.ELS
+
+The following files are included only if the distribution path
+supported full 36-bit binary files.
+
+.LS1
+.LE;K10MIT.EXE - Executable version of Kermit-10 for KL10 based systems.
+.LE;K10KIT.EXE - Executable version of Kermit-10 for KI10 based systems.
+.ELS
+ 

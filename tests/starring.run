@@ -1,0 +1,415 @@
+.ll 68
+.m1 8
+.m2 8
+.m3 4
+.m4 4
+.pl 88
+.na
+.sp 7
+.ds
+.in 12
+.un 12
+_K_e_y _W_o_r_d_s:  Networks; Local Networks; Ring Networks; Star
+Networks;
+Data Communications; Network Maintainance; Network Serviceability.
+.in 0
+.sp
+_A_b_s_t_r_a_c_t
+     Ring networks exhibit a number of desirable properties:  they are
+simple in concept and in implementation; one-way point-to-point signal
+transmission minimizes analog circuitry and design problems; the cost
+of a small net is small; and transmission speed is not limited by
+propagation time.  However, there are several potential reliability
+problems:  all repeaters must be powered and operating reliably at
+all times; cutting of any transmission line in the ring will disrupt the
+entire network; and trouble-shooting may require visiting each node
+with test equipment.
+.m1 12
+     The advantages of ring networks are sufficiently attractive to merit
+careful attack on the reliability and maintainability problems.
+This paper describes a physical organization of a ring network that we
+term a "star-shaped ring."(1)  This organization addresses the reliability
+issues mentioned above by looping all internode links back through a
+central location so that broken lines or repeaters can be bypassed.
+This approach allows automatic recovery if the ring is accidentally
+broken.  In addition, it simplifies trouble-shooting and, because the
+lengths of transmission links can be normalized, permits the use of still
+simpler
+transmission circuitry.  Finally, the "star-shaped ring" appears to
+be a satisfactory approach to installing a network that can grow to
+a large number of nodes in a typical office building.
+.sp
+_I_n_t_r_o_d_u_c_t_i_o_n
+     The M.I.T. Laboratory for Computer Science is engaged in the
+design and implementation of a local area network with the following
+principal goals, desiderata, and constraints:
+.in 5
+.un 5
+1)   Interconnection of independent desktop computers within a building,
+as many as one per office.  A smaller number of typically larger computers
+must also be attachable.
+.un 5
+2)   Application to clusters of two or three computers as well as to
+clusters of a
+hundred or more.
+.un 5
+3)   Extension to a campus- or site-wide network of, say, 10,000 computers.
+.un 5
+4)   Bandwidth in the 1 to 10 Mb/sec. range, so that file transfer
+can be a convenient part of interactive operations, even though average
+load may be only a few percent of the peak capacity.
+.in 0
+.sp
+     This set of goals led us to conclude that the best technology
+choice has little to do with the usual analyses of performance,
+collision rate, or bit error rates, but rather with more mundane issues
+such as which technology is easiest to install, reconfigure, and maintain
+in a typical office building.  We were first attracted to the technology
+of a repeater ring because it appeared to have one advantage of each of
+the alternative broadcast (Ethernet) and star configurations, without
+the corresponding disadvantage of each:
+.in 5
+.un 5
+a)   The transmission system of a star is point-to-point, allowing
+the use of
+simpler analog technology than the Ethernet in which every receiver
+must be able reliably to hear transmissions from every transmitter.
+.un 5
+b)   The hardware complement of the Ethernet is a tranceiver at each
+node and so remains a constant percentage of the system cost as
+the network grows.  This means that the cost of getting a small
+network started is small.
+The centralized star switch tends to have a substantial fixed
+cost component that discourages its use in small configurations
+that might later grow.
+.sp
+.in 0
+     The repeater ring network uses point-to-point transmission and also
+has a hardware complement--a repeater at each node--that is a constant
+percentage of the system cost as the network grows.  Thus it captures
+both advantages.
+In turn, a ring of repeaters appears to introduce a
+reliability/availability disadvantage since every component must work
+properly all the time.  Our analysis of these considerations suggested
+that the advantages of the ring configuration were interesting enough to
+warrant devising a strategy that directly attacks the reliability
+and maintainability problems.  The remainder of this paper describes
+what promises to be a successful such strategy, based on the observation
+that the cited advantages of a ring do not depend on the actual routing
+of the wire cables that link the repeaters.  An earlier paper describes
+in detail the design of a small-delay ring repeater and the hardware
+and software protocols used to achieve reliable local packet
+transport, and those details are not repeated here.(2)
+.sp
+_T_h_e _b_a_s_i_c _r_i_n_g
+     Proposers of ring networks usually draw pictures
+as in figure one, with the implication that the
+.sk
+cables interconnecting individual repeaters follow any convenient,
+reasonably direct route from one repeater to the next.  Installing a
+ring network with that approach could be expected to expose the
+following problems:
+.in 5
+.un 5
+1)   _C_a_b_l_e _V_u_l_n_e_r_a_b_i_l_i_t_y.  The physical ring
+trails widely through the building, and is
+vulnerable at every point to accidents.  If a link is accidentally
+severed or shorted, the entire ring is inoperable until
+the problem can be isolated and a new cable
+installed.
+.un 5
+2)   _R_e_p_e_a_t_e_r _F_a_i_l_u_r_e.  Since the repeaters are
+all in series, failure of any repeater would
+make the ring inoperable.
+For the kind of office environment for which our ring is intended,
+it will be common for many of the nodes not to be in operation
+at any time.  But the repeaters must always operate.
+.un 5
+3)   _P_e_r_a_m_b_u_l_a_t_i_o_n.  When either a repeater or a cable
+linking two repeaters
+fails, locating the failure requires perambulation of the ring,
+and thus access to all offices containing repeaters and wire runs
+containing cables.
+Portable test equipment is also required.
+.un 5
+4)   _I_n_s_t_a_l_l_a_t_i_o_n _h_e_a_d_a_c_h_e_s. 
+Installation of a new repeater requires selecting two repeaters
+that are supposed to be directly linked, verifying that they actually are
+linked (that is, that the documentation of network topology is up-to-date)
+and installing new cables from each of them to the site of the new repeater.
+This installation approach has several
+consequences.  The length of cable driven by the source repeater will
+change, possibly requiring retuning of its transmission circuitry.  The
+old cable, now unused, is likely to be abandoned;
+one would expect the walls and ceilings to accumulate
+forgotten wire.  Finally the ring may develop a wildly irregular topology,
+thereby increasing the effort involved in perambulation.
+.in 0
+.sp
+_B_y_p_a_s_s _r_e_l_a_y_s
+     The ring network repeater can be designed
+to provide a partial solution to the problem of repeater failure, since that
+is almost certainly the most significant of the four
+problems.  The repeater can provide an "I-am-healthy" signal that
+operates a mechanical relay that would, if not energized, bypass that
+repeater, as in figure two.  Thus turning off the primary power at a node would
+kill the
+"I-am-healthy" signal, the relay would de-energize, and its contacts
+would cut the repeater out of the ring.  This approach replaces the
+repeater failure problem
+with four new problems, that are (one hopes) easier to cope with:
+.in 5
+.un 5
+2a)  _R_e_p_e_a_t_e_r _s_e_l_f-_c_h_e_c_k
+_f_a_i_l_u_r_e.  There is still a class of repeater failures that can
+disrupt the
+network, namely those in which the repeater's internal self-check circuits
+insist that
+the repeater is healthy when it really isn't.  The frequency of
+such failures ought to be substantially smaller than that of all repeater
+failures, however.
+.un 5
+2b)  _R_e_l_a_y _c_o_n_t_a_c_t _f_a_i_l_u_r_e.  The relay
+contacts may fail, thus disrupting the ring.
+.un 5
+2c)  _L_i_n_e _l_e_n_g_t_h _v_a_r_i_a_t_i_o_n.  The length of
+transmission cable connecting a healthy repeater
+to its next healthy neighbor may vary widely, depending on how many
+intervening repeaters are bypassed.  Thus the transmitter/receiver
+system must be designed to operate over a wide range of transmission
+distances, perhaps automatically adjusting to the cable length.
+(This problem is a rapidly varying version of one of the installation
+headache problems.)
+.un 5
+2d)  _B_y_p_a_s_s _d_i_s_r_u_p_t_i_o_n.  At any instant a bypass
+relay may cut in or out, and its contacts may
+"bounce" for a few tens of milliseconds, thus destroying any message
+or token currently circulating around the ring.
+.sp
+.in 0
+     The software recovery protocols of the ring network are assumed to be
+designed to take
+occasional lost packets, messages, or tokens in stride, so 
+the bypass disruption problem is not
+an important concern, so long as it happens only occasionally.
+     The relay contact failure problem may be addressed by connecting
+normally closed relay contacts
+in parallel as shown in figure two, thus requiring that two relay contacts
+.sk
+must fail simultaneously before a de-energized relay can disrupt the ring.
+Reed relays that can reliably transmit high data rate
+digital signals seem to be readily available.
+.sp
+_T_h_e _s_t_a_r-_s_h_a_p_e_d _r_i_n_g:  _s_t_e_p _o_n_e
+     The perambulation and installation headache problems 
+can be attacked simultaneously simply by rearranging the inter-repeater
+cables so that they always loop back through a single room, called the
+_w_i_r_e _c_e_n_t_e_r, as in figure three.(3)
+     With this star-shaped arrangement, it is not necessary for a
+trouble-shooter
+to have keys to every office containing a repeater or to carry test equipment
+from point to point.  With access to the
+signal on every cable as it passes through the wire center, one can launch
+a message into the ring, observe the signals on successive cables to see how far
+it gets,
+and then reconfigure the ring to disconnect temporarily the repeater or
+the cable that seems not to be working.  Then access is needed only to
+the area containing the troubled repeater or cable.
+     Installation of new repeaters is also regularized.  Two cables are
+installed from the location of a new repeater to the
+wire center.  Then the new repeater is spliced into the ring entirely
+by rearranging wires at the wire center.  At no point is one tracing old
+cables through walls or ceilings or abandoning them there when making
+new installations.  Unanticipated installations can be 
+handled without creating a hodge podge of wires crisscrossing through the
+walls and ceilings; physical planning of a network is thus simplified.
+The order of repeaters on the ring is determined at
+the wire center and can be rearranged if for some reason
+reordering seems necessary.  (E.g., when trouble-shooting a
+repeater-repeater transmission failure, quick rearrangement might be a useful
+technique to isolate the problem to the transmitter or receiver side of the
+link).
+.sp
+_T_h_e _s_t_a_r-_s_h_a_p_e_d _r_i_n_g:  _s_t_e_p _t_w_o
+.m4 -2
+     A further refinement of the wire center concept considerably reduces
+the wire vulnerability problem, simplifies
+maintenance and installation further, and normalizes
+transmission line lengths.  This refinement involves simply
+moving the bypass relays from the repeaters to the wire center.
+The primary impact of centralizing the relays is that it provides for
+automatic bypass of the vulnerable data transmission lines as well as
+of the repeaters.  To
+control the relay, an extra pair of wires runs from the repeater
+to the wire center.  In practice, installation of a repeater would be
+accomplished by pulling a single cable containing two data
+transmission lines and the relay control pair from the area of the
+repeater to the wire center.  A single plug connects all of these lines
+to the repeater.  Almost any accident, ranging from chopping the cable
+to kicking out the power supply plug of the repeater
+has the effect of bypassing both the repeater
+and also the data transmission lines to and from that repeater.
+     An important additional effect of bypassing the data transmission
+lines that lead to bypassed repeaters is that the path from one working
+repeater to the next working repeater always
+consists of the same cable
+run to the wire room, some number of bypass relays, and exactly one
+cable run to a receiver.  This path varies mostly in the length of the
+final cable run; thus the range of signal levels to which the transmission
+system must automatically adapt is much smaller.  Further, at the
+wire room an appropriate
+level-setting attenuator can be placed in series with
+short cables.  Then a transmitter will always "see" essentially the same cable
+length no matter what the configuration of the ring.
+Thus the line length variation problem can be eliminated by this arrangement,
+allowing more flexibility in the design choices for the transmission system.
+.sp
+.m4 +2
+_P_h_y_s_i_c_a_l _r_e_a_l_i_z_a_t_i_o_n _o_f _t_h_e
+_s_t_a_r-_s_h_a_p_e_d _r_i_n_g
+     Serviceability of the ring can be further enhanced by a suitable
+physical realization of the interconnections at the wire center.  The
+design of figure four illustrates.
+A printed circuit board is constructed with, say, eight bypass relays in a row,
+and eight connectors into which cables to repeaters can be plugged.
+Each relay is connected to the next when its coil is de-energized.  When
+energized, the relay cuts into the ring a pair of transmission paths that
+lead through a socket that can contain an attenuating
+network (to normalize cable lengths) to the
+repeater connector at the edge of the board.  Current for the relay coil
+comes from the repeater.
+A light-emitting-diode is connected across the relay coil for visual 
+observation of the "I-am-healthy" signal.
+     The sequence of normally closed relay contacts leads to
+connectors at the top and bottom edges of the board.  A "ring continuity
+cable" runs from the top connector around to the bottom one, completing
+the ring.  In a sense, this ring of normally closed relay contacts on
+a single board in a controlled environment is the data communication
+ring, from the point of view of identifying what must be working to
+allow the ring to operate.  If any two repeaters can energize their bypass
+relays, they can communicate, even though all other potential ring participants
+may have failed, powered down, or tripped over and disconnected their cables.
+     Installation of a new ring participant is accomplished by installing
+a cable from the repeater to the wire center, attaching a
+connector, and plugging it into an unused bypass relay.  No disruption
+of ring operation occurs.  If all of the bypass relays have
+repeaters attached to them, another printed circuit board containing eight
+more relays can be installed next to this one, and then in a matter of
+seconds cabled into the ring by interchanging top ring continuity
+cable connectors.  (This kind of ring expansion may be scheduled at times
+when a few-second disruption is tolerable.  Then, addition of repeaters
+can be accomplished at any time.)
+     Note that trouble-shooting with this physical configuration is
+especially straightforward.  If the ring stops working, it is almost certainly
+because some repeater's "I-am-healthy" line is incorrectly energized.  One
+starts by unplugging all the cable connectors to all the repeaters, checking
+for ring continuity, and then plugging in the cables to the repeaters
+one at a time to see which one (or ones)
+seem to disrupt continuity.  Any
+cable whose reattachment causes trouble can be left unattached for the
+moment until it can be
+checked out more carefully.  In this way the
+ring can be brought back into operation for the correctly behaving
+participants quite rapidly.  Further, by rearranging the ring
+continuity cables that interconnect one printed circuit board to the
+next it is possible quickly to isolate problems to a group of eight
+relay/cable combinations.  Finally, if a relay or printed circuit board
+component fails, that board can quickly be replaced or, at worst, bypassed.
+.sp
+_W_i_r_e _c_e_n_t_e_r _i_n_t_e_r_c_o_n_n_e_c_t_i_o_n
+     One might envision equipping a wire center with up to eight
+boards, each with eight relays, producing a ring of sixty-four
+nodes, probably enough to handle a typical building floor or wing.
+Another floor or wing would have its own wire center.  The simplest
+way to interconnect the wire centers, if they are not too far apart,
+is to interconnect the ring continuity cables of the two wire centers.
+However, if the wire centers are very far apart, the center-to-center
+cables will add to the data transmission path between some repeaters
+but not between others, and the cable length variability problem
+will reappear.  A better approach
+would be to build a special wire-center-to-wire-center repeater that
+would plug into both wire centers in the same way as a node repeater.
+If traffic is light enough to allow 128 nodes to be arranged in a single
+ring, this repeater would be a simple non-addressable full duplex
+repeater.  If traffic grows to the point that two 64-node rings would be
+a better arrangement, the repeater could be replaced by a filtering bridge that
+forwards to the other ring only
+messages that are addressed to nodes not on this ring segment.  (This
+same basic filtering bridge design could also be used to divide a 64-node
+ring at a single wire center into two or more smaller rings, if
+necessary.)
+.sp
+_A_u_t_o_m_a_t_i_c _r_i_n_g _r_e_c_o_v_e_r_y
+     A further possibility for automating maintenance is to
+connect a microprocessor controlled repeater to one of the repeater
+connectors, and program the microprocessor to occasionally (say, once
+per second) launch a test packet around the ring.  The microprocessor
+would also control, perhaps through another set of relay coils, the
+continuity between each repeater's "I-am-healthy" line and its bypass relay.
+If a test packet fails to make it around the ring, the microprocessor
+would force de-energization of all of the bypass relays (except
+its own), check for ring continuity, and then reconnect the
+"I-am-healthy" lines one at a time, testing ring continuity after each
+reconnection.  When it finds an "I-am-healthy" line that
+disrupts ring continuity it might broadcast a
+trouble report around the ring as a way to call for a repairman.
+Since no other peripheral devices are needed, and the program is fixed, the
+extra cost of this automatic test system could be very small.
+.sp
+     It is not clear how useful this notion of a microprocessor
+controlled automatic ring maintainer may be in a network
+consisting only of a single, small wire center.  It may be overkill to
+automate the function because the ring may be very reliable anyway,
+and there is a danger that the
+microprocessor will fail in such a way as to disrupt the network, or that
+its automatic operation will be so effective that it reduces the
+incentive to repair misbehaving nodes.
+On the other hand in a campus-wide or industrial site-wide network with 100
+interconnected wire centers,
+the automatic maintenance feature may be very helpful in getting
+service attention quickly and in rapidly restoring operation.
+.sp
+_C_o_n_c_l_u_s_i_o_n _a_n_d _p_r_o_g_r_e_s_s
+_r_e_p_o_r_t
+     The star-shaped ring strategy has the decentralized control
+advantage of a ring network, and at the same time the
+centralized maintenance advantage of a star network.  It thus captures some of
+the better properties of each while avoiding the key disadvantages
+of both.
+     At the M.I.T. Laboratory for Computer Science we have been since
+January, 1979, operating a ring network that runs at 1 Mb/sec. and
+that now has five nodes consisting of Digital Equipment Corporation PDP-11
+and VAX-11/780 computers.  This ring uses the traditional shortest
+convenient path from one node to the next for wire runs.
+In anticipation of delivery of as many as 100 desktop computers
+during 1980, the ring network hardware interface, which includes
+the repeater, is being redesigned, simplified, and increased in
+speed.  The star-shaped ring strategy is planned for this expanded
+ring network.
+.sp
+.bp
+_F_o_o_t_n_o_t_e_s
+.in 5
+.un 5
+1)   The star-shaped ring of this paper has a different set of
+goals from the similarly named Star-Ring, which is an I/O
+bus with properties of both ring and star topology.  See Potvin, J.N.,
+et al., "Star-Ring:  A Computer Intercommunication and I/O System,"
+_I_n_f_o_r_m_a_t_i_o_n _P_r_o_c_e_s_s_i_n_g _71_, North
+Holland Publishing Co. (1972)
+pp. 721-718.
+.sp
+.un 5
+2.   Clark, D.D., Pogran, K.T., and Reed, D.P., "An Introduction
+to Local Area Networks," _P_r_o_c. _I_E_EE_ _66_, 11 (November, 1978)
+pp. 1497-1517.
+.sp
+.un 5
+3)   The wire center is an idea borrowed from years of telephone
+practice.  The IBM 2790 transmission loop provides a kind of wire
+center in that a single ring of many repeaters is broken
+into four segments, each of which comes back to a central controller.
+Again despite superficial similarities the design
+goals of that system are substantially different from the one described
+here.  See Hippert, R.O., "IBM 2790 Transmission Loop," _I_BM_ J_. _o_f
+R_. &_ D_. _14_, 6 (November, 1970) pp. 662-667.

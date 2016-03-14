@@ -1,0 +1,1181 @@
+.TS 10
+.P0
+.ap
+.LM10.RM70
+.B
+Kermit is a file transfer program.  It allows the transfer of files over
+terminal lines from a remote Kermit program to the local Kermit program.
+
+Kermit-10 can be run in either local or remote modes.  In remote mode,
+transfers take place over the controlling terminal line.  Ususally,
+Kermit-10 is used in remote mode as a "server", meaning that it will
+accept commands from the other Kermit.  In local mode, Kermit-10 will
+perform transfers over a terminal line other than the controlling terminal.
+In local mode, Kermit-10 is capable of giving commands to a "server" Kermit.
+Kermit-10 is put into local mode by using the SET LINE command.
+.TS 10,20,30,40,50,60
+
+Type HELP <command> for more information on a given commands.  Additional
+information is avaiable for:
+.B.NF.NJ
+BYE	CONNECT	EXIT	FINISH	GET	LOCAL	
+LOG	LOGOUT	RECEIVE	REMOTE	SEND	SET	
+SHOW	STATUS
+.FILL.JUST
+.B.I-10
+*BYE
+.I-10
+BYE	This command
+will cause Kermit-10 (when in local mode) to tell the other
+Kermit (which should be in server mode) to exit from Kermit and, if
+applicable, terminate its job (or process, etc.).  When Kermit-10 receives
+the acknowledgement that this is being done, it will exit to TOPS-10.
+.b.i+10
+Kermit-10>BYE
+.b
+.B.I-10
+*CONNECT
+.I-10
+CONNECT	The CONNECT command will allow you to connect in as a virtual terminal
+over the line that was specified by the SET LINE command, or to the
+terminal line specified in the command.
+The format of the CONNECT command
+is_:
+.b.I+10
+Kermit-10>CONNECT
+.b
+or
+.b.I+10
+Kermit-10>CONNECT device_:
+.b
+where device_: is the terminal name to be used.
+.b
+or
+.b.i+10
+Kermit-10>CONNECT node_:_: line
+.b
+where node_:_: is the node number the terminal is attach to, and line is the
+line number within that node.
+.B.I-10
+*EXIT
+.I-10
+EXIT	The EXIT command
+will cause Kermit to return to command level.  This command
+is the same as the QUIT command.  An example of this command is_:
+.b.I+10
+Kermit-10>EXIT
+.B.I-10
+*FINISH
+.I-10
+FINISH	This command will
+cause Kermit-10 (when in local mode) to tell the other
+Kermit (which should be in server mode) to exit from Kermit.
+After receiving the acknowledgement that this is being done, Kermit-10
+will prompt for another command.
+.b.i+10
+Kermit-10>FINISH
+.b
+.B.I-10
+*GET
+.I-10
+GET	This command can only be used in local mode.  It will cause
+Kermit-10 to request that the other Kermit (which must be running in
+server mode) to transmit the specifed file(s) to Kermit-10.
+.B.I+10
+Kermit-10>GET file-specification
+.b
+Where "file-specification" is a valid file specification for the system
+on which the other Kermit is running.
+.B.I-10
+*LOCAL
+.I-10
+LOCAL	This set of commands performs actions like getting directory
+listings, deleting files, etc., on the local system (i.e., the system
+Kermit-10 is running on).  These commands correspond to the commands
+which Kermit-10 implements in server mode.
+
+Additional information is available for the LOCAL commands by typing
+HELP LOCAL <option>, where option is one of the following:
+.ts10,25,40,55
+.b.NF.NJ
+CWD	DELETE	DIRECTORY	DISK-USAGE
+ERASE	HELP	SET-PATH	SPACE
+STATUS	TYPE
+.FILL.JUST
+.B.I-10
+*LOCAL CWD
+.I-10
+LOCAL CWD	This command is used to change the current default path for
+the job running Kermit.  The CWD stands for "change working directory".
+The command takes a path specification as an argument.
+If no argument is given, the default path is set to the path which was
+in effect when Kermit-10 was run.
+This command is identical to the LOCAL SET-PATH command.
+.b.i+10
+Kermit-10>LOCAL CWD
+.b.i+10
+Kermit-10>LOCAL CWD path-specification
+.b
+Where "path-specification" is any valid TOPS-10 path specification.
+.B.I-10
+*LOCAL DELETE
+.B.I-10
+LOCAL DELETE	This command is used to delete a file or set of files.  It
+takes a single, possibly wildcarded, file specification as an argument. All
+files which match the specification are deleted.  As the files are deleted,
+the names and sizes are printed out.
+This command is the same as the LOCAL ERASE command.
+.b.i+10
+Kermit-10>LOCAL DELETE file-specification
+.B
+Where "file-specification" is any valid TOPS-10 file specification. Wildcards
+are allowed.
+.B.I-10
+*LOCAL DIRECTORY
+.B.I-10
+LOCAL DIRECTORY	This command will list all files which match the wildcard
+file specification which is supplied as its argument.  If no argument is
+given, it will list all files from the current default path.  The file
+names, sizes (in words and allocated blocks) and creation dates are listed.
+.b.i+10
+Kermit-10>LOCAL DIRECTORY file-specification
+.B
+Where "file-specification" is any valid TOPS-10 file specification (wildcards
+allowed).  If "file-specification" is left out, Kermit-10 uses "*.*".
+.B.I-10
+*LOCAL DISK-USAGE
+.B.I-10
+LOCAL DISK-USAGE	This command reports the amount of disk space in use
+and available.  It takes optional arguments of either a structure name, a PPN,
+or both.  If no argument is supplied, the disk usage and quota information
+is displayed
+for the user's PPN on all structures currently mounted by the job running
+Kermit-10.
+If only a PPN is supplied, the quota and disk usage information is displayed
+for that PPN on all structures currently mounted.  If only a structure name
+is given, the disk usage and quota information is listed for the user's PPN
+on that structure.  If both a PPN and structure name are given, Kermit-10
+displays the quota and disk usage information for that PPN on the given
+structure.
+The information provided is similar to that provided by QUOLST.
+This command is the same as the LOCAL SPACE command.
+.b.i+10
+Kermit-10>LOCAL DISK-USAGE structure:ppn
+.B
+Where "structure" is a valid structure name (or null for all structures
+in the jobs search list), and "ppn" is a valid project-programmer number
+(enclosed in square brackets) or null to use the user's PPN.
+.B.I-10
+*LOCAL ERASE
+.B.I-10
+LOCAL ERASE	This command is used to delete a file or set of files.  It
+takes a single, possibly wildcarded, file specification as an argument. All
+files which match the specification are deleted.  As the files are deleted,
+the names and sizes are printed out.
+This command is the same as the LOCAL DELETE command.
+.b.i+10
+Kermit-10>LOCAL ERASE file-specification
+.B
+Where "file-specification" is any valid TOPS-10 file specification. Wildcards
+are allowed.
+.B.I-10
+*LOCAL HELP
+.B.I-10
+LOCAL HELP	This command will display the help message which
+is returned when Kermit-10 receives a generic help request in server
+mode.  It describes the functions which are implemented in server mode
+by Kermit-10.
+.b.i+10
+Kermit-10>LOCAL HELP
+.B.I-10
+*LOCAL SET-PATH
+.I-10
+LOCAL SET-PATH	This command is used to change the current default path for
+the job running Kermit.
+The command takes a path specification as an argument.
+If no argument is given, the default path is set to the path which was
+in effect when Kermit-10 was run.
+This command is identical to the LOCAL CWD command.
+.b.i+10
+Kermit-10>LOCAL SET-PATH
+.b.i+10
+Kermit-10>LOCAL SET-PATH path-specification
+.b
+Where "path-specification" is any valid TOPS-10 path specification.
+.B.I-10
+*LOCAL SPACE
+.B.I-10
+LOCAL SPACE	This command reports the amount of disk space in use
+and available.  It takes optional arguments of either a structure name, a PPN,
+or both.  If no argument is supplied, the disk usage and quota information
+is displayed
+for the user's PPN on all structures currently mounted by the job running
+Kermit-10.
+If only a PPN is supplied, the quota and disk usage information is displayed
+for that PPN on all structures currently mounted.  If only a structure name
+is given, the disk usage and quota information is listed for the user's PPN
+on that structure.  If both a PPN and structure name are given, Kermit-10
+displays the quota and disk usage information for that PPN on the given
+structure.
+The information provided is similar to that provided by QUOLST.
+This command is the same as the LOCAL DISK-USAGE command.
+.b.i+10
+Kermit-10>LOCAL SPACE structure:ppn
+.B
+Where "structure" is a valid structure name (or null for all structures
+in the jobs search list), and "ppn" is a valid project-programmer number
+(enclosed in square brackets) or null to use the user's PPN.
+.B.I-10
+*LOCAL STATUS
+.B.I-10
+LOCAL STATUS	This command will type out the status information since
+Kermit-10 was started.  This is the same as the totals information that
+is printed by the STATUS command.
+.b.i+10
+Kermit-10>LOCAL STATUS
+.B.I-10
+*LOCAL TYPE
+.B.I-10
+LOCAL TYPE	This command will type a file or files on the user's terminal.
+It takes a file specification (possibly wildcarded) as an argument.
+This file is read using the current BYTE-SIZE, so it is possible to
+type a file which was stored using BYTE-SIZE EIGHT.
+.b.i+10
+Kermit-10>LOCAL TYPE file-specification
+.B
+Where "file-specification" is any valid TOPS-10 file specification.  Wildcards
+are permitted.
+.B.I-10
+*LOG
+.I-10
+LOG	This set of commands is used to specify the names of various
+types of log files.  Each command either specifies the name of the
+given type of log file, or clears the name.
+For more information type HELP LOG <option>, where option is one of:
+.ts10,25,40,55
+.b.NF.NJ
+DEBUG	SESSION
+.JUST.FILL
+.B.I-10
+*LOG DEBUG
+.I-10
+LOG DEBUG	This command sets the name of the debugging log file to
+be used during transfers.  This log file is used for debugging output
+when the SET DEBUG ON command is used.  A new file by the given name
+will be created, unless the /APPEND switch is used.  After the file
+has been created, subsequent transfers will append to the file.
+Note that the SET DEBUG LOG-FILE file-name command is equivalent to
+LOG DEBUG file-name/APPEND followed by a SET DEBUG ON command.
+.B.I+10
+Kermit-10>LOG DEBUG file-specification
+.B
+or
+.B.I+10
+Kermit-10>LOG DEBUG file-specification/APPEND
+.b
+Where "file-specification" is a valid TOPS-10 file specification.
+.B.I-10
+*LOG SESSION
+.I-10
+LOG SESSION	This command sets the name of the log file to be
+used during "CONNECT" sessions.  This file is used to log all characters
+which are output to the user's terminal when the CONNECT command is
+being used to perform terminal emulation.  A new file by the given
+name will be created, unless the /APPEND switch is used.  In any case,
+once the file has been created, subsequent CONNECTs will append to the
+file.
+.B.I+10
+Kermit-10>LOG SESSION file-specification
+.B
+or
+.B.I+10
+Kermit-10>LOG SESSION file-specification/APPEND
+.B
+Where "file-specification" is a valid TOPS-10 file specification.
+.B.I-10
+*LOGOUT
+.I-10
+LOGOUT	This command
+will cause Kermit-10 (when in local mode) to tell the other
+Kermit (which should be in server mode) to exit from Kermit and, if
+applicable, terminate its job (or process, etc.).  When Kermit-10 receives
+the acknowledgement that this is being done, it will prompt for another
+command.
+.b.i+10
+Kermit-10>LOGOUT
+.b
+.B.I-10
+*QUIT
+.I-10
+QUIT	This command
+will cause Kermit to return to command level.  This is the same
+as the EXIT command.
+.b.I+10
+Kermit-10>QUIT
+.B.I-10
+*RECEIVE
+.I-10
+RECEIVE	The RECEIVE command is used to put Kermit-10 into remote mode waiting
+for a single file transfer transaction.  If no file specification is given,
+Kermit-10 will wait for a file transfer initialization sequence from the
+other Kermit.
+If a file specification is given, that file specification will
+be used to store the received file(s), regardless of what name is supplied
+by the other Kermit.
+
+The format of the command is_:
+.b.I+10
+Kermit-10>RECEIVE
+.b
+or
+.b.i+10
+Kermit-10>RECEIVE file-specification
+.b
+Where "file-specification" is any valid TOPS-10 file specification.
+.B.I-10
+*REMOTE
+.I-10
+REMOTE	This command allows the user of Kermit-10 (in local mode) to give
+various commands to the other Kermit (which must be in server mode).
+These commands provide for listing the contents of a directory, deleting
+files, typing files, displaying the amount of disk space used, etc.
+Note that not all server Kermits support all commands, but all server
+Kermits should repsond with a message saying the command is not implemented
+if it does not support it.
+.b.i+10
+Kermit-10>REMOTE keyword arguments
+.b
+Where keyword is the name of the command, and arguments are the optional
+arguments for the command.
+
+For more information on the individual commands, type "HELP REMOTE option",
+where "option" is one of:
+.ts10,25,40,55
+.b.NF.NJ
+COPY	CWD	DELETE	DIRECTORY
+DISK-USAGE	ERASE	EXIT	HELP
+HOST	LOGIN	LOGOUT	RENAME
+SEND	SPACE	STATUS	TYPE
+WHO
+.FILL.JUST
+.B.I-10
+*REMOTE COPY
+.I-10
+REMOTE COPY	This
+causes Kermit-10 to request that the server Kermit make a copy of the
+specified file.  Both the old and new files are files on the server's system -
+no file transfer between systems is done.
+The server Kermit should respond with some indication that either the file
+was successfully copied, or with an error message.  Note that some
+Kermit's will allow wild-carded copies, while others will only allow a single
+file to be copied per command.
+.b.i+10
+Kermit-10>REMOTE COPY old-remote-file
+.I+10;New file: new-remote-file
+.b
+Where 'old-remote-file' is the name of the file you wish to copy, and
+'new-remote-file' is the name for the copy.
+.B.I-10
+*REMOTE CWD
+.I-10
+REMOTE CWD	This
+command (short for "Change Working Directory") causes Kermit-10 to request
+that the server Kermit change the default directory (path, device, etc.) that
+will be used for files whose specification does not include the directory
+information.  For some systems a password can be supplied which will allow
+access to the new directory.  Since Kermit-10 can not know whether the server
+Kermit requires a password, it will always ask for one.  If no directory
+is specified in the command, the server Kermit will set the default
+directory back to the users default.  This may be either the directory
+which is the default when a job created, or the default directory which
+was in effect when the server Kermit was started.
+The server Kermit should respond with a message which indicates where
+the new default directory has been set, or with an error message.
+.b.i+10
+Kermit-10>REMOTE CWD remote-directory-specification
+.I+10;Password: password for remote directory
+.b
+or
+.b.i+10
+Kermit-10>REMOTE CWD
+.b
+Where 'remote-directory-specification' is a string which is acceptable
+as a directory indication for the server system.  The password is any string
+which is required as a password for access to the given directory.  The
+password will not be echoed.
+.B.I-10
+*REMOTE DELETE
+.I-10
+REMOTE DELETE	This
+causes Kermit-10 to request the server Kermit to delete the specified
+file (or files if the server Kermit supports wild-card deletes).  The
+server Kermit should respond with a message indicating whether the file
+(or files) has been deleted. This is the same as the REMOTE ERASE command.
+.b.i+10
+Kermit-10>REMOTE DELETE file-specification
+.B
+Where file-specification is a valid file specification for the server
+Kermit's system.
+.B.I-10
+*REMOTE DIRECTORY
+.I-10
+REMOTE DIRECTORY	This
+causes Kermit-10 to request a directory listing from the server
+Kermit.  The directory listing will be printed on the users terminal.
+The format of the listing is determined by the server Kermit.
+.B.I+10
+Kermit-10>REMOTE DIRECTORY file-specification
+.B
+Where the file-specification is an optional valid file specification for the
+server Kermit's system.
+.B.I-10
+*REMOTE DISK-USAGE
+.I-10
+REMOTE DISK-USAGE	This
+causes Kermit-10 to request the server Kermit to reply with
+an indication of the amount of disk space used and available for
+the given directory (or the default directory if none is given).
+This is the same as the REMOTE SPACE command.
+.B.I+10
+Kermit-10>REMOTE DISK-USAGE directory-specification
+.B
+Where directory-specification is an optional directory specification
+for the server Kermit's system.
+.B.I-10
+*REMOTE EXIT
+.I-10
+REMOTE EXIT	This
+command is identical to the FINISH command.  It requests the server
+Kermit to exit to its system command parser, allowing the terminal to be
+used for normal commands.
+.B.I+10
+Kermit-10>REMOTE EXIT
+.B
+.B.I-10
+*REMOTE HELP
+.I-10
+REMOTE HELP	This
+causes Kermit-10 to request the server Kermit to reply with a sort
+summary of what commands it supports in server mode.  If an argument
+is given, help on the specific topic is requested.  The resulting
+help message will be typed on the users terminal.
+.b.i+10
+Kermit-10>REMOTE HELP topic
+.b
+or
+.b.i+10
+Kermit-10>REMOTE HELP
+.b
+Where topic is an option subject for more detailed help.  If no topic is
+given, a general help message is requested.
+.B.I-10
+*REMOTE HOST
+.I-10
+REMOTE HOST	This
+command requests the server Kermit to perform the specified command
+as if it were typed by the user on a terminal.  Any results of the command
+will be printed on the user's terminal.  Note that this should only be used
+for commands which will not require any more user input, since there will
+be no way for the user to interact with the remote system to supply more
+input.
+.B.I+10
+Kermit-10>REMOTE HOST command
+.B
+Where 'command' is any valid command to be processed by the remote systems
+standard command parser.
+.B.I-10
+*REMOTE LOGIN
+.I-10
+REMOTE LOGIN	This
+command allows the user to supply the server Kermit with accounting
+information.  The server Kermit may use this to validate the users access to
+the system as well as for billing purposes.  It may also use this information
+to provide the user with access to files on its system.
+.B.I+10
+Kermit-10>REMOTE LOGIN user-id
+.I+10;Account: remote-accounting-info
+.I+10;Password: remote-password
+.B
+Where 'user-id' is a string which represents a valid user identification on the
+remote system, 'remote-accounting-info' is any additional accounting
+information required by the remote system (such as account strings), and
+'remote-password' is the password for the remote system which corresponds to
+the given user-id.  The password will not be echoed.
+.B.I-10
+*REMOTE LOGOUT
+.I-10
+REMOTE LOGOUT	This
+command is the same as the LOGOUT command.  It will request the
+server Kermit to exit and logout its job.
+.B.I+10
+Kermit-10>REMOTE LOGOUT
+.B
+.B.I-10
+*REMOTE RENAME
+.I-10
+REMOTE RENAME	This
+command causes Kermit-10 to request that the server Kermit change the
+name on a file.  The server Kermit should respond with an indication that
+the operation is completed successfully, or else with an error message.
+Some Kermit's may allow wild-card file specifications to be used, and
+will repsond with a list of files and new names.
+.B
+.I+10;Kermit-10>REMOTE RENAME old-remote-file
+.I+10;New file: New-remote-file
+.B
+Where 'old-remote-file' is the name of the file to be renamed, and
+'new-remote-file' is the new name for the file.
+.B.I-10
+*REMOTE SEND-MESSAGE
+.I-10
+REMOTE SEND-MESSAGE	This
+command requests the server Kermit to send a short (one line) message
+to the given destination.  Depending on the system, the destination may
+be a terminal, a user name, a mailbox name or some other destination
+address.  The server Kermit should respond with an indication of success
+or failure.
+.B
+.I+10;Kermit-10>REMOTE SEND-MESSAGE destination-address
+.I+10;Message: message-text
+.B
+Where 'destination-address' is a valid destination for the server's system, and
+'message-text' is the message to be sent.
+.B.I-10
+*REMOTE STATUS
+.I-10
+REMOTE STATUS	This
+requests the status of the server Kermit.  The server Kermit will reply
+with some indication of its status.
+.B
+.I+10;Kermit-10>REMOTE STATUS
+.B
+.B.I-10
+*REMOTE TYPE
+.I-10
+REMOTE TYPE	This
+causes Kermit-10 to request the server Kermit to transmit
+the specified file (or files if the server supports wildcards)
+so that the file(s) can be typed on the users terminal.
+.B.I+10
+Kermit-10>REMOTE TYPE file-specification
+.b
+Where file-specification is a valid file specification for the server
+Kermit's system.
+.B.I-10
+*REMOTE WHO
+.I-10
+REMOTE WHO	This
+requests the server Kermit to display a list of users of its system,
+along with other information about the users and/or system.  A specific
+user-id may be supplied, which may result in more detailed information about
+the particular user.  It is also possible to supply options for use by
+the server Kermit in determining the format, etc., of the resulting list.
+.b
+.i+10;Kermit-10>REMOTE WHO user-id
+.I+10;Options: options-list
+.B
+Where 'user-id' is an optional string representing a specific user, and
+'options-list' is an optional list of formatting or selection options.
+.B.I-10
+*SEND
+.I-10
+SEND	The SEND command will allow you to send a file(s) to the other Kermit.
+If Kermit-10 is running in remote mode, the file will be sent on the
+controlling terminal line after waiting the number of seconds specified
+by the SET DELAY command.  This gives the user time to escape back to the
+other Kermit and issue a receive command.  If Kermit-10 is running in
+local mode, the file will be sent immediately on the terminal line 
+specified by the SET LINE command.
+.B
+The command format is_:
+.b.i+10
+Kermit-10>SEND file-specification
+.b
+Where "file-specification" is any normal TOPS-10 file specification.
+Any portion of the file specification (except the device) may be
+wildcarded.  Note that the single wild-card character is indicated
+by a % instead of the usualy _?, since _? is used to obtain help.
+.B.I-10
+*SERVER
+.I-10
+SERVER	This command will
+cause Kermit-10 to enter server mode.  The other Kermit can
+then issue server commands to send and receive files without having to give
+SEND or RECEIVE commands to Kermit-10.
+Kermit-10 may be put into SERVER mode while running as either a remote
+Kermit (transmitting over the controlling terminal line), or as a local
+Kermit (transmitting over a terminal specified by a SET LINE command).
+Note that in order to correctly receive binary files while in SERVER mode,
+a SET FILE BYTE-SIZE EIGHT-BIT must be done first.  At this time there is no
+way for Kermit-10 to determine whether an incoming file is ASCII or binary.
+Kermit-10 does make an attempt to guess whether a file being sent
+is ASCII or binary if a SET FILE BYTE-SIZE AUTO-BYTE command is done, however,
+this tends to be unreliable as it is based on the mode used to write the file.
+.B
+The format of the command is_:
+.B.I+10
+Kermit-10>SERVER
+.B
+.B.I-10
+*SET
+.I-10
+SET	The SET command is used to set various parameters in Kermit.
+Additional information is available for the SET command by typing
+HELP SET <option>, where option is one of the following:
+.ts10,25,40,55
+.b.NF.NJ
+BLOCK-CHECK-TYPE	DEBUGGING	DELAY
+ESCAPE	FILE	IBM-MODE	INCOMPLETE-FILE
+LINE	LOCAL-ECHO	MESSAGE	PARITY
+RECEIVE	REPEAT	RETRY	SEND
+.FILL.JUST
+.B.I-10
+*SET BLOCK-CHECK-TYPE
+.I-10
+SET BLOCK-CHECK-TYPE	The SET BLOCK-CHECK-TYPE command is
+used to determine the type
+of block check sequence which will be used during transmission. The
+block check sequence is used to detect transmission errors.  There
+are three types of block check available.  These are the
+single character checksum (default), the two character checksum,
+and the three character CRC (cyclic redundancy check).  This command
+does not ensure that the desired type of block check will be used, since
+both Kermit's involved in the transfer must agree on the block check type.
+Kermit-10 will request that the type of block check set by this
+command be used for a transfer.  If the other Kermit has also had
+the same block check type requested, then the desired block check type
+will be used.  Otherwise, the single character checksum will be used.
+(See Kermit protocol manual for more information.)
+.b.i+10
+Kermit-10>SET BLOCK-CHECK-TYPE keyword
+.b
+Where keyword is one of_:
+.ls1
+.le;1-CHARACTER-CHECKSUM or ONE-CHARACTER-CHECKSUM
+.le;2-CHARACTER-CHECKSUM or TWO-CHARACTER-CHECKSUM
+.le;3-CHARACTER-CRC-CCITT or THREE-CHARACTER-CRC-CCITT
+.els
+.B.I-10
+*SET DEBUGGING
+.I-10
+SET DEBUGGING	The SET DEBUGGING
+command is used to set the debug type out on the user's terminal.
+Kermit-10 can only do debugging type out when running as a local Kermit
+(SET LINE command done).  This is because the debugging type out
+would interfere with the file transfer if it were sent to the controlling
+terminal line in remote mode.
+The debugging log file may be used to redirect the debugging output
+to a file.  This may be used with Kermit-10 running in either remote or local
+modes.
+.b.I+10
+Kermit-10>SET DEBUGGING keyword
+.b
+Where keyword is either ON, OFF, NO-LOG-FILE, or LOG-FILE file-specification.
+Doing a SET DEBUGGING LOG-FILE file-spec causes Kermit-10 to turn debugging
+on and append all debugging output to the file specified.  If the file
+does not exist it will be created.
+SET DEBUGGING NO-LOG-FILE will close the log file and turn debugging
+off.
+.B.I-10
+*SET DELAY
+.I-10
+SET DELAY	The DELAY parameter
+is the number of seconds to wait before sending
+data after a SEND command is given.  This is used when Kermit-10 is
+running in remote mode to allow the user time to escape back to the
+other Kermit and give a RECEIVE command.
+.b.i+10
+Kermit-10>SET DELAY number-of-seconds
+.b
+Where number of seconds is the (decimal) number of second to wait
+before sending data.
+.B.I-10
+*SET ESCAPE
+.I-10
+SET ESCAPE	This command will
+set the escape character for the CONNECT processing.
+The command will take the octal value of the character to use as the
+escape character.
+This is the character which is used to "escape" back to Kermit-10 after
+using the CONNECT command.  It defaults to _^Y (octal 31).  It is
+usually a good idea to set this character to something which is not
+used (or at least not used very much) on the system being to which
+Kermit-10 is CONNECTing.
+.b.i+10
+Kermit-10>SET ESCAPE octal-character-value
+.b
+Where octal-character-value is the ASCII value of the character
+to use as the escape character (in octal).
+.B.I-10
+*SET FILE
+.I-10
+SET FILE	This command allows the setting of various parameters
+dealing with file formats and file names.
+Additional information is available for the SET FILE command by typing
+HELP SET FILE <option>, where option is one of the following:
+.ts10,25,40,55
+.b.NF.NJ
+BYTE-SIZE	NAMING	WARNING
+.FILL.JUST
+.B.I-10
+*SET FILE BYTE-SIZE
+.I-10
+SET FILE BYTE-SIZE	This command sets the byte size Kermit-10 will use
+for files being received or transmitted.
+SEVEN-BIT bytes should be used for ASCII text files which are to be
+used as text files on the TOPS-10 system.  SEVEN-BIT should also be
+used to sending TOPS-10 format binary files to another system if the
+file is intended to be brought to a TOPS-10 system.  EIGHT-BIT bytes
+should be used for binary files from other systems (such as CP/M .COM files)
+which are being transferred to the TOPS-10 system for storage.
+This allows the file to be returned without any changes.
+AUTO-BYTE is the same as SEVEN-BIT for files being received
+from the other Kermit.  When sending a file with FILE BYTE-SIZE AUTO-BYTE,
+Kermit-10 will guess whether the file should be sent as SEVEN-BIT or
+EIGHT-BIT.  This guess is based on the mode used to write the file.
+If the file was written in image mode, image binary mode, binary mode,
+or dump record mode, the file will be sent as an EIGHT-BIT file,
+otherwise it will be sent as a SEVEN-BIT file.  Note that
+version 1 of Kermit-10 wrote all files it received in binary mode,
+even if FILE BYTE-SIZE SEVEN-BIT was set.  This means that
+AUTO-BYTE will not correctly determine the byte size to use for
+files which were written with Kermit-10.  This is also true of files
+written by a number of other programs under TOPS-10, most notably
+any file written by a Galaxy component (such as batch .LOG files)
+are written in binary mode.
+AUTO-BYTE is the default FILE BYTE-SIZE.
+.b.I+10
+Kermit-10>SET FILE BYTE-SIZE type
+.B
+Where type is SEVEN-BIT, EIGHT-BIT or AUTO-BYTE.
+.B.I-10
+*SET FILE NAMING
+.I-10
+SET FILE NAMING	
+This command sets the type of processing Kermit should do on file names
+that are being sent and received.  Kermit can either send the complete
+file specification (including device, directories, file name, and file
+extension or only the file name and extension.  When receiving a
+file specification, Kermit can either attempt to use it as a TOPS-10 file
+specification as is, or first perform some substitutions and truncations
+in order to force the received specification to be just a valid file name
+and extension.
+.b.I+10
+Kermit-10>SET FILE NAMING keyword
+.B
+Where keyword is FULL, NORMAL-FORM, or UNTRANSLATED.
+FULL will cause Kermit to send the complete file specification for a file,
+and perform no substitutions on received file names.
+NORMAL-FORM will cause Kermit to send only the file name and extension
+with "X"s substituted for non-alphanumeric characters, and substitute
+"X"'s for non-alphanumeric characters in received file specifications to
+force them to be only a file name an extension.
+UNTRANSLATED will cause Kermit to send only the file name and extension
+(with no substitution) and perform no substitutions on received file
+names.
+.B.I-10
+*SET FILE WARNING
+.I-10
+SET FILE WARNING	This command determines what Kermit-10 will
+do when it receives a file with a file name that already exists.
+If FILE WARNING is turned ON, Kermit-10 will not supersede the old file.
+Instead it will create a file with the same file name and the first
+extension of the form .nnn (where n is an octal digit)
+such that the file will not supersede any
+existing file. If FILE WARNING is turned OFF (the default), Kermit-10 will
+supersede the old file.
+.b.i+10
+Kermit-10>SET FILE WARNING keyword
+.b
+Where keyword is either ON or OFF.
+.B.I-10
+*SET IBM-MODE
+.I-10
+SET IBM-MODE	The SET IBM-MODE
+command allows Kermit-10 to be put into a mode which
+will allow transfers to an IBM host.  This causes Kermit-10 to wait
+for the IBM turnaround character (XON, CTRL-Q) before sending
+any characters to the other Kermit.  It also forces the parity type to
+be mark, and turns on local echo for the CONNECT command.
+.b.i+10
+Kermit-10>SET IBM-MODE keyword
+.b
+Where keyword is either ON or OFF.
+.B.I-10
+*SET INCOMPLETE-FILE
+.I-10
+SET INCOMPLETE-FILE	The SET INCOMPLETE-FILE command
+allows the user to determine what
+is done with a file that is not completely received.  If the disposition
+is KEEP, all file received will be kept, even if only a portion of the file
+is received.  If the disposition is DISCARD (the default), files which
+are not completely received are discarded.
+.b.i+10
+Kermit-10>SET INCOMPLETE-FILE keyword
+.b
+Where keyword is either DISCARD or KEEP.
+.B.I-10
+*SET LINE
+.I-10
+SET LINE	This will set the terminal line that Kermit-10 will use
+for file transfers and the CONNECT command.
+.b.I+10
+Kermit-10>SET LINE device_:
+.B
+Where device_: is a terminal name.
+.b
+or
+.b.i+10
+Kermit-10>SET LINE node_:_: line
+.b
+Where node_:_: is the node name the terminal is physically connected to,
+and line number is the terminals line number within that node.
+.B.I-10
+*SET LOCAL-ECHO	
+.I-10
+SET LOCAL-ECHO	The SET LOCAL-ECHO command specifies
+whether characters should be
+echoed locally when CONNECTing to another system.  If LOCAL-ECHO is
+set to ON, any character typed on the terminal will be echoed immediately
+to the terminal, as well as being sent to the other system.
+If LOCAL-ECHO is set to OFF (the default), the characters
+typed on the terminal are only sent to the other system (which would
+normally be echoing the characters).
+.b.i+10
+Kermit-10>SET LOCAL-ECHO keyword
+.b
+Where keyword is either ON or OFF.
+.B.I-10
+*SET MESSAGE
+.I-10
+SET MESSAGE	This command sets
+the type of typeout Kermit-10 will do during transfers
+in local mode.  Kermit-10 can type out the file specification being
+transferred, the packet numbers being sent an received, both or neither.
+The default is to type file specifications but not packet numbers.
+.b.i+10
+Kermit-10>SET MESSAGE type
+.b
+or
+.b.i+10
+Kermit-10>SET MESSAGE NO type
+.b
+Where type is either FILE or PACKET.
+.B.I-10
+*SET PARITY
+.I-10
+SET PARITY	This command determines the
+type of parity to use on the transmission line.
+Kermit normally uses characters which consist of eight data bits with
+no parity bit.  For systems or transmission media which require a
+specific parity type, Kermit can send characters as seven data bits plus
+a parity bit.
+.b.i+10
+Kermit-10>SET PARITY keyword
+.b
+Where keyword is one of_:
+.ls1
+.le;NONE (default) - eight data bits and no parity bit.
+.le;MARK - seven data bits with the parity bit set to one.
+.le;SPACE - seven data bits with the parity bit set to zero.
+.le;EVEN - seven data bits with the parity bit set to make the overall
+parity even.
+.le;ODD - seven data bits with the parity bit set to make the overall
+parity odd.
+.els
+.B.I-10
+*SET RECEIVE
+.I-10
+SET RECEIVE	It is possible to set various parameters associated with
+the receiving of the
+data from the remote Kermit.  SET RECEIVE will enable you to set the various
+receive parameters.
+Additional information is available for the SET RECEIVE commands by
+typing HELP SET RECEIVE <option>, where <option> is one of the following:
+.b.NF.NJ
+EIGHTH-BIT-QUOTE	END-OF-LINE	PACKET-LENGTH
+PADCHAR		PADDING	QUOTE	
+START-OF-PACKET	TIMEOUT
+.FILL.JUST
+.B.I-10
+*SET RECEIVE EIGHTH-BIT-QUOTE
+.I-10
+SET RECEIVE 8TH-BIT-QUOTE or
+.I-10
+SET RECEIVE EIGHTH-BIT-QUOTE	This command sets the
+character to be used (when necessary) to quote
+characters which have the eighth bit (parity bit) set.  This is used
+to transfer eight-bit bytes on a transmission medium which only supports
+seven data bits.  The default value is 46 (ASCII "_&").  Eighth-bit
+quoting will only be used if both Kermit's can handle it, and the
+tranmission medium does not transmit 8 data bits (as indicated by
+the SET PARITY command).
+.b.i+10
+Kermit-10>SET RECEIVE EIGHTH-BIT-QUOTE nnn
+.b
+Where nnn is the ASCII value of the character (in octal) to use for
+quoting characters which have the eighth bit set.
+.B.I-10
+*SET RECEIVE END-OF-LINE
+.I-10
+SET RECEIVE END-OF-LINE	This will set the end of line character that Kermit-10
+expects to receive from
+the remote Kermit.  This is the character which terminates a packet.
+The default value is 15 (ASCII CR, CTRL-M).
+.b.i+10
+Kermit-10>SET RECEIVE END-OF-LINE nnn
+.b
+Where n is the ASCII value of the character to use for the end of line
+character (in octal).
+.B.I-10
+*SET RECEIVE PACKET-LENGTH
+.I-10
+SET RECEIVE PACKET-LENGTH	This will set the receive packet length.
+The value for this parameter must
+be between 10 and 96.  Packet lengths outside of this range are illegal.
+The default value is 80.
+.b.I+10
+Kermit-10>SET RECEIVE PACKET-LENGTH 60
+.B.I-10
+*SET RECEIVE PADCHAR
+.I-10
+SET RECEIVE PADCHAR	This parameter is the padding character that
+is expected by Kermit-10.
+The parameter must be an octal number in the range of 0 to 37 or 177.
+All other values are illegal. The default value is 0 (an ASCII NUL).
+Kermit-10 does not normally need any padding characters.
+.b.I+10
+Kermit-10>SET RECEIVE PADCHAR nnn
+.b
+Where nnn is the ASCII value of the character to be used as a pad character
+(in octal).
+.B.I-10
+*SET RECEIVE PADDING
+.I-10
+SET RECEIVE PADDING	This command will set the number of padding
+characters that are expected by
+Kermit-10. The default value is 0.
+.b.I+10
+Kermit-10>SET RECEIVE PADDING n
+.b
+Where n is the decimal number of padding characters to use.
+.B.I-10
+*SET RECEIVE QUOTE
+.I-10
+SET RECEIVE QUOTE	This will set
+the quoting character that Kermit-10 will expect on incoming
+messages.  This is the character used to quote control characters.
+The default value is 43 (ASCII "_#").
+.b.i+10
+Kermit-10>SET RECEIVE QUOTE nnn
+.b
+Where nnn is the ASCII value of the quoting character (in octal).
+.B.I-10
+*SET RECEIVE START-OF-PACKET
+.I-10
+SET RECEIVE START-OF-PACKET	This command will
+set the start of packet character for Kermit.  The
+start of packet character must be in the range of 0 to 36 octal.
+The default value is 1 (ASCII SOH, CTRL-A).  This value should only
+be changed if absolutely necessary.  It must be set the same in both
+Kermit's.
+.b.i+10
+Kermit-10>SET RECEIVE START-OF-PACKET 3
+.B.I-10
+*SET RECEIVE TIMEOUT
+.I-10
+SET RECEIVE TIMEOUT	This will set the number of seconds before
+Kermit-10 will request that the other Kermit wait when attempting
+to receive a message.  This time out is used to handle transmission errors
+which totally lose a message. The default value is 15 seconds.
+.b.i+10
+Kermit-10>SET RECEIVE TIMEOUT n
+.b
+Where n is the number of seconds to wait for a message (in decimal).
+.B.I-10
+*SET REPEAT
+.I-10
+SET REPEAT	This command sets the
+character to be used as the lead-in character for
+a repeat sequence (a string of characters which represents some number
+of characters which are repeated in the data).  Both Kermit's must support
+repeat compression for this to be in effect.
+The character set by this
+command must be in the range 41 ("1") to 76 (">") or 140 ("`") to 176 ("~").
+The character will only be used on file which are
+being transmitted by Kermit-10.
+The REPEAT character used for incoming files is decided on by the
+other Kermit.
+The default value is 176 ("~").  A value of 40 (a space) will disable
+repeat compression.
+.b.i+10
+Kermit-10>SET REPEAT nnn
+.b
+Where nnn is the ASCII value for the repeat quoting character (in octal).
+.B.I-10
+*SET RETRY
+.I-10
+SET RETRY	This command sets the maximum number
+of times Kermit-10 should try to
+send specific packet.  There are two retry maximums, one for the initial
+connection packet (the "SEND-INIT"), the other for all other packets.
+The default value for initial connections is 5.  The default value for
+all other packets is 16.
+.b.i+10
+Kermit-10>SET RETRY keyword n
+.b
+Where keyword is either INITIAL-CONNECTION (for initial connection packet) or
+PACKETS (for all other packets), and n is the decimal number of retries to
+attempt.
+.B.I-10
+*SET SEND
+.I-10
+SET SEND	It is possible to set various parameters associated with the
+sending of
+data to the remote Kermit.  SET SEND will enable you to set the various
+SEND parameters.  These parameters should not normally be set, since,
+as part of the transfer initialization process, the two Kermit's exchange
+their RECEIVE parameters.  The capability of setting these parameters is
+provided so that the transfer initialization can be completed even if
+the default parameters are not correct.
+Additional information is available for the SET SEND command by typing
+HELP SET SEND <option>, where <option> is one of the following:
+.b.NF.NJ
+END-OF-LINE	PACKET-LENGTH	PADCHAR	PADDING	QUOTE	
+START-OF-PACKET	TIMEOUT
+.FILL.JUST
+.B.I-10
+*SET SEND END-OF-LINE
+.I-10
+SET SEND END-OF-LINE	This will set the
+end of line character the Kermit-10 will send to
+the remote Kermit.  This is the character which terminates a packet.
+The default value is 15 (ASCII CR, CTRL-M).
+.b.i+10
+Kermit-10>SET SEND END-OF-LINE nnn
+.b
+Where n is the ASCII value of the character to use for the end of line
+character (in octal).
+.B.I-10
+*SET SEND PACKET-LENGTH
+.I-10
+SET SEND PACKET-LENGTH	This will
+set the SEND packet length.  The value for this parameter must
+be between 10 and 96.  Packet lengths outside of this range are illegal.
+The default value is 80.
+.b.I+10
+Kermit-10>SET SEND PACKET-LENGTH 60
+.B.I-10
+*SET SEND PADCHAR
+.I-10
+SET SEND PADCHAR	This parameter is
+the padding character that is sent to the remote Kermit.
+The parameter must be an octal number in the range of 0 to 37 or 177.
+All other values are illegal. The default value is 0 (an ASCII NUL).
+.b.I+10
+Kermit-10>SET SEND PADCHAR nnn
+.b
+Where nnn is the ASCII value of the character to be used as a pad character
+(in octal).
+.B.I-10
+*SET SEND PADDING
+.I-10
+SET SEND PADDING	This command will set
+the number of padding characters that will be sent
+to the other Kermit. The default value is 0.
+.b.I+10
+Kermit-10>SET SEND PADDING n
+.b
+Where n is the decimal number of padding characters to use.
+.B.I-10
+*SET SEND QUOTE
+.I-10
+SET SEND QUOTE	This will set the quoting character that
+Kermit-10 will expect on incoming
+messages.  This is the character used to quote control characters.
+The default value is 43 (ASCII "_#").
+.b.i+10
+Kermit-10>SET SEND QUOTE nnn
+.b
+Where nnn is the ASCII value of the quoting character (in octal).
+.B.I-10
+*SET SEND START-OF-PACKET
+.I-10
+SET SEND START-OF-PACKET	This
+command will set the start of packet character for Kermit.  The
+start of packet character must be in the range of 0 to 36 octal.
+The default value is 1 (ASCII SOH, CTRL-A).  This value should only
+be changed if absolutely necessary.  It must be set the same in both
+Kermit's.
+.b.i+10
+Kermit-10>SET SEND START-OF-PACKET 3
+.B.I-10
+*SET SEND TIMEOUT
+.I-10
+SET SEND TIMEOUT	This
+will set the number of seconds before Kermit-10 will time out a message
+it has sent to the other Kermit.
+message.  This time out is used to handle transmission errors
+which totally lose a message. The default value is 15 seconds.
+.b.i+10
+Kermit-10>SET SEND TIMEOUT n
+.b
+Where n is the number of seconds to wait for a message (in decimal).
+.B.i-10
+*SHOW
+.I-10
+SHOW	The SHOW
+command will allow you to show the various parameters that are set
+with the SET command.
+Additional information is available for the SHOW command by typing
+HELP SHOW <option>, where <option> is one of the following:
+.ts10,24,38,52.B.NF.NJ
+ALL	DAYTIME	DEBUGGING	FILE-INFORMATION	
+LINE-INFORMATION	PACKET-INFORMATION
+VERSION
+.FILL.JUST
+.B.I-10
+*SHOW ALL
+.I-10
+SHOW ALL	The SHOW ALL command
+will cause all of the parameters to be listed.
+.B.I-10
+*SHOW DAYTIME
+.I-10
+SHOW DAYTIME	Display the current date and time.
+.B.I-10
+*SHOW DEBUGGING
+.I-10
+SHOW DEBUGGING	Display whether debugging is enabled, the current
+debugging log file (if any), and the message type out information.
+.B.I-10
+*SHOW FILE-INFORMATION
+.I-10
+SHOW FILE-INFORMATION	This
+will display the parameters related to files being used.  This includes
+the file byte size and the incomplete file disposition.
+.B.i-10
+*SHOW LINE-INFORMATION
+.I-10
+SHOW LINE-INFORMATION	Display the terminal line being used,
+the parity being used and whether local echo is enabled.
+.B.I-10
+*SHOW PACKET-INFORMATION
+.I-10
+SHOW PACKET-INFORMATION	This will
+display the current settings of the send and receive packet
+parameters.
+.B.I-10
+*SHOW VERSION
+.I-10
+SHOW VERSION	Display the version number of Kermit-10.
+.B.I-10
+*STATUS
+.I-10
+STATUS	The current status
+of Kermit-10 will be displayed.  This includes the number
+of characters that have been sent and received from the remote Kermit.
+Also included is an estimate of the effective baud rate of the transfer.
+This number is not intended to be exact, but only an indication of what
+range of throughput has been provided.
+    

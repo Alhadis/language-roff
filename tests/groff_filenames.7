@@ -1,0 +1,929 @@
+.TH GROFF_FILENAMES 7 "27 June 2013" "Groff Version 1.22.2"
+.SH NAME
+groff_filenames \- filename extensions for RUNOFF, roff and groff
+.
+.\" The .SH was moved to this place in order to appease `apropos'.
+.
+.\" --------------------------------------------------------------------
+.\" Legalese
+.\" --------------------------------------------------------------------
+.
+.de authors
+This file was written by Bernd Warken
+.MT groff-bernd.warken-72@web.de
+.ME .
+..
+.
+.
+.de copying
+Copyright \(co 2013
+.RS
+.ft CI
+Free Software Foundation, Inc.
+.ft R
+.RE
+.
+.
+.P
+Last update: 5 May 2013
+.
+.
+.P
+This file is part of
+.ft CI
+groff\\fR, a free software project.
+.
+.P
+You can redistribute it and/or modify it under the terms of the
+.nh
+.ft CI
+GNU General Public License
+.ft R
+.hy
+as published by the
+.nh
+.ft CI
+Free Software Foundation (FSF)\\fR,
+.hy
+either version 3 of the License, or (at your option) any later version.
+.
+.P
+You should have received a copy of the
+.nh
+.ft CI
+GNU General Public License
+.ft R
+.hy
+along with
+.ft CI
+groff\\fR,
+see the files
+.nh
+.ft CB
+COPYING
+.ft R
+and
+.ft CB
+LICENSE
+.ft R
+.hy
+in the top directory of the
+.ft CI
+groff
+.ft R
+source package.
+.
+.P
+You can also visit
+.UR http://\\:www.gnu.org/\\:licenses
+.UE .
+..
+.
+.\" --------------------------------------------------------------------
+.\" Setup
+.\" --------------------------------------------------------------------
+.
+.ds1 Ellipsis "\&.\|.\|.\&"
+.
+.\" --------------------------------------------------------------------
+.\" Macro definitions
+.\" --------------------------------------------------------------------
+.
+.\" --------------------------------------------------------------------
+.\" .FONT (<font name> <text> [<font name> <text> ...])
+.\"
+.\" Print in different fonts: R, I, B, CR, CI, CB
+.\"
+.de1 FONT
+.  if (\\n[.$] = 0) \{\
+.	nop \&\f[]\&
+.	return
+.  \}
+.  ds result \&
+.  while (\\n[.$] >= 2) \{\
+.	as result \,\f[\\$1]\\$2\f[]
+.	shift 2
+.  \}
+.  if (\\n[.$] = 1) .as result \,\f[\\$1]
+.  nh
+.  nop \\*[result]\&
+.  hy
+..
+.
+.\" --------------------------------------------------------------------
+.\" End of macro definitions
+.\" --------------------------------------------------------------------
+.
+.
+.\" --------------------------------------------------------------------
+.SH DESCRIPTION
+.\" --------------------------------------------------------------------
+.
+Since the evolution of
+.FONT CI RUNOFF
+in the 1960s and
+.FONT CI roff
+in the 1970s, a whole bunch of filename extensions for
+.FONT CI RUNOFF
+and
+.FONT CI roff
+files were used.
+.
+.
+.P
+The
+.FONT CI roff
+extensions refer to preprocessors or macro packages.
+.
+These extensions are fixed in all
+.FONT CI Unix R \-like
+operating systems.
+.
+.
+.P
+Later on,
+.FONT CR groff
+added some more extensions.
+.
+We will now write a
+.I man\-page about these filename extensions.
+.
+.
+.\" --------------------------------------------------------------------
+.SH HISTORICAL RUNOFF LANGUAGE
+.\" --------------------------------------------------------------------
+.
+The first text language that used the
+.FONT CB .COMMAND
+structure for defining commands is said to be the
+.FONT CI MEMO
+language with programs
+.FONT CB MODIFY
+and
+.FONT CB DITTO R .
+.
+It was used at
+.FONT CR MIT
+under the operating system
+.FONT CR CTSS
+in the years 1960\-63.
+.
+But there is no open documentation for this old text system, but it
+seems that there is 1 book about it in the non-public library at
+.FONT CB MIT R .
+.
+.
+.P
+The letter
+.FONT CB m
+taken from
+.FONT CI MEMO R / MODIFY
+is still active as the option
+.FONT CB -m
+for declaring a macro package in
+.FONT CB troff R / CB nroff R .
+.
+.
+.P
+The first documented
+.FONT CB .COMMAND
+text language was
+.FONT CI RUNOFF R ,
+see
+.BR runoff (7).
+.
+.
+.\" --------------------------------------------------------------------
+.SS RUNOFF Files
+.\" --------------------------------------------------------------------
+.
+All available
+.FONT CI RUNOFF
+files are now kept in the internet at an archive on
+.FONT CI github R .
+.
+Use the command-line call
+.RS
+.EX
+.FONT CR "$ " CB "git clone git@github.com:RUNOFF/RUNOFF.git"
+.EE
+.RE
+for getting this archive (without the leading dollar).
+.
+.
+.TP
+.FONT I <name> CB .RUNOFF
+.TQ
+.FONT I <name> CB .runoff
+were the oldest naming for files in the original
+.FONT CI RUNOFF
+format of the 1960s at
+.FONT CR "IBM 7090"
+and
+.FONT CR 7094
+with the operating system
+.FONT CR CTSS R .
+.
+.
+.TP
+.FONT I <name> CB .RUN
+.TQ
+.FONT I <name> CB .run
+This abbreviation was used for
+.FONT CI RUNOFF
+files on the
+.FONT CR CTSS
+and
+.FONT CR Multics
+operating system in the 1960s and later on.
+.
+.
+.TP
+.FONT I <name> CB .RNO
+.TQ
+.FONT I <name> CB .rno
+was used for normal
+.FONT CI RUNOFF
+text files, mostly on the
+.FONT CR "PDP10\-10 archive" R .
+.
+.
+.TP
+.FONT I <name> CB .RNH
+.TQ
+.FONT I <name> CB .rnh
+was used for help files written in the
+.FONT CI RUNOFF
+language on the
+.FONT CR "PDP10\-10 archive" R .
+.
+.
+.P
+.FONT CI RUNOFF
+files with the extensions
+.FONT CB .rnh R ,
+.FONT CB .rno R ,
+and
+.FONT CB .run
+are still available in the internet at several sites, mostly at the
+.FONT CR "DEC PDP\-10 archive" R .
+.
+See
+.nh
+.UR http://\:pdp\-10.trailing\-edge.com/\:cgi-bin/\:searchbyname?name=*.rnh
+RNH
+.UE ,
+.UR http://\:pdp\-10.trailing\-edge.com/\:cgi-bin/\:searchbyname?name=*.rno
+RNO
+.UE ,
+and
+.UR http://\:pdp\-10.trailing\-edge.com/\:cgi-bin/\:searchbyname?name=*.run
+RUN
+.UE  .
+.hy
+.
+.
+.\" --------------------------------------------------------------------
+.SS Processed RUNOFF Text Files
+.\" --------------------------------------------------------------------
+.
+Files written in the
+.FONT CI RUNOFF
+language were processed by the program
+.FONT CB RUNOFF R .
+.
+Only text files were produced by this step, because graphics was not
+available in the 1960s.
+.
+Today we would use the file name extension
+.FONT CI * CB .txt R .
+.
+That was not done in these early times.
+.
+Instead the following extensions were taken:
+.
+.
+.TP
+.FONT I <name> CB .DOC
+.TQ
+.FONT I <name> CB .doc
+Very often this naming was used for the output of the
+.FONT CB RUNOFF
+program.
+.
+It contained
+.I filled
+and
+.I hyphenated
+text, suitable for tty mode.
+.
+The extension
+.FONT CB .doc
+was later on taken by
+.FONT CR Microsoft
+for their
+.IR "office files" .
+.
+.
+.TP
+.FONT I <name> CB .MEM
+.TP
+.FONT I <name> CB .mem
+This often used extension was taken for
+.FONT CI RUNOFF
+files to refer to the ancient
+.FONT CI MEMO
+language.
+.
+.
+.TP
+.FONT I <name> CB .HLP
+.TQ
+.FONT I <name> CB .hlp
+The formatting of
+.FONT CI * CB .rnh
+files (help files) was stored under this extension.
+.
+.
+.P
+This ends the description of
+.FONT CI RUNOFF .R .
+.
+All following parts of this document refer to the
+.FONT CI roff
+language and the used file name extensions thereof.
+.
+.
+.\" --------------------------------------------------------------------
+.SH COMPRESSION OF ROFF FILES
+.\" --------------------------------------------------------------------
+.
+Each
+.FONT CI roff
+file can be optionally
+.IR compressed .
+.
+That means that the
+.I total filename
+ends with a
+.IR "compressor name" .
+.
+So the whole filename has the structure
+.IR <name> \f[CB].\fP <extension>[ \f[CB].\fP <compression>] .
+.
+.
+.P
+Mostly known are the
+.I compressor extensions
+.FONT CB .Z R ,
+.FONT CB .gz R ,
+and
+.FONT CB .bzip2 R .
+.
+Relatively new is
+.FONT CB .xz R .
+.
+.
+.P
+From now on, we will ignore the
+.I compressions
+and only comment the structure
+.IB <name> . <extension>\fR.\fP
+.
+.
+.\" --------------------------------------------------------------------
+.SH MAN\-PAGES
+.\" --------------------------------------------------------------------
+.
+The
+.FONT CR Unix
+.FONT CI "manual pages"
+are shortly named
+.FONT CI "man\-pages" R .
+.
+The
+.FONT CI man\-page
+style is the best known part of the
+.FONT CI roff
+language.
+.
+.
+.P
+The extensions for
+.FONT CI man
+should be better documented.
+.
+So this is documented here.
+.
+.
+.P
+Files written in the
+.FONT CI man
+language use the following extension:
+.IB * . <section>[<group>] .
+.
+.
+.\" --------------------------------------------------------------------
+.SS Man-page Sections
+.\" --------------------------------------------------------------------
+.
+The traditional
+.FONT I "man\-page " CI <section>
+is a digit from
+.FONT CB 1
+to
+.FONT CB 8 R .
+.
+.
+.TP
+.FONT I <name> CB .1
+.TQ
+.FONT I <name> CB .2
+.TQ
+.FONT I <name> CB .3
+.TQ
+.FONT I <name> CB .4
+.TQ
+.FONT I <name> CB .5
+.TQ
+.FONT I <name> CB .6
+.TQ
+.FONT I <name> CB .7
+.TQ
+.FONT I <name> CB .8
+Classic man\-page
+.IR sections .
+.
+.
+.P
+Linux added the section number
+.FONT CB 9
+for kernel man\-pages.
+.
+.
+.TP
+.FONT I <name> CB .9
+.I Linux
+kernel man-pages
+.
+.
+.P
+In older commercial
+.FONT CI Unix
+systems, the 3 characters
+.FONT CB l R ,
+.FONT CB n R ,
+and
+.FONT CB o
+were also used as
+.I section
+names.
+.
+This is today
+.IR deprecated ,
+but there are still documents in this format.
+.
+.
+.TP
+.FONT I <name> CB .l
+.TQ
+.FONT I <name> CB .n
+.TQ
+.FONT I <name> CB .o
+.I Deprecated
+old
+.IR "man\-page sections" .
+.
+.
+.\" --------------------------------------------------------------------
+.SS Man\-page Group Extensions
+.\" --------------------------------------------------------------------
+.
+The
+.I <group>
+extension in
+.FONT CB . I <section>[<group>]
+is optional, but it can be any string of word characters.
+.
+Usually programmers use a group name that is already used, e.g.
+.FONT CB x
+for
+.FONT CI "X Window System"
+documents or
+.FONT CB tk
+to refer to the
+.FONT CI tk
+programming language.
+.
+.
+.P
+Examples:
+.
+.
+.TP
+.FONT CB groff.1
+is the man-page for
+.FONT CB groff
+in
+.I section
+.FONT CB 1
+without a
+.I group
+.
+.
+.TP
+.FONT CB xargs.1posix.gz
+is the man\-page for the program
+.FONT CB xargs
+in
+.I section
+.FONT CB 1
+and
+.I group
+.FONT CB posix R ;
+moreover it is
+.I compressed
+with
+.FONT CB gz
+.FONT R ( CB gzip R ).
+.
+.
+.TP
+.FONT CB config.5ssl
+.FONT CI "OpenSSL CONF"
+library configuration files from
+.I section
+.FONT CB 5
+with
+.I group
+.FONT CB ssl R .
+.
+.
+.TP
+.FONT CB dpkg-reconfigure.8cdebconf
+man\-page for the program
+.FONT CB dpkg\-reconfigure
+in
+.I section
+.FONT CB 8
+and
+.I group
+.FONT CB cdebconf R .
+.
+.
+.\" --------------------------------------------------------------------
+.SS Source of Man\-pages
+.\" --------------------------------------------------------------------
+.
+There are 2
+.FONT CI roff
+languages for writing man\-pages:
+.FONT CB man
+and
+.FONT CB mdoc R .
+.
+.
+.P
+The names of these 2 styles are taken as
+.I extensions
+for the source code files of man\-pages in the
+.FONT CI groff
+package.
+.
+.
+.TP
+.FONT I <name> CB .man
+.I traditional
+Unix\-like man\-page format.
+.
+.
+.TP
+.FONT I <name> CB .mdoc
+additional BSD man-page format.
+.
+.
+.TP
+.FONT I <name> CB .mandoc
+Files using this extension recognize both man\-page formats in
+.FONT CB groff
+and other processors.
+.
+.
+.TP
+FONT I <name> CB .n
+A temporary man-page file produced by a run of
+.B make
+in the
+.CB groff
+source package.
+.
+.
+.\" --------------------------------------------------------------------
+.SH TRADITIONAL TROFF EXTENSIONS
+.\" --------------------------------------------------------------------
+.
+.\" --------------------------------------------------------------------
+.SS Files Using Macro Packages
+.\" --------------------------------------------------------------------
+.
+The
+.FONT CI "classical roff"
+languages were interpreted by the
+.FONT CB "traditional troff"
+and
+.FONT CB "nroff"
+programs.
+.
+.
+.P
+There were several
+.FONT CI roff
+languages, each represented by a
+.IR "macro-package" .
+.
+Each of these provided a suitable file name
+.IR extension :
+.
+.
+.TP
+.FONT I <name> CB .me
+.FONT CI roff
+file using the
+.FONT CB me
+.IR "macro package" .
+.
+.
+.TP
+.FONT I <name> CB .mm
+.FONT CI roff
+file using the
+.FONT CB mm
+.I macro package
+.
+.
+.TP
+.FONT I <name> CB .ms
+.FONT CI roff
+file using the
+.FONT CB ms
+.I macro package
+.
+.
+.P
+All of these classical
+.FONT CI roff
+languages and their extensions are still very active in
+.BR groff .
+.
+.
+.\" --------------------------------------------------------------------
+.SS Source Code for Macro Packages (TMAC Files)
+.\" --------------------------------------------------------------------
+.
+In traditional
+.FONT CI roff
+the source code for the macro packages was stored in
+.FONT CI TMAC
+files.
+.
+Their file names have the form:
+.
+.
+.TP
+.FONT CB tmac. I <package> R ,
+.I <package>
+is the name of the macro package without the leading
+.FONT CB m
+character, wich is reintegrated by the option
+.FONT CB -m R .
+.
+.
+.P
+For example,
+.FONT CB tmac.an
+is the source for the
+.FONT CB man
+macro package.
+.
+.
+.P
+In the
+.FONT CB groff
+source, more suitable file names were integrated, see later on.
+.
+.
+.\" --------------------------------------------------------------------
+.SS Preprocessors
+.\" --------------------------------------------------------------------
+.
+Moreover, the following
+.I preprocessors
+were used as filename extension:
+.
+.
+.TP
+.FONT I <name> CB .chem
+for the integration of chemical formulas
+.
+.
+.TP
+.FONT I <name> CB .eqn
+for the mathematical use of equations
+.
+.
+.TP
+.FONT I <name> CB .pic
+graphical tool
+.
+.
+.TP
+.FONT I <name> CB .tbl
+for tables with
+.FONT CI tbl
+.
+.
+.TP
+.FONT I <name> CB .ref
+for files using the
+.FONT CB prefer
+.I preprocesor
+.
+.
+.\" --------------------------------------------------------------------
+.SS Classical Roff Files
+.\" --------------------------------------------------------------------
+.
+.TP
+.FONT I <name> CB .t
+.TQ
+.FONT I <name> CB .tr
+for files using the
+.FONT CI roff
+language of any kind
+.
+.
+.\" --------------------------------------------------------------------
+.SH NEW GROFF EXTENSIONS
+.\" --------------------------------------------------------------------
+.
+.FONT CI "GNU roff"
+.FONT CB groff
+is the actual
+.FONT CI roff
+standard, both for classical
+.FONT CI roff
+and new extensions..
+.
+So even the used new extensions in the source code should be regarded
+as actual standard.
+.
+The following extensions are used instead of classical
+.FONT CB .t
+or
+.FONT CB .tr R :
+.
+.
+.TP
+.FONT I <name> CB .groff
+.TQ
+.FONT I <name> CB .roff
+general ending for files using the
+.FONT CI groff
+.I language
+.
+.
+.\" --------------------------------------------------------------------
+.SS Source Code for Macro Packages (TMAC Files)
+.\" --------------------------------------------------------------------
+.
+As the classical form
+.FONT CB tmac. I <package_without_m> R ,
+of the
+.FONT CI TMAC
+file names is quite strange,
+.
+CI groff
+added the following structures:
+.
+.
+.TP
+.FONT I <package_without_m> CB .tmac
+.TQ
+.FONT CB m I <package> CB .tmac
+.TQ
+.FONT CB groff_m I <package> CB .tmac
+.
+.
+.\" --------------------------------------------------------------------
+.SS Files Using new Macro Packages
+.\" --------------------------------------------------------------------
+.
+.FONT CI Groff
+uses the following new macro packages:
+.
+.
+.TP
+.FONT I <name> CB .mmse
+file with swedish
+.FONT CB mm
+.I makros
+for
+.B groff
+.
+.
+.TP
+.FONT I <name> CB .mom
+files written in the
+.FONT CI "groff macro package"
+.FONT CB mom
+.
+.
+.TP
+.FONT I <name> CB .www
+files written in
+.FONT CB HTML R \-like
+.FONT CI groff
+.IR macros .
+.
+.
+.\" --------------------------------------------------------------------
+.SS Preprocessors and Postprocessors
+.\" --------------------------------------------------------------------
+.
+.TP
+.FONT I <name> CB .hbtbl
+a new
+.FONT CI tbl
+format.
+.
+See
+.BR groff_hdtbl (7).
+.
+.
+.TP
+.FONT I <name> CB .grap
+files written for the graphical
+.FONT CB grap
+processor.
+.
+.
+.TP
+.FONT I <name> CB .grn
+for including
+.BR gremlin (1),
+pictures, see
+.BR grn (1).
+.
+.
+.TP
+.FONT I <name> CB .pdfroff
+transform this file with
+.FONT CB pdfroff
+of the
+.FONT CI groff
+system
+.
+.
+.\" --------------------------------------------------------------------
+.SH "SEE ALSO"
+.\" --------------------------------------------------------------------
+.
+.
+.TP
+History and future
+.BR runoff (7),
+.BR roff (7),
+.BR man\-pages (7),
+.BR groff_diff (7),
+.BR groff (7)
+.
+.
+.TP
+.I Compression
+.BR uncompress (1posix),
+.BR gzip2 (1),
+.BR bzip2 (1),
+.BR xz (1)
+.
+.
+.\" --------------------------------------------------------------------
+.SH "AUTHORS"
+.\" --------------------------------------------------------------------
+.
+.authors
+.
+.
+.\" --------------------------------------------------------------------
+.SH "COPYING"
+.\" --------------------------------------------------------------------
+.
+.copying
+.
+.
+.\" --------------------------------------------------------------------
+.\" Emacs settings
+.\" --------------------------------------------------------------------
+.
+.\" Local Variables:
+.\" mode: nroff
+.\" End:

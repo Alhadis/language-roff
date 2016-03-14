@@ -1,0 +1,55 @@
+.TH FORMAT-BYTES 1
+.f1
+.SH NAME
+\fBformat\-bytes\fP \-\- Formats a number of bytes for human-readable output
+.SH SYNOPSIS
+\fBformat\-bytes\fP [\-\fBlpk\fP] [\fB\-d\fP \fIdecimal\-length\fP] [\fB\-f\fP \fIfile\fP] [\fIbytes\fP]
+.SH DESCRIPTION
+The \fBformat-bytes\fP utility takes a number of \fIbytes\fP either from a file, command line, or standard input, and formats them using the most reader-friendly unit of measurement.
+.P
+For instance, the following line yields a result of "4.4 MB" (or "4.4 MBs" if the \fB-p\fP option is set):
+.P
+   $ format-bytes 4358361
+.P
+If \fIbytes\fP is omitted, the program reads from standard input instead:
+.P
+   $ echo '4358361' | format\-bytes
+.SH OPTIONS
+.TP 12
+\fB\-d\fP  \fInum\fP
+Specifies maximum decimal length (\fInum\fP digits after the decimal point).
+.TP 12
+\fB\-f\fP  \fIfile\fP
+Read bytes from \fIfile\fP's size instead of a specified amount.
+.TP 12
+\fB\-l\fP
+Use long unit names ("Kilobytes" instead of "KB", etc).
+.TP 12
+\fB\-p\fP
+Pluralises short units when necessary; useful only if \fB-l\fP is off.
+Note that byte units will never be pluralised, so the program won't generate an uncomfortable-looking result like "480 Bs".
+.TP 12
+\fB\-k\fP
+By default, \fBformat-bytes\fP strips redundant zeroes after the decimal point as a result of meeting a required decimal length (set by the \fB\-l\fP option).
+Setting \fB\-k\fP overrides this behaviour so formatted values like "20 KB" will still be printed as "20.00 KB".
+Be aware this also affects "partial" decimal values like "20.30 KB" (which would otherwise be formatted "20.3 KB" with this option off).
+\.TP 12
+\fB\-h, \-\-help\fP
+Display this help and exit.
+.SH EXAMPLES
+.TP
+\fBBasic usage:\fP
+$ format\-bytes 1600           # 1.56 KB
+.TP
+\fBUse longer measurement units:\fP
+$ format\-bytes \-l 1600        # 1.56 Kilobytes
+.TP
+\fBAdd pluralisation for short units (no effect if -l is set):\fP
+$ format\-bytes \-p 1600        # 1.56 KBs
+.TP
+\fBRead a file's size instead:\fP
+$ format\-bytes \-f README.md
+.SH AUTHOR
+Copyright (c) 2016 John Gardner <\fIgardnerjohng@gmail.com\fP>.
+.PP
+Freely released under the ISC license. See also \fIhttp://opensource.org/licenses/ISC\fP.
