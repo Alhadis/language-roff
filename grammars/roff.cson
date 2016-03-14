@@ -27,3 +27,15 @@ fileTypes: [
 	"t",
 	"tr"
 ]
+patterns: [
+	
+	# Comments
+	{
+		name: "comment.line.roff"
+		begin: "\\.\\\\\""
+		end: "$"
+		captures:
+			0: {name: "punctuation.definition.begin.comment.roff"}
+	}
+	
+]
