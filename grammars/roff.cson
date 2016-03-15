@@ -53,8 +53,40 @@ repository:
 			{ include: "#italic"      }
 			{ include: "#bold-italic" }
 			{ include: "#underline"   }
+			{ include: "#headings"    }
 		]
 	}
+	
+	
+	
+	# Double/single-quoted strings (used in requests)
+	strings:
+		patterns: [{
+			name: "string.quoted.single.roff"
+			begin: "'"
+			end:   "'|$"
+			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+			patterns: [{
+				match: "[^']*[^'\\n\\r\\\\]$"
+				name: "invalid.illegal.string.roff"
+			}]
+		}, {
+			name: "string.quoted.double.roff",
+			begin: '"'
+			end:   '"|$'
+			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+			patterns: [{
+				match: '[^"]*[^"\\n\\r\\\\]$'
+				name: "invalid.illegal.string.roff"
+			}]
+		}, {
+			name: "string.unquoted.roff"
+			begin: "(?=[A-Za-z_])"
+			end: "(?=[^\\w])"
+		}]
+	
 	
 	
 	# Italics (typically rendered by nroff as underlined text)
@@ -113,3 +145,46 @@ repository:
 			4: {name: "comment.line.roff"}
 		endCaptures:
 			0: {name: "markup.underline.roff"}
+
+
+
+	# Titles, sections and subsections
+	headings:
+		patterns: [{
+			
+			# Titles (GNU manual macro)
+			name: "markup.heading.title.gnu.man.macro.roff"
+			begin: "^(\\.TH) +"
+			end: "$"
+			beginCaptures:
+				1: {name: "entity.name.function.roff"}
+			patterns: [
+				{ include: "#main"    }
+				{ include: "#strings" }
+			]
+		}, {
+			
+			# Sections
+			name: "markup.heading.section.man.macro.roff"
+			begin: "^(\\.SH) +"
+			end: "$"
+			beginCaptures:
+				1: {name: "entity.name.function.roff"}
+			patterns: [
+				{ include: "#main"    }
+				{ include: "#strings" }
+			]
+		}, {
+			
+			# Subsections
+			name: "markup.heading.subsection.man.macro.roff"
+			begin: "^(\\.Ss) +"
+			end: "$"
+			beginCaptures:
+				1: {name: "entity.name.function.roff"}
+			patterns: [
+				{ include: "#main"    }
+				{ include: "#strings" }
+			]
+			
+		}]
