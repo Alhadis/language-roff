@@ -60,28 +60,43 @@ repository:
 	# Italics (typically rendered by nroff as underlined text)
 	italic:
 		name: "markup.italic.roff"
-		begin: "\\\\f[I2]"
-		end: ".(?=\\\\f[A-Za-z0-9])(\\\\f[RP1])?"
+		begin: "(\\\\)(f[I2])"
+		end: "(?=\\\\f[A-Za-z0-9])((\\\\)(f[RP1]))?"
+		beginCaptures:
+			1: {name: "punctuation.definition.backslash.roff"}
+			2: {name: "entity.name.roff"}
 		endCaptures:
-			1: {name: "markup.terminator.roff"}
+			1: {name: "meta.terminator.roff"}
+			2: {name: "punctuation.definition.backslash.roff"}
+			3: {name: "entity.name.roff"}
 	
 	
 	# Bold text
 	bold:
 		name: "markup.bold.roff"
-		begin: "\\\\f[B3]"
-		end: ".(?=\\\\f[A-Za-z0-9])(\\\\f[RP1])?"
+		begin: "(\\\\)(f[B3])"
+		end: "(?=\\\\f[A-Za-z0-9])((\\\\)(f[RP1]))?"
+		beginCaptures:
+			1: {name: "punctuation.definition.backslash.roff"}
+			2: {name: "entity.name.roff"}
 		endCaptures:
-			1: {name: "markup.terminator.roff"}
+			1: {name: "meta.terminator.roff"}
+			2: {name: "punctuation.definition.backslash.roff"}
+			3: {name: "entity.name.roff"}
 	
 	
 	# Both bold and italic
 	"bold-italic":
 		name: "markup.bold.italic.roff"
-		begin: "\\\\f4"
-		end: ".(?=\\\\f[A-Za-z0-9])(\\\\f[RP1])?"
+		begin: "(\\\\)(f4)"
+		end: "(?=\\\\f[A-Za-z0-9])((\\\\)(f[RP1]))?"
+		beginCaptures:
+			1: {name: "punctuation.definition.backslash.roff"}
+			2: {name: "entity.name.roff"}
 		endCaptures:
-			1: {name: "markup.terminator.roff"}
+			1: {name: "meta.terminator.roff"}
+			2: {name: "punctuation.definition.backslash.roff"}
+			3: {name: "entity.name.roff"}
 	
 	
 	
