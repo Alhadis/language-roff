@@ -32,7 +32,7 @@ patterns: [
 	# Comments
 	{
 		name: "comment.line.roff"
-		begin: "\\.\\\\\""
+		begin: "\\.?\\\\\""
 		end: "$"
 		captures:
 			0: {name: "punctuation.definition.begin.comment.roff"}
