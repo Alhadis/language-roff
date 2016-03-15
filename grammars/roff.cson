@@ -1,5 +1,6 @@
 name: "Roff"
 scopeName: "text.roff"
+firstLineMatch: "^\\.TH +(?:\\S+)"
 fileTypes: [
 	"1", "1b", "1c", "1has", "1in", "1m", "1s", "1x",
 	"2",
