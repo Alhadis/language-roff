@@ -27,7 +27,10 @@ fileTypes: [
 	"t",
 	"tr"
 ]
+
 patterns: [
+	
+	{ include: "#main" }
 	
 	# Comments
 	{
@@ -39,3 +42,44 @@ patterns: [
 	}
 	
 ]
+
+
+repository:
+	
+	# Common patterns
+	main: {
+		patterns: [
+			{ include: "#bold"      }
+			{ include: "#italic"    }
+			{ include: "#underline" }
+		]
+	}
+	
+	
+	# Bold text
+	bold:
+		name: "markup.bold.roff"
+		begin: "\\\\fB"
+		end: ".(?=\\\\f[BRI])"
+
+	
+	# Italics (typically rendered by nroff as underlined text)
+	italic:
+		name: "markup.italic.roff"
+		begin: "\\\\fI"
+		end: ".(?=\\\\f[BRI])"
+	
+	
+	# Underlined passage
+	underline:
+		name: "meta.request.ul.roff"
+		begin: "^(\\.ul)(?: +(\\d+))?\\s*(.*?)\\s*?(\\\\\".*?)?\n"
+		end:   "([^\n ]+\n)"
+		patterns: [{ include: "$self" }]
+		beginCaptures:
+			1: {name: "entity.function.name.roff"}
+			2: {name: "variable.parameter.argument.roff"}
+			3: {name: "invalid.illegal.roff"}
+			4: {name: "comment.line.roff"}
+		endCaptures:
+			0: {name: "markup.underline.roff"}
