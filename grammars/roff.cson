@@ -49,25 +49,40 @@ repository:
 	# Common patterns
 	main: {
 		patterns: [
-			{ include: "#bold"      }
-			{ include: "#italic"    }
-			{ include: "#underline" }
+			{ include: "#bold"        }
+			{ include: "#italic"      }
+			{ include: "#bold-italic" }
+			{ include: "#underline"   }
 		]
 	}
+	
+	
+	# Italics (typically rendered by nroff as underlined text)
+	italic:
+		name: "markup.italic.roff"
+		begin: "\\\\f[I2]"
+		end: ".(?=\\\\f[A-Za-z0-9])(\\\\f[RP1])?"
+		endCaptures:
+			1: {name: "markup.terminator.roff"}
 	
 	
 	# Bold text
 	bold:
 		name: "markup.bold.roff"
-		begin: "\\\\fB"
-		end: ".(?=\\\\f[BRI])"
-
+		begin: "\\\\f[B3]"
+		end: ".(?=\\\\f[A-Za-z0-9])(\\\\f[RP1])?"
+		endCaptures:
+			1: {name: "markup.terminator.roff"}
 	
-	# Italics (typically rendered by nroff as underlined text)
-	italic:
-		name: "markup.italic.roff"
-		begin: "\\\\fI"
-		end: ".(?=\\\\f[BRI])"
+	
+	# Both bold and italic
+	"bold-italic":
+		name: "markup.bold.italic.roff"
+		begin: "\\\\f4"
+		end: ".(?=\\\\f[A-Za-z0-9])(\\\\f[RP1])?"
+		endCaptures:
+			1: {name: "markup.terminator.roff"}
+	
 	
 	
 	# Underlined passage
