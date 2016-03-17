@@ -189,9 +189,9 @@ repository:
 			patterns: [{
 				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
 				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				patterns: [{ include: "#escapes" }]
 				beginCaptures: {1: {name: "markup.bold.roff"}}
 				endCaptures:   {1: {name: "markup.italic.roff"}}
+				patterns:      [{include: "#escapes"}]
 			}]
 		
 		}, {
@@ -203,9 +203,9 @@ repository:
 			patterns: [{
 				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
 				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				patterns: [{ include: "#escapes" }]
 				beginCaptures: {1: {name: "markup.italic.roff"}}
 				endCaptures:   {1: {name: "markup.bold.roff"}}
+				patterns:      [{include: "#escapes"}]
 			}]
 		
 		}, {
