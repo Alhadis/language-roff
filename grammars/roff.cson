@@ -58,7 +58,8 @@ repository:
 			{ include: "#macro-bold"   }
 			{ include: "#macro-italic" }
 			{ include: "#escapes"      }
-			{ include: "#multiline"    }
+			{ include: "#paired-fonts" }
+		#	{ include: "#multiline"    }
 		]
 	}
 	
@@ -179,91 +180,118 @@ repository:
 	
 	
 	# Multiline macros
-	multiline:
+	#==================================================================
+	"paired-fonts":
 		patterns: [{
-			
-			# Macro: .BI
-			name: "meta.bold-italic.roff"
-			begin: "^\\.BI(?=$| )"
+			name: "meta.bold-italic.roff.test"
+			begin: "^(\\.BI)(?= |$)"
 			end: "$"
-			patterns: [{
-				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
-				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				beginCaptures: {1: {name: "markup.bold.roff"}}
-				endCaptures:   {1: {name: "markup.italic.roff"}}
-				patterns:      [{include: "#escapes"}]
-			}]
-		
-		}, {
-			
-			# Macro: .IB
-			name: "meta.italic-bold.roff"
-			begin: "^\\.IB(?=$| )"
-			end: "$"
-			patterns: [{
-				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
-				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				beginCaptures: {1: {name: "markup.italic.roff"}}
-				endCaptures:   {1: {name: "markup.bold.roff"}}
-				patterns:      [{include: "#escapes"}]
-			}]
-		
-		}, {
-			
-			# Macro: .IR
-			name: "meta.italic-roman.roff"
-			begin: "^\\.IR(?=$| )"
-			end: "$"
-			patterns: [{
-				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
-				end:   "(?:\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				patterns: [{ include: "#escapes" }]
-				beginCaptures:
-					1: {name: "markup.italic.roff"}
-			}]
-		
-		}, {
-
-			# Macro: .BR
-			name: "meta.bold-roman.roff"
-			begin: "^\\.BR(?=$| )"
-			end: "$"
-			patterns: [{
-				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
-				end:   "(?:\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				patterns: [{ include: "#escapes" }]
-				beginCaptures:
-					1: {name: "markup.bold.roff"}
-			}]
-		
-		}, {
-			
-			# Macro: .RI
-			name: "meta.roman-italic.roff"
-			begin: "^\\.RI(?=$| )"
-			end: "$"
-			patterns: [{
-				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
-				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				patterns: [{ include: "#escapes" }]
-				endCaptures:
-					1: {name: "markup.italic.roff"}
-			}]
-			
-		}, {
-			
-			# Macro: .RB
-			name: "meta.roman-bold.roff"
-			begin: "^\\.RB(?=$| )"
-			end: "$"
-			patterns: [{
-				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
-				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
-				patterns: [{ include: "#escapes" }]
-				endCaptures:
-					1: {name: "markup.bold.roff"}
-			}]
+			patterns: [{include: "#pair-bold-italic"}]
 		}]
+	
+	"pair-bold-italic":
+		patterns: [{
+			name:  "BI-1"
+			begin: "(\\S*?[^\\\\\\s]+)[ \t]+(\\S*?[^\\\\\\s]+)[ \t]+\\\\(?=$)"
+			end:   "(\\S+)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.bold.roff"}
+				2: {name: "markup.italic.roff"}
+			endCaptures:
+				1: {name: "markup.bold.roff"}
+		}, {
+			name:  "BI-2"
+			match: "(\\S+) +(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
+			captures:
+				1: {name: "markup.bold.roff"}
+				2: {name: "markup.italic.roff"}
+		}, {
+			name:  "BI-4"
+			begin: "(\\S*[^\\\\\\s]+)?\\\\(?=$)"
+			end:   "(\\S+)(.*)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.bold.roff"}
+			endCaptures:
+				1: {name: "markup.bold.roff"}
+				2: {patterns: [{include: "#pair-italic-bold"}]}
+		}, {
+			name:  "BI-5"
+			begin: "(\\S*[^\\\\\\s]+)?[ \t]+\\\\(?=$)"
+			end:   "(\\S+)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.bold.roff"}
+			endCaptures:
+				1: {name: "markup.italic.roff"}
+		}, {
+			name: "BI-6"
+			begin: "(\\S*[^\\\\\\s]+)[ \t]+(\\S*[^\\\\\\s]+)\\\\(?=$)"
+			end: "(\\S+)(.*?)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.bold.roff"}
+				2: {name: "markup.italic.roff"}
+			endCaptures:
+				1: {name: "markup.italic.roff"}
+				2: {patterns: [{include: "#pair-bold-italic"}]}
+		}, {
+			name: "BI-7"
+			match: "\\S+[ \t]*$"
+			captures:
+				0: {name: "markup.bold.roff"}
+		}]
+		
+
+
+	"pair-italic-bold":
+		patterns: [{
+			name:  "IB-1"
+			begin: "(\\S*?[^\\\\\\s]+)[ \t]+(\\S*?[^\\\\\\s]+)[ \t]+\\\\(?=$)"
+			end:   "(\\S+)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.italic.roff"}
+				2: {name: "markup.bold.roff"}
+			endCaptures:
+				1: {name: "markup.italic.roff"}
+		}, {
+			name:  "IB-2"
+			match: "(\\S+) +(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
+			captures:
+				1: {name: "markup.italic.roff"}
+				2: {name: "markup.bold.roff"}
+		}, {
+			name:  "IB-3"
+			begin: "(\\S*[^\\\\\\s]+)?\\\\(?=$)"
+			end:   "(\\S+)(.*)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.italic.roff"}
+			endCaptures:
+				1: {name: "markup.italic.roff"}
+				2: {patterns: [{include: "#pair-bold-italic"}]}
+		}, {
+			name:  "IB-3"
+			begin: "(\\S*[^\\\\\\s]+)?[ \t]+\\\\(?=$)"
+			end:   "(\\S+)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.italic.roff"}
+			endCaptures:
+				1: {name: "markup.bold.roff"}
+		}, {
+			name: "IB-4"
+			begin: "(\\S*[^\\\\\\s]+)[ \t]+(\\S*[^\\\\\\s]+)\\\\(?=$)"
+			end: "(\\S+)(.*?)(?=\\s|$)"
+			beginCaptures:
+				1: {name: "markup.italic.roff"}
+				2: {name: "markup.bold.roff"}
+			endCaptures:
+				1: {name: "markup.bold.roff"}
+				2: {patterns: [{include: "#pair-italic-bold"}]}
+		}, {
+			name: "IB-5"
+			match: "\\S+[ \t]*$"
+			captures:
+				0: {name: "markup.italic.roff"}
+		}]
+	
+	
 	
 	
 	
