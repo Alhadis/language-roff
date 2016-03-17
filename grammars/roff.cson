@@ -212,7 +212,7 @@ repository:
 			
 			# {Bold} {Italic}
 			name:  "BI-2"
-			match: "(\\S+) +(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
+			match: "(\\S+)[ \t]+(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
 			captures:
 				1: {name: "markup.bold.roff"}
 				2: {name: "markup.italic.roff"}
@@ -276,7 +276,7 @@ repository:
 			
 			# {Italic} {Bold}
 			name:  "IB-2"
-			match: "(\\S+) +(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
+			match: "(\\S+)[ \t]+(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
 			captures:
 				1: {name: "markup.italic.roff"}
 				2: {name: "markup.bold.roff"}
