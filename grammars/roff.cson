@@ -50,11 +50,13 @@ repository:
 	# Common patterns
 	main: {
 		patterns: [
-			{ include: "#bold"        }
-			{ include: "#italic"      }
-			{ include: "#bold-italic" }
-			{ include: "#underline"   }
-			{ include: "#headings"    }
+			{ include: "#bold"         }
+			{ include: "#italic"       }
+			{ include: "#bold-italic"  }
+			{ include: "#underline"    }
+			{ include: "#headings"     }
+			{ include: "#macro-bold"   }
+			{ include: "#macro-italic" }
 		]
 	}
 	
@@ -148,7 +150,23 @@ repository:
 			0: {name: "markup.underline.roff"}
 
 
-
+	# Macro: .B
+	"macro-bold":
+		name: "markup.bold.roff"
+		begin: "^\\.B(?:$| +)"
+		end:   "([^\n ]+ ?\n)"
+		patterns: [{ include: "$self" }]
+	
+	
+	# Macro: .I
+	"macro-italic":
+		name: "markup.italic.roff"
+		begin: "^\\.I(?:$| +)"
+		end:   "([^\n ]+ ?\n)"
+		patterns: [{ include: "$self" }]
+	
+	
+	
 	# Titles, sections and subsections
 	headings:
 		patterns: [{
