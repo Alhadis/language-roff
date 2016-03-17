@@ -57,8 +57,20 @@ repository:
 			{ include: "#headings"     }
 			{ include: "#macro-bold"   }
 			{ include: "#macro-italic" }
+			{ include: "#escapes"      }
+			{ include: "#multiline"    }
 		]
 	}
+	
+	
+	
+	# Escape sequences
+	escapes:
+		patterns: [
+			{ match: "\\x5C{2}",  name: "constant.character.escape.backslash.roff"},
+			{ match: "\\\\\n",    name: "constant.character.escape.newline.roff"},
+			{ match: "\\\\ ",     name: "constant.character.escape.space.roff"}
+		]
 	
 	
 	
@@ -164,6 +176,94 @@ repository:
 		begin: "^\\.I(?:$| +)"
 		end:   "([^\n ]+ ?\n)"
 		patterns: [{ include: "$self" }]
+	
+	
+	# Multiline macros
+	multiline:
+		patterns: [{
+			
+			# Macro: .BI
+			name: "meta.bold-italic.roff"
+			begin: "^\\.BI(?=$| )"
+			end: "$"
+			patterns: [{
+				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
+				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
+				patterns: [{ include: "#escapes" }]
+				beginCaptures: {1: {name: "markup.bold.roff"}}
+				endCaptures:   {1: {name: "markup.italic.roff"}}
+			}]
+		
+		}, {
+			
+			# Macro: .IB
+			name: "meta.italic-bold.roff"
+			begin: "^\\.IB(?=$| )"
+			end: "$"
+			patterns: [{
+				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
+				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
+				patterns: [{ include: "#escapes" }]
+				beginCaptures: {1: {name: "markup.italic.roff"}}
+				endCaptures:   {1: {name: "markup.bold.roff"}}
+			}]
+		
+		}, {
+			
+			# Macro: .IR
+			name: "meta.italic-roman.roff"
+			begin: "^\\.IR(?=$| )"
+			end: "$"
+			patterns: [{
+				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
+				end:   "(?:\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
+				patterns: [{ include: "#escapes" }]
+				beginCaptures:
+					1: {name: "markup.italic.roff"}
+			}]
+		
+		}, {
+
+			# Macro: .BR
+			name: "meta.bold-roman.roff"
+			begin: "^\\.BR(?=$| )"
+			end: "$"
+			patterns: [{
+				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
+				end:   "(?:\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
+				patterns: [{ include: "#escapes" }]
+				beginCaptures:
+					1: {name: "markup.bold.roff"}
+			}]
+		
+		}, {
+			
+			# Macro: .RI
+			name: "meta.roman-italic.roff"
+			begin: "^\\.RI(?=$| )"
+			end: "$"
+			patterns: [{
+				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
+				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
+				patterns: [{ include: "#escapes" }]
+				endCaptures:
+					1: {name: "markup.italic.roff"}
+			}]
+			
+		}, {
+			
+			# Macro: .RB
+			name: "meta.roman-bold.roff"
+			begin: "^\\.RB(?=$| )"
+			end: "$"
+			patterns: [{
+				begin: "(\"[^\"]*\"|'[^']*'|\\S+)"
+				end:   "(\"[^\"]*\"|'[^']*'|\\S+)|(?<!\\\\)$"
+				patterns: [{ include: "#escapes" }]
+				endCaptures:
+					1: {name: "markup.bold.roff"}
+			}]
+		}]
 	
 	
 	
