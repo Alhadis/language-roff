@@ -59,7 +59,6 @@ repository:
 			{ include: "#macro-italic" }
 			{ include: "#escapes"      }
 			{ include: "#paired-fonts" }
-		#	{ include: "#multiline"    }
 		]
 	}
 	
@@ -70,37 +69,50 @@ repository:
 		patterns: [
 			{ match: "\\x5C{2}",  name: "constant.character.escape.backslash.roff"},
 			{ match: "\\\\\n",    name: "constant.character.escape.newline.roff"},
-			{ match: "\\\\ ",     name: "constant.character.escape.space.roff"}
+			{ match: "\\\\ ",     name: "constant.character.escape.space.roff"},
+			{ match: "\\\\\"",    name: "constant.character.escape.quote.double.roff"},
+			{ match: "\\\\'",     name: "constant.character.escape.quote.single.roff"}
 		]
 	
 	
 	
 	# Double/single-quoted strings (used in requests)
 	strings:
-		patterns: [{
-			name: "string.quoted.single.roff"
-			begin: "'"
-			end:   "'|$"
-			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
-			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
-			patterns: [{
-				match: "[^']*[^'\\n\\r\\\\]$"
-				name: "invalid.illegal.string.roff"
-			}]
-		}, {
-			name: "string.quoted.double.roff",
-			begin: '"'
-			end:   '"|$'
-			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
-			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
-			patterns: [{
-				match: '[^"]*[^"\\n\\r\\\\]$'
-				name: "invalid.illegal.string.roff"
-			}]
-		}, {
-			name: "string.unquoted.roff"
-			begin: "(?=[A-Za-z_])"
-			end: "(?=[^\\w])"
+		patterns: [
+			{include: "#single-quoted-string"},
+			{include: "#double-quoted-string"},
+			{name: "string.unquoted.roff", begin: "(?=[A-Za-z_])", end: "(?=[^\\w])"}
+		]
+	
+	"single-quoted-string":
+		name: "string.quoted.single.roff"
+		begin: "'"
+		end:   "'|$"
+		beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+		endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+		patterns: [{include: "#single-quoted-includes"}]
+	
+	"double-quoted-string":
+		name: "string.quoted.double.roff",
+		begin: '"'
+		end:   '"|$'
+		beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+		endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+		patterns: [{include: "#double-quoted-includes"}]
+
+	
+	# Inclusions for 'single-quoted strings'
+	"single-quoted-includes":
+		patterns: [{include: "#escapes"}, {
+			match: "[^']*[^'\\n\\r\\\\]$"
+			name: "invalid.illegal.string.roff"
+		}]
+	
+	# Inclusions for "double-quoted strings"
+	"double-quoted-includes":
+		patterns: [{include: "#escapes"}, {
+			match: '[^"]*[^"\\n\\r\\\\]$'
+			name: "invalid.illegal.string.roff"
 		}]
 	
 	
@@ -194,9 +206,13 @@ repository:
 			patterns: [{include: "#pair-italic-bold"}]
 		}]
 	
+	
+	
 	# Alternating pairs of bold/italic tokens
 	"pair-bold-italic":
-		patterns: [{
+		patterns: [
+			{include: "#double-quoted-string"},
+			{include: "#single-quoted-string"}, {
 			
 			# {Bold} {Italic} \n {Bold} …
 			name:  "BI-1"
