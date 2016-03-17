@@ -206,16 +206,45 @@ repository:
 			patterns: [{include: "#pair-italic-bold"}]
 		}]
 	
+	# Extra wrappers needed to apply "markup.bold/italic" scope
+	"bold-double-quoted-string":
+		name: "markup.bold.roff"
+		begin: "(?=\")"
+		end:   "(?<=\")"
+		patterns: [{include: "#double-quoted-string"}]
+	
+	"italic-double-quoted-string":
+		name: "markup.italic.roff"
+		begin: "(?=\")"
+		end:   "(?<=\")"
+		patterns: [{include: "#double-quoted-string"}]
+	
 	
 	
 	# Alternating pairs of bold/italic tokens
 	"pair-bold-italic":
-		patterns: [
-			{include: "#double-quoted-string"},
-			{include: "#single-quoted-string"}, {
+		patterns: [{
+			
+			# "{Bold}" {Italic}
+			name: "BI-1"
+			begin: "(?=\")"
+			end:   "(?<=\")[ \t]+(?!\")(\\S+)"
+			endCaptures: {1: {name: "markup.italic.roff"}}
+			patterns: [{include: "#bold-double-quoted-string"}]
+			
+		}, {
+			
+			# {Bold} "{Italic}"
+			name: "BI-2"
+			begin: "(\\S+)[ \t]+(?=\")"
+			end:   "(?<=\")\\s|$"
+			beginCaptures: {1: {name: "markup.bold.roff"}}
+			patterns: [{include: "#italic-double-quoted-string"}]
+			
+		}, {
 			
 			# {Bold} {Italic} \n {Bold} …
-			name:  "BI-1"
+			name:  "BI-3"
 			begin: "(\\S*?[^\\\\\\s]+)[ \t]+(\\S*?[^\\\\\\s]+)[ \t]+\\\\(?=$)"
 			end:   "(\\S+)(.*)(?=\\s|$)"
 			beginCaptures:
@@ -227,7 +256,7 @@ repository:
 		}, {
 			
 			# {Bold} {Italic}
-			name:  "BI-2"
+			name:  "BI-4"
 			match: "(\\S+)[ \t]+(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
 			captures:
 				1: {name: "markup.bold.roff"}
@@ -235,7 +264,7 @@ repository:
 		}, {
 			
 			# {Bold \n Bold} …
-			name:  "BI-3"
+			name:  "BI-5"
 			begin: "(\\S*[^\\\\\\s]+)?\\\\(?=$)"
 			end:   "(\\S+)(.*)(?=\\s|$)"
 			beginCaptures:
@@ -246,7 +275,7 @@ repository:
 		}, {
 			
 			# {Bold} \n {Italic} …
-			name:  "BI-4"
+			name:  "BI-6"
 			begin: "(\\S*[^\\\\\\s]+)?[ \t]+\\\\(?=$)"
 			end:   "(\\S+)(?=\\s|$)"
 			beginCaptures:
@@ -256,7 +285,7 @@ repository:
 		}, {
 			
 			# {Bold} {Italic \n Italic} …
-			name: "BI-5"
+			name: "BI-7"
 			begin: "(\\S*[^\\\\\\s]+)[ \t]+(\\S*[^\\\\\\s]+)\\\\(?=$)"
 			end: "(\\S+)(.*?)(?=\\s|$)"
 			beginCaptures:
@@ -265,7 +294,11 @@ repository:
 			endCaptures:
 				1: {name: "markup.italic.roff"}
 				2: {patterns: [{include: "#pair-bold-italic"}]}
-		}, {
+		}, 
+
+		{include: "#double-quoted-string"},
+		{include: "#single-quoted-string"},
+		{
 			
 			# {Bold}
 			name: "BI-6"
