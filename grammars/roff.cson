@@ -50,15 +50,15 @@ repository:
 	# Common patterns
 	main: {
 		patterns: [
-			{ include: "#bold"         }
-			{ include: "#italic"       }
-			{ include: "#bold-italic"  }
-			{ include: "#underline"    }
-			{ include: "#headings"     }
-			{ include: "#macro-bold"   }
-			{ include: "#macro-italic" }
-			{ include: "#escapes"      }
-			{ include: "#paired-fonts" }
+			{ include: "#bold"                 }
+			{ include: "#italic"               }
+			{ include: "#bold-italic"          }
+			{ include: "#underline"            }
+			{ include: "#headings"             }
+			{ include: "#macro-bold"           }
+			{ include: "#macro-italic"         }
+			{ include: "#macro-bold-italic"    }
+			{ include: "#escapes"              }
 		]
 	}
 	
@@ -87,7 +87,7 @@ repository:
 	"single-quoted-string":
 		name: "string.quoted.single.roff"
 		begin: "'"
-		end:   "'|$"
+		end:   "'"
 		beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
 		endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
 		patterns: [{include: "#single-quoted-includes"}]
@@ -95,7 +95,7 @@ repository:
 	"double-quoted-string":
 		name: "string.quoted.double.roff",
 		begin: '"'
-		end:   '"|$'
+		end:   '"'
 		beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
 		endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
 		patterns: [{include: "#double-quoted-includes"}]
@@ -191,188 +191,21 @@ repository:
 		patterns: [{ include: "$self" }]
 	
 	
-	# Multiline macros
-	#==================================================================
-	"paired-fonts":
+	# Macro: .BI
+	"macro-bold-italic":
+		name: "markup.bold-italic.roff"
+		begin: "^\\.BI"
+		end:   "$"
+		beginCaptures:
+			0: {name: "entity.function.name.roff"}
 		patterns: [{
-			name: "meta.bold-italic.roff"
-			begin: "^(\\.BI)(?= |$)"
-			end: "$"
-			patterns: [{include: "#pair-bold-italic"}]
-		}, {
-			name: "meta.italic-bold.roff"
-			begin: "^(\\.IB)(?= |$)"
-			end: "$"
-			patterns: [{include: "#pair-italic-bold"}]
-		}]
-	
-	# Extra wrappers needed to apply "markup.bold/italic" scope
-	"bold-double-quoted-string":
-		name: "markup.bold.roff"
-		begin: "(?=\")"
-		end:   "(?<=\")"
-		patterns: [{include: "#double-quoted-string"}]
-	
-	"italic-double-quoted-string":
-		name: "markup.italic.roff"
-		begin: "(?=\")"
-		end:   "(?<=\")"
-		patterns: [{include: "#double-quoted-string"}]
-	
-	
-	
-	# Alternating pairs of bold/italic tokens
-	"pair-bold-italic":
-		patterns: [{
-			
-			# "{Bold}" {Italic}
-			name: "BI-1"
-			begin: "(?=\")"
-			end:   "(?<=\")[ \t]+(?!\")(\\S+)"
-			endCaptures: {1: {name: "markup.italic.roff"}}
-			patterns: [{include: "#bold-double-quoted-string"}]
-			
-		}, {
-			
-			# {Bold} "{Italic}"
-			name: "BI-2"
-			begin: "(\\S+)[ \t]+(?=\")"
-			end:   "(?<=\")\\s|$"
-			beginCaptures: {1: {name: "markup.bold.roff"}}
-			patterns: [{include: "#italic-double-quoted-string"}]
-			
-		}, {
-			
-			# {Bold} {Italic} \n {Bold} …
-			name:  "BI-3"
-			begin: "(\\S*?[^\\\\\\s]+)[ \t]+(\\S*?[^\\\\\\s]+)[ \t]+\\\\(?=$)"
-			end:   "(\\S+)(.*)(?=\\s|$)"
+			begin: "\"[^\"]*|\\S+"
+			end: "[ \t]+(\"[^\"]*\"|\\S+)"
 			beginCaptures:
-				1: {name: "markup.bold.roff"}
-				2: {name: "markup.italic.roff"}
-			endCaptures:
-				1: {name: "markup.bold.roff"}
-				2: {patterns: [{include: "#pair-italic-bold"}]}
-		}, {
-			
-			# {Bold} {Italic}
-			name:  "BI-4"
-			match: "(\\S+)[ \t]+(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
-			captures:
-				1: {name: "markup.bold.roff"}
-				2: {name: "markup.italic.roff"}
-		}, {
-			
-			# {Bold \n Bold} …
-			name:  "BI-5"
-			begin: "(\\S*[^\\\\\\s]+)?\\\\(?=$)"
-			end:   "(\\S+)(.*)(?=\\s|$)"
-			beginCaptures:
-				1: {name: "markup.bold.roff"}
-			endCaptures:
-				1: {name: "markup.bold.roff"}
-				2: {patterns: [{include: "#pair-italic-bold"}]}
-		}, {
-			
-			# {Bold} \n {Italic} …
-			name:  "BI-6"
-			begin: "(\\S*[^\\\\\\s]+)?[ \t]+\\\\(?=$)"
-			end:   "(\\S+)(?=\\s|$)"
-			beginCaptures:
-				1: {name: "markup.bold.roff"}
-			endCaptures:
-				1: {name: "markup.italic.roff"}
-		}, {
-			
-			# {Bold} {Italic \n Italic} …
-			name: "BI-7"
-			begin: "(\\S*[^\\\\\\s]+)[ \t]+(\\S*[^\\\\\\s]+)\\\\(?=$)"
-			end: "(\\S+)(.*?)(?=\\s|$)"
-			beginCaptures:
-				1: {name: "markup.bold.roff"}
-				2: {name: "markup.italic.roff"}
-			endCaptures:
-				1: {name: "markup.italic.roff"}
-				2: {patterns: [{include: "#pair-bold-italic"}]}
-		}, 
-
-		{include: "#double-quoted-string"},
-		{include: "#single-quoted-string"},
-		{
-			
-			# {Bold}
-			name: "BI-6"
-			match: "\\S+[ \t]*$"
-			captures:
 				0: {name: "markup.bold.roff"}
+			endCaptures:
+				1: {name: "markup.italic.roff"}
 		}]
-		
-
-	# Alternating pairs of italic/bold tokens
-	"pair-italic-bold":
-		patterns: [{
-			
-			# {Italic} {Bold} \n {Italic}
-			name:  "IB-1"
-			begin: "(\\S*?[^\\\\\\s]+)[ \t]+(\\S*?[^\\\\\\s]+)[ \t]+\\\\(?=$)"
-			end:   "(\\S+)(?=\\s|$)"
-			beginCaptures:
-				1: {name: "markup.italic.roff"}
-				2: {name: "markup.bold.roff"}
-			endCaptures:
-				1: {name: "markup.italic.roff"}
-		}, {
-			
-			# {Italic} {Bold}
-			name:  "IB-2"
-			match: "(\\S+)[ \t]+(\\S*[^\\\\\\s]+)(?=[ \t]|$)"
-			captures:
-				1: {name: "markup.italic.roff"}
-				2: {name: "markup.bold.roff"}
-		}, {
-			
-			# {Italic \n Italic} …
-			name:  "IB-3"
-			begin: "(\\S*[^\\\\\\s]+)?\\\\(?=$)"
-			end:   "(\\S+)(.*)(?=\\s|$)"
-			beginCaptures:
-				1: {name: "markup.italic.roff"}
-			endCaptures:
-				1: {name: "markup.italic.roff"}
-				2: {patterns: [{include: "#pair-bold-italic"}]}
-		}, {
-			
-			# {Italic} \n {Bold} …
-			name:  "IB-4"
-			begin: "(\\S*[^\\\\\\s]+)?[ \t]+\\\\(?=$)"
-			end:   "(\\S+)(?=\\s|$)"
-			beginCaptures:
-				1: {name: "markup.italic.roff"}
-			endCaptures:
-				1: {name: "markup.bold.roff"}
-		}, {
-			
-			# {Italic} {Bold \n Bold} …
-			name: "IB-5"
-			begin: "(\\S*[^\\\\\\s]+)[ \t]+(\\S*[^\\\\\\s]+)\\\\(?=$)"
-			end: "(\\S+)(.*?)(?=\\s|$)"
-			beginCaptures:
-				1: {name: "markup.italic.roff"}
-				2: {name: "markup.bold.roff"}
-			endCaptures:
-				1: {name: "markup.bold.roff"}
-				2: {patterns: [{include: "#pair-italic-bold"}]}
-		}, {
-			
-			# {Italic}
-			name: "IB-6"
-			match: "\\S+[ \t]*$"
-			captures:
-				0: {name: "markup.italic.roff"}
-		}]
-	
-	
-	
 	
 	
 	# Titles, sections and subsections
