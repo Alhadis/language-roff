@@ -89,21 +89,24 @@ repository:
 		end:   "'"
 		beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
 		endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
-		patterns: [{include: "#escapes"}, {
-			match: "[^']*[^'\\n\\r\\\\]$"
-			name: "invalid.illegal.string.roff"
-		}]
+		patterns: [{include: "#escapes"}]
 	
 	"double-quoted-string":
-		name: "string.quoted.double.roff",
-		begin: '"'
-		end:   '"'
-		beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
-		endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
-		patterns: [{include: "#escapes"}, {
-			match: '[^"]*[^"\\n\\r\\\\]$'
-			name: "invalid.illegal.string.roff"
+		patterns: [{
+			name: "string.quoted.double.empty.roff",
+			match: '(")(")'
+		}, {
+			name: "string.quoted.double.roff",
+			begin: '"(?!")'
+			end:   '(?<!")"(?!")'
+			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+			patterns: [
+				{match: '""', name: "constant.character.escape.quote.double.roff"},
+				{include: "#escapes"}
+			]
 		}]
+
 	
 	
 	"bold-strings":
