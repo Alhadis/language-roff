@@ -206,9 +206,10 @@ repository:
 	# Macro: .BI
 	"macro-bold-italic":
 		name: "markup.bold-italic.roff"
-		begin: "^\\.BI"
+		begin: "^(\\.BI)(?:[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
-		beginCaptures: {0: {name: "entity.function.name.roff"}}
+		beginCaptures:
+			1: {name: "entity.function.name.roff"}
 		patterns: [{
 			begin: '(?x)
 				(?=
