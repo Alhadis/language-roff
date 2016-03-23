@@ -104,6 +104,15 @@ repository:
 			match: '[^"]*[^"\\n\\r\\\\]$'
 			name: "invalid.illegal.string.roff"
 		}]
+	
+	
+	"bold-strings":
+		patterns: [{
+			name: "markup.bold.roff"
+			begin: '(?=")'
+			end:   '(?<=")'
+			patterns: [{include: "#double-quoted-string"}]
+		}]
 
 
 	
@@ -195,16 +204,34 @@ repository:
 	"macro-bold-italic":
 		name: "markup.bold-italic.roff"
 		begin: "^\\.BI"
-		end:   "$"
-		beginCaptures:
-			0: {name: "entity.function.name.roff"}
+		end:   "(?<!\\\\)(?=\n)"
+		beginCaptures: {0: {name: "entity.function.name.roff"}}
 		patterns: [{
-			begin: "\"[^\"]*\"|\\S+"
-			end: "[ \t]+(\"[^\"]*\"|\\S+)"
-			beginCaptures:
-				0: {name: "markup.bold.roff"}
+			begin: '(?x)
+				(?=
+					("[^"]*(?<!\\\\)")
+					|
+					\\S+
+				)
+			'
+			end: '(?x)
+				(?:^|[ \t]+)
+				(
+					("[^"]*")
+					|
+					\\S+
+				)
+			'
+			patterns: [{
+				include: "#bold-strings"
+			}, {
+				name: "markup.bold.roff"
+				begin: "\\G"
+				end: "(?=\\s|$)"
+			}]
 			endCaptures:
 				1: {name: "markup.italic.roff"}
+				2: {patterns: [{include: "#strings"}]}
 		}]
 	
 	
