@@ -199,7 +199,7 @@ repository:
 		beginCaptures:
 			0: {name: "entity.function.name.roff"}
 		patterns: [{
-			begin: "\"[^\"]*|\\S+"
+			begin: "\"[^\"]*\"|\\S+"
 			end: "[ \t]+(\"[^\"]*\"|\\S+)"
 			beginCaptures:
 				0: {name: "markup.bold.roff"}
