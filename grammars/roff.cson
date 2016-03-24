@@ -219,6 +219,8 @@ repository:
 				)
 			'
 			end: '(?x)
+				$
+				|
 				(?:^|[ \t]+)
 				(
 					("[^"]*")
@@ -230,7 +232,7 @@ repository:
 				include: "#bold-strings"
 			}, {
 				name: "markup.bold.roff"
-				begin: "\\G"
+				begin: "\\G(?!\\\\\n)"
 				end: "(?=\\s|$)"
 			}]
 			endCaptures:
