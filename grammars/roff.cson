@@ -42,6 +42,12 @@ patterns: [
 			0: {name: "punctuation.definition.begin.comment.roff"}
 	}
 	
+	
+	# Empty control lines
+	{
+		name: "comment.empty.roff"
+		match: "^\\.$"
+	}
 ]
 
 
