@@ -108,38 +108,6 @@ repository:
 		}]
 	
 	
-	# Bold: "Quoted"
-	"bold-string":
-		patterns: [{
-			name: "markup.bold.roff"
-			begin: '(?=")'
-			end:   '(?<=")'
-			patterns: [{
-				
-				# Concealed newline
-				begin: "(?<=\\S)\\\\(?=\n)"
-				end: "(?<!\\\\)(?=\\s|$)"
-				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
-				patterns: [{include: "#bold-string"}]
-				
-			}, {include: "#double-quoted-string"}]
-		}]
-	
-	
-	# Bold: Unquoted
-	"bold-bareword":
-		patterns: [{
-			name: "markup.bold.roff"
-			begin: "\\G(?!\\\\\n)"
-			end: "(?=\\s|$)"
-			patterns: [{
-				# Concealed newline
-				begin: "(?<=\\S)\\\\(?=\n)"
-				end: "(?<!\\\\)(?=\\s|$)"
-				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
-				patterns: [{include: "#bold-bareword"}]
-			}]
-		}]
 	
 	
 	# Request parameters
@@ -148,6 +116,48 @@ repository:
 			{include: "#strings"},
 			{name: "string.unquoted.roff", begin: "(?=[A-Za-z_])", end: "(?=[^\\w])"}
 		]
+	
+	
+	# Titles, sections and subsections
+	headings:
+		patterns: [{
+			
+			# Titles (GNU manual macro)
+			name: "markup.heading.title.gnu.man.macro.roff"
+			begin: "^(\\.TH) +"
+			end: "$"
+			beginCaptures:
+				1: {name: "entity.name.function.roff"}
+			patterns: [
+				{ include: "#main"    }
+				{ include: "#params"  }
+			]
+		}, {
+			
+			# Sections
+			name: "markup.heading.section.man.macro.roff"
+			begin: "^(\\.SH) +"
+			end: "$"
+			beginCaptures:
+				1: {name: "entity.name.function.roff"}
+			patterns: [
+				{ include: "#main"    }
+				{ include: "#params"  }
+			]
+		}, {
+			
+			# Subsections
+			name: "markup.heading.subsection.man.macro.roff"
+			begin: "^(\\.Ss) +"
+			end: "$"
+			beginCaptures:
+				1: {name: "entity.name.function.roff"}
+			patterns: [
+				{ include: "#main"    }
+				{ include: "#params"  }
+			]
+			
+		}]
 	
 	
 	
@@ -260,43 +270,36 @@ repository:
 		}]
 	
 	
-	# Titles, sections and subsections
-	headings:
-		patterns: [{
-			
-			# Titles (GNU manual macro)
-			name: "markup.heading.title.gnu.man.macro.roff"
-			begin: "^(\\.TH) +"
-			end: "$"
-			beginCaptures:
-				1: {name: "entity.name.function.roff"}
-			patterns: [
-				{ include: "#main"    }
-				{ include: "#params"  }
-			]
-		}, {
-			
-			# Sections
-			name: "markup.heading.section.man.macro.roff"
-			begin: "^(\\.SH) +"
-			end: "$"
-			beginCaptures:
-				1: {name: "entity.name.function.roff"}
-			patterns: [
-				{ include: "#main"    }
-				{ include: "#params"  }
-			]
-		}, {
-			
-			# Subsections
-			name: "markup.heading.subsection.man.macro.roff"
-			begin: "^(\\.Ss) +"
-			end: "$"
-			beginCaptures:
-				1: {name: "entity.name.function.roff"}
-			patterns: [
-				{ include: "#main"    }
-				{ include: "#params"  }
-			]
-			
-		}]
+		# Bold: "Quoted"
+		"bold-string":
+			patterns: [{
+				name: "markup.bold.roff"
+				begin: '(?=")'
+				end:   '(?<=")'
+				patterns: [{
+					
+					# Concealed newline
+					begin: "(?<=\\S)\\\\(?=\n)"
+					end: "(?<!\\\\)(?=\\s|$)"
+					beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+					patterns: [{include: "#bold-string"}]
+					
+				}, {include: "#double-quoted-string"}]
+			}]
+		
+		
+		# Bold: Unquoted
+		"bold-bareword":
+			patterns: [{
+				name: "markup.bold.roff"
+				begin: "\\G(?!\\\\\n)"
+				end: "(?=\\s|$)"
+				patterns: [{
+					# Concealed newline
+					begin: "(?<=\\S)\\\\(?=\n)"
+					end: "(?<!\\\\)(?=\\s|$)"
+					beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+					patterns: [{include: "#bold-bareword"}]
+				}]
+			}]
+	
