@@ -244,11 +244,40 @@ repository:
 	# Macro: .BI
 	"macro-bold-italic":
 		name: "markup.bold-italic.roff"
-		begin: "^(\\.BI)(?:[ \t]|$)"
+		begin: "^(\\.BI)(?=[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
+			begin: '(?x)
+				(?<=\\.BI)
+				[ \\t]+
+				(
+					".*?
+					(?<!")"(?!")
+					|
+					[^"\\s]\\S*
+				)
+				[ \t]*
+				(?=")
+			'
+			end: '(?x)
+				(?<=")
+				|
+				(?<!\\\\)\\n
+			'
+			beginCaptures:
+				1:
+					name: "markup.bold.roff"
+					patterns: [
+						{include: "#bold-string"}
+						{include: "#bold-bareword"}
+					]
+			patterns: [
+				{include: "#italic-string"}
+				{include: "#italic-bareword"}
+			]
+		}, {
 			begin: '(?x)
 				(?=
 					("[^"]*(?<!\\\\)")
