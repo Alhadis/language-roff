@@ -98,7 +98,7 @@ repository:
 		}, {
 			name: "string.quoted.double.roff",
 			begin: '"(?!")'
-			end:   '(?<!")"(?!")'
+			end:   '(?<!")"(?!")|(?<!\\\\)$'
 			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
 			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
 			patterns: [
@@ -275,7 +275,7 @@ repository:
 		patterns: [{
 			name: "markup.bold.roff"
 			begin: '(?=")'
-			end:   '(?<=")'
+			end:   '$|(?<=")'
 			patterns: [{
 				
 				# Concealed newline
