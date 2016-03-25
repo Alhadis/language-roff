@@ -270,36 +270,35 @@ repository:
 		}]
 	
 	
-		# Bold: "Quoted"
-		"bold-string":
+	# Bold: "Quoted"
+	"bold-string":
+		patterns: [{
+			name: "markup.bold.roff"
+			begin: '(?=")'
+			end:   '(?<=")'
 			patterns: [{
-				name: "markup.bold.roff"
-				begin: '(?=")'
-				end:   '(?<=")'
-				patterns: [{
-					
-					# Concealed newline
-					begin: "(?<=\\S)\\\\(?=\n)"
-					end: "(?<!\\\\)(?=\\s|$)"
-					beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
-					patterns: [{include: "#bold-string"}]
-					
-				}, {include: "#double-quoted-string"}]
-			}]
-		
-		
-		# Bold: Unquoted
-		"bold-bareword":
-			patterns: [{
-				name: "markup.bold.roff"
-				begin: "\\G(?!\\\\\n)"
-				end: "(?=\\s|$)"
-				patterns: [{
-					# Concealed newline
-					begin: "(?<=\\S)\\\\(?=\n)"
-					end: "(?<!\\\\)(?=\\s|$)"
-					beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
-					patterns: [{include: "#bold-bareword"}]
-				}]
-			}]
+				
+				# Concealed newline
+				begin: "(?<=\\S)\\\\(?=\n)"
+				end: "(?<!\\\\)(?=\\s|$)"
+				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+				patterns: [{include: "#bold-string"}]
+				
+			}, {include: "#double-quoted-string"}]
+		}]
 	
+	
+	# Bold: Unquoted
+	"bold-bareword":
+		patterns: [{
+			name: "markup.bold.roff"
+			begin: "\\G(?!\\\\\n)"
+			end: "(?=\\s|$)"
+			patterns: [{
+				# Concealed newline
+				begin: "(?<=\\S)\\\\(?=\n)"
+				end: "(?<!\\\\)(?=\\s|$)"
+				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+				patterns: [{include: "#bold-bareword"}]
+			}]
+		}]
