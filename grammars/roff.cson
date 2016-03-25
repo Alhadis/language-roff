@@ -114,8 +114,17 @@ repository:
 			name: "markup.bold.roff"
 			begin: '(?=")'
 			end:   '(?<=")'
-			patterns: [{include: "#double-quoted-string"}]
+			patterns: [{
+				
+				# Concealed newline
+				begin: "(?<=\\S)\\\\(?=\n)"
+				end: "(?<!\\\\)(?=\\s|$)"
+				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+				patterns: [{include: "#bold-string"}]
+				
+			}, {include: "#double-quoted-string"}]
 		}]
+	
 	
 	# Bold: Unquoted
 	"bold-bareword":
