@@ -308,3 +308,38 @@ repository:
 				patterns: [{include: "#bold-bareword"}]
 			}]
 		}]
+	
+	
+	
+	# Italic: "Quoted"
+	"italic-string":
+		patterns: [{
+			name: "markup.italic.roff"
+			begin: '(?=")'
+			end:   '$|(?<=")'
+			patterns: [{
+				
+				# Concealed newline
+				begin: "(?<=\\S)\\\\(?=\n)"
+				end: "(?<!\\\\)(?=\\s|$)"
+				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+				patterns: [{include: "#italic-string"}]
+				
+			}, {include: "#double-quoted-string"}]
+		}]
+	
+	
+	# Italic: Unquoted
+	"italic-bareword":
+		patterns: [{
+			name: "markup.italic.roff"
+			begin: "\\G(?!\\\\\n)"
+			end: "(?=\\s|$)"
+			patterns: [{
+				# Concealed newline
+				begin: "(?<=\\S)\\\\(?=\n)"
+				end: "(?<!\\\\)(?=\\s|$)"
+				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+				patterns: [{include: "#italic-bareword"}]
+			}]
+		}]
