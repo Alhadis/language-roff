@@ -106,7 +106,7 @@ repository:
 				{include: "#escapes"}
 			]
 		}]
-
+	
 	
 	# Bold: "Quoted"
 	"bold-string":
@@ -123,18 +123,12 @@ repository:
 			name: "markup.bold.roff"
 			begin: "\\G(?!\\\\\n)"
 			end: "(?=\\s|$)"
-			patterns: [{include: "#bold-bareword-cnl"}]
-		}]
-
-	# Bold: Unquoted, concealed newline
-	"bold-bareword-cnl":
-		patterns: [{
-			begin: "(?<=\\S)\\\\(?=\n)"
-			end: "(?<!\\\\)(?=\\s|$)"
-			beginCaptures:
-				0: {name: "constant.character.escape.newline.roff"}
 			patterns: [{
-				include: "#bold-bareword"
+				# Concealed newline
+				begin: "(?<=\\S)\\\\(?=\n)"
+				end: "(?<!\\\\)(?=\\s|$)"
+				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
+				patterns: [{include: "#bold-bareword"}]
 			}]
 		}]
 	
