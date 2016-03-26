@@ -36,7 +36,7 @@ patterns: [
 	# Empty control lines
 	{
 		name: "comment.empty.roff"
-		match: "^\\.[ \t]*$"
+		match: "^[.'][ \t]*$"
 	}
 ]
 
@@ -70,7 +70,7 @@ repository:
 	comments:
 		patterns: [{
 			name: "comment.line.roff"
-			begin: "\\.?\\s*\\\\\""
+			begin: "[.']?\\s*\\\\\""
 			end: "$"
 			beginCaptures:
 				0: {name: "punctuation.definition.begin.comment.roff"}
@@ -138,7 +138,7 @@ repository:
 			
 			# Titles (GNU manual macro)
 			name: "markup.heading.title.gnu.man.macro.roff"
-			begin: "^(\\.TH) +"
+			begin: "^([.']TH) +"
 			end: "$"
 			beginCaptures:
 				1: {name: "entity.name.function.roff"}
@@ -150,7 +150,7 @@ repository:
 			
 			# Sections
 			name: "markup.heading.section.man.macro.roff"
-			begin: "^(\\.SH) +"
+			begin: "^([.']SH) +"
 			end: "$"
 			beginCaptures:
 				1: {name: "entity.name.function.roff"}
@@ -162,7 +162,7 @@ repository:
 			
 			# Subsections
 			name: "markup.heading.subsection.man.macro.roff"
-			begin: "^(\\.Ss) +"
+			begin: "^([.']Ss) +"
 			end: "$"
 			beginCaptures:
 				1: {name: "entity.name.function.roff"}
@@ -221,7 +221,7 @@ repository:
 	# Underlined passage
 	underline:
 		name: "meta.request.ul.roff"
-		begin: "^(\\.ul)(?: +(\\d+))?\\s*(.*?)\\s*?(\\\\\".*?)?\n"
+		begin: "^([.']ul)(?: +(\\d+))?\\s*(.*?)\\s*?(\\\\\".*?)?\n"
 		end:   "([^\n ]+\n)"
 		patterns: [{ include: "$self" }]
 		beginCaptures:
@@ -236,7 +236,7 @@ repository:
 	# Macro: .B
 	"macro-bold":
 		name: "markup.bold.roff"
-		begin: "^\\.B(?:$| +)"
+		begin: "^[.']B(?:$| +)"
 		end:   "([^\n ]+ ?\n)"
 		patterns: [{ include: "$self" }]
 	
@@ -244,7 +244,7 @@ repository:
 	# Macro: .I
 	"macro-italic":
 		name: "markup.italic.roff"
-		begin: "^\\.I(?:$| +)"
+		begin: "^[.']I(?:$| +)"
 		end:   "([^\n ]+ ?\n)"
 		patterns: [{ include: "$self" }]
 	
@@ -252,12 +252,12 @@ repository:
 	# Macro: .BI
 	"macro-bold-italic":
 		name: "markup.bold-italic.roff"
-		begin: "^(\\.BI)(?=[ \t]|$)"
+		begin: "^([.']BI)(?=[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
-			begin: '(?<=\\.BI)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			begin: '(?<=[.\']BI)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#italic-strings"}]
 			beginCaptures:
@@ -277,12 +277,12 @@ repository:
 	# Macro: .BR
 	"macro-bold-roman":
 		name: "markup.bold-roman.roff"
-		begin: "^(\\.BR)(?=[ \t]|$)"
+		begin: "^([.']BR)(?=[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
-			begin: '(?<=\\.BR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			begin: '(?<=[.\']BR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#params"}]
 			beginCaptures:
@@ -301,12 +301,12 @@ repository:
 	# Macro: .IB
 	"macro-italic-bold":
 		name: "markup.italic-bold.roff"
-		begin: "^(\\.IB)(?=[ \t]|$)"
+		begin: "^([.']IB)(?=[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
-			begin: '(?<=\\.IB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			begin: '(?<=[.\']IB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#bold-strings"}]
 			beginCaptures:
@@ -326,12 +326,12 @@ repository:
 	# Macro: .IR
 	"macro-italic-roman":
 		name: "markup.italic-roman.roff"
-		begin: "^(\\.IR)(?=[ \t]|$)"
+		begin: "^([.']IR)(?=[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
-			begin: '(?<=\\.IR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			begin: '(?<=[.\']IR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#params"}]
 			beginCaptures:
@@ -350,12 +350,12 @@ repository:
 	# Macro: .RB
 	"macro-roman-bold":
 		name: "markup.roman-bold.roff"
-		begin: "^(\\.RB)(?=[ \t]|$)"
+		begin: "^([.']RB)(?=[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
-			begin: '(?<=\\.RB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			begin: '(?<=[.\']RB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#bold-strings"}]
 			beginCaptures:
@@ -373,12 +373,12 @@ repository:
 	# Macro: .RI
 	"macro-roman-italic":
 		name: "markup.roman-italic.roff"
-		begin: "^(\\.RI)(?=[ \t]|$)"
+		begin: "^([.']RI)(?=[ \t]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
-			begin: '(?<=\\.RI)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			begin: '(?<=[.\']RI)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#italic-strings"}]
 			beginCaptures:
