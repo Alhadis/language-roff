@@ -1,0 +1,126 @@
+.TH STANDARD REQUESTS
+.SH FONT AND CHARACTER SIZE CONTROL
+.
+.ps ±N         \" Point size
+.ss N          \" Space-character size
+.cs F N M      \" Constant character size
+.bd F N        \" Embolden font F by N-1 units
+.bd s F N      \" Embolden special font when current font is F
+.ft F          \" Change to font F
+.fp N F L      \" Mount font F on physical position N ≥ 1
+.
+.SH PAGE CONTROL
+.pl ±N         \" Page length
+.bp ±N         \" Eject current page: next page number N
+.pn ±N         \" Next page number N
+.po ±N         \" Page offset
+.ne N          \" Need N vertical space
+.mk R          \" Mark current vertical place in register R
+.rt ±N         \" Return (upward only) to marked vertical place
+.
+.SH TEXT FILLING, ADJUSTING, AND CENTRING
+.br            \" Break
+.fi            \" Fill output lines
+.nf            \" No filling/adjustment of output lines
+.ad C          \" Adjust output lines with mode C
+.na            \" No output line adjusting
+.ce N          \" Centre next N input text lines
+.
+.SH VERTICAL SPACING
+.vs N          \" Vertical baseline spacing (V)
+.ls N          \" Output N-1v's after each text output line
+.sp N          \" Space vertical distance N in either direction
+.sv N          \" Save vertical distance N
+.os            \" Output saved vertical distance
+.ns            \" Turn no-space mode on
+.rs            \" Restore spacing; turn no-space mode off
+.
+.SH LINE LENGTH AND INDENTING
+.ll ±N         \" Line length
+.in ±N         \" Indent
+.ti ±N         \" Temporary indent
+.
+.SH MACROS, STRINGS, DIVERSION, AND POSITION TRAPS
+.de XX YY      \" Define or redefine macro XX; end at call of YY
+.am XX YY      \" Append to a macro
+.ds XX STR     \" Define a string XX containing STR
+.as XX STR     \" Append STR to string XX
+.rm XX         \" Remove request, macro, or string
+.rn XX YY      \" Rename request, macro, or string XX to YY
+.di XX         \" Divert output to macro XX
+.da XX         \" Divert and append to XX
+.wh N XX       \" Set location trap
+.ch XX N       \" Change trap location
+.dt N XX       \" Set a diversion trap
+.it N XX       \" Set an input-line count trap
+.em XX         \" End macro is XX
+.
+.SH NUMBER REGISTERS
+.nr R ±N M     \" Define and set number register R; auto-increment with M
+.af R C        \" Assign format C to register R
+.rr R          \" Remove register R
+.
+.SH TABS, LEADERS, AND FIELDS
+.ta NT…        \" Tab settings; left-adjusting, unless t=R (right), C (centred)
+.tc C          \" Tab repetition character
+.lc C          \" Leader repetition character
+.fc A B        \" Set field delimiter A and pad character B
+.
+.SH INPUT AND OUTPUT CONVENTIONS AND CHARACTER TRANSLATIONS
+.ec C          \" Set escape character
+.eo            \" Turn off escape character mechanism
+.lg N          \" Ligature mode on if N > 0
+.ul 0          \" Underline N input lines
+.cu N          \" Continuous underline in nroff; in troff, like ul
+.uf F          \" Underline font set to F (to be switched to by ul)
+.cc C          \" Set control character to C
+.c2 C          \" Set no-break control character to C
+.tr ABCD…      \" Translate A→B, C→D… on output
+.
+.SH HYPHENATION
+.nh            \" No hyphenation
+.hy N          \" Hyphenate; N = mode
+.hc C          \" Hyphenation indicator character C
+.hw W          \" Add words W to hyphenation dictionary
+.
+.SH THREE-PART TITLES
+.tl 'L'C'R'    \" 3-part title; delimiter may be any character
+.pc C          \" Page-number character
+.lt ±N         \" Length of title
+.
+.SH OUTPUT LINE NUMBERING
+.nm ±N M S I   \" Number mode on or off, set parameters
+.nn N          \" Do not number next N lines
+.
+.SH CONDITIONAL ACCEPTANCE OF INPUT
+.if  C …       \" If condition C true, accept … as input; multiline uses \{…\}
+.if !C …       \" If condition C false, accept …
+.if  N …       \" If expression N > 0, accept …
+.if !N …       \" If expression N ≤ 0, accept …
+.if  'A'B' …   \" If string A identical to B, accept …
+.if !'A'B' …   \" If string A not identical to B, accept …
+.ie C …        \" If portion of if/else pair; all above forms (like if)
+.el …          \" Else portion of if/else pair
+.
+.SH ENVIRONMENT SWITCHING
+.ev N          \" Environment switch (push down)
+.
+.SH INSERTIONS FROM THE STANDARD INPUT
+.rd PROMPT     \" Read insertion
+.ex            \" Exit
+.
+.SH INPUT/OUTPUT FILE SWITCHING
+.so FILE       \" Switch source file (push down)
+.nx FILE       \" Next file
+.sy STR        \" Execute program STR. Output is not interpolated.
+.pi STR        \" Pipe output to program STR
+.cf FILE       \" Copy file contents to troff output
+.
+.SH MISCELLANEOUS
+.mc C N        \" Set margin character C and separation N
+.tm STR        \" Print STR to STDERR
+.ab STR        \" Print STR to STDERR, exit program
+.ig YY         \" Ignore input until call of YY
+.lf N F        \" Set input line number to N and filename to F
+.pm T          \" Print macro names, sizes; if T present, print only size total
+.fl            \" Flush output buffer
