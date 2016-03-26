@@ -255,7 +255,7 @@ repository:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
 			begin: '(?<=\\.BI)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
-			end: '(?<=")|(?<!\\\\)\\n'
+			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#italic-strings"}]
 			beginCaptures:
 				1:
@@ -280,7 +280,7 @@ repository:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
 			begin: '(?<=\\.BR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
-			end: '(?<=")|(?<!\\\\)\\n'
+			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#params"}]
 			beginCaptures:
 				1:
@@ -304,7 +304,7 @@ repository:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
 			begin: '(?<=\\.IB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
-			end: '(?<=")|(?<!\\\\)\\n'
+			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#bold-strings"}]
 			beginCaptures:
 				1:
@@ -329,7 +329,7 @@ repository:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
 			begin: '(?<=\\.IR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
-			end: '(?<=")|(?<!\\\\)\\n'
+			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#params"}]
 			beginCaptures:
 				1:
@@ -353,7 +353,7 @@ repository:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
 			begin: '(?<=\\.RB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
-			end: '(?<=")|(?<!\\\\)\\n'
+			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#bold-strings"}]
 			beginCaptures:
 				1: patterns: [{include: "#strings"}]
@@ -376,7 +376,7 @@ repository:
 			1: {name: "entity.function.name.roff"}
 		patterns: [{
 			begin: '(?<=\\.RI)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
-			end: '(?<=")|(?<!\\\\)\\n'
+			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#italic-strings"}]
 			beginCaptures:
 				1: patterns: [{include: "#strings"}]
