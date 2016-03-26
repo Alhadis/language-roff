@@ -29,16 +29,7 @@ fileTypes: [
 	"tr"
 ]
 
-patterns: [
-	
-	{ include: "#main" }
-	
-	# Empty control lines
-	{
-		name: "comment.empty.roff"
-		match: "^[.'][ \t]*$"
-	}
-]
+patterns: [{ include: "#main" }]
 
 
 repository:
@@ -74,6 +65,11 @@ repository:
 			end: "$"
 			beginCaptures:
 				0: {name: "punctuation.definition.begin.comment.roff"}
+		}, {
+			
+			# Empty control lines
+			name: "comment.empty.roff"
+			match: "^[.'][ \t]*$"
 		}]
 	
 	
