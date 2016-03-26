@@ -64,6 +64,11 @@ repository:
 			{ include: "#macro-bold"           }
 			{ include: "#macro-italic"         }
 			{ include: "#macro-bold-italic"    }
+			{ include: "#macro-bold-roman"     }
+			{ include: "#macro-italic-bold"    }
+			{ include: "#macro-italic-roman"   }
+			{ include: "#macro-roman-bold"     }
+			{ include: "#macro-roman-italic"   }
 			{ include: "#escapes"              }
 		]
 	}
@@ -260,6 +265,125 @@ repository:
 			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
 			end: '$|(?:^|[ \t]+|(?<="))(("[^"]*")|\\S+)'
 			patterns: [{include: "#bold-strings"}]
+			endCaptures:
+				1: {name: "markup.italic.roff"}
+				2: {patterns: [{include: "#strings"}]}
+		}]
+	
+	
+	# Macro: .BR
+	"macro-bold-roman":
+		name: "markup.bold-roman.roff"
+		begin: "^(\\.BR)(?=[ \t]|$)"
+		end:   "(?<!\\\\)(?=\n)"
+		beginCaptures:
+			1: {name: "entity.function.name.roff"}
+		patterns: [{
+			begin: '(?<=\\.BR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			end: '(?<=")|(?<!\\\\)\\n'
+			patterns: [{include: "#params"}]
+			beginCaptures:
+				1:
+					name: "markup.bold.roff"
+					patterns: [{include: "#bold-strings"}]
+		}, {
+			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
+			end: '$|(?:^|[ \t]+|(?<="))(?:("[^"]*")|\\S+)'
+			patterns: [{include: "#bold-strings"}]
+			endCaptures:
+				1: {patterns: [{include: "#strings"}]}
+		}]
+	
+	
+	# Macro: .IB
+	"macro-italic-bold":
+		name: "markup.italic-bold.roff"
+		begin: "^(\\.IB)(?=[ \t]|$)"
+		end:   "(?<!\\\\)(?=\n)"
+		beginCaptures:
+			1: {name: "entity.function.name.roff"}
+		patterns: [{
+			begin: '(?<=\\.IB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			end: '(?<=")|(?<!\\\\)\\n'
+			patterns: [{include: "#bold-strings"}]
+			beginCaptures:
+				1:
+					name: "markup.italic.roff"
+					patterns: [{include: "#italic-strings"}]
+		}, {
+			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
+			end: '$|(?:^|[ \t]+|(?<="))(("[^"]*")|\\S+)'
+			patterns: [{include: "#italic-strings"}]
+			endCaptures:
+				1: {name: "markup.bold.roff"}
+				2: {patterns: [{include: "#strings"}]}
+		}]
+		
+
+	# Macro: .IR
+	"macro-italic-roman":
+		name: "markup.italic-roman.roff"
+		begin: "^(\\.IR)(?=[ \t]|$)"
+		end:   "(?<!\\\\)(?=\n)"
+		beginCaptures:
+			1: {name: "entity.function.name.roff"}
+		patterns: [{
+			begin: '(?<=\\.IR)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			end: '(?<=")|(?<!\\\\)\\n'
+			patterns: [{include: "#params"}]
+			beginCaptures:
+				1:
+					name: "markup.italic.roff"
+					patterns: [{include: "#italic-strings"}]
+		}, {
+			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
+			end: '$|(?:^|[ \t]+|(?<="))(?:("[^"]*")|\\S+)'
+			patterns: [{include: "#italic-strings"}]
+			endCaptures:
+				1: {patterns: [{include: "#strings"}]}
+		}]
+
+
+	# Macro: .RB
+	"macro-roman-bold":
+		name: "markup.roman-bold.roff"
+		begin: "^(\\.RB)(?=[ \t]|$)"
+		end:   "(?<!\\\\)(?=\n)"
+		beginCaptures:
+			1: {name: "entity.function.name.roff"}
+		patterns: [{
+			begin: '(?<=\\.RB)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			end: '(?<=")|(?<!\\\\)\\n'
+			patterns: [{include: "#bold-strings"}]
+			beginCaptures:
+				1: patterns: [{include: "#strings"}]
+		}, {
+			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
+			end: '$|(?:^|[ \t]+|(?<="))(("[^"]*")|\\S+)'
+			patterns: [{include: "#strings"}]
+			endCaptures:
+				1: {name: "markup.bold.roff"}
+				2: {patterns: [{include: "#strings"}]}
+		}]
+	
+	
+	# Macro: .RI
+	"macro-roman-italic":
+		name: "markup.roman-italic.roff"
+		begin: "^(\\.RI)(?=[ \t]|$)"
+		end:   "(?<!\\\\)(?=\n)"
+		beginCaptures:
+			1: {name: "entity.function.name.roff"}
+		patterns: [{
+			begin: '(?<=\\.RI)[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
+			end: '(?<=")|(?<!\\\\)\\n'
+			patterns: [{include: "#italic-strings"}]
+			beginCaptures:
+				1: patterns: [{include: "#strings"}]
+		}, {
+			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
+			end: '$|(?:^|[ \t]+|(?<="))(("[^"]*")|\\S+)'
+			patterns: [{include: "#strings"}]
 			endCaptures:
 				1: {name: "markup.italic.roff"}
 				2: {patterns: [{include: "#strings"}]}

@@ -1,5 +1,7 @@
 .TH REPEATING-FONTS 1
-.SH ALTERNATING FONT MACROS
+
+.\"============================= BOLD | ITALIC =================================
+.SH .BI: BOLD + ITALIC
 .nf
 
 .BI Bold Italic "Bold Bold
@@ -12,14 +14,6 @@ Bold" "Italic Italic Italic" Bold
 Italic\
 Italic\
 Italic Bold Italic
-
-.BI "Bold\
-Bold Bold Bold\
-Bold\
-Bold" "Italic Italic\
-Italic Italic Italic\
-Italic\
-Italic" Bold Italic
 
 .BI "Bold"Italic Bold
 
@@ -34,3 +28,160 @@ really"" long and really italic
 Plain
 
 .BI "Bold" "Italic
+
+
+
+.\"============================= BOLD | ROMAN ==================================
+.SH .BR: BOLD + ROMAN
+.nf
+
+.BR Bold Roman "Bold Bold
+Bold" "Roman Roman Roman" Bold
+
+.BR Bold Roman "Bold\
+Bold" "Roman Roman Roman" Bold
+
+.BR Bold Roman\
+Roman\
+Roman\
+Roman Bold Roman
+
+.BR "Bold"Roman Bold
+
+.BR "Bold""Bold" Roman
+
+.BR "Bold" "Something really\
+really long and regular" Bold Roman Bold
+
+.BR "Bold" "Something really\
+really"" long and really regular
+
+Plain
+
+.BR "Bold" "Roman
+
+Also plain
+
+
+
+
+.\"============================= ITALIC | BOLD =================================
+.SH .IB: ITALIC + BOLD
+.nf
+
+.IB Italic Bold "Italic Italic
+Italic" "Bold Bold Bold" Italic
+
+.IB Italic Bold "Italic\
+Italic" "Bold Bold Bold" Italic
+
+.IB Italic Bold\
+Bold\
+Bold\
+Bold Italic Bold
+
+.IB "Italic"Bold Italic
+
+.IB "Italic""Italic" Bold
+
+.IB "Italic" "Something really\
+really long and bold" Italic Bold Italic
+
+.IB "Italic" "Something really\
+really"" long and really bold
+
+Plain
+
+.IB "Italic" "Bold
+
+
+
+.\"============================= ITALIC | ROMAN ================================
+.SH .IR: ITALIC + ROMAN
+.nf
+
+.IR Italic Roman "Italic Italic
+Italic" "Roman Roman Roman" Italic
+
+.IR Italic Roman "Italic\
+Italic" "Roman Roman Roman" Italic
+
+.IR Italic Roman\
+Roman\
+Roman\
+Roman Italic Roman
+
+.IR "Italic"Roman Italic
+
+.IR "Italic""Italic" Roman
+
+.IR "Italic" "Something really\
+really long and regular" Italic Roman Italic
+
+.IR "Italic" "Something really\
+really"" long and really regular
+
+Plain
+
+.IR "Italic" "Roman
+
+
+
+.\"============================= ROMAN | BOLD ==================================
+.SH .RB: ROMAN + BOLD
+.nf
+
+.RB Roman Bold "Roman Roman
+Roman" "Bold Bold Bold" Roman
+
+.RB Roman Bold "Roman\
+Roman" "Bold Bold Bold" Roman
+
+.RB Roman Bold\
+Bold\
+Bold\
+Bold Roman Bold
+
+.RB "Roman"Bold Roman
+
+.RB "Roman""Roman" Bold
+
+.RB "Roman" "Something really\
+really long and bold" Roman Bold Roman
+
+.RB "Roman" "Something really\
+really"" long and really bold
+
+Plain
+
+.RB "Roman" "Bold
+
+
+.\"============================= ROMAN | ITALIC ================================
+.SH .RI: ROMAN + ITALIC
+.nf
+
+.RI Roman Italic "Roman Roman
+Roman" "Italic Italic Italic" Roman
+
+.RI Roman Italic "Roman\
+Roman" "Italic Italic Italic" Roman
+
+.RI Roman Italic\
+Italic\
+Italic\
+Italic Roman Italic
+
+.RI "Roman"Italic Roman
+
+.RI "Roman""Roman" Italic
+
+.RI "Roman" "Something really\
+really long and italic" Roman Italic Roman
+
+.RI "Roman" "Something really\
+really"" long and really italic
+
+Plain
+
+.RI "Roman" "Italic
