@@ -36,7 +36,7 @@ patterns: [
 	# Empty control lines
 	{
 		name: "comment.empty.roff"
-		match: "^\\.$"
+		match: "^\\.[ \t]*$"
 	}
 ]
 
