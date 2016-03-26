@@ -84,28 +84,13 @@ repository:
 			{ match: "\\x5C{2}",  name: "constant.character.escape.backslash.roff"},
 			{ match: "\\\\\n",    name: "constant.character.escape.newline.roff"},
 			{ match: "\\\\ ",     name: "constant.character.escape.space.roff"},
-			{ match: "\\\\\"",    name: "constant.character.escape.quote.double.roff"},
-			{ match: "\\\\'",     name: "constant.character.escape.quote.single.roff"}
+			{ match: "\\\\\"",    name: "constant.character.escape.quote.double.roff"}
 		]
 	
 	
 	
-	# Double/single-quoted strings
-	strings:
-		patterns: [
-			{include: "#single-quoted-string"},
-			{include: "#double-quoted-string"}
-		]
-	
-	"single-quoted-string":
-		name: "string.quoted.single.roff"
-		begin: "'"
-		end:   "'"
-		beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
-		endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
-		patterns: [{include: "#escapes"}]
-	
-	"double-quoted-string":
+	# "Double-quoted string"
+	string:
 		patterns: [{
 			name: "string.quoted.double.empty.roff",
 			match: '(")(")'
@@ -127,7 +112,7 @@ repository:
 	# Request parameters
 	params:
 		patterns: [
-			{include: "#strings"},
+			{include: "#string"},
 			{name: "string.unquoted.roff", begin: "(?=[A-Za-z_])", end: "(?=[^\\w])"}
 		]
 	
@@ -270,7 +255,7 @@ repository:
 			patterns: [{include: "#bold-strings"}]
 			endCaptures:
 				1: {name: "markup.italic.roff"}
-				2: {patterns: [{include: "#strings"}]}
+				2: {patterns: [{include: "#string"}]}
 		}]
 	
 	
@@ -294,7 +279,7 @@ repository:
 			end: '$|(?:^|[ \t]+|(?<="))(?:("[^"]*")|\\S+)'
 			patterns: [{include: "#bold-strings"}]
 			endCaptures:
-				1: {patterns: [{include: "#strings"}]}
+				1: {patterns: [{include: "#string"}]}
 		}]
 	
 	
@@ -319,7 +304,7 @@ repository:
 			patterns: [{include: "#italic-strings"}]
 			endCaptures:
 				1: {name: "markup.bold.roff"}
-				2: {patterns: [{include: "#strings"}]}
+				2: {patterns: [{include: "#string"}]}
 		}]
 		
 
@@ -343,7 +328,7 @@ repository:
 			end: '$|(?:^|[ \t]+|(?<="))(?:("[^"]*")|\\S+)'
 			patterns: [{include: "#italic-strings"}]
 			endCaptures:
-				1: {patterns: [{include: "#strings"}]}
+				1: {patterns: [{include: "#string"}]}
 		}]
 
 
@@ -359,14 +344,14 @@ repository:
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#bold-strings"}]
 			beginCaptures:
-				1: patterns: [{include: "#strings"}]
+				1: patterns: [{include: "#string"}]
 		}, {
 			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
 			end: '$|(?:^|[ \t]+|(?<="))(("[^"]*")|\\S+)'
-			patterns: [{include: "#strings"}]
+			patterns: [{include: "#string"}]
 			endCaptures:
 				1: {name: "markup.bold.roff"}
-				2: {patterns: [{include: "#strings"}]}
+				2: {patterns: [{include: "#string"}]}
 		}]
 	
 	
@@ -382,14 +367,14 @@ repository:
 			end: '(?<=")|(?<!\\\\)$'
 			patterns: [{include: "#italic-strings"}]
 			beginCaptures:
-				1: patterns: [{include: "#strings"}]
+				1: patterns: [{include: "#string"}]
 		}, {
 			begin: '(?=("[^"]*(?<!\\\\)")|\\S+)'
 			end: '$|(?:^|[ \t]+|(?<="))(("[^"]*")|\\S+)'
-			patterns: [{include: "#strings"}]
+			patterns: [{include: "#string"}]
 			endCaptures:
 				1: {name: "markup.italic.roff"}
-				2: {patterns: [{include: "#strings"}]}
+				2: {patterns: [{include: "#string"}]}
 		}]
 	
 	
@@ -414,7 +399,7 @@ repository:
 				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
 				patterns: [{include: "#bold-string"}]
 				
-			}, {include: "#double-quoted-string"}]
+			}, {include: "#string"}]
 		}]
 	
 	# Bold: Unquoted
@@ -454,7 +439,7 @@ repository:
 				beginCaptures: 0: {name: "constant.character.escape.newline.roff"}
 				patterns: [{include: "#italic-string"}]
 				
-			}, {include: "#double-quoted-string"}]
+			}, {include: "#string"}]
 		}]
 	
 	
