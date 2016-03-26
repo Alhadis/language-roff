@@ -33,16 +33,6 @@ patterns: [
 	
 	{ include: "#main" }
 	
-	# Comments
-	{
-		name: "comment.line.roff"
-		begin: "\\.?\\s*\\\\\""
-		end: "$"
-		captures:
-			0: {name: "punctuation.definition.begin.comment.roff"}
-	}
-	
-	
 	# Empty control lines
 	{
 		name: "comment.empty.roff"
@@ -56,6 +46,7 @@ repository:
 	# Common patterns
 	main: {
 		patterns: [
+			{ include: "#comments"             }
 			{ include: "#bold"                 }
 			{ include: "#italic"               }
 			{ include: "#bold-italic"          }
@@ -72,6 +63,18 @@ repository:
 			{ include: "#escapes"              }
 		]
 	}
+	
+	
+	
+	# Comments
+	comments:
+		patterns: [{
+			name: "comment.line.roff"
+			begin: "\\.?\\s*\\\\\""
+			end: "$"
+			beginCaptures:
+				0: {name: "punctuation.definition.begin.comment.roff"}
+		}]
 	
 	
 	
