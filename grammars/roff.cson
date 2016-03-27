@@ -47,11 +47,7 @@ repository:
 	params:
 		patterns: [
 			{include: "#escapes"}
-			{include: "#string"}, {
-				name: "string.unquoted.roff"
-				begin: "(?=[A-Za-z_])"
-				end: "(?=[^\\w])"
-			}
+			{include: "#string"}
 		]
 	
 	
