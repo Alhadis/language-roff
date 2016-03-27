@@ -320,15 +320,26 @@ repository:
 			name: "meta.function.request.$1.roff"
 			begin: "(?x) ^([.'])[ \t]*
 				(ab|ad|af|am|as|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|de|di|ds
-				|dt|ec|el|em|eo|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ie|if|ig|in
-				|it|lc|lg|lf|ll|ls|lt|mc|mk|na|ne|nf|nh|nm|nn|nr|ns|nx|os
-				|pc|pi|pl|pm|pn|po|ps|rd|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta
-				|tc|ti|tl|tm|tr|uf|vs|wh)
+				|dt|ec|em|eo|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg
+				|lf|ll|ls|lt|mc|mk|na|ne|nf|nh|nm|nn|nr|ns|nx|os|pc|pi|pl
+				|pm|pn|po|ps|rd|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tl
+				|tm|tr|uf|vs|wh)
 				(?=[ \t]|$)"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
 				2: {name: "entity.name.roff"}
+			patterns: [{include: "#params"}]
+			
+		}, {
+			
+			# Flow control/conditional requests
+			name: "meta.function.request.$1.roff"
+			begin: "^([.'])[ \t]*(ie|if|el)(?=[ \t]|$)"
+			end: "(?<!\\\\)(?=\n)"
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "keyword.control.roff"}
 			patterns: [{include: "#params"}]
 			
 		}, {
