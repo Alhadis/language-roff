@@ -1,6 +1,6 @@
 name: "Roff"
 scopeName: "text.roff"
-firstLineMatch: "^\\.TH +(?:\\S+)"
+firstLineMatch: "^\\.TH[ \t]+(?:\\S+)"
 fileTypes: [
 	"1", "1b", "1c", "1has", "1in", "1m", "1s", "1x",
 	"2",
@@ -324,7 +324,7 @@ repository:
 				|lf|ll|ls|lt|mc|mk|na|ne|nf|nh|nm|nn|nr|ns|nx|os|pc|pi|pl
 				|pm|pn|po|ps|rd|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tl
 				|tm|tr|uf|vs|wh)
-				(?=[ \t]|$)"
+				(?=[ \t\\\\]|$)"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -335,7 +335,7 @@ repository:
 			
 			# Flow control/conditional requests
 			name: "meta.function.request.$1.roff"
-			begin: "^([.'])[ \t]*(ie|if|el)(?=[ \t]|$)"
+			begin: "^([.'])[ \t]*(ie|if|el)(?=[ \t\\\\]|$)"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -346,14 +346,13 @@ repository:
 			
 			# Underlined passage
 			name: "meta.request.ul.roff"
-			begin: "^([.'][ \t]*ul)(?: +(\\d+))?\\s*(.*?)\\s*?(\\\\\".*?)?\n"
+			begin: "^([.'][ \t]*ul)(?=[ \t\\\\]|$)(.*?)$"
 			end:   "([^\n ]+\n)"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
 				1: {name: "entity.function.name.roff"}
-				2: {name: "variable.parameter.argument.roff"}
-				3: {name: "invalid.illegal.roff"}
-				4: {name: "comment.line.roff"}
+				2: {patterns: [{include: "#escapes"}]}
+				3: {name: "comment.line.roff"}
 			endCaptures:
 				0: {name: "markup.underline.roff"}
 		}]
@@ -368,7 +367,7 @@ repository:
 	# Macro: .B
 	"macro-bold":
 		name: "markup.bold.roff"
-		begin: "^[.'][ \t]*B(?:$| +)"
+		begin: "^[.'][ \t]*B(?:$|[ \t]+|(?=\\\\))"
 		end:   "([^\n ]+ ?\n)"
 		patterns: [{ include: "$self" }]
 	
@@ -376,7 +375,7 @@ repository:
 	# Macro: .I
 	"macro-italic":
 		name: "markup.italic.roff"
-		begin: "^[.'][ \t]*I(?:$| +)"
+		begin: "^[.'][ \t]*I(?:$|[ \t]+|(?=\\\\))"
 		end:   "([^\n ]+ ?\n)"
 		patterns: [{ include: "$self" }]
 	
@@ -384,7 +383,7 @@ repository:
 	# Macro: .BI
 	"macro-bold-italic":
 		name: "markup.bold-italic.roff"
-		begin: "^([.'][ \t]*BI)(?=[ \t]|$)"
+		begin: "^([.'][ \t]*BI)(?=[ \t\\\\]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
@@ -415,7 +414,7 @@ repository:
 	# Macro: .BR
 	"macro-bold-roman":
 		name: "markup.bold-roman.roff"
-		begin: "^([.'][ \t]*BR)(?=[ \t]|$)"
+		begin: "^([.'][ \t]*BR)(?=[ \t\\\\]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
@@ -445,7 +444,7 @@ repository:
 	# Macro: .IB
 	"macro-italic-bold":
 		name: "markup.italic-bold.roff"
-		begin: "^([.'][ \t]*IB)(?=[ \t]|$)"
+		begin: "^([.'][ \t]*IB)(?=[ \t\\\\]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
@@ -476,7 +475,7 @@ repository:
 	# Macro: .IR
 	"macro-italic-roman":
 		name: "markup.italic-roman.roff"
-		begin: "^([.'][ \t]*IR)(?=[ \t]|$)"
+		begin: "^([.'][ \t]*IR)(?=[ \t\\\\]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
@@ -506,7 +505,7 @@ repository:
 	# Macro: .RB
 	"macro-roman-bold":
 		name: "markup.roman-bold.roff"
-		begin: "^([.'][ \t]*RB)(?=[ \t]|$)"
+		begin: "^([.'][ \t]*RB)(?=[ \t\\\\]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
@@ -535,7 +534,7 @@ repository:
 	# Macro: .RI
 	"macro-roman-italic":
 		name: "markup.roman-italic.roff"
-		begin: "^([.'][ \t]*RI)(?=[ \t]|$)"
+		begin: "^([.'][ \t]*RI)(?=[ \t\\\\]|$)"
 		end:   "(?<!\\\\)(?=\n)"
 		beginCaptures:
 			1: {name: "entity.function.name.roff"}
