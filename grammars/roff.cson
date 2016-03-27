@@ -228,6 +228,11 @@ repository:
 				captures:
 					1: {name: "punctuation.definition.begin.roff"}
 					2: {name: "variable.parameter.roff"}
+			}, {
+				
+				# \Z - Any character not listed above
+				match: "\\\\(\\S)",
+				name: "constant.character.escape.misc.roff"
 			}
 		]
 	
