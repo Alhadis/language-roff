@@ -1,24 +1,30 @@
-.TH SYNTAX-TESTS 1
-.SH NAME
+.	TH SYNTAX-TESTS 1
+.	SH NAME
 syntax\-tests \- RTFM
-.SH SYNOPSIS
+.	SH SYNOPSIS
 
 .\" Bracket builder
-.ns
+.	ns
 \b"\(lt\(lk\(lb" \b"\(lc\(lf" x \b"\(rc\(rf" \b"\(rt\(rk\(rb"
 
 .\" Named characters
 \C/dg/
 
+.\" Underlined text
+.	ul
+Underlined
 
-.nf
-.B Bold Bold Bold Bold Still Bold
-.I Italic Italic Italic Still Italic
+.	 	ul
+Also underlined
+
+.	nf
+.	B Bold Bold Bold Bold Still Bold
+.	I Italic Italic Italic Still Italic
 Normal Plain Roman Ordinary Etc
-.B
+.	B
 Also bold
 Not bold
-.I 
+.	I 
 Also italic
 '	\" Blank lines:
 ALPHA
@@ -33,7 +39,7 @@ BRAVO
 sss
 
 .\" Comment
-.ul 1 \" something
+.	ul 1 \" something
 qwd
 .
 .\" Font families
@@ -41,10 +47,10 @@ qwd
 
 
 \f1 ONE \f2 TWO \f3 THREE \f4 FOUR
-.nf
+.	nf
 1: Plain
 2: Italic
 3: Bold
 4: Bold Italic
-.fi
+.	fi
 .
