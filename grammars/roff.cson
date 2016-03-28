@@ -45,6 +45,9 @@ repository:
 	
 	# Control line parameters
 	params:
+		name: "function-call.arguments.roff"
+		begin: "\\G|^"
+		end:   "\\Z|$"
 		patterns: [
 			{include: "#escapes"}
 			{include: "#string"}
@@ -105,13 +108,13 @@ repository:
 			
 			# Underlined passage
 			name: "meta.request.ul.roff"
-			begin: "^([.'][ \t]*ul)(?=[ \t\\\\]|$)(.*?)$"
-			end:   "([^\n ]+\n)"
+			begin: "^([.'])[ \t]*(ul)(?=[ \t\\\\]|$)(.*?)$"
+			end:   "[^\n ]+\n"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
-				1: {name: "entity.function.name.roff"}
-				2: {patterns: [{include: "#escapes"}]}
-				3: {name: "comment.line.roff"}
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "entity.function.name.roff"}
+				3: {patterns: [{include: "#params"}]}
 			endCaptures:
 				0: {name: "markup.underline.roff"}
 		}]
@@ -125,15 +128,18 @@ repository:
 			
 			# Comments
 			name: "comment.line.roff"
-			begin: "(?:^[.'])?\\s*\\\\\""
+			begin: "(?:^([.'])\\s*)?(\\\\\")"
 			end: "$"
 			beginCaptures:
-				0: {name: "punctuation.definition.begin.comment.roff"}
+				1: {name: "punctuation.definition.comment.roff"}
+				2: {name: "punctuation.definition.comment.roff"}
 		},{
 			
 			# Empty control lines
 			name: "comment.empty.roff"
-			match: "^[.'][ \t]*$"
+			match: "^([.'])[ \t]*$"
+			captures:
+				1: {name: "punctuation.definition.comment.roff"}
 		},
 		
 		
@@ -163,7 +169,7 @@ repository:
 		{match: "\\\\\n",    name: "constant.character.escape.newline.roff"}, {
 			
 			# \(aa - Character named "aa"
-			name: "constant.character.escape.named-char.roff"
+			name: "constant.character.escape.function.named-char.roff"
 			match: "(?x)
 				(\\\\ \\()
 				(
@@ -172,24 +178,26 @@ repository:
 					bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z]
 				)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
-				2: {name: "entity.name.roff"}
+				1: {name: "entity.name.roff"}
+				2: {name: "variable.parameter.roff"}
 		
 		},{
 			
 			# \*x, \*(xx - Interpolate string "x" or "xx"
-			name: "constant.character.escape.interpolate-string.roff"
-			match: "(\\\\\\*)(\\(\\S{2}|\\S)"
+			name: "constant.character.escape.function.interpolate-string.roff"
+			match: "(\\\\\\*\\()(\\S{2})|(\\\\\\*)(\\S)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
+				3: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
+				4: {name: "variable.parameter.roff"}
 		},{
 			
 			# \$N - Interpolate argument number N (valid range: 1-9)
-			name: "constant.character.escape.interpolate-argument.roff"
+			name: "constant.character.escape.function.interpolate-argument.roff"
 			match: "(\\\\\\$)(\\d)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
 		},{
 			
@@ -204,96 +212,94 @@ repository:
 				5: {name: "punctuation.definition.end.roff"}
 		},{
 			
+			# Font: Roman/regular
+			name: "constant.character.escape.font.roff"
+			match: "\\\\f[RP1]"
+			captures:
+				0: {name: "entity.name.roff"}
+		}, {
+			
 			# Font: Italics (typically rendered by nroff as underlined text)
 			name: "markup.italic.roff"
-			begin: "(\\\\)(f[I2])"
-			end: "(?=\\\\f[A-Za-z0-9])((\\\\)(f[RP1]))?"
+			begin: "(\\\\f[I2])"
+			end: "(?=\\\\f[A-Za-z0-9])"
 			beginCaptures:
-				1: {name: "punctuation.definition.backslash.roff"}
-				2: {name: "entity.name.roff"}
-			endCaptures:
-				1: {name: "meta.terminator.roff"}
-				2: {name: "punctuation.definition.backslash.roff"}
-				3: {name: "entity.name.roff"}
+				1: {name: "entity.name.roff"}
 		},{
 			
 			# Font: Bold
 			name: "markup.bold.roff"
-			begin: "(\\\\)(f[B3])"
-			end: "(?=\\\\f[A-Za-z0-9])((\\\\)(f[RP1]))?"
+			begin: "(\\\\f[B3])"
+			end: "(?=\\\\f[A-Za-z0-9])"
 			beginCaptures:
-				1: {name: "punctuation.definition.backslash.roff"}
-				2: {name: "entity.name.roff"}
-			endCaptures:
-				1: {name: "meta.terminator.roff"}
-				2: {name: "punctuation.definition.backslash.roff"}
-				3: {name: "entity.name.roff"}
+				1: {name: "entity.name.roff"}
 		},{
 			
 			# Font: Bold and italic
 			name: "markup.bold.italic.roff"
-			begin: "(\\\\)(f4)"
-			end: "(?=\\\\f[A-Za-z0-9])((\\\\)(f[RP1]))?"
+			begin: "(\\\\f4)"
+			end: "(?=\\\\f[A-Za-z0-9])"
 			beginCaptures:
-				1: {name: "punctuation.definition.backslash.roff"}
-				2: {name: "entity.name.roff"}
-			endCaptures:
-				1: {name: "meta.terminator.roff"}
-				2: {name: "punctuation.definition.backslash.roff"}
-				3: {name: "entity.name.roff"}
+				1: {name: "entity.name.roff"}
 		},{
 			
 			# \fX, \f(XX, \fN - Change to font named "X" or "XX", or position N
-			name: "constant.character.escape.font.roff"
-			match: "(\\\\f)(\\(\\S{2}|\\S)"
+			name: "constant.character.escape.function.font.roff"
+			match: "(\\\\f\\()(\\S{2})|(\\\\f)(\\S)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
+				3: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
+				4: {name: "variable.parameter.roff"}
 		},{
 			
 			# \gx, \g(xx - Format of number register "x" or "xx"
-			name: "constant.character.escape.format-register.roff"
-			match: "(\\\\g)(\\(\\S{2}|\\S)"
+			name: "constant.character.escape.function.format-register.roff"
+			match: "(\\\\g\\()(\\S{2})|(\\\\g)(\\S)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
+				3: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
+				4: {name: "variable.parameter.roff"}
 		},{
 			
 			# \kX - Mark horizontal input place in register "X"
-			name: "constant.character.escape.mark-input.roff"
+			name: "constant.character.escape.function.mark-input.roff"
 			match: "(\\\\k)(\\S)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
 		},{
 			
 			# \nX, \n(XX - Contents of number register "X" or "XX"
-			name: "constant.character.escape.expand-register.roff"
-			match: "(\\\\n)(\\(\\S{2}|\\S)"
+			name: "constant.character.escape.function.expand-register.roff"
+			match: "(\\\\n\\()(\\S{2})|(\\\\n)(\\S)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
+				3: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
+				4: {name: "variable.parameter.roff"}
 		},{
 			
 			# \sN, \s±N - Point-size change function; also \s(NN, \s±(NN
-			name: "constant.character.escape.point-size.roff"
-			match: "(\\\\s)([-+]?\\(?\\d+)"
+			name: "constant.character.escape.function.point-size.roff"
+			match: "(\\\\s[-+]?\\(?)(\\d+)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
 		},{
 			
 			# \zC - Print "C" with zero width (without spacing)
-			name: "constant.character.escape.zero-width-print.roff"
+			name: "constant.character.escape.function.zero-width-print.roff"
 			match: "(\\\\z)(\\S)"
 			captures:
-				1: {name: "punctuation.definition.begin.roff"}
+				1: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
 		},{
 			
 			# \Z - Any character not listed above
-			match: "\\\\(\\S)",
 			name: "constant.character.escape.misc.roff"
+			match: "\\\\\\S"
 		}]
 	
 	
@@ -306,52 +312,60 @@ repository:
 			# .TH: Title (GNU manual macro)
 			name: "markup.heading.title.gnu.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'][ \t]*TH)(?=[ \t]|$)"
+			begin: "^([.'])[ \t]*(TH)(?=[ \t]|$)"
 			end: "$"
 			beginCaptures:
-				1: {name: "entity.name.function.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
 		},{
 			
 			# .SH: Section heading
 			name: "markup.heading.section.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'][ \t]*SH)(?=[ \t]|$)"
+			begin: "^([.'])[ \t]*(SH)(?=[ \t]|$)"
 			end: "$"
 			beginCaptures:
-				1: {name: "entity.name.function.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
 		},{
 			
 			# .Ss: Subsection
 			name: "markup.heading.subsection.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'][ \t]*Ss)(?=[ \t]|$)"
+			begin: "^([.'])[ \t]*(Ss)(?=[ \t]|$)"
 			end: "$"
 			beginCaptures:
-				1: {name: "entity.name.function.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
 		},{
 			
 			# .B: Bold
 			name: "markup.bold.roff"
-			begin: "^[.'][ \t]*B(?:$|[ \t]+|(?=\\\\))"
+			begin: "^([.'])[ \t]*(B)(?:$|[ \t]+|(?=\\\\))"
 			end:   "([^\n ]+ ?\n)"
 			patterns: [{ include: "$self" }]
-			
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
 		},{
 			
 			# .I: Italic
 			name: "markup.italic.roff"
-			begin: "^[.'][ \t]*I(?:$|[ \t]+|(?=\\\\))"
+			begin: "^([.'])[ \t]*(I)(?:$|[ \t]+|(?=\\\\))"
 			end:   "([^\n ]+ ?\n)"
 			patterns: [{ include: "$self" }]
-			
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
 		},{
 			
 			# .BI: Bold and italic
 			name: "markup.bold-italic.roff"
-			begin: "^([.'][ \t]*BI)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(BI)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "entity.function.name.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
 					^[.\']        BI|
@@ -379,10 +393,11 @@ repository:
 			
 			# .BR: Bold and Roman
 			name: "markup.bold-roman.roff"
-			begin: "^([.'][ \t]*BR)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(BR)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "entity.function.name.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
 					^[.\']        BR|
@@ -392,7 +407,7 @@ repository:
 					^[.\'][ \t]{4}BR)
 					[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 				end: '(?<=")|(?<!\\\\)$'
-				patterns: [{include: "#params"}]
+				patterns: [{include: "#roman-strings"}]
 				beginCaptures:
 					1:
 						name: "markup.bold.roff"
@@ -409,10 +424,11 @@ repository:
 			
 			# .IB: Italic and bold
 			name: "markup.italic-bold.roff"
-			begin: "^([.'][ \t]*IB)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(IB)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "entity.function.name.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
 					^[.\']        IB|
@@ -440,10 +456,11 @@ repository:
 			
 			# .IR: Italic and Roman
 			name: "markup.italic-roman.roff"
-			begin: "^([.'][ \t]*IR)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(IR)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "entity.function.name.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
 					^[.\']        IR|
@@ -453,7 +470,7 @@ repository:
 					^[.\'][ \t]{4}IR)
 					[ \\t]+(".*?(?<!")"(?!")|[^"\\s]\\S*)[ \t]*(?=")'
 				end: '(?<=")|(?<!\\\\)$'
-				patterns: [{include: "#params"}]
+				patterns: [{include: "#roman-strings"}]
 				beginCaptures:
 					1:
 						name: "markup.italic.roff"
@@ -470,10 +487,11 @@ repository:
 			
 			# .RB: Roman and bold
 			name: "markup.roman-bold.roff"
-			begin: "^([.'][ \t]*RB)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(RB)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "entity.function.name.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
 					^[.\']        RB|
@@ -499,10 +517,11 @@ repository:
 			
 			# .RI: Roman and italic
 			name: "markup.roman-italic.roff"
-			begin: "^([.'][ \t]*RI)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(RI)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "entity.function.name.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
 					^[.\']        RI|
@@ -607,3 +626,11 @@ repository:
 				patterns: [{include: "#italic-bareword"}]
 			}]
 		}]
+
+	
+	# Roman words ("Quoted"/Unquoted)
+	"roman-strings":
+		patterns: [
+			{include: "#escapes"}
+			{include: "#string"}
+		]
