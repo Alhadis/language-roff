@@ -85,8 +85,7 @@ repository:
 				|dt|ec|em|eo|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg
 				|lf|ll|ls|lt|mc|mk|na|ne|nf|nh|nm|nn|nr|ns|nx|os|pc|pi|pl
 				|pm|pn|po|ps|rd|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tl
-				|tm|tr|uf|vs|wh)
-				(?=[ \t\\\\]|$)"
+				|tm|tr|uf|vs|wh)"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -97,7 +96,7 @@ repository:
 			
 			# Flow control/conditional requests
 			name: "meta.function.request.$1.roff"
-			begin: "^([.'])[ \t]*(ie|if|el)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(ie|if|el)"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -108,7 +107,7 @@ repository:
 			
 			# Underlined passage
 			name: "meta.request.ul.roff"
-			begin: "^([.'])[ \t]*(ul)(?=[ \t\\\\]|$)(.*?)$"
+			begin: "^([.'])[ \t]*(ul)(.*?)$"
 			end:   "[^\n ]+\n"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
@@ -312,7 +311,7 @@ repository:
 			# .TH: Title
 			name: "markup.heading.title.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'])[ \t]*(TH)(?=[ \t]|$)"
+			begin: "^([.'])[ \t]*(TH)"
 			end: "$"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -322,7 +321,7 @@ repository:
 			# .SH: Section heading
 			name: "markup.heading.section.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'])[ \t]*(SH)(?=[ \t]|$)"
+			begin: "^([.'])[ \t]*(SH)"
 			end: "$"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -332,7 +331,7 @@ repository:
 			# .SS: Subsection
 			name: "markup.heading.subsection.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'])[ \t]*(SS)(?=[ \t]|$)"
+			begin: "^([.'])[ \t]*(SS)"
 			end: "$"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
