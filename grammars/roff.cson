@@ -123,6 +123,14 @@ repository:
 	
 	# Escape sequences
 	escapes:
+		patterns: [
+			{include: "#escapes-copymode"}
+			{include: "#escapes-full"}
+		]
+	
+	
+	# Limited range of escape sequences permitted in copy-mode
+	"escapes-copymode":
 		patterns: [{
 			
 			# Comments
@@ -141,44 +149,21 @@ repository:
 				1: {name: "punctuation.definition.comment.roff"}
 		},
 		
-		
 		# Basic sequences
-		{match: "\\x5C{2}",  name: "constant.character.escape.backslash.roff"}
-		{match: "\\\\e",     name: "constant.character.escape.current-escape-char.roff"}
-		{match: "\\\\´",     name: "constant.character.escape.acute-accent.roff"}
-		{match: "\\\\`",     name: "constant.character.escape.grave-accent.roff"}
-		{match: "\\\\-",     name: "constant.character.escape.minus.roff"}
-		{match: "\\\\\\.",   name: "constant.character.escape.dot.roff"}
-		{match: "\\\\ ",     name: "constant.character.escape.space.roff"}
-		{match: "\\\\0",     name: "constant.character.escape.space.digit-width.roff"}
-		{match: "\\\\\\|",   name: "constant.character.escape.space.one-sixth-em.roff"}
-		{match: "\\\\\\^",   name: "constant.character.escape.space.one-twelfth-em.roff"}
-		{match: "\\\\&",     name: "constant.character.escape.zero-width-marker.roff"}
-		{match: "\\\\%",     name: "constant.character.escape.hyphenation-char.roff"}
-		{match: "\\\\a",     name: "constant.character.escape.leader-char.roff"}
-		{match: "\\\\c",     name: "constant.character.escape.connect.roff"}
-		{match: "\\\\d",     name: "constant.character.escape.downwards.roff"}
-		{match: "\\\\p",     name: "constant.character.escape.spread-line.roff"}
-		{match: "\\\\r",     name: "constant.character.escape.reverse.roff"}
+		{match: "\\\\\n",    name: "constant.character.escape.newline.roff"}
 		{match: "\\\\t",     name: "constant.character.escape.tab.roff"}
-		{match: "\\\\u",     name: "constant.character.escape.upwards.roff"}
-		{match: "\\\\\\{",   name: "constant.character.escape.conditional.begin.roff"}
-		{match: "\\\\\\}",   name: "constant.character.escape.conditional.end.roff"}
-		{match: "\\\\\n",    name: "constant.character.escape.newline.roff"}, {
+		{match: "\\\\a",     name: "constant.character.escape.leader-char.roff"}
+		{match: "\\x5C{2}",  name: "constant.character.escape.backslash.roff"}
+		{match: "\\\\\\.",   name: "constant.character.escape.dot.roff"}, {
 			
-			# \(aa - Character named "aa"
-			name: "constant.character.escape.function.named-char.roff"
-			match: "(?x)
-				(\\\\ \\()
-				(
-					em|hy|bu|sq|ru|14|12|34|fi|fl|ff|Fi|Fl|de|dg|fm|ct|rg|co|pl|mi|eq|sc|aa|ga|ul|sl|ts|sr|rn|ap|
-					ua|da|mu|di|cu|ca|sb|sp|ib|ip|if|pd|gr|no|is|pt|es|mo|br|dd|rh|lh|bs|or|ci|lt|lb|rt|rb|lk|rk|
-					bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z]
-				)"
+			# \nX, \n(XX - Contents of number register "X" or "XX"
+			name: "constant.character.escape.function.expand-register.roff"
+			match: "(\\\\n\\()(\\S{2})|(\\\\n)(\\S)"
 			captures:
 				1: {name: "entity.name.roff"}
+				3: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
-		
+				4: {name: "variable.parameter.roff"}
 		},{
 			
 			# \*x, \*(xx - Interpolate string "x" or "xx"
@@ -197,120 +182,146 @@ repository:
 			captures:
 				1: {name: "entity.name.roff"}
 				2: {name: "variable.parameter.roff"}
-		},{
-			
-			# Parametric/function-like escape sequences
-			name: "constant.character.escape.function.roff"
-			match: "(\\\\[bCDhHSlLovwxXN])((.)(.*?)(\\3))"
-			captures:
-				1: {name: "entity.name.function.roff"}
-				2: {name: "string.other.roff"}
-				3: {name: "punctuation.definition.begin.roff"}
-				4: {patterns: [{include: "#escapes"}]}
-				5: {name: "punctuation.definition.end.roff"}
-		},{
-			
-			# Transparent throughput
-			name: "meta.throughput.roff"
-			begin: "\\\\!"
-			beginCaptures:
-				0: {name: "constant.character.escape.transparent-line.roff"}
-			end: "(?<!\\\\)$"
-			patterns: [
-				{match: "\\x5C{2}", name: "constant.character.escape.backslash.roff"}
-				{match: "\\\\\n",   name: "constant.character.escape.newline.roff"}
-			]
-		},{
-			
-			# Font: Roman/regular
-			name: "constant.character.escape.font.roff"
-			match: "\\\\f[RP1]"
-			captures:
-				0: {name: "entity.name.roff"}
-		}, {
-			
-			# Font: Italics (typically rendered by nroff as underlined text)
-			name: "markup.italic.roff"
-			begin: "(\\\\f[I2])"
-			end: "(?=\\\\f[A-Za-z0-9])"
-			beginCaptures:
-				1: {name: "entity.name.roff"}
-		},{
-			
-			# Font: Bold
-			name: "markup.bold.roff"
-			begin: "(\\\\f[B3])"
-			end: "(?=\\\\f[A-Za-z0-9])"
-			beginCaptures:
-				1: {name: "entity.name.roff"}
-		},{
-			
-			# Font: Bold and italic
-			name: "markup.bold.italic.roff"
-			begin: "(\\\\f4)"
-			end: "(?=\\\\f[A-Za-z0-9])"
-			beginCaptures:
-				1: {name: "entity.name.roff"}
-		},{
-			
-			# \fX, \f(XX, \fN - Change to font named "X" or "XX", or position N
-			name: "constant.character.escape.function.font.roff"
-			match: "(\\\\f\\()(\\S{2})|(\\\\f)(\\S)"
-			captures:
-				1: {name: "entity.name.roff"}
-				3: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
-				4: {name: "variable.parameter.roff"}
-		},{
-			
-			# \gx, \g(xx - Format of number register "x" or "xx"
-			name: "constant.character.escape.function.format-register.roff"
-			match: "(\\\\g\\()(\\S{2})|(\\\\g)(\\S)"
-			captures:
-				1: {name: "entity.name.roff"}
-				3: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
-				4: {name: "variable.parameter.roff"}
-		},{
-			
-			# \kX - Mark horizontal input place in register "X"
-			name: "constant.character.escape.function.mark-input.roff"
-			match: "(\\\\k)(\\S)"
-			captures:
-				1: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
-		},{
-			
-			# \nX, \n(XX - Contents of number register "X" or "XX"
-			name: "constant.character.escape.function.expand-register.roff"
-			match: "(\\\\n\\()(\\S{2})|(\\\\n)(\\S)"
-			captures:
-				1: {name: "entity.name.roff"}
-				3: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
-				4: {name: "variable.parameter.roff"}
-		},{
-			
-			# \sN, \s±N - Point-size change function; also \s(NN, \s±(NN
-			name: "constant.character.escape.function.point-size.roff"
-			match: "(\\\\s[-+]?\\(?)(\\d+)"
-			captures:
-				1: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
-		},{
-			
-			# \zC - Print "C" with zero width (without spacing)
-			name: "constant.character.escape.function.zero-width-print.roff"
-			match: "(\\\\z)(\\S)"
-			captures:
-				1: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
-		},{
-			
-			# \Z - Any character not listed above
-			name: "constant.character.escape.misc.roff"
-			match: "\\\\\\S"
 		}]
+	
+	
+	
+	# Every other escape sequence
+	"escapes-full":
+		patterns: [
+		
+			# Basic sequences
+			{match: "\\\\e",     name: "constant.character.escape.current-escape-char.roff"}
+			{match: "\\\\´",     name: "constant.character.escape.acute-accent.roff"}
+			{match: "\\\\`",     name: "constant.character.escape.grave-accent.roff"}
+			{match: "\\\\-",     name: "constant.character.escape.minus.roff"}
+			{match: "\\\\ ",     name: "constant.character.escape.space.roff"}
+			{match: "\\\\0",     name: "constant.character.escape.space.digit-width.roff"}
+			{match: "\\\\\\|",   name: "constant.character.escape.space.one-sixth-em.roff"}
+			{match: "\\\\\\^",   name: "constant.character.escape.space.one-twelfth-em.roff"}
+			{match: "\\\\&",     name: "constant.character.escape.zero-width-marker.roff"}
+			{match: "\\\\%",     name: "constant.character.escape.hyphenation-char.roff"}
+			{match: "\\\\c",     name: "constant.character.escape.connect.roff"}
+			{match: "\\\\d",     name: "constant.character.escape.downwards.roff"}
+			{match: "\\\\p",     name: "constant.character.escape.spread-line.roff"}
+			{match: "\\\\r",     name: "constant.character.escape.reverse.roff"}
+			{match: "\\\\u",     name: "constant.character.escape.upwards.roff"}
+			{match: "\\\\\\{",   name: "constant.character.escape.conditional.begin.roff"}
+			{match: "\\\\\\}",   name: "constant.character.escape.conditional.end.roff"}, {
+			
+				# \(aa - Character named "aa"
+				name: "constant.character.escape.function.named-char.roff"
+				match: "(?x)
+					(\\\\ \\()
+					(
+						em|hy|bu|sq|ru|14|12|34|fi|fl|ff|Fi|Fl|de|dg|fm|ct|rg|co|pl|mi|eq|sc|aa|ga|ul|sl|ts|sr|rn|ap|
+						ua|da|mu|di|cu|ca|sb|sp|ib|ip|if|pd|gr|no|is|pt|es|mo|br|dd|rh|lh|bs|or|ci|lt|lb|rt|rb|lk|rk|
+						bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z]
+					)"
+				captures:
+					1: {name: "entity.name.roff"}
+					2: {name: "variable.parameter.roff"}
+			},{
+				
+				# Parametric/function-like escape sequences
+				name: "constant.character.escape.function.roff"
+				match: "(\\\\[bCDhHSlLovwxXN])((.)(.*?)(\\3))"
+				captures:
+					1: {name: "entity.name.function.roff"}
+					2: {name: "string.other.roff"}
+					3: {name: "punctuation.definition.begin.roff"}
+					4: {patterns: [{include: "#escapes"}]}
+					5: {name: "punctuation.definition.end.roff"}
+			},{
+				
+				# Transparent throughput
+				name: "meta.throughput.roff"
+				begin: "\\\\!"
+				beginCaptures:
+					0: {name: "constant.character.escape.transparent-line.roff"}
+				end: "(?<!\\\\)$"
+				patterns: [{include: "#escapes-copymode"}]
+			},{
+				
+				# Font: Roman/regular
+				name: "constant.character.escape.font.roff"
+				match: "\\\\f[RP1]"
+				captures:
+					0: {name: "entity.name.roff"}
+			}, {
+				
+				# Font: Italics (typically rendered by nroff as underlined text)
+				name: "markup.italic.roff"
+				begin: "(\\\\f[I2])"
+				end: "(?=\\\\f[A-Za-z0-9])"
+				beginCaptures:
+					1: {name: "entity.name.roff"}
+			},{
+				
+				# Font: Bold
+				name: "markup.bold.roff"
+				begin: "(\\\\f[B3])"
+				end: "(?=\\\\f[A-Za-z0-9])"
+				beginCaptures:
+					1: {name: "entity.name.roff"}
+			},{
+				
+				# Font: Bold and italic
+				name: "markup.bold.italic.roff"
+				begin: "(\\\\f4)"
+				end: "(?=\\\\f[A-Za-z0-9])"
+				beginCaptures:
+					1: {name: "entity.name.roff"}
+			},{
+				
+				# \fX, \f(XX, \fN - Change to font named "X" or "XX", or position N
+				name: "constant.character.escape.function.font.roff"
+				match: "(\\\\f\\()(\\S{2})|(\\\\f)(\\S)"
+				captures:
+					1: {name: "entity.name.roff"}
+					3: {name: "entity.name.roff"}
+					2: {name: "variable.parameter.roff"}
+					4: {name: "variable.parameter.roff"}
+			},{
+				
+				# \gx, \g(xx - Format of number register "x" or "xx"
+				name: "constant.character.escape.function.format-register.roff"
+				match: "(\\\\g\\()(\\S{2})|(\\\\g)(\\S)"
+				captures:
+					1: {name: "entity.name.roff"}
+					3: {name: "entity.name.roff"}
+					2: {name: "variable.parameter.roff"}
+					4: {name: "variable.parameter.roff"}
+			},{
+				
+				# \kX - Mark horizontal input place in register "X"
+				name: "constant.character.escape.function.mark-input.roff"
+				match: "(\\\\k)(\\S)"
+				captures:
+					1: {name: "entity.name.roff"}
+					2: {name: "variable.parameter.roff"}
+			},{
+				
+				# \sN, \s±N - Point-size change function; also \s(NN, \s±(NN
+				name: "constant.character.escape.function.point-size.roff"
+				match: "(\\\\s[-+]?\\(?)(\\d+)"
+				captures:
+					1: {name: "entity.name.roff"}
+					2: {name: "variable.parameter.roff"}
+			},{
+				
+				# \zC - Print "C" with zero width (without spacing)
+				name: "constant.character.escape.function.zero-width-print.roff"
+				match: "(\\\\z)(\\S)"
+				captures:
+					1: {name: "entity.name.roff"}
+					2: {name: "variable.parameter.roff"}
+			},{
+				
+				# \Z - Any character not listed above
+				name: "constant.character.escape.misc.roff"
+				match: "\\\\\\S"
+			}]
 	
 	
 	
