@@ -154,7 +154,6 @@ repository:
 		{match: "\\\\\\|",   name: "constant.character.escape.space.one-sixth-em.roff"}
 		{match: "\\\\\\^",   name: "constant.character.escape.space.one-twelfth-em.roff"}
 		{match: "\\\\&",     name: "constant.character.escape.zero-width-marker.roff"}
-		{match: "\\\\!",     name: "constant.character.escape.transparent-line.roff"}  # May need its own rule
 		{match: "\\\\%",     name: "constant.character.escape.hyphenation-char.roff"}
 		{match: "\\\\a",     name: "constant.character.escape.leader-char.roff"}
 		{match: "\\\\c",     name: "constant.character.escape.connect.roff"}
@@ -209,6 +208,18 @@ repository:
 				3: {name: "punctuation.definition.begin.roff"}
 				4: {patterns: [{include: "#escapes"}]}
 				5: {name: "punctuation.definition.end.roff"}
+		},{
+			
+			# Transparent throughput
+			name: "meta.throughput.roff"
+			begin: "\\\\!"
+			beginCaptures:
+				0: {name: "constant.character.escape.transparent-line.roff"}
+			end: "(?<!\\\\)$"
+			patterns: [
+				{match: "\\x5C{2}", name: "constant.character.escape.backslash.roff"}
+				{match: "\\\\\n",   name: "constant.character.escape.newline.roff"}
+			]
 		},{
 			
 			# Font: Roman/regular
