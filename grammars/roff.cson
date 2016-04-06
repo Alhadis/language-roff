@@ -111,7 +111,7 @@ repository:
 			end:   "[^\n ]+\n"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
-				1: {name: "punctuation.definition.request.roff"}
+				1: {name: "punctuation.definition.function.request.roff"}
 				2: {name: "entity.function.name.roff"}
 				3: {patterns: [{include: "#params"}]}
 			endCaptures:
@@ -309,7 +309,7 @@ repository:
 		patterns: [{
 			
 			# .TH: Title
-			name: "markup.heading.title.man.macro.roff"
+			name: "markup.heading.title.function.man.macro.roff"
 			patterns: [{include: "#params"}]
 			begin: "^([.'])[ \t]*(TH)"
 			end: "$"
@@ -319,7 +319,7 @@ repository:
 		},{
 			
 			# .SH: Section heading
-			name: "markup.heading.section.man.macro.roff"
+			name: "markup.heading.section.function.man.macro.roff"
 			patterns: [{include: "#params"}]
 			begin: "^([.'])[ \t]*(SH)"
 			end: "$"
@@ -329,7 +329,7 @@ repository:
 		},{
 			
 			# .SS: Subsection
-			name: "markup.heading.subsection.man.macro.roff"
+			name: "markup.heading.subsection.function.man.macro.roff"
 			patterns: [{include: "#params"}]
 			begin: "^([.'])[ \t]*(SS)"
 			end: "$"
@@ -344,7 +344,7 @@ repository:
 			end:   "([^\n ]+ ?\n)"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		},{
 			
@@ -354,7 +354,7 @@ repository:
 			end:   "([^\n ]+ ?\n)"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		},{
 			
@@ -363,7 +363,7 @@ repository:
 			begin: "^([.'])[ \t]*(BI)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
@@ -395,7 +395,7 @@ repository:
 			begin: "^([.'])[ \t]*(BR)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
@@ -426,7 +426,7 @@ repository:
 			begin: "^([.'])[ \t]*(IB)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
@@ -458,7 +458,7 @@ repository:
 			begin: "^([.'])[ \t]*(IR)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
@@ -489,7 +489,7 @@ repository:
 			begin: "^([.'])[ \t]*(RB)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
@@ -519,7 +519,7 @@ repository:
 			begin: "^([.'])[ \t]*(RI)(?=[ \t\\\\]|$)"
 			end:   "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				begin: '(?x)(?<=
