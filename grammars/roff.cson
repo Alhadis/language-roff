@@ -79,7 +79,7 @@ repository:
 		patterns:[{
 			
 			# Generic requests without formatting
-			name: "meta.function.request.$1.roff"
+			name: "meta.function.request.$2.roff"
 			begin: "(?x) ^([.'])[ \t]*
 				(ab|ad|af|as|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|ds|dt|ec
 				|em|eo|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg|lf|ll
@@ -95,7 +95,7 @@ repository:
 		},{
 			
 			# Flow control/conditional requests
-			name: "meta.function.request.$1.roff"
+			name: "meta.function.request.$2.roff"
 			begin: "^([.'])[ \t]*(ie|if|el)"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
@@ -106,7 +106,7 @@ repository:
 		},{
 			
 			# Macro definition: No terminator specified
-			name: "meta.function.definition.request.$1.roff"
+			name: "meta.function.definition.request.$2.roff"
 			begin: "^([.'])[ \t]*(de|am)\\s*(\\S+?)?\\s*(\\\\\".*)?$"
 			end:   "^\\.[ \t]*\\."
 			beginCaptures:
@@ -121,7 +121,7 @@ repository:
 		},{
 			
 			# Macro definition: Terminator included
-			name: "meta.function.definition.request.with-terminator.$1.roff"
+			name: "meta.function.definition.request.with-terminator.$2.roff"
 			begin: "^([.'])[ \t]*(de|am)\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\\"))?(.*)$"
 			end:   "^(\\.)[ \t]*((\\4)(?=$|\\s|\\\\(?:$|\")))"
 			beginCaptures:
