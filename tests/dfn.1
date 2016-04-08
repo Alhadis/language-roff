@@ -2,7 +2,13 @@
 .	tm "Test Macro"
 .. Junk \" Comment
 
-.TT
+.de TL \" Nested definitions
+.	de DR
+\\..
+.
+..
+
+.TL
 
 
 .de TT END\" Comment

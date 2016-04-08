@@ -107,7 +107,7 @@ repository:
 			# Macro definition: No terminator specified
 			name: "meta.function.definition.request.$2.roff"
 			begin: "^([.'])[ \t]*((de)|(am))\\s*(\\S+?)?\\s*(\\\\\".*)?$"
-			end:   "^\\.[ \t]*\\."
+			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
 				3: {name: "storage.type.function.roff"}
