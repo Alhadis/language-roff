@@ -333,15 +333,16 @@ repository:
 			
 			# .ul 0: Empty request/noop
 			name: "meta.request.ul.roff"
-			begin: "^([.'])[ \t]*(ul)\\s*(0+)[\\D]*(?=\\s|$)"
-			end: "$"
-			beginCaptures:
+			match: "^([.'])[ \t]*(ul)\\s*(0+)[\\D]*(?=\\s|$)(.*)$"
+			captures:
 				1: {name: "punctuation.definition.function.request.roff"}
 				2: {name: "entity.function.name.roff"}
 				3: {name: "constant.numeric.roff"}
 				4: {patterns: [{include: "#params"}]}
 			
 		}, {
+			
+			# Underline following line
 			name: "meta.request.ul.roff"
 			begin: "^([.'])[ \t]*(ul)(.*?)$\\n"
 			end:   "(?<!\\\\)$"
@@ -352,7 +353,7 @@ repository:
 			patterns: [{
 				
 				# Ignore control-lines
-				begin: "^(?=[.'])(.*)$\\n"
+				begin: "^(?=[.']|\\\\!)(.*)$\\n"
 				end:   "^"
 				beginCaptures:
 					1: {patterns: [{include: "$self"}]}
