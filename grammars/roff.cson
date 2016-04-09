@@ -305,6 +305,16 @@ repository:
 		]
 	
 	
+	# Multiline conditional input
+	block:
+		patterns: [{
+			begin: "\\\\\\{\\\\?"
+			end: "\\\\\\}\\\\?"
+			beginCaptures: 0: {name: "punctuation.section.conditional.begin.roff"}
+			endCaptures:   0: {name: "punctuation.section.conditional.end.roff"}
+			patterns: [{include: "$self"}]
+		}]
+	
 	
 	
 	# Basic arithmetic sequences
@@ -318,12 +328,6 @@ repository:
 					1: {name: "punctuation.arithmetic.begin.roff"}
 					2: {patterns: [{include: "#arithmetic"}]}
 					3: {name: "punctuation.arithmetic.end.roff"}
-					
-				#begin: "\\("
-				#end:   "\\)"
-				#patterns: [{include: "#arithmetic"}]
-				#beginCaptures: 0: {name: "punctuation.arithmetic.begin.roff"}
-				#endCaptures:   0: {name: "punctuation.arithmetic.end.roff"}
 			},{
 				name: "constant.numeric.arithmetic.roff"
 				match: "\\d+(?:\\.\\d+)?([A-Za-z]+)?"
@@ -334,18 +338,6 @@ repository:
 			{match: ":|&|[<=>]=?", name: "keyword.operator.logical.roff"}
 			{match: "\\|",         name: "keyword.operator.absolute.roff"}
 		]
-	
-	
-	
-	# Multiline conditional input
-	block:
-		patterns: [{
-			begin: "\\\\\\{\\\\?"
-			end: "\\\\\\}\\\\?"
-			beginCaptures: 0: {name: "punctuation.section.conditional.begin.roff"}
-			endCaptures:   0: {name: "punctuation.section.conditional.end.roff"}
-			patterns: [{include: "$self"}]
-		}]
 	
 	
 	
