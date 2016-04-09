@@ -1,0 +1,31 @@
+.\" Built-in comparisons
+.if !t .tm "NOT TROFF"
+.if t  .tm "TROFF"
+.if n  .tm "NROFF"
+.if !n .tm "NOT NROFF"
+
+
+.\" Strings
+.if #a#a#     .tm "a = a"
+.if #Aaa#bbB# .tm "wut"
+
+
+.\" Math
+.if 5>(2 + 2) .tm "TRUE"
+.if 2+2=4     .tm "MAF IZ PHUN"
+
+.\" Math: Registers
+.if \n(NR+2=3 .tm "Be wary of number registers"
+.if \n(.g     .tm "Running GNU Troff (Groff)"
+.if \nG       .tm "Registers can be short, too"
+
+.\" Math: Strings
+.ds ST 1
+.if \*(ST+2=3 .tm "Strings can also be used"
+
+
+.\" Multiline input
+.if n \{\
+.	tm "Registers an' stuff"
+	...testing... 
+\}

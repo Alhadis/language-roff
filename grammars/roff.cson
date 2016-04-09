@@ -92,16 +92,7 @@ repository:
 			patterns: [{include: "#params"}]
 			
 		},{
-			
-			# Flow control/conditional requests
-			name: "meta.function.request.$2.roff"
-			begin: "^([.'])[ \t]*(ie|if|el)"
-			end: "(?<!\\\\)(?=\n)"
-			beginCaptures:
-				1: {name: "punctuation.definition.request.roff"}
-				2: {name: "keyword.control.roff"}
-			patterns: [{include: "#params"}]
-			
+			include: "#conditionals"
 		},{
 			
 			# Macro definition: No terminator specified
@@ -174,6 +165,187 @@ repository:
 				0: {name: "markup.underline.roff"}
 		}]
 	
+	
+	
+	# Conditional input
+	conditionals:
+		patterns: [{
+			
+			# Conditional: If
+			begin: """(?x)^
+				([.'])   [ \t]*      # 1: punctuation.definition.request.roff
+				(ie|if)  [ \t]*      # 2: keyword.control.roff
+				(!)?                 # 3: keyword.operator.logical
+				
+				(?:
+					# One-character built-in comparison name
+					([note])         # 4: constant.language.comparison-name.builtin.$4.roff
+					
+					|
+					
+					# Arithmetic
+					(                # 5: meta.equation.roff
+						
+						# Starts with a bracket
+						(\\()        # 6: punctuation.definition.begin.roff
+						(.*?)        # 7: Include “#arithmetic”
+						(\\))        # 8: punctuation.definition.end.roff
+						
+						# Anything else affixed to it
+						(            # 9: Include “#arithmetic”
+							(?:
+								[^\\s\\(] | # Operators/numbers
+								\\(.*?\\)   # More brackets
+							)*
+						)
+						
+						|
+						
+						# Doesn’t start with a bracket
+						(?:
+							# Starts with a long-form string/register
+							(\\\\[n*]\\(\\S{2}) # 10: Include “#escapes”
+							|
+							# Starts with a digit or backslash
+							(?=\\d|\\\\)
+						)
+						([^\\s\\(]*) # 11: Sandwiched mathematical junk
+						
+						(?: # Possible embedded brackets
+							(\\()    # 12: punctuation.definition.begin.roff
+							(.*?)    # 13: Include “#arithmetic”
+							(\\))    # 14: punctuation.definition.end.roff
+						)?
+						(?: # Possible trailing digits/operators
+							[^\\s\\(]*?
+							\\d+
+						)?
+						
+						# Ends with a...
+						(?<=
+							# Digit
+							\\d  |
+							
+							# Closing bracket
+							\\)  |
+							
+							# String/register: Long-form
+							\\\\[n*]
+							\\(
+							\\S{2} |
+							
+							# String/register: Short-form
+							\\\\[n*]\\S
+						)
+					)
+					
+					|
+					
+					# String/variable comparison
+					([^\\d\\s\\\\])  # 15: punctuation.definition.string.begin.roff
+					(                # 16: variable.parameter.operand.left.roff
+						(.*?)        # 17: Include “#escapes”
+					)
+					(\\15)           # 18: punctuation.definition.string.roff
+					(                # 19: variable.parameter.operand.right.roff
+						(.*?)        # 20: Include “#escapes”
+					)
+					(\\15)           # 21: punctuation.definition.string.end.roff
+					
+					|
+					
+					# Anything not recognised
+					(\\S)            # 22: meta.operand.single.roff
+				)?
+				\\s*
+				(.*)                 # 23: Include “#block, #params”
+			"""
+			end: "(?<!\\\\)$"
+			beginCaptures:
+				0:  {name: "meta.function.request.$2.roff"}
+				1:  {name: "punctuation.definition.request.roff"}
+				2:  {name: "keyword.control.roff"}
+				3:  {name: "keyword.operator.logical"}
+				4:  {name: "constant.language.builtin-comparison.$4.roff"}
+				5:  {name: "meta.equation.roff"}
+				6:  {name: "punctuation.definition.begin.roff"}
+				7:  {patterns: [{include: "#arithmetic"}]}
+				8:  {name: "punctuation.definition.end.roff"}
+				9:  {patterns: [{include: "#arithmetic"}]}
+				10: {patterns: [{include: "#escapes"}]}
+				11: {patterns: [{include: "#arithmetic"}]}
+				12: {name: "punctuation.definition.begin.roff"}
+				13: {patterns: [{include: "#arithmetic"}]}
+				14: {name: "punctuation.definition.end.roff"}
+				15: {name: "punctuation.definition.string.begin.roff"}
+				16: {name: "variable.parameter.operand.left.roff"}
+				17: {patterns: [{include: "#escapes"}]}
+				18: {name: "punctuation.definition.string.roff"}
+				19: {name: "variable.parameter.operand.right.roff"}
+				20: {patterns: [{include: "#escapes"}]}
+				21: {name: "punctuation.definition.string.end.roff"}
+				22: {name: "meta.operand.single.roff"}
+				23: {patterns: [{include: "#conditional-innards"}]}
+		},{
+			
+			# Conditional: Else
+			begin: "^([.'])[ \t]*(el)\\s*(.*)"
+			end:   "(?<!\\\\)$"
+			beginCaptures:
+				0: {name: "meta.function.request.$2.roff"}
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "keyword.control.roff"}
+				3: {patterns: [{include: "#conditional-innards"}]}
+		}]
+	
+	"conditional-innards":
+		patterns: [
+			{include: "#block"}
+			{include: "#params"}
+		]
+	
+	
+	
+	
+	# Basic arithmetic sequences
+	arithmetic:
+		patterns: [
+			{include: "#escapes"},
+			{
+				name: "meta.brackets.roff"
+				match: "(\\()(.*?)(\\))"
+				captures:
+					1: {name: "punctuation.arithmetic.begin.roff"}
+					2: {patterns: [{include: "#arithmetic"}]}
+					3: {name: "punctuation.arithmetic.end.roff"}
+					
+				#begin: "\\("
+				#end:   "\\)"
+				#patterns: [{include: "#arithmetic"}]
+				#beginCaptures: 0: {name: "punctuation.arithmetic.begin.roff"}
+				#endCaptures:   0: {name: "punctuation.arithmetic.end.roff"}
+			},{
+				name: "constant.numeric.arithmetic.roff"
+				match: "\\d+(?:\\.\\d+)?([A-Za-z]+)?"
+				captures:
+					1: {name: "punctuation.unit.arithmetic.roff"}
+			}
+			{match: "[-/+*%]",     name: "keyword.operator.arithmetic.roff"}
+			{match: ":|&|[<=>]=?", name: "keyword.operator.logical.roff"}
+			{match: "\\|",         name: "keyword.operator.absolute.roff"}
+		]
+	
+	
+	
+	# Multiline conditional input
+	block:
+		patterns: [{
+			begin: "\\\\\\{\\\\?"
+			end: "\\\\\\}\\\\?"
+			beginCaptures: 0: {name: "punctuation.section.conditional.begin.roff"}
+			endCaptures:   0: {name: "punctuation.section.conditional.end.roff"}
+			patterns: [{include: "$self"}]
+		}]
 	
 	
 	
@@ -261,9 +433,7 @@ repository:
 			{match: "\\\\d",     name: "constant.character.escape.downwards.roff"}
 			{match: "\\\\p",     name: "constant.character.escape.spread-line.roff"}
 			{match: "\\\\r",     name: "constant.character.escape.reverse.roff"}
-			{match: "\\\\u",     name: "constant.character.escape.upwards.roff"}
-			{match: "\\\\\\{",   name: "constant.character.escape.conditional.begin.roff"}
-			{match: "\\\\\\}",   name: "constant.character.escape.conditional.end.roff"}, {
+			{match: "\\\\u",     name: "constant.character.escape.upwards.roff"}, {
 			
 				# \(aa - Character named "aa"
 				name: "constant.character.escape.function.named-char.roff"
