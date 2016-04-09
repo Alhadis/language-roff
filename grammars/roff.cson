@@ -191,7 +191,7 @@ repository:
 			
 			# Comments
 			name: "comment.line.roff"
-			begin: "(?:^(.|'+)\\s*)?(\\\\\")"
+			begin: "(?:^(\\.|'+)\\s*)?(\\\\\")"
 			end: "$"
 			beginCaptures:
 				1: {name: "punctuation.definition.comment.roff"}
@@ -200,7 +200,7 @@ repository:
 			
 			# Empty control lines
 			name: "comment.empty.roff"
-			match: "^(.|'+)[ \t]*$"
+			match: "^(\\.|'+)[ \t]*$"
 			captures:
 				1: {name: "punctuation.definition.comment.roff"}
 		},
