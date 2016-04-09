@@ -91,43 +91,10 @@ repository:
 				2: {name: "entity.name.roff"}
 			patterns: [{include: "#params"}]
 			
-		},{
-			include: "#conditionals"
-		},{
-			
-			# Macro definition: No terminator specified
-			name: "meta.function.definition.request.$2.roff"
-			begin: "^([.'])[ \t]*((de)|(am))\\s*(\\S+?)?\\s*(\\\\\".*)?$"
-			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
-			beginCaptures:
-				1: {name: "punctuation.definition.request.roff"}
-				3: {name: "storage.type.function.roff"}
-				4: {name: "entity.name.function.roff"}
-				5: {name: "variable.parameter.roff"}
-				6: {patterns: [{include: "#escapes"}]}
-				7: {patterns: [{include: "#params"}]}
-			endCaptures:
-				0: {name: "punctuation.definition.request.roff"}
-			patterns: [{include: "$self"}]
-		},{
-			
-			# Macro definition: Terminator included
-			name: "meta.function.definition.request.with-terminator.$2.roff"
-			begin: "^([.'])[ \t]*((de)|(am))\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\\"))?(.*)$"
-			end:   "^(\\.)[ \t]*((\\6)(?=$|\\s|\\\\(?:$|\")))"
-			beginCaptures:
-				1: {name: "punctuation.definition.request.roff"}
-				3: {name: "storage.type.function.roff"}
-				4: {name: "entity.name.function.roff"}
-				5: {name: "variable.parameter.roff"}
-				6: {name: "entity.terminator.roff", patterns: [{include: "#string"}]}
-				7: {patterns: [{include: "#params"}]}
-			endCaptures:
-				1: {name: "punctuation.definition.request.roff"}
-				2: {name: "entity.terminator.roff"}
-				3: {patterns: [{include: "#string"}]}
-			patterns: [{include: "$self"}]
-		},{
+		}
+		{ include: "#conditionals" }
+		{ include: "#definition"   }
+		{
 			
 			# Number register
 			name: "meta.function.request.$2.roff"
@@ -204,7 +171,7 @@ repository:
 						# Doesn’t start with a bracket
 						(?:
 							# Starts with a long-form string/register
-							(\\\\[n*]\\(\\S{2}) # 10: Include “#escapes”
+							(\\\\+[n*]\\(\\S{2}) # 10: Include “#escapes”
 							|
 							# Starts with a digit or backslash
 							(?=\\d|\\\\)
@@ -332,13 +299,57 @@ repository:
 		]
 	
 	
+
+	# Macro definitions
+	definition:
+		patterns: [{
+			
+			# No terminator specified
+			name: "meta.function.definition.request.$2.roff"
+			begin: "^([.'])[ \t]*((de)|(am))\\s*(\\S+?)?\\s*(\\\\\".*)?$"
+			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				3: {name: "storage.type.function.roff"}
+				4: {name: "entity.name.function.roff"}
+				5: {name: "variable.parameter.roff"}
+				6: {patterns: [{include: "#escapes"}]}
+				7: {patterns: [{include: "#params"}]}
+			endCaptures:
+				0: {name: "punctuation.definition.request.roff"}
+			patterns: [{include: "$self"}]
+		},{
+			
+			# Terminator included
+			name: "meta.function.definition.request.with-terminator.$2.roff"
+			begin: "^([.'])[ \t]*((de)|(am))\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\\"))?(.*)$"
+			end:   "^(\\.)[ \t]*((\\6)(?=$|\\s|\\\\(?:$|\")))"
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				3: {name: "storage.type.function.roff"}
+				4: {name: "entity.name.function.roff"}
+				5: {name: "variable.parameter.roff"}
+				6: {name: "entity.terminator.roff", patterns: [{include: "#string"}]}
+				7: {patterns: [{include: "#params"}]}
+			endCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "entity.terminator.roff"}
+				3: {patterns: [{include: "#string"}]}
+			patterns: [{include: "$self"}]
+		}]
+	
+	
 	
 	# Escape sequences
 	escapes:
-		patterns: [
+		patterns: [{
+			
+			# Backslashed escape sequences: \t -> \\t
+			match: "(\\\\+?)(?=\\1\\S)"
+			name: "punctuation.definition.concealed.escape.backslash.roff"
+		},
 			{include: "#escapes-copymode"}
-			{include: "#escapes-full"}
-		]
+			{include: "#escapes-full"}]
 	
 	
 	# Limited range of escape sequences permitted in copy-mode
