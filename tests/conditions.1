@@ -24,8 +24,12 @@
 .if \*(ST+2=3 .tm "Strings can also be used"
 
 
-.\" Multiline input
+.\" Blocks
 .if n \{\
 .	tm "Registers an' stuff"
 	...testing... 
-\}
+.\}
+
+.if n \{ .tm "Shared line"
+.if n \{\x'n' \" Open-brace + \x'N' escape
+\}\

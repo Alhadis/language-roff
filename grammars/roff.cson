@@ -257,10 +257,10 @@ repository:
 					# Anything not recognised
 					(\\S)            # 22: meta.operand.single.roff
 				)?
-				\\s*
-				(.*)                 # 23: Include “#block, #params”
+				
+				(.*)                 # 23: Include “#conditional-innards”
 			"""
-			end: "(?<!\\\\)$"
+			end: "$"
 			beginCaptures:
 				0:  {name: "meta.function.request.$2.roff"}
 				1:  {name: "punctuation.definition.request.roff"}
@@ -290,7 +290,7 @@ repository:
 			
 			# Conditional: Else
 			begin: "^([.'])[ \t]*(el)\\s*(.*)"
-			end:   "(?<!\\\\)$"
+			end:   "$"
 			beginCaptures:
 				0: {name: "meta.function.request.$2.roff"}
 				1: {name: "punctuation.definition.request.roff"}
@@ -299,20 +299,12 @@ repository:
 		}]
 	
 	"conditional-innards":
-		patterns: [
-			{include: "#block"}
-			{include: "#params"}
-		]
-	
-	
-	# Multiline conditional input
-	block:
 		patterns: [{
-			begin: "\\\\\\{\\\\?"
-			end: "\\\\\\}\\\\?"
-			beginCaptures: 0: {name: "punctuation.section.conditional.begin.roff"}
-			endCaptures:   0: {name: "punctuation.section.conditional.end.roff"}
-			patterns: [{include: "$self"}]
+			begin: "^\\s*(\\\\\\{(?:\\\\(?=\\n))?)?\\s*(.*)"
+			end:   "$"
+			beginCaptures:
+				1: {name: "punctuation.section.conditional.begin.roff"}
+				2: {patterns: [{include: "$self"}]}
 		}]
 	
 	
@@ -439,6 +431,22 @@ repository:
 				captures:
 					1: {name: "entity.name.roff"}
 					2: {name: "variable.parameter.roff"}
+			},{
+				
+				# Conditional input: Begin
+				name: "meta.function.begin.roff"
+				match: "(?:^(\\.|'+)[ \t]*)?(\\\\\\{(?:\\\\(?=\\n))?)"
+				captures:
+					1: {name: "punctuation.definition.request.roff"}
+					2: {name: "punctuation.section.conditional.begin.roff"}
+			},{
+				
+				# Conditional input: End
+				name: "meta.function.end.roff"
+				match: "(?:^(\\.|'+)[ \t]*)?(\\\\\\}(?:\\\\(?=\\n))?)"
+				captures:
+					1: {name: "punctuation.definition.request.roff"}
+					2: {name: "punctuation.section.conditional.end.roff"}
 			},{
 				
 				# Parametric/function-like escape sequences
