@@ -96,16 +96,19 @@ repository:
 		{ include: "#definition"   }
 		{ include: "#underlines"   }
 		{
-			
-			# Number register
+			# Register assignment
 			name: "meta.function.request.$2.roff"
-			begin: "^([.'])[ \t]*(nr)[ \t]*(\\S+)?[ \t]*(.*)$"
-			end:   "(?<!\\\\)$"
+			begin: "^([.'])[ \t]*(nr)[ \t]*(?:(%|ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S+))?[ \t]*(.*)$"
+			end: "(?<!\\\\)$"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
 				2: {name: "storage.type.var.roff"}
-				3: {name: "variable.parameter.roff"}
-				4: {patterns: [{include: "#params"}]}
+				3: {name: "constant.language.predefined.register.roff"}
+				4: {name: "constant.language.predefined.register.gnu.roff"}
+				5: {name: "invalid.illegal.readonly.register.roff"}
+				6: {name: "invalid.illegal.readonly.register.gnu.roff"}
+				7: {name: "variable.parameter.roff"}
+				8: {patterns: [{include: "#params"}]}
 		},{
 			
 			# String definition
@@ -407,12 +410,17 @@ repository:
 			
 			# \nX, \n(XX - Contents of number register "X" or "XX"
 			name: "constant.character.escape.function.expand-register.roff"
-			match: "(\\\\n\\()(\\S{2})|(\\\\n)(\\S)"
+			match: "(\\\\n\\()(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|(\\\\n)(?:(%)|(\\S))"
 			captures:
 				1: {name: "entity.name.roff"}
-				3: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
-				4: {name: "variable.parameter.roff"}
+				2: {name: "constant.language.predefined.register.roff"}
+				3: {name: "constant.language.predefined.register.gnu.roff"}
+				4: {name: "constant.language.predefined.register.readonly.roff"}
+				5: {name: "constant.language.predefined.register.readonly.gnu.roff"}
+				6: {name: "variable.parameter.roff"}
+				7: {name: "entity.name.roff"}
+				8: {name: "constant.language.predefined.register.roff"}
+				9: {name: "variable.parameter.roff"}
 		},{
 			
 			# \*x, \*(xx - Interpolate string "x" or "xx"
