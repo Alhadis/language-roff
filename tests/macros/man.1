@@ -1,56 +1,62 @@
-.EX                    \" Example
-.EE                    \" End example
-.HP [nnn]              \" Hanging paragraph [DEPRECATED]
-.IP [marker] [nnn]     \" Indented paragraph
-.LP    .PP  .P         \" New paragraph
-.RE [nnn]              \" Left-margin reset
-.RS [nnn]              \" Left-margin offset
-.SH [text]             \" Section heading
-.SS [text]             \" Subsection
-.TH title section      \" Top heading/title
-.TP [nnn]              \" Titled indented paragraph
-.TQ                    \" Header continuation for TP macros (GNU extension)
+.TH MANUAL PAGES
+
+.EX                  \" Example
+.EE                  \" End example
+.HP [nnn]            \" Hanging paragraph             [DEPRECATED]
+.IP [marker] [nnn]   \" Indented paragraph
+.LP .PP .P           \" New paragraph
+.RE [nnn]            \" Left-margin reset
+.RS [nnn]            \" Left-margin offset
+.SH [text]           \" Section heading
+.SS [text]           \" Subsection
+.TH [text] [section] \" Top heading/title
+.TP [nnn]            \" Titled indented paragraph
+.TQ                  \" Header continuation for TP    (GNU extension)
 
 
-FONT MACROS
+.SH FONT MACROS
 
-.B text
-.BI text
-.BR text
-.I text
-.IB text
-.IR text
-.RB text
-.RI text
-.SB text     \" Small Bold
-.SM text     \" Small
-
-
-MACROS TO DESCRIBE HYPERLINKS AND EMAIL ADDRESSES
-.MT [address]           \" Mailto link          (GNU extension)
-.ME [punctuation]       \" End of mailto macro  (GNU extension)
-.UR [url]               \" URL                  (GNU extension)
-.UE [punctuation]       \" URL end              (GNU extension)
+.B   [text]          \" Bold
+.BI  [text]          \" Bold Italic
+.BR  [text]          \" Bold Roman
+.I   [text]          \" Italic
+.IB  [text]          \" Italic Bold
+.IR  [text]          \" Italic Roman
+.RB  [text]          \" Roman Bold
+.RI  [text]          \" Roman Italic
+.SB  [text]          \" Small Bold
+.SM  [text]          \" Small
 
 
-MACROS TO DESCRIBE COMMAND SYNOPSES
-.OP [key] [value]       \" Optional command argument  (GNU extension)
-.SY [command]           \" Begin command synopsis     (GNU extension)
-.YS                     \" End synopsis               (GNU extension)
+.SH MACROS TO DESCRIBE HYPERLINKS AND EMAIL ADDRESSES
+
+.MT [address]        \" Mailto link                   (GNU extension)
+.ME [punctuation]    \" End of mailto macro           (GNU extension)
+.UR [url]            \" URL                           (GNU extension)
+.UE [punctuation]    \" URL end                       (GNU extension)
 
 
-MISCELLANEOUS
-.AT [system] [release]  \" Alter the footer for use with AT&T man pages [DEPRECATED]
-.BT                     \" Print the footer string
-.PT                     \" Print the header string
-.DT                     \" Set tabs every 0.5 inches [DEPRECATED]
-.PD [nnn]               \" Adjust empty space before new paragraphs or sections [DEPRECATED]
-.UC [version]           \" Alter the footer for use with BSD man pages. [DEPRECATED]
+.SH MACROS TO DESCRIBE COMMAND SYNOPSES
 
-The following strings are defined:
+.OP [key] [value]    \" Optional command argument     (GNU extension)
+.SY [command]        \" Begin command synopsis        (GNU extension)
+.YS                  \" End synopsis                  (GNU extension)
 
-\*R    The `registered' sign.
-\*S    Switch back to the default font size.
-\*(lq  \*(rq Left and right quote.  This is equal to `\(lq' and `\(rq\[cq], respectively.
-\*(HF  The typeface used to print headings and subheadings.  The default is `B'.
-\*(Tm  The `trademark' sign.
+
+.SH MISCELLANEOUS
+
+.AT                  \" Alter footer of AT&T pages    [DEPRECATED]
+.BT                  \" Print the footer string
+.PT                  \" Print the header string
+.DT                  \" Set tabs every 0.5 inches     [DEPRECATED]
+.PD                  \" Adjust space between blocks   [DEPRECATED]
+.UC                  \" Alter footer of BSD pages     [DEPRECATED]
+
+
+.SH DEFINED STRINGS
+
+\*R                  \" Registration sign ®
+\*S                  \" Switch back to the default font size
+\*(lq  \*(rq         \" Left and right quote. Equal to `\(lq' and `\(rq\[cq], respectively
+\*(HF                \" Typeface used to print headings and subheadings. Default: "B"
+\*(Tm                \" Trademark symbol ™

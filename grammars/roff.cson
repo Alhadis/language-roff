@@ -632,23 +632,31 @@ repository:
 		},{
 			
 			# .B/.SB: Bold
-			name: "markup.bold.roff"
-			begin: "^([.'])[ \t]*(S?B)(?:$|[ \t]+|(?=\\\\))"
-			end:   "([^\n ]+ ?\n)"
+			contentName: "markup.bold.roff"
+			begin: "^([.'])[ \t]*(S?B)(\\s*\\\\\".*$)?(?=$|[ \t]+|\\\\)"
+			end:   "^(?=[.'])|(?=\\\\\")|((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
+				3: {patterns: [{include: "#escapes-copymode"}]}
+			endCaptures:
+				1: {name: "markup.bold.roff"}
+				2: {patterns: [{include: "#escapes"}]}
 		},{
 			
 			# .I: Italic
-			name: "markup.italic.roff"
-			begin: "^([.'])[ \t]*(I)(?:$|[ \t]+|(?=\\\\))"
-			end:   "([^\n ]+ ?\n)"
+			contentName: "markup.italic.roff"
+			begin: "^([.'])[ \t]*(I)(\\s*\\\\\".*$)?(?=$|[ \t]+|\\\\)"
+			end:   "^(?=[.'])|(?=\\\\\")|((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
+				3: {patterns: [{include: "#escapes-copymode"}]}
+			endCaptures:
+				1: {name: "markup.italic.roff"}
+				2: {patterns: [{include: "#escapes"}]}
 		},{
 			
 			# .BI: Bold and italic
