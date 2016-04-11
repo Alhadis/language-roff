@@ -1,0 +1,56 @@
+.EX                    \" Example
+.EE                    \" End example
+.HP [nnn]              \" Hanging paragraph [DEPRECATED]
+.IP [marker] [nnn]     \" Indented paragraph
+.LP    .PP  .P         \" New paragraph
+.RE [nnn]              \" Left-margin reset
+.RS [nnn]              \" Left-margin offset
+.SH [text]             \" Section heading
+.SS [text]             \" Subsection
+.TH title section      \" Top heading/title
+.TP [nnn]              \" Titled indented paragraph
+.TQ                    \" Header continuation for TP macros (GNU extension)
+
+
+FONT MACROS
+
+.B text
+.BI text
+.BR text
+.I text
+.IB text
+.IR text
+.RB text
+.RI text
+.SB text     \" Small Bold
+.SM text     \" Small
+
+
+MACROS TO DESCRIBE HYPERLINKS AND EMAIL ADDRESSES
+.MT [address]           \" Mailto link          (GNU extension)
+.ME [punctuation]       \" End of mailto macro  (GNU extension)
+.UR [url]               \" URL                  (GNU extension)
+.UE [punctuation]       \" URL end              (GNU extension)
+
+
+MACROS TO DESCRIBE COMMAND SYNOPSES
+.OP [key] [value]       \" Optional command argument  (GNU extension)
+.SY [command]           \" Begin command synopsis     (GNU extension)
+.YS                     \" End synopsis               (GNU extension)
+
+
+MISCELLANEOUS
+.AT [system] [release]  \" Alter the footer for use with AT&T man pages [DEPRECATED]
+.BT                     \" Print the footer string
+.PT                     \" Print the header string
+.DT                     \" Set tabs every 0.5 inches [DEPRECATED]
+.PD [nnn]               \" Adjust empty space before new paragraphs or sections [DEPRECATED]
+.UC [version]           \" Alter the footer for use with BSD man pages. [DEPRECATED]
+
+The following strings are defined:
+
+\*R    The `registered' sign.
+\*S    Switch back to the default font size.
+\*(lq  \*(rq Left and right quote.  This is equal to `\(lq' and `\(rq\[cq], respectively.
+\*(HF  The typeface used to print headings and subheadings.  The default is `B'.
+\*(Tm  The `trademark' sign.

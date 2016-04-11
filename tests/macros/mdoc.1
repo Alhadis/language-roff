@@ -1,0 +1,159 @@
+.TH DOCUMENT MACROS
+.Dt
+.Os
+.Dd
+.Ad
+.An
+	-nosplit
+	-split
+.Ar
+.Cd
+.Cm
+.Dv
+.Er     \" Error number (ERRNO)
+.Ev     \" Environment variable
+.Fl     \" Flags
+.Fd     \" Function declaration
+.In     \" #include statement
+.Ft
+.Fn     \" Function
+.Fo     \" Function open (Start a multiline function-argument list)
+.Fa     \" Function argument
+.Fc     \" Function close
+.Rv     \" Return value
+	-std
+.Ex     \" Exit status
+	-std
+.Ic     \" Interactive command
+.Lb     \" Library name
+.Li     \" Literals
+.Nm     \" Name
+.Op     \" Option brackets
+.Pa     \" Pathnames or filenames
+.St     \" Standard abbreviations
+.Vt     \" Variable type
+.Va     \" Generic variable reference
+.Xr     \" Manual page cross-reference
+
+.SH TEXT MACROS
+.At     \" AT&T
+.Bx     \" BSD
+	-alpha
+	-beta
+	-devel
+.Nx     \" NetBSD
+.Fx     \" FreeBSD
+.Dx     \" DragonFly
+.Ox     \" OpenBSD
+.Ux     \" UNIX
+.Em     \" Emphasis
+.Bf     \" Begin font-mode
+	Em | -emphasis
+	Li | -literal
+	Sy | -symbolic
+.Ef     \" End font-mode
+.Aq     \" Angle brackets             <string>
+.Ao     \" Open angle brackets        <
+.Ac     \" Close angle brackets       >
+.Bq     \" Bracket enclosure          [string]
+.Bo     \" Open bracket               [
+.Bc     \" Close bracket              ]
+.Brq    \" Brace enclosure            {string}
+.Bro    \" Open brace                 {
+.Brc    \" Close brace                }
+.Dq     \" Double quotes              "string"
+.Do     \" Open double-quote          "
+.Dc     \" Close double-quote         "
+.Eq     \" Enclose string (in XX)     XXstringXX
+.Eo     \" Enclose: open string       OO
+.Ec     \" Enclose: close string      CC
+.Pq     \" Parenthesis enclosure      (string)
+.Po     \" Open parenthesis           (
+.Pc     \" Closed parenthesis         )
+.Ql     \" Quoted literal             ``string'' or string
+.Qq     \" Straight double-quote      "string"
+.Qo     \" Open straight quotes       "
+.Qc     \" Close straight quotes      "
+.Sq     \" Single quote               'string'
+.So     \" Open single quotes         '
+.Sc     \" Closed single quotes       '
+.Es     \" Enclosure string           [DEPRECATED]
+.En     \" Enclose                    [DEPRECATED]
+.Pf     \" Prefix macro
+.Ap     \" Apostrophe
+.No     \" No-Op / Normal text
+.Ns     \" No-space
+.Sx     \" Section cross-reference
+.Sy     \" Symbolic emphasis
+.Ms     \" Math symbol
+
+.SH REFERENCES AND CITATIONS
+.Rs     \" Reference start
+.Re     \" Reference end
+.%A     \" Reference author name
+.%B     \" Book title
+.%C     \" City/place
+.%D     \" Date
+.%I     \" Issuer/publisher name
+.%J     \" Journal name
+.%N     \" Issue number
+.%O     \" Optional information
+.%P     \" Page number
+.%Q     \" Corporate or foreign author
+.%R     \" Report name
+.%T     \" Title of article
+.%U     \" Optional hypertext reference
+.%V     \" Volume
+.Tn     \" Trade Name / Acronym or Type Name
+.Xo     \" Extended arguments: open
+.Xc     \" Extended arguments: close
+.Sh     \" Section header
+.Ss     \" Subsection
+.Pp .Lp \" New paragraph
+.Bk     \" Begin keep
+.Ek     \" End keep
+.D1     \" Display 1 line of indented text
+.Dl     \" Display 1 line of indented *literal* text
+.Bd
+	-ragged
+	-centered
+	-unfilled
+	-filled
+	-literal
+	-file <filename>
+	-offset <string>
+		left
+		center
+		indent
+		indent-two
+		right
+	-compact
+.Bl     \" Begin list
+	-bullet
+	-column
+	-compact
+	-dash
+	-diag
+	-enum
+	-hang
+	-hyphen
+	-inset
+	-item
+	-nested
+	-offset <string>
+	-ohang
+	-tag
+	-width <string>
+.It     \" List item
+.Bt
+.Fr
+.Hf
+.Lk
+.Me
+.Mt
+.Ot
+.Sm
+	on
+	off
+.Ud
+.Rd
