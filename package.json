@@ -1,8 +1,8 @@
 {
 	"name": "language-roff",
 	"version": "0.0.1",
-	"description": "[GTN]?Roff language support for Atom",
-	"keywords": ["Roff", "Groff", "Troff", "Nroff", "Unix Manual Page"],
+	"description": "Atom support for Unix manual pages (Groff/Troff) and the historical RUNOFF language.",
+	"keywords": ["Roff", "Groff", "Troff", "Nroff", "Unix Manual Page", "Manpage", "man"],
 	"repository": "https://github.com/Alhadis/language-roff",
 	"license": "ISC",
 	"engines": {
