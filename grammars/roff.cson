@@ -17,15 +17,19 @@ fileTypes: [
 	"mandoc",
 	"mdoc",
 	"me",
+	"mmn", "mmt",
 	"ms",
 	"mom",
 	"n",
+	"nroff",
 	"rnh",
 	"rno",
 	"roff",
 	"run",
 	"t",
-	"tr"
+	"tmac", "tmac-u",
+	"tr",
+	"troff"
 ]
 firstLineMatch: """(?x)
 
