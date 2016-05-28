@@ -1,6 +1,5 @@
 name: "Roff"
 scopeName: "text.roff"
-firstLineMatch: "^\\.TH[ \t]+(?:\\S+)"
 fileTypes: [
 	"1", "1b", "1c", "1has", "1in", "1m", "1s", "1x",
 	"2",
@@ -28,7 +27,24 @@ fileTypes: [
 	"t",
 	"tr"
 ]
+firstLineMatch: """(?x)
 
+	# Manual page with .TH macro on first line
+	^\\.TH[ \t]+(?:\\S+)
+	|
+	
+	# Preprocessor line
+	# See: https://www.gnu.org/software/groff/manual/html_node/Preprocessors-in-man-pages.html
+	^'\\\\\"\\x20[tre]+(?=\\s|$)
+	|
+	
+	# Emacs modeline
+	(?i:-\\*-[^*]*(mode:\\s*)?nroff(\\s*;.*?)?\\s*-\\*-
+	|
+	
+	# Vim modeline
+	(?:vim?|ex):\\s*(?:set?.*\\s)?(?:syntax|filetype|ft)=[gn]roff\\s?(?:.*:)?)
+"""
 patterns: [{ include: "#main" }]
 
 
