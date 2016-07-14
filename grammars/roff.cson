@@ -650,7 +650,21 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		},{
-			
+		
+			# .EX: Example code
+			contentName: "markup.raw.roff"
+			begin: "^([.'])[ \t]*(EX)\\s*(\\\\\".*)?$"
+			end:   "^([.'])[ \t]*(EE)\\b(.*)$"
+			patterns: [{ include: "$self" }]
+			beginCaptures:
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+				3: {patterns: [{include: "#escapes-copymode"}]}
+			endCaptures:
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+				3: {patterns: [{include: "#params"}]}
+		},{
 			# .B/.SB: Bold
 			contentName: "markup.bold.roff"
 			begin: "^([.'])[ \t]*(S?B)(\\s*\\\\\".*$)?(?=$|[ \t]+|\\\\)"
