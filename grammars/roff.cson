@@ -392,7 +392,7 @@ repository:
 			
 			# .ul 0: Empty request/noop
 			name: "meta.request.ul.roff"
-			match: "^([.'])[ \t]*(ul)\\s*(0+)[\\D]*(?=\\s|$)(.*)$"
+			match: "^([.'])[ \t]*(ul)\\s*(0+)(?:(?!\\\\\")[\\D])*(?=\\s|$)(.*)$"
 			captures:
 				1: {name: "punctuation.definition.function.request.roff"}
 				2: {name: "entity.function.name.roff"}
