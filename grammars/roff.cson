@@ -79,18 +79,24 @@ repository:
 		patterns: [{
 			name: "string.quoted.double.empty.roff",
 			match: '(")(")'
+			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
 		},{
 			name: "string.quoted.double.roff",
 			begin: '"(?!")'
 			end:   '(?<!")"(?!")|(?<!\\\\)$|(?=\\\\\")'
 			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
 			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
-			patterns: [
-				{match: '""', name: "constant.character.escape.quote.double.roff"},
-				{include: "#escapes"}
-			]
+			patterns: [include: "#string-escapes"]
 		}]
 	
+	
+	# Escape sequences to match inside double-quoted strings
+	"string-escapes":
+		patterns: [
+			{match: '""', name: "constant.character.escape.quote.double.roff"}
+			{include: "#escapes"}
+		]
 	
 	
 	
@@ -677,10 +683,12 @@ repository:
 				name: "string.quoted.double.roff"
 				contentName: "markup.underline.roff"
 				begin: '\\G[ \t]*(")'
-				end:   '(?<!")"(?!")|(?<!\\\\)$|(?=\\\\\")'
+				end:   '((?:"")*)"(?!")|(?<!\\\\)$|(?=\\\\\")'
 				beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
-				endCaptures:   0: name: "punctuation.definition.string.end.roff"
-				patterns: [include: "#escapes"]
+				endCaptures:
+					0: name: "punctuation.definition.string.end.roff"
+					1: name: "markup.underline.roff", patterns: [include: "#string-escapes"]
+				patterns: [include: "#string-escapes"]
 			}
 			{include: "#escapes"}
 			{include: "#string"}]
@@ -805,10 +813,7 @@ repository:
 			},{
 				
 				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [
-					{match: '""', name: "constant.character.escape.quote.double.roff"}
-					{include: "#escapes"}
-				]
+				patterns: [include: "#string-escapes"]
 				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
 				contentName: "markup.italic.roff"
 				beginCaptures:
@@ -826,7 +831,7 @@ repository:
 					begin: "(?<=\\G)\\\\$\\n"
 					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
 					patterns: [
-						{match: '""', name: "constant.character.escape.quote.double.roff"}
+						{include: "#string-escapes"}
 						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
 					]}
 					{name: "markup.bold.roff",   match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
@@ -843,7 +848,7 @@ repository:
 				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
 				patterns: [
 					{name: "markup.italic.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{name: "constant.character.escape.quote.double.roff", match: '""'}
+					{include: "#string-escapes"}
 				]
 				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
 				beginCaptures:
@@ -918,7 +923,7 @@ repository:
 				begin: '"'
 				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
 				contentName: "markup.bold.roff"
-				patterns: [match: '""', name: "constant.character.escape.quote.double.roff"]
+				patterns: [include: "#string-escapes"]
 				beginCaptures: 0: name: "markup.bold.roff"
 				endCaptures:
 					1: name: "markup.bold.roff"
@@ -957,10 +962,7 @@ repository:
 			},{
 				
 				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [
-					{match: '""', name: "constant.character.escape.quote.double.roff"}
-					{include: "#escapes"}
-				]
+				patterns: [include: "#string-escapes"]
 				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
 				contentName: "markup.plain.roff"
 				beginCaptures:
@@ -978,7 +980,7 @@ repository:
 					begin: "(?<=\\G)\\\\$\\n"
 					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
 					patterns: [
-						{match: '""', name: "constant.character.escape.quote.double.roff"}
+						{include: "#string-escapes"}
 						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
 					]}
 					{name: "markup.bold.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
@@ -995,7 +997,7 @@ repository:
 				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
 				patterns: [
 					{name: "markup.plain.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{name: "constant.character.escape.quote.double.roff", match: '""'}
+					{include: "#string-escapes"}
 				]
 				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
 				beginCaptures:
@@ -1070,7 +1072,7 @@ repository:
 				begin: '"'
 				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
 				contentName: "markup.bold.roff"
-				patterns: [match: '""', name: "constant.character.escape.quote.double.roff"]
+				patterns: [include: "#string-escapes"]
 				beginCaptures: 0: name: "markup.bold.roff"
 				endCaptures:
 					1: name: "markup.bold.roff"
@@ -1109,10 +1111,7 @@ repository:
 			},{
 				
 				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [
-					{match: '""', name: "constant.character.escape.quote.double.roff"}
-					{include: "#escapes"}
-				]
+				patterns: [include: "#string-escapes"]
 				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
 				contentName: "markup.bold.roff"
 				beginCaptures:
@@ -1130,7 +1129,7 @@ repository:
 					begin: "(?<=\\G)\\\\$\\n"
 					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
 					patterns: [
-						{match: '""', name: "constant.character.escape.quote.double.roff"}
+						{include: "#string-escapes"}
 						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
 					]}
 					{name: "markup.italic.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
@@ -1147,7 +1146,7 @@ repository:
 				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
 				patterns: [
 					{name: "markup.bold.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{name: "constant.character.escape.quote.double.roff", match: '""'}
+					{include: "#string-escapes"}
 				]
 				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
 				beginCaptures:
@@ -1222,7 +1221,7 @@ repository:
 				begin: '"'
 				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
 				contentName: "markup.italic.roff"
-				patterns: [match: '""', name: "constant.character.escape.quote.double.roff"]
+				patterns: [include: "#string-escapes"]
 				beginCaptures: 0: name: "markup.italic.roff"
 				endCaptures:
 					1: name: "markup.italic.roff"
@@ -1261,10 +1260,7 @@ repository:
 			},{
 				
 				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [
-					{match: '""', name: "constant.character.escape.quote.double.roff"}
-					{include: "#escapes"}
-				]
+				patterns: [include: "#string-escapes"]
 				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
 				contentName: "markup.plain.roff"
 				beginCaptures:
@@ -1282,7 +1278,7 @@ repository:
 					begin: "(?<=\\G)\\\\$\\n"
 					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
 					patterns: [
-						{match: '""', name: "constant.character.escape.quote.double.roff"}
+						{include: "#string-escapes"}
 						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
 					]}
 					{name: "markup.italic.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
@@ -1299,7 +1295,7 @@ repository:
 				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
 				patterns: [
 					{name: "markup.plain.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{name: "constant.character.escape.quote.double.roff", match: '""'}
+					{include: "#string-escapes"}
 				]
 				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
 				beginCaptures:
@@ -1374,7 +1370,7 @@ repository:
 				begin: '"'
 				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
 				contentName: "markup.italic.roff"
-				patterns: [match: '""', name: "constant.character.escape.quote.double.roff"]
+				patterns: [include: "#string-escapes"]
 				beginCaptures: 0: name: "markup.italic.roff"
 				endCaptures:
 					1: name: "markup.italic.roff"
@@ -1413,10 +1409,7 @@ repository:
 			},{
 				
 				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [
-					{match: '""', name: "constant.character.escape.quote.double.roff"}
-					{include: "#escapes"}
-				]
+				patterns: [include: "#string-escapes"]
 				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
 				contentName: "markup.bold.roff"
 				beginCaptures:
@@ -1434,7 +1427,7 @@ repository:
 					begin: "(?<=\\G)\\\\$\\n"
 					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
 					patterns: [
-						{match: '""', name: "constant.character.escape.quote.double.roff"}
+						{include: "#string-escapes"}
 						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
 					]}
 					{name: "markup.plain.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
@@ -1451,7 +1444,7 @@ repository:
 				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
 				patterns: [
 					{name: "markup.bold.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{name: "constant.character.escape.quote.double.roff", match: '""'}
+					{include: "#string-escapes"}
 				]
 				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
 				beginCaptures:
@@ -1526,7 +1519,7 @@ repository:
 				begin: '"'
 				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
 				contentName: "markup.plain.roff"
-				patterns: [match: '""', name: "constant.character.escape.quote.double.roff"]
+				patterns: [include: "#string-escapes"]
 				beginCaptures: 0: name: "markup.plain.roff"
 				endCaptures:
 					1: name: "markup.plain.roff"
@@ -1565,10 +1558,7 @@ repository:
 			},{
 				
 				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [
-					{match: '""', name: "constant.character.escape.quote.double.roff"}
-					{include: "#escapes"}
-				]
+				patterns: [include: "#string-escapes"]
 				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
 				contentName: "markup.italic.roff"
 				beginCaptures:
@@ -1586,7 +1576,7 @@ repository:
 					begin: "(?<=\\G)\\\\$\\n"
 					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
 					patterns: [
-						{match: '""', name: "constant.character.escape.quote.double.roff"}
+						{include: "#string-escapes"}
 						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
 					]}
 					{name: "markup.plain.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
@@ -1603,7 +1593,7 @@ repository:
 				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
 				patterns: [
 					{name: "markup.italic.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{name: "constant.character.escape.quote.double.roff", match: '""'}
+					{include: "#string-escapes"}
 				]
 				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
 				beginCaptures:
@@ -1678,7 +1668,7 @@ repository:
 				begin: '"'
 				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
 				contentName: "markup.plain.roff"
-				patterns: [match: '""', name: "constant.character.escape.quote.double.roff"]
+				patterns: [include: "#string-escapes"]
 				beginCaptures: 0: name: "markup.plain.roff"
 				endCaptures:
 					1: name: "markup.plain.roff"
