@@ -100,6 +100,20 @@ repository:
 		]
 	
 	
+	# Group of strings delimited with an arbitrary character
+	"3-part-title":
+		name: "string.3-part.other.roff"
+		match: '\\G[ \t]*?(.)((?:(?!\\1).)+)(\\1)((?:(?!\\1).)+)(\\1)((?:(?!\\1).)+)(\\1)'
+		captures:
+			1: name: "punctuation.definition.string.begin.roff"
+			2: name: "entity.string.left.roff", patterns: [include: "#escapes"]
+			3: name: "punctuation.definition.string.begin.roff"
+			4: name: "entity.string.centre.roff", patterns: [include: "#escapes"]
+			5: name: "punctuation.definition.string.end.roff"
+			2: name: "entity.string.right.roff", patterns: [include: "#escapes"]
+			7: name: "punctuation.definition.string.end.roff"
+	
+	
 	
 	# Requests
 	requests:
@@ -111,7 +125,7 @@ repository:
 				(ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|dt|ec|em|eo
 				|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg|lf|ll|ls|lt
 				|mc|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd
-				|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tl|tm|tr|uf|vs|wh)"
+				|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -148,6 +162,21 @@ repository:
 				4: {name: "entity.name.function.roff"}
 				5: {name: "variable.parameter.roff"}
 				6: {patterns: [{include: "#params"}]}
+		},{
+			
+			# Three-part title
+			name: "meta.function.request.$2.roff"
+			begin: "^([.'])[ \t]*(tl)\\b"
+			end:   "(?<!\\\\)$|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "entity.function.name.roff"}
+			contentName: "function-call.arguments.roff"
+			patterns: [
+				{include: "#3-part-title"}
+				{include: "#escapes"}
+				{include: "#string"}
+			]
 		}]
 	
 	
@@ -648,6 +677,20 @@ repository:
 			patterns: [{include: "#params"}]
 		},{
 			
+			# Headers and footers
+			name: "meta.function.${2:/downcase}.ms.macro.roff"
+			contentName: "function-call.arguments.roff"
+			begin: "^([.'])[ \t]*([EO][FH])\\b"
+			end:   "(?<!\\\\)(?=\n)|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+			patterns: [
+				{include: "#3-part-title"}
+				{include: "#escapes"}
+				{include: "#string"}
+			]
+		},{
 			# Reference
 			name: "meta.function.reference.ms.macro.roff"
 			begin: "^([.'])[ \t]*(\\[)\\s*(\\\\\".*)?$"
