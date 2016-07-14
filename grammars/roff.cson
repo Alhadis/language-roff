@@ -115,7 +115,7 @@ repository:
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
-				2: {name: "entity.name.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{include: "#params"}]
 			
 		}
@@ -644,7 +644,7 @@ repository:
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.name.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{include: "#params"}]
 		},{
 			
@@ -669,7 +669,7 @@ repository:
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.name.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{include: "#params"}]
 		},{
 		
@@ -679,7 +679,7 @@ repository:
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.name.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				
 				# Unquoted string
@@ -719,7 +719,7 @@ repository:
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.name.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{
 				
 				# Unquoted string
@@ -766,7 +766,7 @@ repository:
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.name.roff"}
+				2: {name: "entity.function.name.roff"}
 			patterns: [{include: "#params"}]
 		}]
 		
