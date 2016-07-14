@@ -82,7 +82,7 @@ repository:
 		},{
 			name: "string.quoted.double.roff",
 			begin: '"(?!")'
-			end:   '(?<!")"(?!")|(?<!\\\\)$'
+			end:   '(?<!")"(?!")|(?<!\\\\)$|(?=\\\\\")'
 			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
 			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
 			patterns: [
@@ -621,8 +621,70 @@ repository:
 	macros:
 		patterns: [
 			{include: "#man"}
+			{include: "#ms"}
 			{include: "#mm"}
 		]
+	
+	
+	# Manuscript macros
+	ms:
+		patterns: [{
+			name: "meta.function.${2:/downcase}.ms.macro.roff"
+			begin: "(?x) ^([.'])[ \t]*
+				(1C|2C|AB|AE|AI|AU|B1|B2|BT|BX|DA|DE|DS|EN|EQ|FE|FS|IP|KE|KF|KS|LG
+				|LP|MC|ND|NH|NL|P1|PE|PP|PS|PT|PX|QP|RP|SH|SM|TA|TC|TE|TL|TS|XA|XE
+				|XP|XS|\\[|\\])\\b"
+			end: "(?<!\\\\)(?=\n)"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.roff"}
+			patterns: [{include: "#params"}]
+		},{
+			
+			# Deprecated macros
+			name: "invalid.deprecated.function.${2:/downcase}.ms.macro.roff"
+			begin: "^([.'])[ \t]*(De|Ds)\\b"
+			end: "(?<!\\\\)(?=\n)"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.roff"}
+			patterns: [{include: "#params"}]
+		},{
+			
+			# Underlined text
+			name: "meta.function.ul.ms.macro.roff"
+			begin: "^([.'])[ \t]*(UL)\\b"
+			end: "(?<!\\\\)$|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.roff"}
+			patterns: [{
+				
+				# Unquoted string
+				contentName: "markup.underline.roff"
+				begin: "\\G[ \t]*(?!\")(?=(?:[^\\s\\\\]|\\\\(?!\").)+)"
+				end:   "(?<![^\\\\]\\\\|^\\\\)(?=\\s|$)|(?=\\\\\")"
+				patterns: [include: "#escapes"]
+			},{
+			
+				# Null argument
+				name: "string.quoted.double.empty.roff"
+				match: '(")(")'
+				beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+				endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+			},{
+				# Quoted string
+				name: "string.quoted.double.roff"
+				contentName: "markup.underline.roff"
+				begin: '\\G[ \t]*(")'
+				end:   '(?<!")"(?!")|(?<!\\\\)$|(?=\\\\\")'
+				beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+				endCaptures:   0: name: "punctuation.definition.string.end.roff"
+				patterns: [include: "#escapes"]
+			}
+			{include: "#escapes"}
+			{include: "#string"}]
+		}]
 	
 	
 	# Memorandum macros
