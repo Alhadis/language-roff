@@ -619,6 +619,34 @@ repository:
 	
 	# Macros
 	macros:
+		patterns: [
+			{include: "#man"}
+			{include: "#mm"}
+		]
+	
+	
+	# Memorandum macros
+	mm:
+		patterns: [{
+			name: "meta.function.request.${2:/downcase}.mm.macro.roff"
+			begin: "(?x) ^([.'])[ \t]*
+				(1C|2C|AE|AF|AL|APP|APPSK|AS|AST|AT|AU|AV|AVL|B1|B2|BE|BL|BS|BVL
+				|COVER|COVEND|DE|DF|DL|DS|EC|EF|EH|EN|EOP|EPIC|EQ|EX|FC|FD|FE|FG
+				|FS|GETHN|GETPN|GETR|GETST|H|HC|HM|HU|HX|HY|HZ|IA|IE|INITI|INITR
+				|IND|INDP|ISODATE|LB|LC|LE|LI|LT|LO|MC|ML|MT|MOVE|MULB|MULN|MULE
+				|nP|NCOL|NS|ND|OF|OH|OP|PGFORM|PGNH|PIC|PE|PF|PH|PS|PX?|RD|RF|RL
+				|RP|RS|S|SA|SETR|SG|SK|SM|SP|TA?B|TC|TE|TL|TM|TP|TS|TX|TY|VERBON
+				|VERBOFF|VL|VM|WA|WE|WC|\\)E)\\b"
+			end: "(?<!\\\\)(?=\n)"
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "entity.name.roff"}
+			patterns: [{include: "#params"}]
+		}]
+		
+	
+	# Manual-page macros
+	man:
 		patterns: [{
 			
 			# .TH: Title
