@@ -628,7 +628,7 @@ repository:
 	# Memorandum macros
 	mm:
 		patterns: [{
-			name: "meta.function.request.${2:/downcase}.mm.macro.roff"
+			name: "meta.function.${2:/downcase}.mm.macro.roff"
 			begin: "(?x) ^([.'])[ \t]*
 				(1C|2C|AE|AF|AL|APP|APPSK|AS|AST|AT|AU|AV|AVL|B1|B2|BE|BL|BS|BVL
 				|COVER|COVEND|DE|DF|DL|DS|EC|EF|EH|EN|EOP|EPIC|EQ|EX|FC|FD|FE|FG
@@ -639,7 +639,7 @@ repository:
 				|VERBOFF|VL|VM|WA|WE|WC|\\)E)\\b"
 			end: "(?<!\\\\)(?=\n)"
 			beginCaptures:
-				1: {name: "punctuation.definition.request.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.roff"}
 			patterns: [{include: "#params"}]
 		}]
