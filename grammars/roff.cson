@@ -79,8 +79,9 @@ repository:
 		patterns: [{
 			name: "string.quoted.double.empty.roff",
 			match: '(")(")'
-			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
-			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+			captures:
+				1: {name: "punctuation.definition.string.begin.roff"}
+				2: {name: "punctuation.definition.string.end.roff"}
 		},{
 			name: "string.quoted.double.roff",
 			begin: '"(?!")'
