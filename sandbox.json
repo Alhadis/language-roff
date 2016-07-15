@@ -35,38 +35,83 @@
 	"repository": {
 		"redQuoted": {
 			"name": "markup.bold",
-			"begin": "(?x)\n[ \t]+\n\"",
-			"end": "(?x)\n\"[ \t]*\n|\n(?=\\\\\")\n|\n(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
+			"begin": "(?x)\n[ \t]+\n(\")",
+			"end": "(?x)\n(\")[ \t]*\n|\n(?=\\\\\")\n|\n(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.begin.roff"
+				}
+			},
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.end.roff"
+				}
+			},
 			"patterns": [
 				{
-					"match": "(?:[^\"\\\\]|\"\"|\\\\(?!\").)+(?!$)"
+					"match": "((?:[^\"\\\\]|\"\"|\\\\(?!\").)+)(?!$)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#string-escapes"
+								}
+							]
+						}
+					}
 				},
 				{
-					"include": "#escapes"
+					"include": "#string-escapes"
 				}
 			]
 		},
 		"greenQuoted": {
 			"name": "markup.italic",
 			"begin": "\"",
-			"end": "(?x)\n\"\n(\n\t[^\"\\s]+\n\t[ \t]*\n)?\n|\n(?=\\\\\")\n|\n(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
+			"end": "(?x)\n(\")\n(\n\t[^\"\\s]+\n\t[ \t]*\n)?\n|\n(?=\\\\\")\n|\n(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.roff"
+				}
+			},
 			"endCaptures": {
 				"1": {
+					"name": "punctuation.definition.string.end.roff"
+				},
+				"2": {
 					"name": "markup.bold"
 				}
 			},
 			"patterns": [
 				{
-					"match": "(?:[^\"\\\\]|\"\"|\\\\(?!\").)+(?!$)"
+					"match": "((?:[^\"\\\\]|\"\"|\\\\(?!\").)+)(?!$)",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#string-escapes"
+								}
+							]
+						}
+					}
 				},
 				{
-					"include": "#escapes"
+					"include": "#string-escapes"
 				}
 			]
 		},
 		"red": {
-			"begin": "(?x)\n[ \t]+\n(?!\")\n(?:\n\t[^\\s\"\\\\]\n\t|\n\t\\\\(?!\").\n)+",
+			"begin": "(?x)\n[ \t]+\n(?!\")\n(\n\t(?:\n\t\t[^\\s\"\\\\]\n\t\t|\n\t\t\\\\(?!\").\n\t)+\n)",
 			"end": "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
+			"beginCaptures": {
+				"1": {
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					]
+				}
+			},
 			"name": "markup.bold.faded",
 			"patterns": [
 				{
@@ -76,11 +121,15 @@
 		},
 		"green": {
 			"name": "markup.italic.faded",
-			"begin": "(?x)\n(?<=^|\\s|\")\n(?!\"|\\\\\")\n(?:\n\t[^\\s\"\\\\]\n\t|\n\t\\\\(?!\").\n)+",
+			"begin": "(?x)\n(?<=^|\\s|\")\n(?!\"|\\\\\")\n(\n\t(?:\n\t\t[^\\s\"\\\\]\n\t\t|\n\t\t\\\\(?!\").\n\t)+\n)",
 			"end": "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 			"beginCaptures": {
-				"0": {
-					"name": "begin"
+				"1": {
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					]
 				}
 			},
 			"patterns": [
@@ -121,6 +170,17 @@
 					"name": "constant.character.escape.newline",
 					"begin": "\\\\$\\n?",
 					"end": "^"
+				}
+			]
+		},
+		"string-escapes": {
+			"patterns": [
+				{
+					"match": "\"\"",
+					"name": "constant.character.escape.quote.double.roff"
+				},
+				{
+					"include": "#escapes"
 				}
 			]
 		},
