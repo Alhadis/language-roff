@@ -44,7 +44,7 @@
 					"match": "(?:[^\"\\\\]|\"\"|\\\\(?!\").)+(?!$)"
 				},
 				{
-					"include": "tools#escapes"
+					"include": "#escapes"
 				}
 			]
 		},
@@ -62,7 +62,7 @@
 					"match": "(?:[^\"\\\\]|\"\"|\\\\(?!\").)+(?!$)"
 				},
 				{
-					"include": "tools#escapes"
+					"include": "#escapes"
 				}
 			]
 		},
@@ -72,7 +72,7 @@
 			"name": "test-1.faded",
 			"patterns": [
 				{
-					"include": "tools#escapes"
+					"include": "#escapes"
 				}
 			]
 		},
@@ -87,7 +87,7 @@
 			},
 			"patterns": [
 				{
-					"include": "tools#escapes"
+					"include": "#escapes"
 				}
 			]
 		},
@@ -100,6 +100,19 @@
 			"begin": "[ \t]+\\\\$\\n",
 			"end": "^",
 			"name": "test-3"
+		},
+		"escapes": {
+			"patterns": [
+				{
+					"match": "\\\\.",
+					"name": "constant.character.escape"
+				},
+				{
+					"name": "constant.character.escape.newline",
+					"begin": "\\\\$\\n",
+					"end": "^"
+				}
+			]
 		}
 	}
 }

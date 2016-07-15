@@ -36,7 +36,7 @@ repository:
 		"""
 		patterns: [
 			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+(?!$)'}
-			{include: "tools#escapes"}
+			{include: "#escapes"}
 		]
 		
 	greenQuoted:
@@ -57,7 +57,7 @@ repository:
 			1: name: "test-1"
 		patterns: [
 			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+(?!$)'}
-			{include: "tools#escapes"}
+			{include: "#escapes"}
 		]
 	
 	
@@ -74,7 +74,7 @@ repository:
 		"""
 		end: "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n)|(?=\\\\\")"
 		name: "test-1.faded"
-		patterns: [include: "tools#escapes"]
+		patterns: [include: "#escapes"]
 
 
 	green:
@@ -91,7 +91,7 @@ repository:
 		end: "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n)|(?=\\\\\")"
 		beginCaptures:
 			0: name: "begin"
-		patterns: [include: "tools#escapes"]
+		patterns: [include: "#escapes"]
 
 
 	"escape-green-to-red":
@@ -103,3 +103,15 @@ repository:
 		begin: "[ \t]+\\\\$\\n"
 		end: "^"
 		name: "test-3"
+
+
+	# Everything under this line should be supplied by the existing grammar
+	escapes:
+		patterns: [{
+			match: "\\\\."
+			name: "constant.character.escape"
+		},{
+			name: "constant.character.escape.newline"
+			begin: "\\\\$\\n"
+			end: "^"
+		}]
