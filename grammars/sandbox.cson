@@ -11,19 +11,19 @@ patterns: [{include: "#comments"}
 		1: {name: "punctuation.definition.function.macro.roff"}
 		2: {name: "entity.name.function.roff"}
 	patterns: [
-		{include: "#redQuoted"}
-		{include: "#red"}
-		{include: "#greenQuoted"}
-		{include: "#green"}
-		{include: "#escape-red-to-green"}
-		{include: "#escape-green-to-red"}
+		{include: "#odd-quoted"}
+		{include: "#odd"}
+		{include: "#even-quoted"}
+		{include: "#even"}
+		{include: "#escape-odd-to-even"}
+		{include: "#escape-even-to-odd"}
 	]
 ]
 
 
 repository:
-	redQuoted:
-		name: "test-1"
+	"odd-quoted":
+		name: "odd"
 		begin: '[ \t]+(")'
 		end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 		beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
@@ -32,49 +32,48 @@ repository:
 			match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 			captures: 1: patterns: [include: "#string-escapes"]
 		}, include: "#string-escapes"]
-		
-	greenQuoted:
-		name: "test-2"
+	
+	
+	"even-quoted":
+		name: "even"
 		begin: '"'
 		end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 		beginCaptures:
 			0: name: "punctuation.definition.string.begin.roff"
 		endCaptures:
 			1: name: "punctuation.definition.string.end.roff"
-			2: name: "test-1"
+			2: name: "odd"
 		patterns: [{
 			match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 			captures: 1: patterns: [include: "#string-escapes"]
 		}, include: "#string-escapes"]
 	
 	
-	
-	red:
-		name: "test-1"
+	odd:
+		name: "odd"
 		begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
 		end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 		beginCaptures: 1: patterns: [include: "#escapes"]
 		patterns: [include: "#escapes"]
 
 
-	green:
-		name: "test-2"
+	even:
+		name: "even"
 		begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
 		end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
-		beginCaptures:
-			1: patterns: [include: "#escapes"]
+		beginCaptures: 1: patterns: [include: "#escapes"]
 		patterns: [include: "#escapes"]
 
 
-	"escape-green-to-red":
+	"escape-even-to-odd":
 		begin: "\\\\$\\n?"
 		end: "^[ \t]*"
-		name: "test-3"
+		name: "constant.character.escape.newline.roff"
 	
-	"escape-red-to-green":
+	"escape-odd-to-even":
 		begin: "[ \t]+\\\\$\\n?"
 		end: "^"
-		name: "test-3"
+		name: "constant.character.escape.newline.roff"
 
 
 	# Everything under this line should be supplied by the existing grammar
