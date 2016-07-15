@@ -5,7 +5,7 @@ patterns: [{include: "#comments"}
 
 	name: "meta.odd-even.roff"
 	begin: "^([.'])[ \t]*(BI)\\b"
-	end: "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")"
+	end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 	beginCaptures:
 		0: {name: "meta.function.man.macro.roff"}
 		1: {name: "punctuation.definition.function.macro.roff"}
@@ -24,85 +24,43 @@ patterns: [{include: "#comments"}
 repository:
 	redQuoted:
 		name: "test-1"
-		begin: """(?x)
-			[ \t]+
-			(")
-		"""
-		end: """(?x)
-			(")[ \t]*
-			|
-			(?=\\\\\")
-			|
-			(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)
-		"""
+		begin: '[ \t]+(")'
+		end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 		beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
 		endCaptures:   1: name: "punctuation.definition.string.end.roff"
 		patterns: [{
-			match: '((?:[^\"\\\\]|""|\\\\(?!").)+)(?!$)'
-			captures:
-				1: patterns: [include: "#string-escapes"]
+			match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+			captures: 1: patterns: [include: "#string-escapes"]
 		}, include: "#string-escapes"]
 		
 	greenQuoted:
 		name: "test-2"
 		begin: '"'
-		end: """(?x)
-			(")
-			(
-				[^"\\s]+
-				[ \t]*
-			)?
-			|
-			(?=\\\\\")
-			|
-			(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)
-		"""
+		end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 		beginCaptures:
 			0: name: "punctuation.definition.string.begin.roff"
 		endCaptures:
 			1: name: "punctuation.definition.string.end.roff"
 			2: name: "test-1"
 		patterns: [{
-			match: '((?:[^\"\\\\]|""|\\\\(?!").)+)(?!$)'
-			captures:
-				1: patterns: [include: "#string-escapes"]
+			match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+			captures: 1: patterns: [include: "#string-escapes"]
 		}, include: "#string-escapes"]
 	
 	
 	
 	red:
-		begin: """(?x)
-			[ \t]+
-			(?!")
-			(
-				(?:
-					[^\\s"\\\\]
-					|
-					\\\\(?!").
-				)+
-			)
-		"""
-		end: "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")"
-		beginCaptures:
-			1: patterns: [include: "#escapes"]
-		name: "test-1.faded"
+		name: "test-1"
+		begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+		end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+		beginCaptures: 1: patterns: [include: "#escapes"]
 		patterns: [include: "#escapes"]
 
 
 	green:
-		name: "test-2.faded"
-		begin: """(?x)
-			(?<=^|\\s|\")
-			(?!"|\\\\\")
-			(
-				(?:
-					[^\\s"\\\\]
-					|
-					\\\\(?!").
-				)+
-			)
-		"""
-		end: "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")"
+		name: "test-2"
+		begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+		end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 		beginCaptures:
 			1: patterns: [include: "#escapes"]
 		patterns: [include: "#escapes"]
