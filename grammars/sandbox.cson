@@ -1,0 +1,92 @@
+name: "Sandbox"
+scopeName: "source.sandbox"
+fileTypes: []
+patterns: [{
+	begin: '\\\\"'
+	end: "$"
+	name: "comment.line"
+},{
+	name: "box"
+	begin: "^.BI"
+	end: "(?<!\\\\)(?=\\n)|(?=\\\\\")"
+	patterns: [
+		{include: "#redQuoted"}
+		{include: "#red"}
+		{include: "#greenQuoted"}
+		{include: "#green"}
+		{include: "#escape-red-to-green"}
+		{include: "#escape-green-to-red"}
+	]
+}]
+
+
+repository:
+	redQuoted:
+		name: "test-1"
+		begin: """(?x)
+			[ \t]+
+			"
+		"""
+		end: """(?x)
+			"[ \t]*
+			|
+			(?=\\\\\")
+			|
+			(?<!\\\\)(?=\\n)
+		"""
+		patterns: [include: "tools#escapes"]
+		
+	greenQuoted:
+		name: "test-2"
+		begin: """(?x)
+			"
+		"""
+		end: """(?x)
+			"
+			|
+			(?=\\\\\")
+			|
+			(?<!\\\\)(?=\\n)
+		"""
+		patterns: [include: "tools#escapes"]
+	
+	
+	
+	red:
+		begin: """(?x)
+			[ \t]+
+			(?!")
+			(?:
+				[^\\s"\\\\]
+				|
+				\\\\(?!").
+			)+
+		"""
+		end: "[ \t]+|(?<!\\\\)(?=\\n)|(?=\\\\\")"
+		name: "test-1.faded"
+		patterns: [include: "tools#escapes"]
+
+
+	green:
+		name: "test-2.faded"
+		begin: """(?x)
+			(?!"|\\\\\")
+			(?:
+				[^\\s"\\\\]
+				|
+				\\\\(?!").
+			)+
+		"""
+		end: "(?=[ \t])|(?<!\\\\)(?=\\n)|(?=\\\\\")"
+		patterns: [include: "tools#escapes"]
+
+
+	"escape-green-to-red":
+		begin: "\\\\$\\n"
+		end: "^[ \t]*"
+		name: "test-3"
+	
+	"escape-red-to-green":
+		begin: "[ \t]+\\\\$\\n"
+		end: "^"
+		name: "test-3"

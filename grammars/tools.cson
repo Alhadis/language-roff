@@ -1,0 +1,11 @@
+scopeName: "tools"
+repository:
+	escapes:
+		patterns: [{
+			match: "\\\\."
+			name: "constant.character.escape"
+		},{
+			name: "constant.character.escape.newline"
+			begin: "\\\\$\\n"
+			end: "^"
+		}]
