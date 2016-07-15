@@ -22,15 +22,17 @@ repository:
 		name: "test-1"
 		begin: """(?x)
 			[ \t]+
-			"
+			(")
 		"""
 		end: """(?x)
-			"[ \t]*
+			(")[ \t]*
 			|
 			(?=\\\\\")
 			|
 			(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)
 		"""
+		beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+		endCaptures:   1: name: "punctuation.definition.string.end.roff"
 		patterns: [{
 			match: '((?:[^\"\\\\]|""|\\\\(?!").)+)(?!$)'
 			captures:
@@ -41,7 +43,7 @@ repository:
 		name: "test-2"
 		begin: '"'
 		end: """(?x)
-			"
+			(")
 			(
 				[^"\\s]+
 				[ \t]*
@@ -51,8 +53,11 @@ repository:
 			|
 			(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)
 		"""
+		beginCaptures:
+			0: name: "punctuation.definition.string.begin.roff"
 		endCaptures:
-			1: name: "test-1"
+			1: name: "punctuation.definition.string.end.roff"
+			2: name: "test-1"
 		patterns: [{
 			match: '((?:[^\"\\\\]|""|\\\\(?!").)+)(?!$)'
 			captures:
