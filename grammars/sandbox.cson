@@ -44,11 +44,17 @@ repository:
 		begin: '"'
 		end: """(?x)
 			"
+			(
+				[^"\\s]+
+				[ \t]*
+			)?
 			|
 			(?=\\\\\")
 			|
 			(?<![^\\\\]\\\\|^\\\\)(?=\\n)
 		"""
+		endCaptures:
+			1: name: "test-1"
 		patterns: [
 			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+'}
 			{include: "tools#escapes"}
@@ -74,6 +80,7 @@ repository:
 	green:
 		name: "test-2.faded"
 		begin: """(?x)
+			(?<=^|\\s|\")
 			(?!"|\\\\\")
 			(?:
 				[^\\s"\\\\]
@@ -82,6 +89,8 @@ repository:
 			)+
 		"""
 		end: "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n)|(?=\\\\\")"
+		beginCaptures:
+			0: name: "begin"
 		patterns: [include: "tools#escapes"]
 
 
