@@ -65,9 +65,6 @@ repository:
 	
 	# Control line parameters
 	params:
-		name: "function-call.arguments.roff"
-		begin: "\\G|^"
-		end:   "\\Z|$|(?=\\\\\")"
 		patterns: [
 			{include: "#escapes"}
 			{include: "#string"}
@@ -101,6 +98,14 @@ repository:
 		]
 	
 	
+	# List of arguments passed to a request or macro
+	"param-group":
+		name: "function-call.arguments.roff"
+		begin: "\\G|^"
+		end:   "\\Z|$"
+		patterns: [include: "#params"]
+	
+	
 	# Group of strings delimited with an arbitrary character
 	"3-part-title":
 		name: "string.3-part.other.roff"
@@ -127,11 +132,11 @@ repository:
 				|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg|lf|ll|ls|lt
 				|mc|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd
 				|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)"
-			end: "(?<!\\\\)(?=\n)"
+			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
 				2: {name: "entity.function.name.roff"}
-			patterns: [{include: "#params"}]
+			patterns: [{include: "#param-group"}]
 			
 		}
 		{ include: "#conditionals" }
@@ -150,7 +155,7 @@ repository:
 				5: {name: "invalid.illegal.readonly.register.roff"}
 				6: {name: "invalid.illegal.readonly.register.gnu.roff"}
 				7: {name: "variable.parameter.roff"}
-				8: {patterns: [{include: "#params"}]}
+				8: {patterns: [include: "#param-group"]}
 		},{
 			
 			# String definition
@@ -162,7 +167,7 @@ repository:
 				3: {name: "storage.type.var.roff"}
 				4: {name: "entity.name.function.roff"}
 				5: {name: "variable.parameter.roff"}
-				6: {patterns: [{include: "#params"}]}
+				6: {patterns: [include: "#param-group"]}
 		},{
 			
 			# Three-part title
@@ -175,8 +180,7 @@ repository:
 			contentName: "function-call.arguments.roff"
 			patterns: [
 				{include: "#3-part-title"}
-				{include: "#escapes"}
-				{include: "#string"}
+				{include: "#params"}
 			]
 		}]
 	
@@ -361,11 +365,11 @@ repository:
 				3: {name: "storage.type.function.roff"}
 				4: {name: "entity.name.function.roff"}
 				5: {name: "variable.parameter.roff"}
-				6: {patterns: [{include: "#escapes"}]}
-				7: {patterns: [{include: "#params"}]}
+				6: {patterns: [include: "#escapes"]}
+				7: {patterns: [include: "#param-group"]}
 			endCaptures:
 				0: {name: "punctuation.definition.request.roff"}
-			patterns: [{include: "$self"}]
+			patterns: [include: "$self"]
 		},{
 			
 			# Terminator included
@@ -378,7 +382,7 @@ repository:
 				4: {name: "entity.name.function.roff"}
 				5: {name: "variable.parameter.roff"}
 				6: {name: "entity.terminator.roff", patterns: [{include: "#string"}]}
-				7: {patterns: [{include: "#params"}]}
+				7: {patterns: [include: "#param-group"]}
 			endCaptures:
 				1: {name: "punctuation.definition.request.roff"}
 				2: {name: "entity.terminator.roff"}
@@ -921,7 +925,7 @@ repository:
 			
 			# .TH: Title
 			name: "markup.heading.title.function.man.macro.roff"
-			patterns: [{include: "#params"}]
+			patterns: [include: "#param-group"]
 			begin: "^([.'])[ \t]*(TH)\\b"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
@@ -931,7 +935,7 @@ repository:
 			
 			# .SH: Section heading
 			name: "markup.heading.section.function.man.macro.roff"
-			patterns: [{include: "#params"}]
+			patterns: [include: "#param-group"]
 			begin: "^([.'])[ \t]*(SH)\\b"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
@@ -941,7 +945,7 @@ repository:
 			
 			# .SS: Subsection
 			name: "markup.heading.subsection.function.man.macro.roff"
-			patterns: [{include: "#params"}]
+			patterns: [include: "#param-group"]
 			begin: "^([.'])[ \t]*(SS)\\b"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
