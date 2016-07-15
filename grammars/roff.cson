@@ -922,8 +922,8 @@ repository:
 			# .TH: Title
 			name: "markup.heading.title.function.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'])[ \t]*(TH)"
-			end: "$"
+			begin: "^([.'])[ \t]*(TH)\\b"
+			end: "$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
@@ -932,8 +932,8 @@ repository:
 			# .SH: Section heading
 			name: "markup.heading.section.function.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'])[ \t]*(SH)"
-			end: "$"
+			begin: "^([.'])[ \t]*(SH)\\b"
+			end: "$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
@@ -942,8 +942,8 @@ repository:
 			# .SS: Subsection
 			name: "markup.heading.subsection.function.man.macro.roff"
 			patterns: [{include: "#params"}]
-			begin: "^([.'])[ \t]*(SS)"
-			end: "$"
+			begin: "^([.'])[ \t]*(SS)\\b"
+			end: "$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
@@ -952,7 +952,7 @@ repository:
 			# .EX: Example code
 			contentName: "markup.raw.roff"
 			begin: "^([.'])[ \t]*(EX)\\s*(\\\\\".*)?$"
-			end:   "^([.'])[ \t]*(EE)\\b(.*)$"
+			end:   "^([.'])[ \t]*(EE)\\b"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
 				1: {name: "punctuation.definition.function.macro.roff"}
@@ -961,8 +961,8 @@ repository:
 			endCaptures:
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-				3: {patterns: [{include: "#params"}]}
 		},{
+			
 			# .B/.SB: Bold
 			contentName: "markup.bold.roff"
 			begin: "^([.'])[ \t]*(S?B)(\\s*\\\\\".*$)?(?=$|[ \t]+|\\\\)"
