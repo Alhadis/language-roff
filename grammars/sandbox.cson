@@ -35,7 +35,7 @@ repository:
 			(?<![^\\\\]\\\\|^\\\\)(?=\\n)
 		"""
 		patterns: [
-			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+'}
+			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+(?!$)'}
 			{include: "tools#escapes"}
 		]
 		
@@ -56,7 +56,7 @@ repository:
 		endCaptures:
 			1: name: "test-1"
 		patterns: [
-			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+'}
+			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+(?!$)'}
 			{include: "tools#escapes"}
 		]
 	
