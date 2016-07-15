@@ -11,69 +11,72 @@ patterns: [{include: "#comments"}
 		1: {name: "punctuation.definition.function.macro.roff"}
 		2: {name: "entity.name.function.roff"}
 	patterns: [
-		{include: "#odd-quoted"}
 		{include: "#odd"}
-		{include: "#even-quoted"}
 		{include: "#even"}
-		{include: "#escape-odd-to-even"}
-		{include: "#escape-even-to-odd"}
+		{include: "#odd-escape"}
+		{include: "#even-escape"}
 	]
 ]
 
 
 repository:
-	"odd-quoted":
-		name: "odd"
-		begin: '[ \t]+(")'
-		end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
-		beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
-		endCaptures:   1: name: "punctuation.definition.string.end.roff"
-		patterns: [{
-			match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
-			captures: 1: patterns: [include: "#string-escapes"]
-		}, include: "#string-escapes"]
-	
-	
-	"even-quoted":
-		name: "even"
-		begin: '"'
-		end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
-		beginCaptures:
-			0: name: "punctuation.definition.string.begin.roff"
-		endCaptures:
-			1: name: "punctuation.definition.string.end.roff"
-			2: name: "odd"
-		patterns: [{
-			match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
-			captures: 1: patterns: [include: "#string-escapes"]
-		}, include: "#string-escapes"]
-	
 	
 	odd:
-		name: "odd"
-		begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
-		end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
-		beginCaptures: 1: patterns: [include: "#escapes"]
-		patterns: [include: "#escapes"]
+		patterns: [{
+			name: "odd-style"
+			begin: '[ \t]+(")'
+			end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   1: name: "punctuation.definition.string.end.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "odd-style"
+			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
 
 
 	even:
-		name: "even"
-		begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
-		end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
-		beginCaptures: 1: patterns: [include: "#escapes"]
-		patterns: [include: "#escapes"]
+		patterns: [{
+			name: "even-style"
+			begin: '"'
+			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "punctuation.definition.string.end.roff"
+				2: name: "odd-style"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "even-style"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
 
 
-	"escape-even-to-odd":
-		begin: "\\\\$\\n?"
-		end: "^[ \t]*"
+	"odd-escape":
 		name: "constant.character.escape.newline.roff"
-	
-	"escape-odd-to-even":
 		begin: "[ \t]+\\\\$\\n?"
 		end: "^"
+
+	"even-escape":
 		name: "constant.character.escape.newline.roff"
+		begin: "\\\\$\\n?"
+		end: "^[ \t]*"
+
+
+
+
 
 
 	# Everything under this line should be supplied by the existing grammar

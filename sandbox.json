@@ -7,146 +7,159 @@
 			"include": "#comments"
 		},
 		{
-			"name": "box",
-			"begin": "^.BI",
+			"name": "meta.odd-even.roff",
+			"begin": "^([.'])[ \t]*(BI)\\b",
 			"end": "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
+			"beginCaptures": {
+				"0": {
+					"name": "meta.function.man.macro.roff"
+				},
+				"1": {
+					"name": "punctuation.definition.function.macro.roff"
+				},
+				"2": {
+					"name": "entity.name.function.roff"
+				}
+			},
 			"patterns": [
 				{
-					"include": "#redQuoted"
+					"include": "#odd"
 				},
 				{
-					"include": "#red"
+					"include": "#even"
 				},
 				{
-					"include": "#greenQuoted"
+					"include": "#odd-escape"
 				},
 				{
-					"include": "#green"
-				},
-				{
-					"include": "#escape-red-to-green"
-				},
-				{
-					"include": "#escape-green-to-red"
+					"include": "#even-escape"
 				}
 			]
 		}
 	],
 	"repository": {
-		"redQuoted": {
-			"name": "markup.bold",
-			"begin": "(?x)\n[ \t]+\n(\")",
-			"end": "(?x)\n(\")[ \t]*\n|\n(?=\\\\\")\n|\n(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.definition.string.begin.roff"
-				}
-			},
-			"endCaptures": {
-				"1": {
-					"name": "punctuation.definition.string.end.roff"
-				}
-			},
+		"odd": {
 			"patterns": [
 				{
-					"match": "((?:[^\"\\\\]|\"\"|\\\\(?!\").)+)(?!$)",
-					"captures": {
+					"name": "markup.bold",
+					"begin": "[ \t]+(\")",
+					"end": "(\")[ \t]*|(?=\\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.begin.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.end.roff"
+						}
+					},
+					"patterns": [
+						{
+							"match": "((?:[^\"\\\\]|\"\"|\\\\(?!\").)+)(?!$)",
+							"captures": {
+								"1": {
+									"patterns": [
+										{
+											"include": "#string-escapes"
+										}
+									]
+								}
+							}
+						},
+						{
+							"include": "#string-escapes"
+						}
+					]
+				},
+				{
+					"name": "markup.bold",
+					"begin": "[ \t]+(?!\")((?:[^\\s\"\\\\]|\\\\(?!\").)+)",
+					"end": "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
+					"beginCaptures": {
 						"1": {
 							"patterns": [
 								{
-									"include": "#string-escapes"
+									"include": "#escapes"
 								}
 							]
 						}
-					}
-				},
-				{
-					"include": "#string-escapes"
-				}
-			]
-		},
-		"greenQuoted": {
-			"name": "markup.italic",
-			"begin": "\"",
-			"end": "(?x)\n(\")\n(\n\t[^\"\\s]+\n\t[ \t]*\n)?\n|\n(?=\\\\\")\n|\n(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.definition.string.begin.roff"
-				}
-			},
-			"endCaptures": {
-				"1": {
-					"name": "punctuation.definition.string.end.roff"
-				},
-				"2": {
-					"name": "markup.bold"
-				}
-			},
-			"patterns": [
-				{
-					"match": "((?:[^\"\\\\]|\"\"|\\\\(?!\").)+)(?!$)",
-					"captures": {
-						"1": {
-							"patterns": [
-								{
-									"include": "#string-escapes"
-								}
-							]
-						}
-					}
-				},
-				{
-					"include": "#string-escapes"
-				}
-			]
-		},
-		"red": {
-			"begin": "(?x)\n[ \t]+\n(?!\")\n(\n\t(?:\n\t\t[^\\s\"\\\\]\n\t\t|\n\t\t\\\\(?!\").\n\t)+\n)",
-			"end": "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
-			"beginCaptures": {
-				"1": {
+					},
 					"patterns": [
 						{
 							"include": "#escapes"
 						}
 					]
 				}
-			},
-			"name": "markup.bold.faded",
-			"patterns": [
-				{
-					"include": "#escapes"
-				}
 			]
 		},
-		"green": {
-			"name": "markup.italic.faded",
-			"begin": "(?x)\n(?<=^|\\s|\")\n(?!\"|\\\\\")\n(\n\t(?:\n\t\t[^\\s\"\\\\]\n\t\t|\n\t\t\\\\(?!\").\n\t)+\n)",
-			"end": "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
-			"beginCaptures": {
-				"1": {
+		"even": {
+			"patterns": [
+				{
+					"name": "markup.italic",
+					"begin": "\"",
+					"end": "(\")([^\"\\s]+[ \t]*)?|(?=\\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.string.end.roff"
+						},
+						"2": {
+							"name": "markup.bold"
+						}
+					},
+					"patterns": [
+						{
+							"match": "((?:[^\"\\\\]|\"\"|\\\\(?!\").)+)(?!$)",
+							"captures": {
+								"1": {
+									"patterns": [
+										{
+											"include": "#string-escapes"
+										}
+									]
+								}
+							}
+						},
+						{
+							"include": "#string-escapes"
+						}
+					]
+				},
+				{
+					"name": "markup.italic",
+					"begin": "(?<=^|\\s|\")(?!\"|\\\\\")((?:[^\\s\"\\\\]|\\\\(?!\").)+)",
+					"end": "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
+					"beginCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					},
 					"patterns": [
 						{
 							"include": "#escapes"
 						}
 					]
 				}
-			},
-			"patterns": [
-				{
-					"include": "#escapes"
-				}
 			]
 		},
-		"escape-green-to-red": {
-			"begin": "\\\\$\\n?",
-			"end": "^[ \t]*",
-			"name": "test-3"
-		},
-		"escape-red-to-green": {
+		"odd-escape": {
+			"name": "constant.character.escape.newline.roff",
 			"begin": "[ \t]+\\\\$\\n?",
-			"end": "^",
-			"name": "test-3"
+			"end": "^"
+		},
+		"even-escape": {
+			"name": "constant.character.escape.newline.roff",
+			"begin": "\\\\$\\n?",
+			"end": "^[ \t]*"
 		},
 		"escapes": {
 			"patterns": [
