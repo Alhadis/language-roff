@@ -3,9 +3,13 @@ scopeName: "source.sandbox"
 fileTypes: []
 patterns: [{include: "#comments"}
 
-	name: "box"
-	begin: "^.BI"
+	name: "meta.odd-even.roff"
+	begin: "^([.'])[ \t]*(BI)\\b"
 	end: "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")"
+	beginCaptures:
+		0: {name: "meta.function.man.macro.roff"}
+		1: {name: "punctuation.definition.function.macro.roff"}
+		2: {name: "entity.name.function.roff"}
 	patterns: [
 		{include: "#redQuoted"}
 		{include: "#red"}
