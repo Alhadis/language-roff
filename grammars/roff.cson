@@ -929,6 +929,7 @@ repository:
 			begin: "^([.'])[ \t]*(TH)\\b"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		},{
@@ -939,6 +940,7 @@ repository:
 			begin: "^([.'])[ \t]*(SH)\\b"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		},{
@@ -949,6 +951,7 @@ repository:
 			begin: "^([.'])[ \t]*(SS)\\b"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		},{
@@ -959,10 +962,12 @@ repository:
 			end:   "^([.'])[ \t]*(EE)\\b"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 				3: {patterns: [{include: "#escapes-copymode"}]}
 			endCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		},{
@@ -1014,6 +1019,7 @@ repository:
 			end:   "^(?=[.'])|(?=\\\\\")|((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 				3: {patterns: [{include: "#escapes-copymode"}]}
@@ -1028,6 +1034,7 @@ repository:
 			end:   "^(?=[.'])|(?=\\\\\")|((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 				3: {patterns: [{include: "#escapes-copymode"}]}
@@ -1040,6 +1047,7 @@ repository:
 			name: "meta.bold-italic.roff"
 			begin: "^([.'])[ \t]*(BI)(?=[ \t\\\\]|$)"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 			end: "(?<!\\\\)$|(?=\\\\\")"
@@ -1189,6 +1197,7 @@ repository:
 			name: "meta.bold-roman.roff"
 			begin: "^([.'])[ \t]*(BR)(?=[ \t\\\\]|$)"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 			end: "(?<!\\\\)$|(?=\\\\\")"
@@ -1338,6 +1347,7 @@ repository:
 			name: "meta.italic-bold.roff"
 			begin: "^([.'])[ \t]*(IB)(?=[ \t\\\\]|$)"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 			end: "(?<!\\\\)$|(?=\\\\\")"
@@ -1487,6 +1497,7 @@ repository:
 			name: "meta.italic-roman.roff"
 			begin: "^([.'])[ \t]*(IR)(?=[ \t\\\\]|$)"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 			end: "(?<!\\\\)$|(?=\\\\\")"
@@ -1636,6 +1647,7 @@ repository:
 			name: "meta.roman-bold.roff"
 			begin: "^([.'])[ \t]*(RB)(?=[ \t\\\\]|$)"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 			end: "(?<!\\\\)$|(?=\\\\\")"
@@ -1785,6 +1797,7 @@ repository:
 			name: "meta.roman-italic.roff"
 			begin: "^([.'])[ \t]*(RI)(?=[ \t\\\\]|$)"
 			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 			end: "(?<!\\\\)$|(?=\\\\\")"
