@@ -72,7 +72,7 @@ repository:
 				\\\\(?!").
 			)+
 		"""
-		end: "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n)|(?=\\\\\")"
+		end: "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")"
 		name: "test-1.faded"
 		patterns: [include: "#escapes"]
 
@@ -88,19 +88,19 @@ repository:
 				\\\\(?!").
 			)+
 		"""
-		end: "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n)|(?=\\\\\")"
+		end: "(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")"
 		beginCaptures:
 			0: name: "begin"
 		patterns: [include: "#escapes"]
 
 
 	"escape-green-to-red":
-		begin: "\\\\$\\n"
+		begin: "\\\\$\\n?"
 		end: "^[ \t]*"
 		name: "test-3"
 	
 	"escape-red-to-green":
-		begin: "[ \t]+\\\\$\\n"
+		begin: "[ \t]+\\\\$\\n?"
 		end: "^"
 		name: "test-3"
 
@@ -112,6 +112,6 @@ repository:
 			name: "constant.character.escape"
 		},{
 			name: "constant.character.escape.newline"
-			begin: "\\\\$\\n"
+			begin: "\\\\$\\n?"
 			end: "^"
 		}]
