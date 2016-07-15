@@ -1,11 +1,8 @@
 name: "Sandbox"
 scopeName: "source.sandbox"
 fileTypes: []
-patterns: [{
-	begin: '\\\\"'
-	end: "$"
-	name: "comment.line"
-},{
+patterns: [{include: "#comments"}
+
 	name: "box"
 	begin: "^.BI"
 	end: "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")"
@@ -17,7 +14,7 @@ patterns: [{
 		{include: "#escape-red-to-green"}
 		{include: "#escape-green-to-red"}
 	]
-}]
+]
 
 
 repository:
@@ -108,6 +105,12 @@ repository:
 	# Everything under this line should be supplied by the existing grammar
 	escapes:
 		patterns: [{
+			match: '(\\\\n\\()(\\w{2})'
+			name: "constant.character.escape"
+			captures:
+				1: name: "entity.name"
+				2: name: "variable.parameter"
+		},{
 			match: "\\\\."
 			name: "constant.character.escape"
 		},{
@@ -115,3 +118,8 @@ repository:
 			begin: "\\\\$\\n?"
 			end: "^"
 		}]
+
+	comments:
+		begin: '\\\\"'
+		end: "$"
+		name: "comment.line"
