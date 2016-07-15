@@ -34,13 +34,14 @@ repository:
 			|
 			(?<!\\\\)(?=\\n)
 		"""
-		patterns: [include: "tools#escapes"]
+		patterns: [
+			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+'}
+			{include: "tools#escapes"}
+		]
 		
 	greenQuoted:
 		name: "test-2"
-		begin: """(?x)
-			"
-		"""
+		begin: '"'
 		end: """(?x)
 			"
 			|
@@ -48,7 +49,10 @@ repository:
 			|
 			(?<!\\\\)(?=\\n)
 		"""
-		patterns: [include: "tools#escapes"]
+		patterns: [
+			{match: '(?:[^\"\\\\]|""|\\\\(?!").)+'}
+			{include: "tools#escapes"}
+		]
 	
 	
 	
