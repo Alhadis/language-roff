@@ -741,13 +741,14 @@ repository:
 		},{
 			
 			# Deprecated macros
-			name: "invalid.deprecated.function.${2:/downcase}.ms.macro.roff"
+			name: "meta.deprecated.function.${2:/downcase}.ms.macro.roff"
 			contentName: "function-call.arguments.roff"
-			begin: "^([.'])[ \t]*(De|Ds)\\b"
+			begin: "^([.'])[ \t]*((De|Ds))\\b"
 			end: "(?<!\\\\)$|(?=\\s*\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
+				3: {name: "invalid.deprecated.roff"}
 			patterns: [
 				{include: "#escapes"}
 				{include: "#string"}
