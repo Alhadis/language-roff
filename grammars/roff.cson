@@ -68,7 +68,7 @@ repository:
 		patterns: [
 			{include: "#escapes"}
 			{include: "#string"}
-			{match: "\\d+", name: "constant.numeric.roff"}
+			{match: "[-+]?\\d+", name: "constant.numeric.roff"}
 		]
 	
 	
