@@ -79,7 +79,58 @@ repository:
 		}]
 
 
+	"odd-roman":
+		patterns: [{
+			name: "markup.plain.roff"
+			begin: '[ \t]+(")'
+			end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   1: name: "punctuation.definition.string.end.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "markup.plain.roff"
+			begin: '[ \t]+(\\\\$\\n?)'
+			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes", {
+				begin: "^[ \t]+"
+				end: "(?=\\S)|(?<!\\\\)(?:$|\\n)"
+			}]
+		},{
+			name: "markup.plain.roff"
+			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+
+
+
 	"even-bold":
+		patterns: [include: "#bold-after-italic", {
+			name: "markup.bold.roff"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+
+
+	"even-italic":
+		patterns: [include: "#italic-after-bold", {
+			name: "markup.italic.roff"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+	
+	
+	
+	"bold-after-italic":
 		patterns: [{
 			name: "markup.bold.roff"
 			begin: '"'
@@ -93,16 +144,27 @@ repository:
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
 			}, include: "#string-escapes"]
-		},{
-			name: "markup.bold.roff"
-			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
-			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
-			beginCaptures: 1: patterns: [include: "#escapes"]
-			patterns: [include: "#escapes"]
 		}]
-
-
-	"even-italic":
+	
+	
+	"bold-after-roman":
+		patterns: [{
+			name: "markup.bold.roff"
+			begin: '"'
+			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "punctuation.definition.string.end.roff"
+				2: name: "markup.plain.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+	
+	
+	"italic-after-bold":
 		patterns: [{
 			name: "markup.italic.roff"
 			begin: '"'
@@ -116,13 +178,57 @@ repository:
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
 			}, include: "#string-escapes"]
-		},{
-			name: "markup.italic.roff"
-			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
-			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
-			beginCaptures: 1: patterns: [include: "#escapes"]
-			patterns: [include: "#escapes"]
 		}]
+	
+	"italic-after-roman":
+		patterns: [{
+			name: "markup.italic.roff"
+			begin: '"'
+			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "punctuation.definition.string.end.roff"
+				2: name: "markup.plain.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+
+
+	"roman-after-bold":
+		patterns: [{
+			name: "markup.plain.roff"
+			begin: '"'
+			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "punctuation.definition.string.end.roff"
+				2: name: "markup.bold.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+
+	"roman-after-italic":
+		patterns: [{
+			name: "markup.plain.roff"
+			begin: '"'
+			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "punctuation.definition.string.end.roff"
+				2: name: "markup.italic.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+
 
 
 	"odd-escape":
