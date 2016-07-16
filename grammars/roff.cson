@@ -429,36 +429,6 @@ repository:
 		}]
 	
 	
-	# Underline first argument only
-	"underline-first":
-		patterns: [{
-			
-			# Unquoted string
-			contentName: "markup.underline.roff"
-			begin: "\\G[ \t]*(?!\")(?=(?:[^\\s\\\\]|\\\\(?!\").)+)"
-			end:   "(?<![^\\\\]\\\\|^\\\\)(?=\\s|$)|(?=\\\\\")"
-			patterns: [include: "#escapes"]
-		},{
-		
-			# Null argument
-			name: "string.quoted.double.empty.roff"
-			match: '(")(")'
-			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
-			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
-		},{
-			# Quoted string
-			name: "string.quoted.double.roff"
-			contentName: "markup.underline.roff"
-			begin: '\\G[ \t]*(")'
-			end:   '((?:"")*)"(?!")|(?<!\\\\)$|(?=\\\\\")'
-			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
-			endCaptures:
-				0: name: "punctuation.definition.string.end.roff"
-				1: name: "markup.underline.roff", patterns: [include: "#string-escapes"]
-			patterns: [include: "#string-escapes"]
-		}
-		{include: "#escapes"}
-		{include: "#string"}]
 	
 	
 	
@@ -701,6 +671,7 @@ repository:
 			{include: "#man"}
 			{include: "#ms"}
 			{include: "#mm"}
+			{include: "#me"}
 			{include: "#www"}
 		]
 	
@@ -832,6 +803,83 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [{include: "#params"}]
+		}]
+	
+	
+	# Paper-formatting macros
+	me:
+		patterns: [{
+			
+			# Assorted macros without special highlighting or pattern-matching
+			name: "meta.function.${3:/downcase}.me.macro.roff"
+			begin: "(?x) ^([.'])[ \t]*
+				((?:[()][cdfqxz]|\\+\\+|\\+c)|
+				(1c|2c|EN|EQ|GE|GS|PE|PS|TE|TH|TS|ba|bc|bu|bx|hx
+				|hl|ip|lp|np|pd|pp|r|re|sk|sm|sz|tp|uh|xp)\\b)"
+			end: "(?<!\\\\)$|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				3: {name: "entity.function.name.roff"}
+			patterns: [include: "#params"]
+		},{
+			
+			# .(l: List
+			begin: "^([.'])[ \t]*(\\(l)\\b[ \t]*(?=$|\\n|\\\\\")"
+			end:   "^([.'])[ \t]*(\\)l)\\b"
+			contentName: "markup.list.unnumbered.roff"
+			patterns: [include: "$self"]
+			beginCaptures:
+				0: {name: "meta.function.list.begin.me.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+			endCaptures:
+				0: {name: "meta.function.list.end.me.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+		},{
+			
+			# .b: Bold
+			begin: "^([.'])[ \t]*(b)\\b"
+			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
+			contentName: "function-call.arguments.roff"
+			beginCaptures:
+				0: {name: "meta.function.bold-text.me.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+			patterns: [include: "#bold-first"]
+		},{
+			
+			# .i: Italic
+			begin: "^([.'])[ \t]*(i)\\b"
+			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
+			contentName: "function-call.arguments.roff"
+			beginCaptures:
+				0: {name: "meta.function.italic-text.me.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+			patterns: [include: "#italic-first"]
+		},{
+			
+			# .bi: Bold/Italic
+			begin: "^([.'])[ \t]*(bi)\\b"
+			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
+			contentName: "function-call.arguments.roff"
+			beginCaptures:
+				0: {name: "meta.function.bold-italic-text.me.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+			patterns: [include: "#bold-italic-first"]
+		},{
+			
+			# .u: Underline
+			begin: "^([.'])[ \t]*(u)\\b"
+			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
+			contentName: "function-call.arguments.roff"
+			beginCaptures:
+				0: {name: "meta.function.underline-text.me.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+			patterns: [include: "#underline-first"]
 		}]
 	
 	
@@ -1489,3 +1537,146 @@ repository:
 				captures: 1: patterns: [include: "#string-escapes"]
 			}, include: "#string-escapes"]
 		}]
+
+
+
+	# Embolden first argument only
+	"bold-first":
+		patterns: [{
+			
+			# Unquoted string
+			name: "markup.bold.roff"
+			begin: "\\G[ \t]*(?!\")(?=(?:[^\\s\\\\]|\\\\(?!\").)+)"
+			end:   "(?<![^\\\\]\\\\|^\\\\)(?=\\s|$)|(?=\\\\\")"
+			patterns: [include: "#escapes"]
+		},{
+		
+			# Null argument
+			name: "markup.bold.roff"
+			match: '(")(")'
+			captures:
+				0: {name: "string.quoted.double.empty.roff"}
+				1: {name: "punctuation.definition.string.begin.roff"}
+				2: {name: "punctuation.definition.string.end.roff"}
+		},{
+			# Quoted string
+			name: "markup.bold.roff"
+			contentName: "string.quoted.double.roff"
+			begin: '\\G[ \t]*(")'
+			end:   '((?:"")*)"(?!")|(?<!\\\\)(?:$|\\n)|(?=\\\\\")'
+			beginCaptures:
+				0: name: "string.quoted.double.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				0: name: "punctuation.definition.string.end.roff"
+				1: name: "markup.bold.roff", patterns: [include: "#string-escapes"]
+			patterns: [include: "#string-escapes"]
+		}
+		{include: "#escapes"}
+		{include: "#string"}]
+	
+	
+	# Italicise first argument only
+	"italic-first":
+		patterns: [{
+			
+			# Unquoted string
+			name: "markup.italic.roff"
+			begin: "\\G[ \t]*(?!\")(?=(?:[^\\s\\\\]|\\\\(?!\").)+)"
+			end:   "(?<![^\\\\]\\\\|^\\\\)(?=\\s|$)|(?=\\\\\")"
+			patterns: [include: "#escapes"]
+		},{
+		
+			# Null argument
+			name: "markup.italic.roff"
+			match: '(")(")'
+			captures:
+				0: {name: "string.quoted.double.empty.roff"}
+				1: {name: "punctuation.definition.string.begin.roff"}
+				2: {name: "punctuation.definition.string.end.roff"}
+		},{
+			# Quoted string
+			name: "markup.italic.roff"
+			contentName: "string.quoted.double.roff"
+			begin: '\\G[ \t]*(")'
+			end:   '((?:"")*)"(?!")|(?<!\\\\)(?:$|\\n)|(?=\\\\\")'
+			beginCaptures:
+				0: name: "string.quoted.double.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				0: name: "punctuation.definition.string.end.roff"
+				1: name: "markup.italic.roff", patterns: [include: "#string-escapes"]
+			patterns: [include: "#string-escapes"]
+		}
+		{include: "#escapes"}
+		{include: "#string"}]
+
+
+
+	# Embolden and italicise first argument only
+	"bold-italic-first":
+		patterns: [{
+			
+			# Unquoted string
+			name: "markup.bold.italic.roff"
+			begin: "\\G[ \t]*(?!\")(?=(?:[^\\s\\\\]|\\\\(?!\").)+)"
+			end:   "(?<![^\\\\]\\\\|^\\\\)(?=\\s|$)|(?=\\\\\")"
+			patterns: [include: "#escapes"]
+		},{
+		
+			# Null argument
+			name: "markup.bold.italic.roff"
+			match: '(")(")'
+			captures:
+				0: {name: "string.quoted.double.empty.roff"}
+				1: {name: "punctuation.definition.string.begin.roff"}
+				2: {name: "punctuation.definition.string.end.roff"}
+		},{
+			# Quoted string
+			name: "markup.bold.italic.roff"
+			contentName: "string.quoted.double.roff"
+			begin: '\\G[ \t]*(")'
+			end:   '((?:"")*)"(?!")|(?<!\\\\)(?:$|\\n)|(?=\\\\\")'
+			beginCaptures:
+				0: name: "string.quoted.double.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				0: name: "punctuation.definition.string.end.roff"
+				1: name: "markup.bold.italic.roff", patterns: [include: "#string-escapes"]
+			patterns: [include: "#string-escapes"]
+		}
+		{include: "#escapes"}
+		{include: "#string"}]
+
+	
+
+	# Underline first argument only
+	"underline-first":
+		patterns: [{
+			
+			# Unquoted string
+			contentName: "markup.underline.roff"
+			begin: "\\G[ \t]*(?!\")(?=(?:[^\\s\\\\]|\\\\(?!\").)+)"
+			end:   "(?<![^\\\\]\\\\|^\\\\)(?=\\s|$)|(?=\\\\\")"
+			patterns: [include: "#escapes"]
+		},{
+		
+			# Null argument
+			name: "string.quoted.double.empty.roff"
+			match: '(")(")'
+			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
+			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
+		},{
+			# Quoted string
+			name: "string.quoted.double.roff"
+			contentName: "markup.underline.roff"
+			begin: '\\G[ \t]*(")'
+			end:   '((?:"")*)"(?!")|(?<!\\\\)$|(?=\\\\\")'
+			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				0: name: "punctuation.definition.string.end.roff"
+				1: name: "markup.underline.roff", patterns: [include: "#string-escapes"]
+			patterns: [include: "#string-escapes"]
+		}
+		{include: "#escapes"}
+		{include: "#string"}]
