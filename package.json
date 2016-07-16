@@ -1,6 +1,6 @@
 {
 	"name": "language-roff",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Atom support for Unix manual pages (Groff/Troff)",
 	"keywords": ["Roff", "Groff", "Troff", "Nroff", "Unix Manual Page", "Manpage", "man"],
 	"repository": "https://github.com/Alhadis/language-roff",
