@@ -34,6 +34,12 @@ repository:
 			}, include: "#string-escapes"]
 		},{
 			name: "odd-style"
+			begin: '[ \t]+(\\\\$\\n)'
+			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [begin: "^[ \t]+", end: "(?=\\S)|(?<!\\\\)(?=\\n|$)"]
+		},{
+			name: "odd-style"
 			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
 			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures: 1: patterns: [include: "#escapes"]
