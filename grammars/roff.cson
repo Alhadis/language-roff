@@ -937,7 +937,17 @@ repository:
 				2: {name: "entity.function.name.roff"}
 			patterns: [include: "#param-group"]
 		},{
-			
+		
+			# Various deprecated macros
+			name: "meta.deprecated.function.${2:/downcase}.man.macro.roff"
+			begin: "^([.'])[ \t]*((AT|DT|PD|UC))\\b"
+			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+				3: {name: "invalid.deprecated.roff"}
+			patterns: [include: "#param-group"]
+		},{
 			# .TH: Title
 			name: "markup.heading.title.function.man.macro.roff"
 			patterns: [include: "#param-group"]
