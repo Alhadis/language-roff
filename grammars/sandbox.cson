@@ -235,14 +235,16 @@ repository:
 	
 	"even-bold-after-italic":
 		patterns: [{
-			name: "markup.bold.roff"
-			begin: '"'
-			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			contentName: "markup.bold.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures:
-				0: name: "punctuation.definition.string.begin.roff"
+				0: name: "markup.bold.roff"
+				1: name: "punctuation.definition.string.begin.roff"
 			endCaptures:
-				1: name: "punctuation.definition.string.end.roff"
-				2: name: "markup.italic.roff"
+				1: name: "markup.bold.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.italic.roff"
 			patterns: [{
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
@@ -251,14 +253,16 @@ repository:
 	
 	"even-bold-after-roman":
 		patterns: [{
-			name: "markup.bold.roff"
-			begin: '"'
-			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			contentName: "markup.bold.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures:
-				0: name: "punctuation.definition.string.begin.roff"
+				0: name: "markup.bold.roff"
+				1: name: "punctuation.definition.string.begin.roff"
 			endCaptures:
-				1: name: "punctuation.definition.string.end.roff"
-				2: name: "markup.plain.roff"
+				1: name: "markup.bold.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.plain.roff"
 			patterns: [{
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
@@ -268,14 +272,16 @@ repository:
 	
 	"even-italic-after-bold":
 		patterns: [{
-			name: "markup.italic.roff"
-			begin: '"'
-			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			contentName: "markup.italic.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures:
-				0: name: "punctuation.definition.string.begin.roff"
+				0: name: "markup.italic.roff"
+				1: name: "punctuation.definition.string.begin.roff"
 			endCaptures:
-				1: name: "punctuation.definition.string.end.roff"
-				2: name: "markup.bold.roff"
+				1: name: "markup.italic.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.bold.roff"
 			patterns: [{
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
@@ -284,14 +290,16 @@ repository:
 	
 	"even-italic-after-roman":
 		patterns: [{
-			name: "markup.italic.roff"
-			begin: '"'
-			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			contentName: "markup.italic.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures:
-				0: name: "punctuation.definition.string.begin.roff"
+				0: name: "markup.italic.roff"
+				1: name: "punctuation.definition.string.begin.roff"
 			endCaptures:
-				1: name: "punctuation.definition.string.end.roff"
-				2: name: "markup.plain.roff"
+				1: name: "markup.italic.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.plain.roff"
 			patterns: [{
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
@@ -301,14 +309,16 @@ repository:
 
 	"even-roman-after-bold":
 		patterns: [{
-			name: "markup.plain.roff"
-			begin: '"'
-			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			contentName: "markup.plain.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures:
-				0: name: "punctuation.definition.string.begin.roff"
+				0: name: "markup.plain.roff"
+				1: name: "punctuation.definition.string.begin.roff"
 			endCaptures:
-				1: name: "punctuation.definition.string.end.roff"
-				2: name: "markup.bold.roff"
+				1: name: "markup.plain.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.bold.roff"
 			patterns: [{
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
@@ -317,14 +327,16 @@ repository:
 
 	"even-roman-after-italic":
 		patterns: [{
-			name: "markup.plain.roff"
-			begin: '"'
-			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			contentName: "markup.plain.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures:
-				0: name: "punctuation.definition.string.begin.roff"
+				0: name: "markup.plain.roff"
+				1: name: "punctuation.definition.string.begin.roff"
 			endCaptures:
-				1: name: "punctuation.definition.string.end.roff"
-				2: name: "markup.italic.roff"
+				1: name: "markup.plain.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.italic.roff"
 			patterns: [{
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
