@@ -492,10 +492,15 @@ repository:
 			match: "^(\\.|'+)[ \t]*$"
 			captures:
 				1: {name: "punctuation.definition.comment.roff"}
-		},
+		},{
+			
+			# Concealed newline
+			name: "constant.character.escape.newline.roff"
+			begin: "\\\\$\\n?"
+			end: "^"
+		}
 		
 		# Basic sequences
-		{match: "\\\\\n",    name: "constant.character.escape.newline.roff"}
 		{match: "\\\\t",     name: "constant.character.escape.tab.roff"}
 		{match: "\\\\a",     name: "constant.character.escape.leader-char.roff"}
 		{match: "\\x5C{2}",  name: "constant.character.escape.backslash.roff"}
@@ -1081,904 +1086,340 @@ repository:
 			endCaptures:
 				1: {name: "markup.italic.roff"}
 				2: {patterns: [{include: "#escapes"}]}
-		},{
+		
+		}, include: "#alternating-fonts"]
+
+
+	# Repeating/combined-font macros
+	"alternating-fonts":
+		patterns: [{
 			
-			# .BI: Bold and italic
+			# .BI: Bold + Italic
 			name: "meta.bold-italic.roff"
-			begin: "^([.'])[ \t]*(BI)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(BI)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-			end: "(?<!\\\\)$|(?=\\\\\")"
-			patterns: [{
-				
-				begin: '((?<!\\\\)"(?:[^"\\\\]|""|\\\\(?!").)+")[ \t]*((?!\\\\?")(?:[^"\\s\\\\]|""|\\\\(?!").)+\\\\$\\n)'
-				end: '^$|(?=\\\\")|(?<!\\\\)$|(?=[ \t])'
-				contentName: "markup.italic.roff"
-				beginCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.italic.roff"
-				patterns: [
-					{match: '\\\\(?!").', name: "constant.character.escape.roff"}
-					{begin: "\\\\$\\n", end: "^"}
-				]
-			},{
-				
-				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [include: "#string-escapes"]
-				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
-				contentName: "markup.italic.roff"
-				beginCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.italic.roff"
-				endCaptures:
-					0: name: "markup.italic.roff"
-			},{
-				begin: '("(?:[^\\\\"]|""|\\\\[^"])+(?=\\\\$\\n))'
-				end: '(?<!")(?=[ \t])|(?:[^\\s"\\\\]|""|\\\\(?!").)*(?:(?<!\\\\)(?:"|(?=$))|(?=\\\\"))'
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:   0: name: "markup.italic.roff"
-				patterns: [{
-					name: "markup.bold.roff"
-					begin: "(?<=\\G)\\\\$\\n"
-					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
-					patterns: [
-						{include: "#string-escapes"}
-						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
-					]}
-					{name: "markup.bold.roff",   match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
-					{name: "markup.italic.roff", begin: '[ \\t]+(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\[^"])+\\\\$\\n', end: '(?<!\\\\)$|(?="[ \\t])|(?=\\\\")|(?<!\\\\)(?=[ \\t])'}
-					{name: "markup.italic.roff", match: '(?:[ \\t]+|(?<=")(?=[^"]|$))(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\(?!").)+'}
-					{name: "markup.bold.roff",   begin: "\\\\$\\n", end: "^"}
-					{name: "markup.italic.roff", match: '^(?:[^"\\s\\\\]|""|\\\\(?!").)+'}]
-			},{
-				match: '(?<!\\\\)("(?:[^\\\\"]|""|\\\\(?!").)*")[ \t]+("(?:[^\\\\"]|""|\\\\(?!").)*(?:(?=[^"\\\\]$)|"))'
-				captures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.italic.roff"
-			},{
-				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
-				patterns: [
-					{name: "markup.italic.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{include: "#string-escapes"}
-				]
-				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
-				beginCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.italic.roff"
-				contentName: "markup.italic.roff"
-				endCaptures:
-					0: name: "markup.italic.roff"
-			},{
-				begin: '(?<=\\s")(?:[^"\\\\]|""|\\\\(?=$)|\\\\(?!").)+'
-				end:   '(?=\\\\")|(?<!\\\\)(?=$)|"[ \\t]+'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.italic.roff"
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:   0: name: "markup.italic.roff"
-			},{
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end:   '(?=\\\\")|^(?=(?:[^\\s\\\\]|\\\\[^\"])+[ \t]+)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=$\\n)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=[ \t]*$\\n)|^[ \t]+((?:[^ \t\\\\]|\\\\[^\"])+)(?=[ \t]|$)|^(?=$\\n)'
-				contentName: "markup.bold.roff"
-				beginCaptures:
-					0: name: "markup.bold.roff"
-				endCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.bold.roff"
-					3: name: "markup.italic.roff"
-			},{
-				
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end: '(?=[ \t]+(?:[^\\s\\\\]|\\\\[^\"])+(?:\\\\(?=\\n)|[ \t]+|\\Z))'
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:   1: name: "markup.italic.roff"
-				patterns: [{
-					begin: '^(\\S+)[ \t]+(\\S+\\\\$\\n)'
-					end: '(?=[ \t])|(?<!\\\\)(?=\\n)'
-					contentName: "markup.italic.roff"
-					beginCaptures:
-						1: name: "markup.bold.roff"
-						2: name: "markup.italic.roff"
-				},{
-					contentName: "markup.bold.roff"
-					begin: "^(?=\\S)"
-					end: '([ \t]+\\S+\\\\\\$\\n)|([ \t]+\\S+)(?=[ \t]|(?<!\\\\)\\Z)'
-					endCaptures:
-						1: name: "markup.italic.roff"
-						2: name: "markup.italic.roff"
-				}]
-			},{
-				begin: '((?!")(?:[^\\s\\\\]|\\\\[^\"])+)[ \t]+(?=(?:[^\\s\\\\]|\\\\[^\"])+$)'
-				contentName: "markup.italic.roff"
-				end: '^(?=[ \t]|$\\n|\\\\\")|((?:[^\\s\\\\]|\\\\(?!").)+)(?=\\\\\"|$|[ \t])'
-				beginCaptures: 1: name: "markup.bold.roff"
-				endCaptures:   0: name: "markup.italic.roff"
-				patterns: [{
-					name: "markup.italic.roff"
-					begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\(?=$)'
-					end: "(?<=\\S)(?=[ \t]|$)|^(?=[ \t])"
-					beginCaptures: 0: name: "markup.italic.roff"
-				},{
-					name: "markup.italic.roff"
-					begin: "^\\S+"
-					end: "(?=[ \t]|$\\n)"
-				}]
-			},{
-				begin: '(?:(?<=[ \t])|\\G)((?:[^\\s\\\\]|\\\\[^\"])+)(?:$|[ \t]+\\\\$\\n)'
-				end: '(?=[ \t])|(?=(?:[^\\s\\\\]|\\\\[^\"])*$)'
-				contentName: "markup.italic.roff"
-				beginCaptures: 1: name: "markup.bold.roff"
-			},{
-				name: "markup.bold.roff"
-				match: '"(?:[^"\\\\]|""|\\\\(?!").)+(?=\\\\")'
-			},{
-				begin: '"'
-				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
-				contentName: "markup.bold.roff"
-				patterns: [include: "#string-escapes"]
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.italic.roff"
-			},{
-				begin: '(?!\\\\")(?=\\S)'
-				end: '(?=\\\\\")|(?:((?:[^"\\s\\\\]|""|\\\\(?!").)*)[ \t]+((?:[^"\\s\\\\]|""|\\\\(?!").)+)[ \t]*)|(?=$)'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.bold.roff"
-				endCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.italic.roff"
-			}]
-
+			patterns: [
+				{include: "#odd-bold"}
+				{include: "#even-italic-after-bold"}
+				{include: "#even-italic"}
+				{include: "#bridge-escapes"}
+			]
 		},{
 			
-			# .BR: Bold and Roman
+			# .BR: Bold + Roman
 			name: "meta.bold-roman.roff"
-			begin: "^([.'])[ \t]*(BR)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(BR)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-			end: "(?<!\\\\)$|(?=\\\\\")"
-			patterns: [{
-				
-				begin: '((?<!\\\\)"(?:[^"\\\\]|""|\\\\(?!").)+")[ \t]*((?!\\\\?")(?:[^"\\s\\\\]|""|\\\\(?!").)+\\\\$\\n)'
-				end: '^$|(?=\\\\")|(?<!\\\\)$|(?=[ \t])'
-				contentName: "markup.plain.roff"
-				beginCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.plain.roff"
-				patterns: [
-					{match: '\\\\(?!").', name: "constant.character.escape.roff"}
-					{begin: "\\\\$\\n", end: "^"}
-				]
-			},{
-				
-				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [include: "#string-escapes"]
-				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
-				contentName: "markup.plain.roff"
-				beginCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.plain.roff"
-				endCaptures:
-					0: name: "markup.plain.roff"
-			},{
-				begin: '("(?:[^\\\\"]|""|\\\\[^"])+(?=\\\\$\\n))'
-				end: '(?<!")(?=[ \t])|(?:[^\\s"\\\\]|""|\\\\(?!").)*(?:(?<!\\\\)(?:"|(?=$))|(?=\\\\"))'
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:   0: name: "markup.plain.roff"
-				patterns: [{
-					name: "markup.bold.roff"
-					begin: "(?<=\\G)\\\\$\\n"
-					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
-					patterns: [
-						{include: "#string-escapes"}
-						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
-					]}
-					{name: "markup.bold.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
-					{name: "markup.plain.roff", begin: '[ \\t]+(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\[^"])+\\\\$\\n', end: '(?<!\\\\)$|(?="[ \\t])|(?=\\\\")|(?<!\\\\)(?=[ \\t])'}
-					{name: "markup.plain.roff", match: '(?:[ \\t]+|(?<=")(?=[^"]|$))(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\(?!").)+'}
-					{name: "markup.bold.roff", begin: "\\\\$\\n", end: "^"}
-					{name: "markup.plain.roff", match: '^(?:[^"\\s\\\\]|""|\\\\(?!").)+'}]
-			},{
-				match: '(?<!\\\\)("(?:[^\\\\"]|""|\\\\(?!").)*")[ \t]+("(?:[^\\\\"]|""|\\\\(?!").)*(?:(?=[^"\\\\]$)|"))'
-				captures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.plain.roff"
-			},{
-				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
-				patterns: [
-					{name: "markup.plain.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{include: "#string-escapes"}
-				]
-				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
-				beginCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.plain.roff"
-				contentName: "markup.plain.roff"
-				endCaptures:
-					0: name: "markup.plain.roff"
-			},{
-				begin: '(?<=\\s")(?:[^"\\\\]|""|\\\\(?=$)|\\\\(?!").)+'
-				end:   '(?=\\\\")|(?<!\\\\)(?=$)|"[ \\t]+'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.plain.roff"
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:   0: name: "markup.plain.roff"
-			},{
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end:   '(?=\\\\")|^(?=(?:[^\\s\\\\]|\\\\[^\"])+[ \t]+)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=$\\n)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=[ \t]*$\\n)|^[ \t]+((?:[^ \t\\\\]|\\\\[^\"])+)(?=[ \t]|$)|^(?=$\\n)'
-				contentName: "markup.bold.roff"
-				beginCaptures:
-					0: name: "markup.bold.roff"
-				endCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.bold.roff"
-					3: name: "markup.plain.roff"
-			},{
-				
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end: '(?=[ \t]+(?:[^\\s\\\\]|\\\\[^\"])+(?:\\\\(?=\\n)|[ \t]+|\\Z))'
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:   1: name: "markup.plain.roff"
-				patterns: [{
-					begin: '^(\\S+)[ \t]+(\\S+\\\\$\\n)'
-					end: '(?=[ \t])|(?<!\\\\)(?=\\n)'
-					contentName: "markup.plain.roff"
-					beginCaptures:
-						1: name: "markup.bold.roff"
-						2: name: "markup.plain.roff"
-				},{
-					contentName: "markup.bold.roff"
-					begin: "^(?=\\S)"
-					end: '([ \t]+\\S+\\\\\\$\\n)|([ \t]+\\S+)(?=[ \t]|(?<!\\\\)\\Z)'
-					endCaptures:
-						1: name: "markup.plain.roff"
-						2: name: "markup.plain.roff"
-				}]
-			},{
-				begin: '((?!")(?:[^\\s\\\\]|\\\\[^\"])+)[ \t]+(?=(?:[^\\s\\\\]|\\\\[^\"])+$)'
-				contentName: "markup.plain.roff"
-				end: '^(?=[ \t]|$\\n|\\\\\")|((?:[^\\s\\\\]|\\\\(?!").)+)(?=\\\\\"|$|[ \t])'
-				beginCaptures: 1: name: "markup.bold.roff"
-				endCaptures:   0: name: "markup.plain.roff"
-				patterns: [{
-					name: "markup.plain.roff"
-					begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\(?=$)'
-					end: "(?<=\\S)(?=[ \t]|$)|^(?=[ \t])"
-					beginCaptures: 0: name: "markup.plain.roff"
-				},{
-					name: "markup.plain.roff"
-					begin: "^\\S+"
-					end: "(?=[ \t]|$\\n)"
-				}]
-			},{
-				begin: '(?:(?<=[ \t])|\\G)((?:[^\\s\\\\]|\\\\[^\"])+)(?:$|[ \t]+\\\\$\\n)'
-				end: '(?=[ \t])|(?=(?:[^\\s\\\\]|\\\\[^\"])*$)'
-				contentName: "markup.plain.roff"
-				beginCaptures: 1: name: "markup.bold.roff"
-			},{
-				name: "markup.bold.roff"
-				match: '"(?:[^"\\\\]|""|\\\\(?!").)+(?=\\\\")'
-			},{
-				begin: '"'
-				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
-				contentName: "markup.bold.roff"
-				patterns: [include: "#string-escapes"]
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.plain.roff"
-			},{
-				begin: '(?!\\\\")(?=\\S)'
-				end: '(?=\\\\\")|(?:((?:[^"\\s\\\\]|""|\\\\(?!").)*)[ \t]+((?:[^"\\s\\\\]|""|\\\\(?!").)+)[ \t]*)|(?=$)'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.bold.roff"
-				endCaptures:
-					1: name: "markup.bold.roff"
-					2: name: "markup.plain.roff"
-			}]
-
+			patterns: [
+				{include: "#odd-bold"}
+				{include: "#even-roman-after-bold"}
+				{include: "#even-roman"}
+				{include: "#bridge-escapes"}
+			]
 		},{
 			
-			# .IB: Italic and bold
+			# .IB: Italic + Bold
 			name: "meta.italic-bold.roff"
-			begin: "^([.'])[ \t]*(IB)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(IB)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-			end: "(?<!\\\\)$|(?=\\\\\")"
-			patterns: [{
-				
-				begin: '((?<!\\\\)"(?:[^"\\\\]|""|\\\\(?!").)+")[ \t]*((?!\\\\?")(?:[^"\\s\\\\]|""|\\\\(?!").)+\\\\$\\n)'
-				end: '^$|(?=\\\\")|(?<!\\\\)$|(?=[ \t])'
-				contentName: "markup.bold.roff"
-				beginCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.bold.roff"
-				patterns: [
-					{match: '\\\\(?!").', name: "constant.character.escape.roff"}
-					{begin: "\\\\$\\n", end: "^"}
-				]
-			},{
-				
-				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [include: "#string-escapes"]
-				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
-				contentName: "markup.bold.roff"
-				beginCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.bold.roff"
-				endCaptures:
-					0: name: "markup.bold.roff"
-			},{
-				begin: '("(?:[^\\\\"]|""|\\\\[^"])+(?=\\\\$\\n))'
-				end: '(?<!")(?=[ \t])|(?:[^\\s"\\\\]|""|\\\\(?!").)*(?:(?<!\\\\)(?:"|(?=$))|(?=\\\\"))'
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:   0: name: "markup.bold.roff"
-				patterns: [{
-					name: "markup.italic.roff"
-					begin: "(?<=\\G)\\\\$\\n"
-					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
-					patterns: [
-						{include: "#string-escapes"}
-						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
-					]}
-					{name: "markup.italic.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
-					{name: "markup.bold.roff", begin: '[ \\t]+(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\[^"])+\\\\$\\n', end: '(?<!\\\\)$|(?="[ \\t])|(?=\\\\")|(?<!\\\\)(?=[ \\t])'}
-					{name: "markup.bold.roff", match: '(?:[ \\t]+|(?<=")(?=[^"]|$))(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\(?!").)+'}
-					{name: "markup.italic.roff", begin: "\\\\$\\n", end: "^"}
-					{name: "markup.bold.roff", match: '^(?:[^"\\s\\\\]|""|\\\\(?!").)+'}]
-			},{
-				match: '(?<!\\\\)("(?:[^\\\\"]|""|\\\\(?!").)*")[ \t]+("(?:[^\\\\"]|""|\\\\(?!").)*(?:(?=[^"\\\\]$)|"))'
-				captures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.bold.roff"
-			},{
-				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
-				patterns: [
-					{name: "markup.bold.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{include: "#string-escapes"}
-				]
-				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
-				beginCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.bold.roff"
-				contentName: "markup.bold.roff"
-				endCaptures:
-					0: name: "markup.bold.roff"
-			},{
-				begin: '(?<=\\s")(?:[^"\\\\]|""|\\\\(?=$)|\\\\(?!").)+'
-				end:   '(?=\\\\")|(?<!\\\\)(?=$)|"[ \\t]+'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.bold.roff"
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:   0: name: "markup.bold.roff"
-			},{
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end:   '(?=\\\\")|^(?=(?:[^\\s\\\\]|\\\\[^\"])+[ \t]+)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=$\\n)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=[ \t]*$\\n)|^[ \t]+((?:[^ \t\\\\]|\\\\[^\"])+)(?=[ \t]|$)|^(?=$\\n)'
-				contentName: "markup.italic.roff"
-				beginCaptures:
-					0: name: "markup.italic.roff"
-				endCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.italic.roff"
-					3: name: "markup.bold.roff"
-			},{
-				
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end: '(?=[ \t]+(?:[^\\s\\\\]|\\\\[^\"])+(?:\\\\(?=\\n)|[ \t]+|\\Z))'
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:   1: name: "markup.bold.roff"
-				patterns: [{
-					begin: '^(\\S+)[ \t]+(\\S+\\\\$\\n)'
-					end: '(?=[ \t])|(?<!\\\\)(?=\\n)'
-					contentName: "markup.bold.roff"
-					beginCaptures:
-						1: name: "markup.italic.roff"
-						2: name: "markup.bold.roff"
-				},{
-					contentName: "markup.italic.roff"
-					begin: "^(?=\\S)"
-					end: '([ \t]+\\S+\\\\\\$\\n)|([ \t]+\\S+)(?=[ \t]|(?<!\\\\)\\Z)'
-					endCaptures:
-						1: name: "markup.bold.roff"
-						2: name: "markup.bold.roff"
-				}]
-			},{
-				begin: '((?!")(?:[^\\s\\\\]|\\\\[^\"])+)[ \t]+(?=(?:[^\\s\\\\]|\\\\[^\"])+$)'
-				contentName: "markup.bold.roff"
-				end: '^(?=[ \t]|$\\n|\\\\\")|((?:[^\\s\\\\]|\\\\(?!").)+)(?=\\\\\"|$|[ \t])'
-				beginCaptures: 1: name: "markup.italic.roff"
-				endCaptures:   0: name: "markup.bold.roff"
-				patterns: [{
-					name: "markup.bold.roff"
-					begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\(?=$)'
-					end: "(?<=\\S)(?=[ \t]|$)|^(?=[ \t])"
-					beginCaptures: 0: name: "markup.bold.roff"
-				},{
-					name: "markup.bold.roff"
-					begin: "^\\S+"
-					end: "(?=[ \t]|$\\n)"
-				}]
-			},{
-				begin: '(?:(?<=[ \t])|\\G)((?:[^\\s\\\\]|\\\\[^\"])+)(?:$|[ \t]+\\\\$\\n)'
-				end: '(?=[ \t])|(?=(?:[^\\s\\\\]|\\\\[^\"])*$)'
-				contentName: "markup.bold.roff"
-				beginCaptures: 1: name: "markup.italic.roff"
-			},{
-				name: "markup.italic.roff"
-				match: '"(?:[^"\\\\]|""|\\\\(?!").)+(?=\\\\")'
-			},{
-				begin: '"'
-				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
-				contentName: "markup.italic.roff"
-				patterns: [include: "#string-escapes"]
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.bold.roff"
-			},{
-				begin: '(?!\\\\")(?=\\S)'
-				end: '(?=\\\\\")|(?:((?:[^"\\s\\\\]|""|\\\\(?!").)*)[ \t]+((?:[^"\\s\\\\]|""|\\\\(?!").)+)[ \t]*)|(?=$)'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.italic.roff"
-				endCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.bold.roff"
-			}]
-
+			patterns: [
+				{include: "#odd-italic"}
+				{include: "#even-bold-after-italic"}
+				{include: "#even-bold"}
+				{include: "#bridge-escapes"}
+			]
 		},{
 			
-			# .IR: Italic and Roman
+			# .IR: Italic + Roman
 			name: "meta.italic-roman.roff"
-			begin: "^([.'])[ \t]*(IR)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(IR)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-			end: "(?<!\\\\)$|(?=\\\\\")"
-			patterns: [{
-				
-				begin: '((?<!\\\\)"(?:[^"\\\\]|""|\\\\(?!").)+")[ \t]*((?!\\\\?")(?:[^"\\s\\\\]|""|\\\\(?!").)+\\\\$\\n)'
-				end: '^$|(?=\\\\")|(?<!\\\\)$|(?=[ \t])'
-				contentName: "markup.plain.roff"
-				beginCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.plain.roff"
-				patterns: [
-					{match: '\\\\(?!").', name: "constant.character.escape.roff"}
-					{begin: "\\\\$\\n", end: "^"}
-				]
-			},{
-				
-				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [include: "#string-escapes"]
-				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
-				contentName: "markup.plain.roff"
-				beginCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.plain.roff"
-				endCaptures:
-					0: name: "markup.plain.roff"
-			},{
-				begin: '("(?:[^\\\\"]|""|\\\\[^"])+(?=\\\\$\\n))'
-				end: '(?<!")(?=[ \t])|(?:[^\\s"\\\\]|""|\\\\(?!").)*(?:(?<!\\\\)(?:"|(?=$))|(?=\\\\"))'
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:   0: name: "markup.plain.roff"
-				patterns: [{
-					name: "markup.italic.roff"
-					begin: "(?<=\\G)\\\\$\\n"
-					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
-					patterns: [
-						{include: "#string-escapes"}
-						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
-					]}
-					{name: "markup.italic.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
-					{name: "markup.plain.roff", begin: '[ \\t]+(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\[^"])+\\\\$\\n', end: '(?<!\\\\)$|(?="[ \\t])|(?=\\\\")|(?<!\\\\)(?=[ \\t])'}
-					{name: "markup.plain.roff", match: '(?:[ \\t]+|(?<=")(?=[^"]|$))(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\(?!").)+'}
-					{name: "markup.italic.roff", begin: "\\\\$\\n", end: "^"}
-					{name: "markup.plain.roff", match: '^(?:[^"\\s\\\\]|""|\\\\(?!").)+'}]
-			},{
-				match: '(?<!\\\\)("(?:[^\\\\"]|""|\\\\(?!").)*")[ \t]+("(?:[^\\\\"]|""|\\\\(?!").)*(?:(?=[^"\\\\]$)|"))'
-				captures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.plain.roff"
-			},{
-				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
-				patterns: [
-					{name: "markup.plain.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{include: "#string-escapes"}
-				]
-				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
-				beginCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.plain.roff"
-				contentName: "markup.plain.roff"
-				endCaptures:
-					0: name: "markup.plain.roff"
-			},{
-				begin: '(?<=\\s")(?:[^"\\\\]|""|\\\\(?=$)|\\\\(?!").)+'
-				end:   '(?=\\\\")|(?<!\\\\)(?=$)|"[ \\t]+'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.plain.roff"
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:   0: name: "markup.plain.roff"
-			},{
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end:   '(?=\\\\")|^(?=(?:[^\\s\\\\]|\\\\[^\"])+[ \t]+)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=$\\n)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=[ \t]*$\\n)|^[ \t]+((?:[^ \t\\\\]|\\\\[^\"])+)(?=[ \t]|$)|^(?=$\\n)'
-				contentName: "markup.italic.roff"
-				beginCaptures:
-					0: name: "markup.italic.roff"
-				endCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.italic.roff"
-					3: name: "markup.plain.roff"
-			},{
-				
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end: '(?=[ \t]+(?:[^\\s\\\\]|\\\\[^\"])+(?:\\\\(?=\\n)|[ \t]+|\\Z))'
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:   1: name: "markup.plain.roff"
-				patterns: [{
-					begin: '^(\\S+)[ \t]+(\\S+\\\\$\\n)'
-					end: '(?=[ \t])|(?<!\\\\)(?=\\n)'
-					contentName: "markup.plain.roff"
-					beginCaptures:
-						1: name: "markup.italic.roff"
-						2: name: "markup.plain.roff"
-				},{
-					contentName: "markup.italic.roff"
-					begin: "^(?=\\S)"
-					end: '([ \t]+\\S+\\\\\\$\\n)|([ \t]+\\S+)(?=[ \t]|(?<!\\\\)\\Z)'
-					endCaptures:
-						1: name: "markup.plain.roff"
-						2: name: "markup.plain.roff"
-				}]
-			},{
-				begin: '((?!")(?:[^\\s\\\\]|\\\\[^\"])+)[ \t]+(?=(?:[^\\s\\\\]|\\\\[^\"])+$)'
-				contentName: "markup.plain.roff"
-				end: '^(?=[ \t]|$\\n|\\\\\")|((?:[^\\s\\\\]|\\\\(?!").)+)(?=\\\\\"|$|[ \t])'
-				beginCaptures: 1: name: "markup.italic.roff"
-				endCaptures:   0: name: "markup.plain.roff"
-				patterns: [{
-					name: "markup.plain.roff"
-					begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\(?=$)'
-					end: "(?<=\\S)(?=[ \t]|$)|^(?=[ \t])"
-					beginCaptures: 0: name: "markup.plain.roff"
-				},{
-					name: "markup.plain.roff"
-					begin: "^\\S+"
-					end: "(?=[ \t]|$\\n)"
-				}]
-			},{
-				begin: '(?:(?<=[ \t])|\\G)((?:[^\\s\\\\]|\\\\[^\"])+)(?:$|[ \t]+\\\\$\\n)'
-				end: '(?=[ \t])|(?=(?:[^\\s\\\\]|\\\\[^\"])*$)'
-				contentName: "markup.plain.roff"
-				beginCaptures: 1: name: "markup.italic.roff"
-			},{
-				name: "markup.italic.roff"
-				match: '"(?:[^"\\\\]|""|\\\\(?!").)+(?=\\\\")'
-			},{
-				begin: '"'
-				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
-				contentName: "markup.italic.roff"
-				patterns: [include: "#string-escapes"]
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.plain.roff"
-			},{
-				begin: '(?!\\\\")(?=\\S)'
-				end: '(?=\\\\\")|(?:((?:[^"\\s\\\\]|""|\\\\(?!").)*)[ \t]+((?:[^"\\s\\\\]|""|\\\\(?!").)+)[ \t]*)|(?=$)'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.italic.roff"
-				endCaptures:
-					1: name: "markup.italic.roff"
-					2: name: "markup.plain.roff"
-			}]
-
+			patterns: [
+				{include: "#odd-italic"}
+				{include: "#even-roman-after-italic"}
+				{include: "#even-roman"}
+				{include: "#bridge-escapes"}
+			]
 		},{
 			
-			# .RB: Roman and bold
+			# .RB: Roman + Bold
 			name: "meta.roman-bold.roff"
-			begin: "^([.'])[ \t]*(RB)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(RB)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-			end: "(?<!\\\\)$|(?=\\\\\")"
-			patterns: [{
-				
-				begin: '((?<!\\\\)"(?:[^"\\\\]|""|\\\\(?!").)+")[ \t]*((?!\\\\?")(?:[^"\\s\\\\]|""|\\\\(?!").)+\\\\$\\n)'
-				end: '^$|(?=\\\\")|(?<!\\\\)$|(?=[ \t])'
-				contentName: "markup.bold.roff"
-				beginCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.bold.roff"
-				patterns: [
-					{match: '\\\\(?!").', name: "constant.character.escape.roff"}
-					{begin: "\\\\$\\n", end: "^"}
-				]
-			},{
-				
-				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [include: "#string-escapes"]
-				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
-				contentName: "markup.bold.roff"
-				beginCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.bold.roff"
-				endCaptures:
-					0: name: "markup.bold.roff"
-			},{
-				begin: '("(?:[^\\\\"]|""|\\\\[^"])+(?=\\\\$\\n))'
-				end: '(?<!")(?=[ \t])|(?:[^\\s"\\\\]|""|\\\\(?!").)*(?:(?<!\\\\)(?:"|(?=$))|(?=\\\\"))'
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:   0: name: "markup.bold.roff"
-				patterns: [{
-					name: "markup.plain.roff"
-					begin: "(?<=\\G)\\\\$\\n"
-					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
-					patterns: [
-						{include: "#string-escapes"}
-						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
-					]}
-					{name: "markup.plain.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
-					{name: "markup.bold.roff", begin: '[ \\t]+(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\[^"])+\\\\$\\n', end: '(?<!\\\\)$|(?="[ \\t])|(?=\\\\")|(?<!\\\\)(?=[ \\t])'}
-					{name: "markup.bold.roff", match: '(?:[ \\t]+|(?<=")(?=[^"]|$))(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\(?!").)+'}
-					{name: "markup.plain.roff", begin: "\\\\$\\n", end: "^"}
-					{name: "markup.bold.roff", match: '^(?:[^"\\s\\\\]|""|\\\\(?!").)+'}]
-			},{
-				match: '(?<!\\\\)("(?:[^\\\\"]|""|\\\\(?!").)*")[ \t]+("(?:[^\\\\"]|""|\\\\(?!").)*(?:(?=[^"\\\\]$)|"))'
-				captures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.bold.roff"
-			},{
-				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
-				patterns: [
-					{name: "markup.bold.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{include: "#string-escapes"}
-				]
-				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
-				beginCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.bold.roff"
-				contentName: "markup.bold.roff"
-				endCaptures:
-					0: name: "markup.bold.roff"
-			},{
-				begin: '(?<=\\s")(?:[^"\\\\]|""|\\\\(?=$)|\\\\(?!").)+'
-				end:   '(?=\\\\")|(?<!\\\\)(?=$)|"[ \\t]+'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.bold.roff"
-				beginCaptures: 0: name: "markup.bold.roff"
-				endCaptures:   0: name: "markup.bold.roff"
-			},{
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end:   '(?=\\\\")|^(?=(?:[^\\s\\\\]|\\\\[^\"])+[ \t]+)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=$\\n)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=[ \t]*$\\n)|^[ \t]+((?:[^ \t\\\\]|\\\\[^\"])+)(?=[ \t]|$)|^(?=$\\n)'
-				contentName: "markup.plain.roff"
-				beginCaptures:
-					0: name: "markup.plain.roff"
-				endCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.plain.roff"
-					3: name: "markup.bold.roff"
-			},{
-				
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end: '(?=[ \t]+(?:[^\\s\\\\]|\\\\[^\"])+(?:\\\\(?=\\n)|[ \t]+|\\Z))'
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:   1: name: "markup.bold.roff"
-				patterns: [{
-					begin: '^(\\S+)[ \t]+(\\S+\\\\$\\n)'
-					end: '(?=[ \t])|(?<!\\\\)(?=\\n)'
-					contentName: "markup.bold.roff"
-					beginCaptures:
-						1: name: "markup.plain.roff"
-						2: name: "markup.bold.roff"
-				},{
-					contentName: "markup.plain.roff"
-					begin: "^(?=\\S)"
-					end: '([ \t]+\\S+\\\\\\$\\n)|([ \t]+\\S+)(?=[ \t]|(?<!\\\\)\\Z)'
-					endCaptures:
-						1: name: "markup.bold.roff"
-						2: name: "markup.bold.roff"
-				}]
-			},{
-				begin: '((?!")(?:[^\\s\\\\]|\\\\[^\"])+)[ \t]+(?=(?:[^\\s\\\\]|\\\\[^\"])+$)'
-				contentName: "markup.bold.roff"
-				end: '^(?=[ \t]|$\\n|\\\\\")|((?:[^\\s\\\\]|\\\\(?!").)+)(?=\\\\\"|$|[ \t])'
-				beginCaptures: 1: name: "markup.plain.roff"
-				endCaptures:   0: name: "markup.bold.roff"
-				patterns: [{
-					name: "markup.bold.roff"
-					begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\(?=$)'
-					end: "(?<=\\S)(?=[ \t]|$)|^(?=[ \t])"
-					beginCaptures: 0: name: "markup.bold.roff"
-				},{
-					name: "markup.bold.roff"
-					begin: "^\\S+"
-					end: "(?=[ \t]|$\\n)"
-				}]
-			},{
-				begin: '(?:(?<=[ \t])|\\G)((?:[^\\s\\\\]|\\\\[^\"])+)(?:$|[ \t]+\\\\$\\n)'
-				end: '(?=[ \t])|(?=(?:[^\\s\\\\]|\\\\[^\"])*$)'
-				contentName: "markup.bold.roff"
-				beginCaptures: 1: name: "markup.plain.roff"
-			},{
-				name: "markup.plain.roff"
-				match: '"(?:[^"\\\\]|""|\\\\(?!").)+(?=\\\\")'
-			},{
-				begin: '"'
-				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
-				contentName: "markup.plain.roff"
-				patterns: [include: "#string-escapes"]
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.bold.roff"
-			},{
-				begin: '(?!\\\\")(?=\\S)'
-				end: '(?=\\\\\")|(?:((?:[^"\\s\\\\]|""|\\\\(?!").)*)[ \t]+((?:[^"\\s\\\\]|""|\\\\(?!").)+)[ \t]*)|(?=$)'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.plain.roff"
-				endCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.bold.roff"
-			}]
-
+			patterns: [
+				{include: "#odd-roman"}
+				{include: "#even-bold-after-roman"}
+				{include: "#even-bold"}
+				{include: "#bridge-escapes"}
+			]
 		},{
 			
-			# .RI: Roman and italic
+			# .RI: Roman + Italic
 			name: "meta.roman-italic.roff"
-			begin: "^([.'])[ \t]*(RI)(?=[ \t\\\\]|$)"
+			begin: "^([.'])[ \t]*(RI)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.function.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-			end: "(?<!\\\\)$|(?=\\\\\")"
-			patterns: [{
-				
-				begin: '((?<!\\\\)"(?:[^"\\\\]|""|\\\\(?!").)+")[ \t]*((?!\\\\?")(?:[^"\\s\\\\]|""|\\\\(?!").)+\\\\$\\n)'
-				end: '^$|(?=\\\\")|(?<!\\\\)$|(?=[ \t])'
-				contentName: "markup.italic.roff"
-				beginCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.italic.roff"
-				patterns: [
-					{match: '\\\\(?!").', name: "constant.character.escape.roff"}
-					{begin: "\\\\$\\n", end: "^"}
-				]
-			},{
-				
-				begin: '((?!\\\\?")(?:[^\\s\\\\]|""|\\\\(?!").)+)[ \t]+(""|"(?!"))'
-				patterns: [include: "#string-escapes"]
-				end: '(?=\\\\")|(?:[^"\\\\]|""|\\\\(?!").)*(?:"|\\\\\\\\$)|(?<!\\\\)$'
-				contentName: "markup.italic.roff"
-				beginCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.italic.roff"
-				endCaptures:
-					0: name: "markup.italic.roff"
-			},{
-				begin: '("(?:[^\\\\"]|""|\\\\[^"])+(?=\\\\$\\n))'
-				end: '(?<!")(?=[ \t])|(?:[^\\s"\\\\]|""|\\\\(?!").)*(?:(?<!\\\\)(?:"|(?=$))|(?=\\\\"))'
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:   0: name: "markup.italic.roff"
-				patterns: [{
-					name: "markup.plain.roff"
-					begin: "(?<=\\G)\\\\$\\n"
-					end:   '(?<!\\\\)"(?!")|(?<!\\\\)$|(?=\\\\")'
-					patterns: [
-						{include: "#string-escapes"}
-						{begin: '^(?:[^"\\\\]|""|\\\\(?!").)*\\\\$\\n', end: "^"}
-					]}
-					{name: "markup.plain.roff", match: '^(?:[^\\\\"]|""|\\\\[^"])+(?<!\\\\)"'}
-					{name: "markup.italic.roff", begin: '[ \\t]+(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\[^"])+\\\\$\\n', end: '(?<!\\\\)$|(?="[ \\t])|(?=\\\\")|(?<!\\\\)(?=[ \\t])'}
-					{name: "markup.italic.roff", match: '(?:[ \\t]+|(?<=")(?=[^"]|$))(?!\\\\?")(?:[^\\s"\\\\]|""|\\\\(?!").)+'}
-					{name: "markup.plain.roff", begin: "\\\\$\\n", end: "^"}
-					{name: "markup.italic.roff", match: '^(?:[^"\\s\\\\]|""|\\\\(?!").)+'}]
-			},{
-				match: '(?<!\\\\)("(?:[^\\\\"]|""|\\\\(?!").)*")[ \t]+("(?:[^\\\\"]|""|\\\\(?!").)*(?:(?=[^"\\\\]$)|"))'
-				captures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.italic.roff"
-			},{
-				begin: '(?<!\\\\)("(?:[^"]|"")*"|(?:[^\\s\\\\]|\\\\.)+)[ \t]+("(?:[^"]|"")*\\\\$\\n)'
-				patterns: [
-					{name: "markup.italic.roff", match: '^(?:[^"]|"")*\\\\$\\n'}
-					{include: "#string-escapes"}
-				]
-				end: '$|(?:[^"\\\\]|""|\\\\(?!").)*(?:(?=\\\\")|\\s*"(?=$|[^"]))'
-				beginCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.italic.roff"
-				contentName: "markup.italic.roff"
-				endCaptures:
-					0: name: "markup.italic.roff"
-			},{
-				begin: '(?<=\\s")(?:[^"\\\\]|""|\\\\(?=$)|\\\\(?!").)+'
-				end:   '(?=\\\\")|(?<!\\\\)(?=$)|"[ \\t]+'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.italic.roff"
-				beginCaptures: 0: name: "markup.italic.roff"
-				endCaptures:   0: name: "markup.italic.roff"
-			},{
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end:   '(?=\\\\")|^(?=(?:[^\\s\\\\]|\\\\[^\"])+[ \t]+)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=$\\n)|^((?:[^\\s\\\\]|\\\\[^\"])+)(?=[ \t]*$\\n)|^[ \t]+((?:[^ \t\\\\]|\\\\[^\"])+)(?=[ \t]|$)|^(?=$\\n)'
-				contentName: "markup.plain.roff"
-				beginCaptures:
-					0: name: "markup.plain.roff"
-				endCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.plain.roff"
-					3: name: "markup.italic.roff"
-			},{
-				
-				begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\$\\n'
-				end: '(?=[ \t]+(?:[^\\s\\\\]|\\\\[^\"])+(?:\\\\(?=\\n)|[ \t]+|\\Z))'
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:   1: name: "markup.italic.roff"
-				patterns: [{
-					begin: '^(\\S+)[ \t]+(\\S+\\\\$\\n)'
-					end: '(?=[ \t])|(?<!\\\\)(?=\\n)'
-					contentName: "markup.italic.roff"
-					beginCaptures:
-						1: name: "markup.plain.roff"
-						2: name: "markup.italic.roff"
-				},{
-					contentName: "markup.plain.roff"
-					begin: "^(?=\\S)"
-					end: '([ \t]+\\S+\\\\\\$\\n)|([ \t]+\\S+)(?=[ \t]|(?<!\\\\)\\Z)'
-					endCaptures:
-						1: name: "markup.italic.roff"
-						2: name: "markup.italic.roff"
-				}]
-			},{
-				begin: '((?!")(?:[^\\s\\\\]|\\\\[^\"])+)[ \t]+(?=(?:[^\\s\\\\]|\\\\[^\"])+$)'
-				contentName: "markup.italic.roff"
-				end: '^(?=[ \t]|$\\n|\\\\\")|((?:[^\\s\\\\]|\\\\(?!").)+)(?=\\\\\"|$|[ \t])'
-				beginCaptures: 1: name: "markup.plain.roff"
-				endCaptures:   0: name: "markup.italic.roff"
-				patterns: [{
-					name: "markup.italic.roff"
-					begin: '(?:[^\\s\\\\]|\\\\[^\"])+\\\\(?=$)'
-					end: "(?<=\\S)(?=[ \t]|$)|^(?=[ \t])"
-					beginCaptures: 0: name: "markup.italic.roff"
-				},{
-					name: "markup.italic.roff"
-					begin: "^\\S+"
-					end: "(?=[ \t]|$\\n)"
-				}]
-			},{
-				begin: '(?:(?<=[ \t])|\\G)((?:[^\\s\\\\]|\\\\[^\"])+)(?:$|[ \t]+\\\\$\\n)'
-				end: '(?=[ \t])|(?=(?:[^\\s\\\\]|\\\\[^\"])*$)'
-				contentName: "markup.italic.roff"
-				beginCaptures: 1: name: "markup.plain.roff"
-			},{
-				name: "markup.plain.roff"
-				match: '"(?:[^"\\\\]|""|\\\\(?!").)+(?=\\\\")'
-			},{
-				begin: '"'
-				end: '(?=\\\\")|(?<!\\\\)$|(")([ \\t]*(?!")(?:[^\\s\\\\]|\\\\(?!").)+)'
-				contentName: "markup.plain.roff"
-				patterns: [include: "#string-escapes"]
-				beginCaptures: 0: name: "markup.plain.roff"
-				endCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.italic.roff"
-			},{
-				begin: '(?!\\\\")(?=\\S)'
-				end: '(?=\\\\\")|(?:((?:[^"\\s\\\\]|""|\\\\(?!").)*)[ \t]+((?:[^"\\s\\\\]|""|\\\\(?!").)+)[ \t]*)|(?=$)'
-				patterns: [begin: "\\\\$\\n", end: "^"]
-				contentName: "markup.plain.roff"
-				endCaptures:
-					1: name: "markup.plain.roff"
-					2: name: "markup.italic.roff"
-			}]
+			patterns: [
+				{include: "#odd-roman"}
+				{include: "#even-italic-after-roman"}
+				{include: "#even-italic"}
+				{include: "#bridge-escapes"}
+			]
+		}]
+	
 
+	"bridge-escapes":
+		patterns: [
+			{name: "constant.character.escape.newline.roff", begin: "[ \t]+\\\\$\\n?", end: "^"}
+			{name: "constant.character.escape.newline.roff", begin: "\\\\$\\n?", end: "^[ \t]*"}
+		]
+
+
+	"odd-bold":
+		patterns: [{
+			name: "markup.bold.roff"
+			begin: '[ \t]+(")'
+			end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   1: name: "punctuation.definition.string.end.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "markup.bold.roff"
+			begin: '[ \t]+(\\\\$\\n?)'
+			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes", {
+				begin: "^[ \t]+"
+				end: "(?=\\S)|(?<!\\\\)(?:$|\\n)"
+			}]
+		},{
+			name: "markup.bold.roff"
+			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+
+
+	"odd-italic":
+		patterns: [{
+			name: "markup.italic.roff"
+			begin: '[ \t]+(")'
+			end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   1: name: "punctuation.definition.string.end.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "markup.italic.roff"
+			begin: '[ \t]+(\\\\$\\n?)'
+			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes", {
+				begin: "^[ \t]+"
+				end: "(?=\\S)|(?<!\\\\)(?:$|\\n)"
+			}]
+		},{
+			name: "markup.italic.roff"
+			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+
+
+	"odd-roman":
+		patterns: [{
+			name: "markup.plain.roff"
+			begin: '[ \t]+(")'
+			end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   1: name: "punctuation.definition.string.end.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "markup.plain.roff"
+			begin: '[ \t]+(\\\\$\\n?)'
+			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes", {
+				begin: "^[ \t]+"
+				end: "(?=\\S)|(?<!\\\\)(?:$|\\n)"
+			}]
+		},{
+			name: "markup.plain.roff"
+			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+
+
+
+	"even-bold":
+		patterns: [
+			name: "markup.bold.roff"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		]
+
+	"even-italic":
+		patterns: [
+			name: "markup.italic.roff"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		]
+	
+	"even-roman":
+		patterns: [
+			name: "markup.plain.roff"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		]
+	
+	
+	"even-bold-after-italic":
+		patterns: [{
+			contentName: "markup.bold.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "markup.bold.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "markup.bold.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.italic.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+	
+	"even-bold-after-roman":
+		patterns: [{
+			contentName: "markup.bold.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "markup.bold.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "markup.bold.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.plain.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+	
+	
+	"even-italic-after-bold":
+		patterns: [{
+			contentName: "markup.italic.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "markup.italic.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "markup.italic.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.bold.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+	
+	"even-italic-after-roman":
+		patterns: [{
+			contentName: "markup.italic.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "markup.italic.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "markup.italic.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.plain.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+
+
+	"even-roman-after-bold":
+		patterns: [{
+			contentName: "markup.plain.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "markup.plain.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "markup.plain.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.bold.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		}]
+
+	"even-roman-after-italic":
+		patterns: [{
+			contentName: "markup.plain.roff"
+			begin: '(")'
+			end:   '(("))([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "markup.plain.roff"
+				1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "markup.plain.roff"
+				2: name: "punctuation.definition.string.end.roff"
+				3: name: "markup.italic.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
 		}]
