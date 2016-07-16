@@ -74,6 +74,29 @@
 				},
 				{
 					"name": "markup.bold",
+					"begin": "[ \t]+(\\\\$\\n?)",
+					"end": "(?<!^)[ \t]+|(?=\\\\\")|(?<!\\\\)(?=\\n|$)",
+					"beginCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					},
+					"patterns": [
+						{
+							"include": "#escapes"
+						},
+						{
+							"begin": "^[ \t]+",
+							"end": "(?=\\S)|(?<!\\\\)(?:$|\\n)"
+						}
+					]
+				},
+				{
+					"name": "markup.bold",
 					"begin": "[ \t]+(?!\")((?:[^\\s\"\\\\]|\\\\(?!\").)+)",
 					"end": "[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 					"beginCaptures": {

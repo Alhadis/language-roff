@@ -34,7 +34,7 @@ repository:
 			}, include: "#string-escapes"]
 		},{
 			name: "odd-style"
-			begin: '[ \t]+(\\\\$\\n)'
+			begin: '[ \t]+(\\\\$\\n?)'
 			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
 			beginCaptures: 1: patterns: [include: "#escapes"]
 			patterns: [include: "#escapes", {
