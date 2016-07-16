@@ -1,26 +1,122 @@
 name: "Sandbox"
 scopeName: "source.sandbox"
 fileTypes: []
-patterns: [{include: "#comments"}
-
-	name: "meta.bold-italic.roff"
-	begin: "^([.'])[ \t]*(BI)\\b"
-	end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
-	beginCaptures:
-		0: {name: "meta.function.man.macro.roff"}
-		1: {name: "punctuation.definition.function.macro.roff"}
-		2: {name: "entity.name.function.roff"}
-	patterns: [
-		{include: "#odd-bold"}
-		{include: "#even-italic"}
-		{include: "#odd-escape"}
-		{include: "#even-escape"}
-	]
+patterns: [
+	{include: "#comments"}
+	{include: "#alternating-fonts"}
 ]
 
 
 repository:
 	
+	
+	"alternating-fonts":
+		patterns: [{
+			
+			# .BI: Bold + Italic
+			name: "meta.bold-italic.roff"
+			begin: "^([.'])[ \t]*(BI)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+			patterns: [
+				{include: "#odd-bold"}
+				{include: "#even-italic-after-bold"}
+				{include: "#even-italic"}
+				{include: "#bridge-escapes"}
+			]
+		},{
+			
+			# .BR: Bold + Roman
+			name: "meta.bold-roman.roff"
+			begin: "^([.'])[ \t]*(BR)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+			patterns: [
+				{include: "#odd-bold"}
+				{include: "#even-roman-after-bold"}
+				{include: "#even-roman"}
+				{include: "#bridge-escapes"}
+			]
+		},{
+			
+			# .IB: Italic + Bold
+			name: "meta.italic-bold.roff"
+			begin: "^([.'])[ \t]*(IB)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+			patterns: [
+				{include: "#odd-italic"}
+				{include: "#even-bold-after-italic"}
+				{include: "#even-bold"}
+				{include: "#bridge-escapes"}
+			]
+		},{
+			
+			# .IR: Italic + Roman
+			name: "meta.italic-roman.roff"
+			begin: "^([.'])[ \t]*(IR)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+			patterns: [
+				{include: "#odd-italic"}
+				{include: "#even-roman-after-italic"}
+				{include: "#even-roman"}
+				{include: "#bridge-escapes"}
+			]
+		},{
+			
+			# .RB: Roman + Bold
+			name: "meta.roman-bold.roff"
+			begin: "^([.'])[ \t]*(RB)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+			patterns: [
+				{include: "#odd-roman"}
+				{include: "#even-bold-after-roman"}
+				{include: "#even-bold"}
+				{include: "#bridge-escapes"}
+			]
+		},{
+			
+			# .RI: Roman + Italic
+			name: "meta.roman-italic.roff"
+			begin: "^([.'])[ \t]*(RI)\\b"
+			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures:
+				0: {name: "meta.function.man.macro.roff"}
+				1: {name: "punctuation.definition.function.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+			patterns: [
+				{include: "#odd-roman"}
+				{include: "#even-italic-after-roman"}
+				{include: "#even-italic"}
+				{include: "#bridge-escapes"}
+			]
+		}]
+	
+
+	"bridge-escapes":
+		patterns: [
+			{name: "constant.character.escape.newline.roff", begin: "[ \t]+\\\\$\\n?", end: "^"}
+			{name: "constant.character.escape.newline.roff", begin: "\\\\$\\n?", end: "^[ \t]*"}
+		]
+
+
 	"odd-bold":
 		patterns: [{
 			name: "markup.bold.roff"
@@ -110,27 +206,34 @@ repository:
 
 
 	"even-bold":
-		patterns: [include: "#bold-after-italic", {
+		patterns: [
 			name: "markup.bold.roff"
 			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
 			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures: 1: patterns: [include: "#escapes"]
 			patterns: [include: "#escapes"]
-		}]
-
+		]
 
 	"even-italic":
-		patterns: [include: "#italic-after-bold", {
+		patterns: [
 			name: "markup.italic.roff"
 			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
 			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures: 1: patterns: [include: "#escapes"]
 			patterns: [include: "#escapes"]
-		}]
+		]
+	
+	"even-roman":
+		patterns: [
+			name: "markup.plain.roff"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		]
 	
 	
-	
-	"bold-after-italic":
+	"even-bold-after-italic":
 		patterns: [{
 			name: "markup.bold.roff"
 			begin: '"'
@@ -146,8 +249,7 @@ repository:
 			}, include: "#string-escapes"]
 		}]
 	
-	
-	"bold-after-roman":
+	"even-bold-after-roman":
 		patterns: [{
 			name: "markup.bold.roff"
 			begin: '"'
@@ -164,7 +266,7 @@ repository:
 		}]
 	
 	
-	"italic-after-bold":
+	"even-italic-after-bold":
 		patterns: [{
 			name: "markup.italic.roff"
 			begin: '"'
@@ -180,7 +282,7 @@ repository:
 			}, include: "#string-escapes"]
 		}]
 	
-	"italic-after-roman":
+	"even-italic-after-roman":
 		patterns: [{
 			name: "markup.italic.roff"
 			begin: '"'
@@ -197,7 +299,7 @@ repository:
 		}]
 
 
-	"roman-after-bold":
+	"even-roman-after-bold":
 		patterns: [{
 			name: "markup.plain.roff"
 			begin: '"'
@@ -213,7 +315,7 @@ repository:
 			}, include: "#string-escapes"]
 		}]
 
-	"roman-after-italic":
+	"even-roman-after-italic":
 		patterns: [{
 			name: "markup.plain.roff"
 			begin: '"'
@@ -229,17 +331,6 @@ repository:
 			}, include: "#string-escapes"]
 		}]
 
-
-
-	"odd-escape":
-		name: "constant.character.escape.newline.roff"
-		begin: "[ \t]+\\\\$\\n?"
-		end: "^"
-
-	"even-escape":
-		name: "constant.character.escape.newline.roff"
-		begin: "\\\\$\\n?"
-		end: "^[ \t]*"
 
 
 
