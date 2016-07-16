@@ -3,7 +3,7 @@ scopeName: "source.sandbox"
 fileTypes: []
 patterns: [{include: "#comments"}
 
-	name: "meta.odd-even.roff"
+	name: "meta.bold-italic.roff"
 	begin: "^([.'])[ \t]*(BI)\\b"
 	end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 	beginCaptures:
@@ -11,8 +11,8 @@ patterns: [{include: "#comments"}
 		1: {name: "punctuation.definition.function.macro.roff"}
 		2: {name: "entity.name.function.roff"}
 	patterns: [
-		{include: "#odd"}
-		{include: "#even"}
+		{include: "#odd-bold"}
+		{include: "#even-italic"}
 		{include: "#odd-escape"}
 		{include: "#even-escape"}
 	]
@@ -21,9 +21,9 @@ patterns: [{include: "#comments"}
 
 repository:
 	
-	odd:
+	"odd-bold":
 		patterns: [{
-			name: "odd-style"
+			name: "markup.bold.roff"
 			begin: '[ \t]+(")'
 			end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
@@ -33,7 +33,7 @@ repository:
 				captures: 1: patterns: [include: "#string-escapes"]
 			}, include: "#string-escapes"]
 		},{
-			name: "odd-style"
+			name: "markup.bold.roff"
 			begin: '[ \t]+(\\\\$\\n?)'
 			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
 			beginCaptures: 1: patterns: [include: "#escapes"]
@@ -42,7 +42,7 @@ repository:
 				end: "(?=\\S)|(?<!\\\\)(?:$|\\n)"
 			}]
 		},{
-			name: "odd-style"
+			name: "markup.bold.roff"
 			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
 			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures: 1: patterns: [include: "#escapes"]
@@ -50,22 +50,74 @@ repository:
 		}]
 
 
-	even:
+	"odd-italic":
 		patterns: [{
-			name: "even-style"
+			name: "markup.italic.roff"
+			begin: '[ \t]+(")'
+			end:   '(")[ \t]*|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures: 1: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   1: name: "punctuation.definition.string.end.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "markup.italic.roff"
+			begin: '[ \t]+(\\\\$\\n?)'
+			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes", {
+				begin: "^[ \t]+"
+				end: "(?=\\S)|(?<!\\\\)(?:$|\\n)"
+			}]
+		},{
+			name: "markup.italic.roff"
+			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '[ \t]+|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+
+
+	"even-bold":
+		patterns: [{
+			name: "markup.bold.roff"
 			begin: '"'
 			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
 			beginCaptures:
 				0: name: "punctuation.definition.string.begin.roff"
 			endCaptures:
 				1: name: "punctuation.definition.string.end.roff"
-				2: name: "odd-style"
+				2: name: "markup.italic.roff"
 			patterns: [{
 				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
 				captures: 1: patterns: [include: "#string-escapes"]
 			}, include: "#string-escapes"]
 		},{
-			name: "even-style"
+			name: "markup.bold.roff"
+			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
+			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+			beginCaptures: 1: patterns: [include: "#escapes"]
+			patterns: [include: "#escapes"]
+		}]
+
+
+	"even-italic":
+		patterns: [{
+			name: "markup.italic.roff"
+			begin: '"'
+			end:   '(")([^"\\s]+[ \t]*)?|(?=\\\\")|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)'
+			beginCaptures:
+				0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:
+				1: name: "punctuation.definition.string.end.roff"
+				2: name: "markup.bold.roff"
+			patterns: [{
+				match: '((?:[^"\\\\]|""|\\\\(?!").)+)(?!$)'
+				captures: 1: patterns: [include: "#string-escapes"]
+			}, include: "#string-escapes"]
+		},{
+			name: "markup.italic.roff"
 			begin: '(?<=^|\\s|")(?!"|\\\\")((?:[^\\s"\\\\]|\\\\(?!").)+)'
 			end:   '(?=[ \t])|(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures: 1: patterns: [include: "#escapes"]
