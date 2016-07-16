@@ -673,6 +673,15 @@ repository:
 			{include: "#mm"}
 			{include: "#me"}
 			{include: "#www"}
+			
+			# Generic macro highlighting
+			name: "meta.function.macro.roff"
+			begin: "^([.'])[ \t]*(\\S+)\\b"
+			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+			patterns: [include: "#param-group"]
 		]
 	
 	
