@@ -37,7 +37,10 @@ repository:
 			begin: '[ \t]+(\\\\$\\n)'
 			end:   '(?<!^)[ \t]+|(?=\\\\")|(?<!\\\\)(?=\\n|$)'
 			beginCaptures: 1: patterns: [include: "#escapes"]
-			patterns: [begin: "^[ \t]+", end: "(?=\\S)|(?<!\\\\)(?=\\n|$)"]
+			patterns: [include: "#escapes", {
+				begin: "^[ \t]+"
+				end: "(?=\\S)|(?<!\\\\)(?:$|\\n)"
+			}]
 		},{
 			name: "odd-style"
 			begin: '[ \t]+(?!")((?:[^\\s"\\\\]|\\\\(?!").)+)'
