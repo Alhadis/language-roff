@@ -880,6 +880,17 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 			patterns: [include: "#underline-first"]
+		},{
+			
+			# .sh: Section heading
+			name: "markup.heading.section.function.me.macro.roff"
+			begin: "^([.'])[ \t]*(sh)[ \t]+((?!\")\\S+)\\b[ \t]*(?!$|\\n|\\\\\")"
+			end:   "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+				3: {name: "variable.parameter.roff", patterns: [include: "#params"]}
+			patterns: [include: "#bold-first"]
 		}]
 	
 	
