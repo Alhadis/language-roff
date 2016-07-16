@@ -1017,6 +1017,17 @@ repository:
 			patterns: [include: "#param-group"]
 		},{
 			
+			# .TQ: Header continuation for .TP (GNU extension)
+			name: "markup.list.unnumbered.man.macro.gnu.roff"
+			begin: "^([.'])[ \t]*(TQ)[ \t]*(\\\\\".*)?$"
+			end:   "^(?=[.'][ \t]*TP\\b)"
+			beginCaptures:
+				0: {name: "meta.function.header-continuation.man.macro.gnu.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.gnu.roff"}
+				3: {patterns: [include: "#escapes"]}
+			patterns: [include: "$self"]
+		},{
 			# .HP: Hanging paragraph (deprecated)
 			name: "meta.deprecated.function.hanging-paragraph.man.macro.roff"
 			begin: "^([.'])[ \t]*((HP))\\b"
@@ -1058,6 +1069,51 @@ repository:
 			patterns: [include: "#underline-first"]
 		},{
 			
+			# .SY: Command synopsis (GNU extension)
+			name: "meta.command-synopsis.roff"
+			begin: "^([.'])[ \t]*(SY)\\b"
+			end:   "^([.'])[ \t]*(YS)\\b"
+			beginCaptures:
+				0: {name: "meta.function.begin.synopsis.man.macro.gnu.roff"}
+				1: {name: "punctuation.definition.macro.gnu.roff"}
+				2: {name: "entity.function.name.gnu.roff"}
+			endCaptures:
+				0: {name: "meta.function.end.synopsis.man.macro.gnu.roff"}
+				1: {name: "punctuation.definition.macro.gnu.roff"}
+				2: {name: "entity.function.name.gnu.roff"}
+			patterns: [{
+				
+				# Display the command's name in bold
+				contentName: "markup.bold.roff"
+				begin: "\\G[ \t]*"
+				end:   "[ \t]*\\Z|(?=\\\\\")"
+				patterns: [include: "#escapes"]
+				
+			},{
+				
+				# .OP: Option description (GNU extension)
+				name: "meta.function.option-description.man.macro.gnu.roff"
+				begin: "^([.'])[ \t]*(OP)\\b"
+				end:   "(?<!\\\\)(?=\\n)|(?=\\\\\")"
+				beginCaptures:
+					1: {name: "punctuation.definition.macro.gnu.roff"}
+					2: {name: "entity.function.name.gnu.roff"}
+				patterns: [{
+					name: "function-call.arguments.roff"
+					begin: "\\G"
+					end: '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
+					patterns: [
+						{include: "#odd-bold"}
+						{include: "#even-italic-after-bold"}
+						{include: "#even-italic"}
+						{include: "#bridge-escapes"}
+					]
+				}, include: "#escapes"]
+			
+			},{include: "$self"}]
+		},{
+
+		},{
 			# .B/.SB: Bold
 			contentName: "markup.bold.roff"
 			begin: "^([.'])[ \t]*(S?B)(\\s*\\\\\".*$)?(?=$|[ \t]+|\\\\)"
