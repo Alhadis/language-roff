@@ -1165,15 +1165,7 @@ repository:
 				0: {name: "meta.function.end.synopsis.man.macro.gnu.roff"}
 				1: {name: "punctuation.definition.macro.gnu.roff"}
 				2: {name: "entity.function.name.gnu.roff"}
-			patterns: [{
-				
-				# Display the command's name in bold
-				contentName: "markup.bold.roff"
-				begin: "\\G[ \t]*"
-				end:   "[ \t]*\\Z|(?=\\\\\")"
-				patterns: [include: "#escapes"]
-				
-			},{
+			patterns: [include: "#bold-first", {
 				
 				# .OP: Option description (GNU extension)
 				name: "meta.function.option-description.man.macro.gnu.roff"
