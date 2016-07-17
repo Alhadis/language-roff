@@ -434,19 +434,20 @@ repository:
 	
 	# Escape sequences
 	escapes:
-		patterns: [{
-			
-			# Backslashed escape sequences: \t -> \\t
-			match: "(\\\\+?)(?=\\1\\S)"
-			name: "punctuation.definition.concealed.escape.backslash.roff"
-		},
+		patterns: [
 			{include: "#escapes-copymode"}
-			{include: "#escapes-full"}]
+			{include: "#escapes-full"}
+		]
 	
 	
 	# Limited range of escape sequences permitted in copy-mode
 	"escapes-copymode":
 		patterns: [{
+			
+			# Backslashed escape sequences: \t -> \\t
+			match: "(\\\\+?)(?=\\1\\S)"
+			name: "punctuation.definition.concealed.escape.backslash.roff"
+		},{
 			
 			# Comments
 			name: "comment.line.roff"
@@ -466,47 +467,56 @@ repository:
 			
 			# Concealed newline
 			name: "constant.character.escape.newline.roff"
-			begin: "\\\\$\\n?"
-			end: "^"
+			begin: "(\\\\)$\\n?"
+			end:   "^"
+			beginCaptures:
+				1: name: "punctuation.definition.escape.roff"
 		}
 		
 		# Basic sequences
-		{match: "\\\\t",     name: "constant.character.escape.tab.roff"}
-		{match: "\\\\a",     name: "constant.character.escape.leader-char.roff"}
-		{match: "\\x5C{2}",  name: "constant.character.escape.backslash.roff"}
-		{match: "\\\\\\.",   name: "constant.character.escape.dot.roff"}, {
+		{match: "(\\\\)\\1", name: "constant.character.escape.backslash.roff",   captures: 1: name: "punctuation.definition.escape.roff"}
+		{match: "(\\\\)t",   name: "constant.character.escape.tab.roff",         captures: 1: name: "punctuation.definition.escape.roff"}
+		{match: "(\\\\)a",   name: "constant.character.escape.leader-char.roff", captures: 1: name: "punctuation.definition.escape.roff"}
+		{match: "(\\\\)\\.", name: "constant.character.escape.dot.roff",         captures: 1: name: "punctuation.definition.escape.roff"}, {
 			
 			# \nX, \n(XX - Contents of number register "X" or "XX"
 			name: "constant.character.escape.function.expand-register.roff"
-			match: "(\\\\n\\()(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|(\\\\n)(?:(%)|(\\S))"
+			match: "((\\\\)n(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)(?:(%)|(\\S))"
 			captures:
-				1: {name: "entity.name.roff"}
-				2: {name: "constant.language.predefined.register.roff"}
-				3: {name: "constant.language.predefined.register.gnu.roff"}
-				4: {name: "constant.language.predefined.register.readonly.roff"}
-				5: {name: "constant.language.predefined.register.readonly.gnu.roff"}
-				6: {name: "variable.parameter.roff"}
-				7: {name: "entity.name.roff"}
-				8: {name: "constant.language.predefined.register.roff"}
-				9: {name: "variable.parameter.roff"}
+				1:  {name: "entity.name.roff"}
+				2:  {name: "punctuation.definition.escape.roff"}
+				3:  {name: "punctuation.definition.brace.roff"}
+				4:  {name: "constant.language.predefined.register.roff"}
+				5:  {name: "constant.language.predefined.register.gnu.roff"}
+				6:  {name: "constant.language.predefined.register.readonly.roff"}
+				7:  {name: "constant.language.predefined.register.readonly.gnu.roff"}
+				8:  {name: "variable.parameter.roff"}
+				9:  {name: "entity.name.roff"}
+				10: {name: "punctuation.definition.escape.roff"}
+				11: {name: "constant.language.predefined.register.roff"}
+				12: {name: "variable.parameter.roff"}
 		},{
 			
 			# \*x, \*(xx - Interpolate string "x" or "xx"
 			name: "constant.character.escape.function.interpolate-string.roff"
-			match: "(\\\\\\*\\()(\\S{2})|(\\\\\\*)(\\S)"
+			match: "((\\\\)\\*(\\())(\\S{2})|((\\\\)\\*)(\\S)"
 			captures:
 				1: {name: "entity.name.roff"}
-				3: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.definition.brace.roff"}
 				4: {name: "variable.parameter.roff"}
+				5: {name: "entity.name.roff"}
+				6: {name: "punctuation.definition.escape.roff"}
+				7: {name: "variable.parameter.roff"}
 		},{
 			
 			# \$N - Interpolate argument number N (valid range: 1-9)
 			name: "constant.character.escape.function.interpolate-argument.roff"
-			match: "(\\\\\\$)(\\d)"
+			match: "((\\\\)\\$)(\\d)"
 			captures:
 				1: {name: "entity.name.roff"}
-				2: {name: "variable.parameter.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "variable.parameter.roff"}
 		}]
 	
 	
@@ -516,34 +526,34 @@ repository:
 		patterns: [
 		
 			# Basic sequences
-			{match: "\\\\e",     name: "constant.character.escape.current-escape-char.roff"}
-			{match: "\\\\´",     name: "constant.character.escape.acute-accent.roff"}
-			{match: "\\\\`",     name: "constant.character.escape.grave-accent.roff"}
-			{match: "\\\\-",     name: "constant.character.escape.minus.roff"}
-			{match: "\\\\ ",     name: "constant.character.escape.space.roff"}
-			{match: "\\\\0",     name: "constant.character.escape.space.digit-width.roff"}
-			{match: "\\\\\\|",   name: "constant.character.escape.space.one-sixth-em.roff"}
-			{match: "\\\\\\^",   name: "constant.character.escape.space.one-twelfth-em.roff"}
-			{match: "\\\\&",     name: "constant.character.escape.zero-width-marker.roff"}
-			{match: "\\\\%",     name: "constant.character.escape.hyphenation-char.roff"}
-			{match: "\\\\c",     name: "constant.character.escape.connect.roff"}
-			{match: "\\\\d",     name: "constant.character.escape.downwards.roff"}
-			{match: "\\\\p",     name: "constant.character.escape.spread-line.roff"}
-			{match: "\\\\r",     name: "constant.character.escape.reverse.roff"}
-			{match: "\\\\u",     name: "constant.character.escape.upwards.roff"}, {
+			{match: "(\\\\)e",   name: "constant.character.escape.current-escape-char.roff",  captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)´",   name: "constant.character.escape.acute-accent.roff",         captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)`",   name: "constant.character.escape.grave-accent.roff",         captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)-",   name: "constant.character.escape.minus.roff",                captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\) ",   name: "constant.character.escape.space.roff",                captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)0",   name: "constant.character.escape.space.digit-width.roff",    captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)\\|", name: "constant.character.escape.space.one-sixth-em.roff",   captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)\\^", name: "constant.character.escape.space.one-twelfth-em.roff", captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)&",   name: "constant.character.escape.zero-width-marker.roff",    captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)%",   name: "constant.character.escape.hyphenation-char.roff",     captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)c",   name: "constant.character.escape.connect.roff",              captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)d",   name: "constant.character.escape.downwards.roff",            captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)p",   name: "constant.character.escape.spread-line.roff",          captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)r",   name: "constant.character.escape.reverse.roff",              captures: 1: name: "punctuation.definition.escape.roff"}
+			{match: "(\\\\)u",   name: "constant.character.escape.upwards.roff",              captures: 1: name: "punctuation.definition.escape.roff"}, {
 			
 				# \(aa - Character named "aa"
 				name: "constant.character.escape.function.named-char.roff"
 				match: "(?x)
-					(\\\\ \\()
-					(
-						em|hy|bu|sq|ru|14|12|34|fi|fl|ff|Fi|Fl|de|dg|fm|ct|rg|co|pl|mi|eq|sc|aa|ga|ul|sl|ts|sr|rn|ap|
-						ua|da|mu|di|cu|ca|sb|sp|ib|ip|if|pd|gr|no|is|pt|es|mo|br|dd|rh|lh|bs|or|ci|lt|lb|rt|rb|lk|rk|
-						bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z]
-					)"
+					((\\\\)(\\())
+					(em|hy|bu|sq|ru|14|12|34|fi|fl|ff|Fi|Fl|de|dg|fm|ct|rg|co|pl|mi|eq|sc|aa|ga|ul|sl|ts|sr|rn|ap
+					|ua|da|mu|di|cu|ca|sb|sp|ib|ip|if|pd|gr|no|is|pt|es|mo|br|dd|rh|lh|bs|or|ci|lt|lb|rt|rb|lk|rk
+					|bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z])"
 				captures:
 					1: {name: "entity.name.roff"}
-					2: {name: "variable.parameter.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.definition.brace.roff"}
+					4: {name: "variable.parameter.roff"}
 			},{
 				
 				# Conditional input: Begin
@@ -564,102 +574,120 @@ repository:
 				
 				# Parametric/function-like escape sequences
 				name: "constant.character.escape.function.roff"
-				match: "(\\\\[bCDhHSlLovwxXN])((.)(.*?)(\\3))"
+				match: "((\\\\)[bCDhHSlLovwxXN])((.)(.*?)(\\4))"
 				captures:
 					1: {name: "entity.name.function.roff"}
-					2: {name: "string.other.roff"}
-					3: {name: "punctuation.definition.begin.roff"}
-					4: {patterns: [{include: "#escapes"}]}
-					5: {name: "punctuation.definition.end.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "string.other.roff"}
+					4: {name: "punctuation.definition.begin.roff"}
+					5: {patterns: [include: "#escapes"]}
+					6: {name: "punctuation.definition.end.roff"}
 			},{
 				
 				# Transparent throughput
 				name: "meta.throughput.roff"
-				begin: "\\\\!"
+				begin: "(\\\\)!"
+				end: "(?<!\\\\)$"
 				beginCaptures:
 					0: {name: "constant.character.escape.transparent-line.roff"}
-				end: "(?<!\\\\)$"
+					1: {name: "punctuation.definition.escape.roff"}
 				patterns: [{include: "#escapes-copymode"}]
 			},{
 				
 				# Font: Roman/regular
 				name: "constant.character.escape.font.roff"
-				match: "\\\\f[RP1]"
+				match: "(\\\\)f[RP1]"
 				captures:
 					0: {name: "entity.name.roff"}
+					1: {name: "punctuation.definition.escape.roff"}
 			}, {
 				
 				# Font: Italics (typically rendered by nroff as underlined text)
 				name: "markup.italic.roff"
-				begin: "(\\\\f[I2])"
+				begin: "((\\\\)f[I2])"
 				end: "(?=\\\\f[A-Za-z0-9])"
 				beginCaptures:
 					1: {name: "entity.name.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
 			},{
 				
 				# Font: Bold
 				name: "markup.bold.roff"
-				begin: "(\\\\f[B3])"
+				begin: "((\\\\)f[B3])"
 				end: "(?=\\\\f[A-Za-z0-9])"
 				beginCaptures:
 					1: {name: "entity.name.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
 			},{
 				
 				# Font: Bold and italic
 				name: "markup.bold.italic.roff"
-				begin: "(\\\\f4)"
+				begin: "((\\\\)f4)"
 				end: "(?=\\\\f[A-Za-z0-9])"
 				beginCaptures:
 					1: {name: "entity.name.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
 			},{
 				
 				# \fX, \f(XX, \fN - Change to font named "X" or "XX", or position N
 				name: "constant.character.escape.function.font.roff"
-				match: "(\\\\f\\()(\\S{2})|(\\\\f)(\\S)"
+				match: "((\\\\)f(\\())(\\S{2})|((\\\\)f)(\\S)"
 				captures:
 					1: {name: "entity.name.roff"}
-					3: {name: "entity.name.roff"}
-					2: {name: "variable.parameter.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.definition.brace.roff"}
 					4: {name: "variable.parameter.roff"}
+					5: {name: "entity.name.roff"}
+					6: {name: "punctuation.definition.escape.roff"}
+					7: {name: "variable.parameter.roff"}
 			},{
 				
 				# \gx, \g(xx - Format of number register "x" or "xx"
 				name: "constant.character.escape.function.format-register.roff"
-				match: "(\\\\g\\()(\\S{2})|(\\\\g)(\\S)"
+				match: "((\\\\)g(\\())(\\S{2})|((\\\\)g)(\\S)"
 				captures:
 					1: {name: "entity.name.roff"}
-					3: {name: "entity.name.roff"}
-					2: {name: "variable.parameter.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.definition.brace.roff"}
 					4: {name: "variable.parameter.roff"}
+					5: {name: "entity.name.roff"}
+					6: {name: "punctuation.definition.escape.roff"}
+					7: {name: "variable.parameter.roff"}
 			},{
 				
 				# \kX - Mark horizontal input place in register "X"
 				name: "constant.character.escape.function.mark-input.roff"
-				match: "(\\\\k)(\\S)"
+				match: "((\\\\)k)(\\S)"
 				captures:
 					1: {name: "entity.name.roff"}
-					2: {name: "variable.parameter.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "variable.parameter.roff"}
 			},{
 				
 				# \sN, \s±N - Point-size change function; also \s(NN, \s±(NN
 				name: "constant.character.escape.function.point-size.roff"
-				match: "(\\\\s[-+]?\\(?)(\\d+)"
+				match: "((\\\\)s[-+]?(\\()?)(\\d+)"
 				captures:
 					1: {name: "entity.name.roff"}
-					2: {name: "variable.parameter.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.definition.brace.roff"}
+					4: {name: "variable.parameter.roff"}
 			},{
 				
 				# \zC - Print "C" with zero width (without spacing)
 				name: "constant.character.escape.function.zero-width-print.roff"
-				match: "(\\\\z)(\\S)"
+				match: "((\\\\)z)(\\S)"
 				captures:
 					1: {name: "entity.name.roff"}
-					2: {name: "variable.parameter.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "variable.parameter.roff"}
 			},{
 				
 				# \Z - Any character not listed above
 				name: "constant.character.escape.misc.roff"
-				match: "\\\\\\S"
+				match: "(\\\\)\\S"
+				captures:
+					1: name: "punctuation.definition.escape.roff"
 			}]
 	
 	
@@ -1333,10 +1361,21 @@ repository:
 	
 
 	"bridge-escapes":
-		patterns: [
-			{name: "constant.character.escape.newline.roff", begin: "[ \t]+\\\\$\\n?", end: "^"}
-			{name: "constant.character.escape.newline.roff", begin: "\\\\$\\n?", end: "^[ \t]*"}
-		]
+		patterns: [{
+			
+			name: "constant.character.escape.newline.roff"
+			begin: "[ \t]+(\\\\)$\\n?"
+			end:   "^"
+			beginCaptures:
+				1: name: "punctuation.definition.escape.roff"
+		},{
+			
+			name: "constant.character.escape.newline.roff"
+			begin: "(\\\\)$\\n?"
+			end:   "^[ \t]*"
+			beginCaptures:
+				1: name: "punctuation.definition.escape.roff"
+		}]
 
 
 	"odd-bold":
