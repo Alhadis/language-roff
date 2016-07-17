@@ -49,3 +49,37 @@
 \}               \" End conditional input
 \newline         \" Concealed (ignored) newline
 \Z               \" Z, any character not listed above
+
+
+.SH GROFF EXTENSIONS
+\[xx]            \" Print the glyph named "xx"
+\[x y z…]        \" Print composite glyph
+\f[xx]           \" Change font to "xx"
+\f[]             \" Revert font to default
+\*[xx args…]     \" Interpolate string "xx", taking `args…` as arguments
+\n[xx]           \" Interpolate number register "xx"
+\A'xx'           \" Expand to 1 or 0 based on whether "xx" is an acceptable identifier
+\B'xx'           \" Expand to 1 or 0 based on whether "xx" is a valid numeric expression
+\F[xx]           \" Set font family to "xx"
+\mx, \m(xx, \m[x]\" Set drawing colour
+\Mx, \M(xx, \M[x]\" Set background colour of \D'…' drawings
+\m[]             \" Restore previous drawing colour
+\M[]             \" Restore previous background colour
+\ON              \" Suppress troff output: \O2, \O3, \O4, \O5 used internally by grohtml
+\O5[filename]    \" Write filename to STDERR; grohtml-specific
+\R'name +-n'     \" Define/set number alias: equal to ".nr name +-n"
+\s[+-n], \s+-[n] \" Adjust point-size; also \s'+-n', \s+-'n'
+\Vx, \V(xx, \V[x]\" Interpolate contents of environment variable
+\Yx, \Y(xx, \Y[x]\" Equivalent to \X'\*[xxx]'
+\Z'xx'           \" Print "xx" and then restore physical position
+\$*              \" Concatenated arguments, joined with spaces
+\$@              \" Concatenated arguments, quoted and joined with spaces
+\$^              \" Representation of parameters as if passed to .ds request
+\$(nn, \$[nnn]   \" Expands to become the n-th argument passed to a macro or string
+\?code\?         \" Embed "code" in a diversion; mustn't contain newlines
+\/               \" Adjust advance width of preceding glyph
+\,               \" Adjust advance width of following glyph
+\)               \" Same as \&, but remains transparent with regards to end-of-sentence recognition
+\~               \" Stretchable, unbreakable space
+\:               \" Zero-width break point
+\#               \" Comment; suppresses newline
