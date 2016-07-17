@@ -604,7 +604,7 @@ repository:
 				
 				# Font: Italics (typically rendered by nroff as underlined text)
 				begin: "((\\\\)f[I2])"
-				end: "(?=\\\\f[A-Za-z0-9])"
+				end: "(?=\\\\f[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
 				beginCaptures:
 					0: {name: "constant.character.escape.font.roff"}
 					1: {name: "entity.name.roff"}
@@ -618,7 +618,7 @@ repository:
 				# Font: Bold
 				name: "meta.bold-font.roff"
 				begin: "((\\\\)f[B3])"
-				end: "(?=\\\\f[A-Za-z0-9])"
+				end: "(?=\\\\f[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
 				beginCaptures:
 					0: {name: "constant.character.escape.font.roff"}
 					1: {name: "entity.name.roff"}
@@ -631,7 +631,7 @@ repository:
 				
 				# Font: Bold and italic
 				begin: "((\\\\)f4)"
-				end: "(?=\\\\f[A-Za-z0-9])"
+				end: "(?=\\\\f[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
 				beginCaptures:
 					0: {name: "constant.character.escape.font.roff"}
 					1: {name: "entity.name.roff"}
