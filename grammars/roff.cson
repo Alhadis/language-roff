@@ -468,7 +468,7 @@ repository:
 			# Concealed newline
 			name: "constant.character.escape.newline.roff"
 			begin: "(\\\\)$\\n?"
-			end:   "^"
+			end:   "^(?:[.'])?"
 			beginCaptures:
 				1: name: "punctuation.definition.escape.roff"
 		}
