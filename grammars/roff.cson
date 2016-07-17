@@ -109,7 +109,7 @@ repository:
 	# Group of strings delimited with an arbitrary character
 	"3-part-title":
 		name: "string.3-part.other.roff"
-		match: '\\G[ \t]*?(.)((?:(?!\\1).)+)(\\1)((?:(?!\\1).)+)(\\1)((?:(?!\\1).)+)(\\1)'
+		match: '\\G[ \t]*(.)((?:(?!\\1).)*)(\\1)((?:(?!\\1).)*)(\\1)((?:(?!\\1).)*)(\\1)'
 		captures:
 			1: name: "punctuation.definition.string.begin.roff"
 			2: name: "entity.string.left.roff", patterns: [include: "#escapes"]
