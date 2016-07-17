@@ -1142,13 +1142,21 @@ repository:
 		},{
 			
 			# .TP: Titled paragraph
-			name: "meta.function.titled-paragraph.man.macro.roff"
-			begin: "^([.'])[ \t]*(TP)\\b"
-			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
+			begin: "^([.'])[ \t]*(TP)\\b(.*)?$\\n?"
+			end:   "$"
 			beginCaptures:
+				0: {name: "meta.function.titled-paragraph.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
-			patterns: [include: "#param-group"]
+				3: {patterns: [include: "#param-group"]}
+			patterns: [{
+				
+				# Stop fonts spilling across the first line
+				begin: "^(.+)"
+				end: "(?<!\\\\)$"
+				beginCaptures:
+					1: patterns: [include: "$self"]
+			}]
 		},{
 			
 			# .TQ: Header continuation for .TP (GNU extension)
