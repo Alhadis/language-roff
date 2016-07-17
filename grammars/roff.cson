@@ -616,7 +616,6 @@ repository:
 			},{
 				
 				# Font: Bold
-				name: "meta.bold-font.roff"
 				begin: "((\\\\)f[B3])"
 				end: "(?=\\\\f[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
 				beginCaptures:
@@ -1285,7 +1284,6 @@ repository:
 		patterns: [{
 			
 			# .BI: Bold + Italic
-			name: "meta.bold-italic.roff"
 			begin: "^([.'])[ \t]*(BI)\\b"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
@@ -1301,7 +1299,6 @@ repository:
 		},{
 			
 			# .BR: Bold + Roman
-			name: "meta.bold-roman.roff"
 			begin: "^([.'])[ \t]*(BR)\\b"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
@@ -1317,7 +1314,6 @@ repository:
 		},{
 			
 			# .IB: Italic + Bold
-			name: "meta.italic-bold.roff"
 			begin: "^([.'])[ \t]*(IB)\\b"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
@@ -1333,7 +1329,6 @@ repository:
 		},{
 			
 			# .IR: Italic + Roman
-			name: "meta.italic-roman.roff"
 			begin: "^([.'])[ \t]*(IR)\\b"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
@@ -1349,7 +1344,6 @@ repository:
 		},{
 			
 			# .RB: Roman + Bold
-			name: "meta.roman-bold.roff"
 			begin: "^([.'])[ \t]*(RB)\\b"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
@@ -1365,7 +1359,6 @@ repository:
 		},{
 			
 			# .RI: Roman + Italic
-			name: "meta.roman-italic.roff"
 			begin: "^([.'])[ \t]*(RI)\\b"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
