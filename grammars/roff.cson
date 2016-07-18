@@ -76,13 +76,13 @@ repository:
 	string:
 		patterns: [{
 			name: "string.quoted.double.empty.roff",
-			match: '(")(")'
+			match: '(?<=(?<=[^\\\\]|^)\\s|^)(")(")(?=\\s|$)'
 			captures:
 				1: {name: "punctuation.definition.string.begin.roff"}
 				2: {name: "punctuation.definition.string.end.roff"}
 		},{
 			name: "string.quoted.double.roff",
-			begin: '"(?!")'
+			begin: '(?<=(?<=[^\\\\]|^)\\s|^)"(?!")'
 			end:   '(?<!")"(?!")|(?<!\\\\)$|(?=\\\\\")'
 			beginCaptures: {0: {name: "punctuation.definition.string.begin.roff"}}
 			endCaptures:   {0: {name: "punctuation.definition.string.end.roff"}}
