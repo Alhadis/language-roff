@@ -458,6 +458,14 @@ repository:
 				2: {name: "punctuation.definition.comment.roff"}
 		},{
 			
+			# Newline-devouring comment (GNU)
+			name: "comment.line.number-sign.gnu.roff"
+			begin: "(?:^(\\.|'+)\\s*)?(\\\\\#).*$\\n?"
+			end: "^"
+			beginCaptures:
+				1: {name: "punctuation.definition.comment.roff"}
+				2: {name: "punctuation.definition.comment.roff"}
+		},{
 			# Empty control lines
 			name: "comment.empty.roff"
 			match: "^(\\.|'+)[ \t]*$"
@@ -479,6 +487,20 @@ repository:
 		{match: "(\\\\)a",   name: "constant.character.escape.leader-char.roff", captures: 1: name: "punctuation.definition.escape.roff"}
 		{match: "(\\\\)\\.", name: "constant.character.escape.dot.roff",         captures: 1: name: "punctuation.definition.escape.roff"}, {
 			
+			# \n[xx] - Contents of number register "XX" (GNU)
+			name: "constant.character.escape.function.expand-register.gnu.roff"
+			begin: "((\\\\)n(\\[))"
+			end: "(\\])|(?<!\\\\)(?=$)"
+			contentName: "variable.parameter.roff"
+			patterns: [include: "#params"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.section.begin.bracket.square.roff"}
+			endCaptures:
+				1: {name: "punctuation.section.end.bracket.square.roff"}
+		},{
+			
 			# \nX, \n(XX - Contents of number register "X" or "XX"
 			name: "constant.character.escape.function.expand-register.roff"
 			match: "((\\\\)n(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)(?:(%)|(\\S))"
@@ -495,6 +517,21 @@ repository:
 				10: {name: "punctuation.definition.escape.roff"}
 				11: {name: "constant.language.predefined.register.roff"}
 				12: {name: "variable.parameter.roff"}
+		},{
+			
+			# \*[xx args…] - Interpolate string "xx" with optional arguments (GNU)
+			name: "constant.character.escape.function.interpolate-string.gnu.roff"
+			begin: "((\\\\)\\*(\\[))([^\\]\\s]+)"
+			end: "(\\])|(?<!\\\\)(?=$)"
+			contentName: "function-call.arguments.roff"
+			patterns: [include: "#params"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.section.begin.bracket.square.roff"}
+				4: {name: "variable.other.string.roff"}
+			endCaptures:
+				1: {name: "punctuation.section.end.bracket.square.roff"}
 		},{
 			
 			# \*x, \*(xx - Interpolate string "x" or "xx"
@@ -517,6 +554,159 @@ repository:
 				1: {name: "entity.name.roff"}
 				2: {name: "punctuation.definition.escape.roff"}
 				3: {name: "variable.parameter.roff"}
+		},{
+
+			# \m[X] - Alternate syntax for setting drawing/background colour (GNU)
+			name: "constant.character.escape.function.set-colour.gnu.roff"
+			begin: "((\\\\)[Mm](\\[))"
+			end: "(\\])|(?<!\\\\)(?=$)"
+			contentName: "variable.parameter.roff"
+			patterns: [include: "#params"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.section.begin.bracket.square.roff"}
+			endCaptures:
+				1: {name: "punctuation.section.end.bracket.square.roff"}
+		},{
+			
+			# \mX, \m(XX - Set drawing or background colour to "X" (GNU)
+			name: "constant.character.escape.function.set-colour.gnu.roff"
+			match: "((\\\\)[Mm](\\())(\\S{2})|((\\\\)[Mm])(\\S)"
+			captures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.definition.brace.roff"}
+				4: {name: "variable.parameter.roff"}
+				5: {name: "entity.name.roff"}
+				6: {name: "punctuation.definition.escape.roff"}
+				7: {name: "variable.parameter.roff"}
+		},{
+			
+			# \s[±n], \s±[n] - Set/adjust point-size (GNU)
+			name: "constant.character.escape.function.point-size.gnu.roff"
+			begin: "((\\\\)s([-+])?(\\[))"
+			end: "(\\])|(?<!\\\\)(?=$)"
+			contentName: "variable.parameter.roff"
+			patterns: [include: "#params"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "keyword.operator.arithmetic.roff"}
+				4: {name: "punctuation.section.begin.bracket.square.roff"}
+			endCaptures:
+				1: {name: "punctuation.section.end.bracket.square.roff"}
+		},{
+			
+			# "Parametric" escape sequences supported in Groff (GNU)
+			name: "constant.character.escape.function.check-identifier.gnu.roff"
+			begin: "((\\\\)[ABRsZ]((.)))"
+			end:   "(\\4)|(?<!\\\\)(?=$)"
+			contentName: "string.other.roff"
+			patterns: [include: "#escapes"]
+			beginCaptures:
+				1: {name: "entity.name.function.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "string.other.roff"}
+				4: {name: "punctuation.definition.begin.roff"}
+			endCaptures:
+				0: {name: "string.other.roff"}
+				1: {name: "punctuation.definition.end.roff"}
+		},{
+			
+			# \ON - Suppress troff output with signal "N" (GNU)
+			name: "constant.character.escape.internal.gnu.roff"
+			match: "((\\\\)O([0-4]))"
+			captures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "constant.numeric.roff"}
+		},{
+			
+			# \O5[xyz] - Write file "xyz" to STDERR; grohtml-specific (GNU)
+			name: "constant.character.escape.internal.stderr-write-file.gnu.roff"
+			begin: "((\\\\)O(5)(\\[))"
+			end: "(\\])|(?<!\\\\)(?=$)"
+			contentName: "string.unquoted.filename.roff"
+			patterns: [include: "#escapes"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "constant.numeric.roff"}
+				4: {name: "punctuation.section.begin.bracket.square.roff"}
+			endCaptures:
+				1: {name: "punctuation.section.end.bracket.square.roff"}
+		},{
+			
+			# \V[x] - Alternate syntax for interpolating environment variable (GNU)
+			name: "constant.character.escape.function.interpolate-variable.gnu.roff"
+			begin: "((\\\\)[VY](\\[))"
+			end: "(\\])|(?<!\\\\)(?=$)"
+			contentName: "variable.parameter.roff"
+			patterns: [include: "#params"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.section.begin.bracket.square.roff"}
+			endCaptures:
+				1: {name: "punctuation.section.end.bracket.square.roff"}
+		},{
+			
+			# \Vx, \V(xx - Interpolate contents of environment variable (GNU)
+			name: "constant.character.escape.function.interpolate-variable.gnu.roff"
+			match: "((\\\\)[VY](\\())(\\S{2})|((\\\\)[VY])(\\S)"
+			captures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.definition.brace.roff"}
+				4: {name: "variable.parameter.roff"}
+				5: {name: "entity.name.roff"}
+				6: {name: "punctuation.definition.escape.roff"}
+				7: {name: "variable.parameter.roff"}
+		},{
+			
+			# \?code\? - Embed a chunk of code in diversion (GNU)
+			match: "((\\\\)(\\?))(.*)((\\\\)(\\?))"
+			captures:
+				1: {name: "constant.character.escape.embed-diversion.start.gnu.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.definition.script.roff"}
+				4: {name: "string.interpolated.roff", patterns: [include: "$self"]}
+				5: {name: "constant.character.escape.embed-diversion.start.gnu.roff"}
+				6: {name: "punctuation.definition.escape.roff"}
+				7: {name: "punctuation.definition.script.roff"}
+		},{
+			
+			# \$*, \$@, \$^ - Argument concatenation for macros/strings (GNU)
+			name: "constant.character.escape.function.concatenated-arguments.gnu.roff"
+			match: "((\\\\)\\$[*@^])"
+			captures:
+				1: {name: "variable.language.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+		},{
+			
+			# \$(nn - Expand n-th argument passed to macro or string (GNU)
+			name: "constant.character.escape.function.interpolate-argument.gnu.roff"
+			match: "((\\\\)\\$(\\())(\\S{2})"
+			captures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.definition.brace.roff"}
+				4: {name: "variable.parameter.roff"}
+		},{
+			
+			# \$[nnn] - Alternate syntax for expanding n-th macro/string argument (GNU)
+			name: "constant.character.escape.function.interpolate-argument.gnu.roff"
+			begin: "((\\\\)\\$(\\[))"
+			end: "(\\])|(?<!\\\\)(?=$)"
+			contentName: "variable.parameter.roff"
+			patterns: [include: "#params"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.section.begin.bracket.square.roff"}
+			endCaptures:
+				1: {name: "punctuation.section.end.bracket.square.roff"}
 		}]
 	
 	
@@ -554,6 +744,21 @@ repository:
 					2: {name: "punctuation.definition.escape.roff"}
 					3: {name: "punctuation.definition.brace.roff"}
 					4: {name: "variable.parameter.roff"}
+			},{
+				
+				# \[aa] - Character named "aa" (GNU)
+				name: "constant.character.escape.function.named-char.gnu.roff"
+				begin: "(\\\\)(\\[)"
+				end: "(\\])|(?<!\\\\)(?=$)"
+				patterns: [
+					{include: "#params"}
+					{match: '(?:[^\\s\\]\\\\]|\\\\(?!["#]).)+', name: "variable.parameter.roff"}
+				]
+				beginCaptures:
+					1: {name: "punctuation.definition.escape.roff"}
+					2: {name: "punctuation.section.begin.bracket.square.roff"}
+				endCaptures:
+					1: {name: "punctuation.section.end.bracket.square.roff"}
 			},{
 				
 				# Conditional input: Begin
@@ -641,9 +846,23 @@ repository:
 				]
 			},{
 				
+				# \f[XX] - Change to font named "XX" (GNU)
+				name: "constant.character.escape.function.font.gnu.roff"
+				begin: "((\\\\)[Ff](\\[))"
+				end: "(\\])|(?<!\\\\)(?=$)"
+				contentName: "variable.parameter.roff"
+				patterns: [include: "#escapes"]
+				beginCaptures:
+					1: {name: "entity.name.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.section.begin.bracket.square.roff"}
+				endCaptures:
+					1: {name: "punctuation.section.end.bracket.square.roff"}
+			},{
+				
 				# \fX, \f(XX, \fN - Change to font named "X" or "XX", or position N
 				name: "constant.character.escape.function.font.roff"
-				match: "((\\\\)f(\\())(\\S{2})|((\\\\)f)(\\S)"
+				match: "((\\\\)[Ff](\\())(\\S{2})|((\\\\)[Ff])(\\S)"
 				captures:
 					1: {name: "entity.name.roff"}
 					2: {name: "punctuation.definition.escape.roff"}
