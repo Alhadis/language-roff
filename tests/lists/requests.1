@@ -141,7 +141,7 @@
 .cflags N xyz… \" Set property N of a variadic list of characters
 .char X STR    \" Define character or glyph
 .chop X        \" Remove last element of X
-.class X xyz…  \" Assign name X to a list of characters. Ranges can be passed like "a-z"
+.class X  x-z… \" Assign name X to a list of characters. Ranges can be passed like "a-z"
 .close X       \" Close stream X
 .composite X Y \" Map glyph X to Y if used in \[…] with multiple components
 .continue      \" Finish current execution of a `while` loop
@@ -188,7 +188,7 @@
 .pev           \" Print environment states to STDERR
 .pnr           \" Print names and values of all defined registers to STDERR
 .psbb FILE     \" Get bounding-box of the PostScript image FILE
-.pso CMD       \" Same as .so, but input is drawn from standard output of command
+.pso CMD       \" Same as .so, but input is drawn from standard output of CMD
 .ptr           \" Print names and positions of all traps to STDERR
 .pvs +-n       \" Set post-vertical line-space to N
 .rchar XYZ…    \" Remove glyph definitions XYZ…

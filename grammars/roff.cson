@@ -125,6 +125,79 @@ repository:
 	requests:
 		patterns:[{
 			
+			# GNU extensions
+			name: "meta.function.request.$2.gnu.roff"
+			begin: "(?x) ^([.'])[ \t]*
+				(aln|als|asciify|backtrace|blm|box|boxa|brp|cflags|chop|close|composite|color
+				|cp|device|devicem|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
+				|gcolor|hcode|hla|hlm|hpf|hpfa|hpfcode|hym|hys|itc|kern|length|linetabs|lsm
+				|mso|nop|nroff|open|opena|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
+				|rnn|schar|shc|shift|sizes|special|spreadwarn|sty|substring|tkf|tm1|tmc|trf
+				|trin|trnt|troff|unformat|vpt|warn|warnscale|write|writec|writem)"
+			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "entity.function.name.roff"}
+			patterns: [{include: "#param-group"}]
+		},{
+			
+			# .class: Assign name "X" to a list of characters. Ranges can be passed like "a-z"
+			name: "meta.function.request.assign-class.gnu.roff"
+			begin: "^([.'])[ \t]*(class)\\b[ \t]*(\\S+)?"
+			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "entity.function.name.roff"}
+				3: {name: "variable.parameter.roff"}
+			patterns: [{
+				match: "[^\\s\\\\]+(-)[^\\s\\\\]+"
+				captures:
+					0: name: "string.unquoted.character-range.roff"
+					1: name: "punctuation.separator.dash.roff"
+			}, include: "#params"]
+		},{
+			
+			# .char: Define character or glyph (GNU)
+			name: "meta.function.request.$2.gnu.roff"
+			begin: "^([.'])[ \t]*(char)[ \t]*(\\S+)?[ \t]*(.*)(?=$|\\\\[\"#])"
+			end:   "(?<!\\\\)(?=$)|(?=\\\\[\"#])"
+			patterns: [include: "$self"]
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "storage.type.var.roff"}
+				3: {name: "variable.parameter.roff"}
+				4: {patterns: [include: "#param-group"]}
+		},{
+			
+			# .defcolor: Define colour (GNU)
+			name: "meta.function.request.define-colour.gnu.roff"
+			begin: "^([.'])[ \t]*(defcolor)\\b[ \t]*((?:[^\\s\\\\]|\\\\(?![\"#]).)*)[ \t]*(rgb|cmyk?|gr[ae]y)?"
+			end:   "(?<!\\\\)(?=$)|(?=\\\\[\"#])"
+			beginCaptures:
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "storage.type.var.roff"}
+				3: {name: "string.other.colour-name.roff", patterns: [include: "#escapes"]}
+				4: {name: "constant.language.colour-scheme.roff"}
+			patterns: [{
+				
+				# Hexadecimal colour
+				name: "constant.other.colour.hex.roff"
+				match: "(\#{1,2})[A-Fa-f0-9]+"
+				captures: 1: name: "punctuation.definition.colour.roff"
+				
+			}, include: "#params"]
+		},{
+			
+			# Requests for controlling program flow (GNU)
+			begin: "^([.'])[ \t]*(break|continue|return|while)\\b"
+			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
+			patterns: [include: "#param-group"]
+			beginCaptures:
+				0: {name: "meta.function.request.control.gnu.roff"}
+				1: {name: "punctuation.definition.request.roff"}
+				2: {name: "keyword.control.roff"}
+		},{
+			
 			# Generic requests without formatting
 			name: "meta.function.request.$2.roff"
 			begin: "(?x) ^([.'])[ \t]*
@@ -160,7 +233,7 @@ repository:
 			
 			# String definition
 			name: "meta.function.request.$2.roff"
-			begin: "^([.'])[ \t]*((ds)|(as))[ \t]*(\\S+)?[ \t]*(.*)$"
+			begin: "^([.'])[ \t]*((ds1?)|(as1?))[ \t]*(\\S+)?[ \t]*(.*)$"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -358,7 +431,7 @@ repository:
 			
 			# No terminator specified
 			name: "meta.function.definition.request.$2.roff"
-			begin: "^([.'])[ \t]*((de)|(am))\\s*(\\S+?)?\\s*(\\\\\".*)?$"
+			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s*(\\S+?)?\\s*(\\\\\".*)?$"
 			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -374,7 +447,7 @@ repository:
 			
 			# Terminator included
 			name: "meta.function.definition.request.with-terminator.$2.roff"
-			begin: "^([.'])[ \t]*((de)|(am))\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\\"))?(.*)$"
+			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\\"))?(.*)$"
 			end:   "^(\\.)[ \t]*((\\6)(?=$|\\s|\\\\(?:$|\")))"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
