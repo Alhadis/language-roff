@@ -150,12 +150,12 @@ repository:
 			# GNU extensions
 			name: "meta.function.request.$2.gnu.roff"
 			begin: "(?x) ^([.'])[ \t]*
-				(aln|als|asciify|backtrace|blm|box|boxa|brp|cflags|chop|close|composite|color
-				|cp|device|devicem|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
-				|gcolor|hcode|hla|hlm|hpf|hpfa|hpfcode|hym|hys|itc|kern|length|linetabs|lsm
-				|mso|nop|nroff|open|opena|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
+				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
+				|cp|devicem|device|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
+				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
+				|mso|nop|nroff|opena|open|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|sty|substring|tkf|tm1|tmc|trf
-				|trin|trnt|troff|unformat|vpt|warn|warnscale|write|writec|writem)"
+				|trin|trnt|troff|unformat|vpt|warnscale|warn|writec|writem|write)"
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
