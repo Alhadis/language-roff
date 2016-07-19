@@ -68,8 +68,16 @@ repository:
 		patterns: [
 			{include: "#escapes"}
 			{include: "#string"}
-			{match: "[-+]?\\d+", name: "constant.numeric.roff"}
+			{include: "#number"}
 		]
+	
+	
+	# Numeric literal
+	number:
+		name: "constant.numeric.roff"
+		match: "(?:(?<!\\w)[-+])?\\d+(?:\\.\\d+)?([A-Za-z]+)?"
+		captures:
+			1: {name: "keyword.other.unit.roff"}
 	
 	
 	# "Double-quoted string"
@@ -423,12 +431,8 @@ repository:
 					1: {name: "punctuation.arithmetic.begin.roff"}
 					2: {patterns: [{include: "#arithmetic"}]}
 					3: {name: "punctuation.arithmetic.end.roff"}
-			},{
-				name: "constant.numeric.arithmetic.roff"
-				match: "\\d+(?:\\.\\d+)?([A-Za-z]+)?"
-				captures:
-					1: {name: "punctuation.unit.arithmetic.roff"}
 			}
+			{include: "#number"}
 			{match: "[-/+*%]",     name: "keyword.operator.arithmetic.roff"}
 			{match: ":|&|[<=>]=?", name: "keyword.operator.logical.roff"}
 			{match: "\\|",         name: "keyword.operator.absolute.roff"}
