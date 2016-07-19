@@ -69,6 +69,10 @@ repository:
 			{include: "#escapes"}
 			{include: "#string"}
 			{include: "#number"}
+			
+			# Highlight anything else as a parameter
+			match: "\\S+"
+			name: "variable.parameter.roff"
 		]
 	
 	
