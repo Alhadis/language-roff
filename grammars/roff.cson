@@ -892,14 +892,18 @@ repository:
 				
 				# Parametric/function-like escape sequences
 				name: "constant.character.escape.function.roff"
-				match: "((\\\\)[bCDhHSlLovwxXN])((.)(.*?)(\\4))"
-				captures:
+				begin: "((\\\\)[bCDhHSlLovwxXN])((.))"
+				end:   "(\\4)|(?<!\\\\)(?=$)"
+				contentName: "string.other.roff"
+				patterns: [include: "#escapes"]
+				beginCaptures:
 					1: {name: "entity.name.function.roff"}
 					2: {name: "punctuation.definition.escape.roff"}
 					3: {name: "string.other.roff"}
 					4: {name: "punctuation.definition.begin.roff"}
-					5: {patterns: [include: "#escapes"]}
-					6: {name: "punctuation.definition.end.roff"}
+				endCaptures:
+					0: {name: "string.other.roff"}
+					1: {name: "punctuation.definition.end.roff"}
 			},{
 				
 				# Transparent throughput
