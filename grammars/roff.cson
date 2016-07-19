@@ -1009,7 +1009,7 @@ repository:
 				
 				# \zC - Print "C" with zero width (without spacing)
 				name: "constant.character.escape.function.zero-width-print.roff"
-				match: "((\\\\)z)(\\S)"
+				match: "((\\\\)z)([^\\s\\\\])"
 				captures:
 					1: {name: "entity.name.roff"}
 					2: {name: "punctuation.definition.escape.roff"}
