@@ -350,7 +350,7 @@ repository:
 							[A-Za-z] |
 							
 							# Closing bracket
-							\\) |
+							[\\)\\]] |
 							
 							# String/register: Long-form
 							\\\\[n*]
