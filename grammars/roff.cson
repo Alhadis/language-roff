@@ -83,7 +83,7 @@ repository:
 			
 			# Oddly-formed (but valid) numeric input: `.i` = `0.0i`
 			name: "constant.numeric.roff"
-			match: "(?<=\\s|^)[-+]?\\.([A-Za-z])?"
+			match: "(?<=\\s|^)[-+]?\\.(?=[A-Za-z\\)\\s]|$)([A-Za-z])?"
 			captures:
 				1: {name: "keyword.other.unit.roff"}
 		}]
