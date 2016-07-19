@@ -141,7 +141,7 @@ repository:
 			patterns: [{include: "#param-group"}]
 		},{
 			
-			# .class: Assign name "X" to a list of characters. Ranges can be passed like "a-z"
+			# .class: Assign a name to a range of characters (GNU)
 			name: "meta.function.request.assign-class.gnu.roff"
 			begin: "^([.'])[ \t]*(class)\\b[ \t]*(\\S+)?"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
