@@ -487,11 +487,11 @@ repository:
 				3: {name: "storage.type.function.roff"}
 				4: {name: "entity.name.function.roff"}
 				5: {name: "variable.parameter.roff"}
-				6: {name: "entity.terminator.roff", patterns: [{include: "#string"}]}
+				6: {name: "keyword.control.terminator.roff", patterns: [include: "#string"]}
 				7: {patterns: [include: "#param-group"]}
 			endCaptures:
 				1: {name: "punctuation.definition.request.roff"}
-				2: {name: "entity.terminator.roff"}
+				2: {name: "keyword.control.terminator.roff"}
 				3: {patterns: [{include: "#string"}]}
 			patterns: [{include: "$self"}]
 		}]
