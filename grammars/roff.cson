@@ -1478,20 +1478,18 @@ repository:
 			
 			# .TP: Titled paragraph
 			begin: "^([.'])[ \t]*(TP)\\b(.*)?$\\n?"
-			end:   "$"
+			end:   "^(.*)(?<!\\\\)$"
+			patterns: [
+				match: ".+"
+				captures: 0: patterns: [include: "$self"]
+			]
 			beginCaptures:
 				0: {name: "meta.function.titled-paragraph.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 				3: {patterns: [include: "#param-group"]}
-			patterns: [{
-				
-				# Stop fonts spilling across the first line
-				begin: "^(.+)"
-				end: "(?<!\\\\)$"
-				beginCaptures:
-					1: patterns: [include: "$self"]
-			}]
+			endCaptures:
+				1: {patterns: [include: "$self"]}
 		},{
 			
 			# .TQ: Header continuation for .TP (GNU extension)
