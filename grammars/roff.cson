@@ -343,10 +343,14 @@ repository:
 						# Ends with a...
 						(?<=
 							# Digit
-							\\d  |
+							\\d |
+							
+							# Unit suffix
+							(?<=[\\d.])
+							[A-Za-z] |
 							
 							# Closing bracket
-							\\)  |
+							\\) |
 							
 							# String/register: Long-form
 							\\\\[n*]
