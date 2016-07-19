@@ -596,7 +596,7 @@ repository:
 			# \n[xx] - Contents of number register "XX" (GNU)
 			name: "constant.character.escape.function.expand-register.gnu.roff"
 			begin: "((\\\\)n(\\[))"
-			end: "(\\])|(?<!\\\\)(?=$)"
+			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
 			patterns: [include: "#params"]
 			beginCaptures:
@@ -604,7 +604,8 @@ repository:
 				2: {name: "punctuation.definition.escape.roff"}
 				3: {name: "punctuation.section.begin.bracket.square.roff"}
 			endCaptures:
-				1: {name: "punctuation.section.end.bracket.square.roff"}
+				1: {patterns: [include: "#params"]}
+				2: {name: "punctuation.section.end.bracket.square.roff"}
 		},{
 			
 			# \nX, \n(XX - Contents of number register "X" or "XX"
@@ -628,7 +629,7 @@ repository:
 			# \*[xx args…] - Interpolate string "xx" with optional arguments (GNU)
 			name: "constant.character.escape.function.interpolate-string.gnu.roff"
 			begin: "((\\\\)\\*(\\[))([^\\]\\s]+)"
-			end: "(\\])|(?<!\\\\)(?=$)"
+			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 			contentName: "function-call.arguments.roff"
 			patterns: [include: "#params"]
 			beginCaptures:
@@ -637,7 +638,8 @@ repository:
 				3: {name: "punctuation.section.begin.bracket.square.roff"}
 				4: {name: "variable.other.string.roff"}
 			endCaptures:
-				1: {name: "punctuation.section.end.bracket.square.roff"}
+				1: {patterns: [include: "#params"]}
+				2: {name: "punctuation.section.end.bracket.square.roff"}
 		},{
 			
 			# \*x, \*(xx - Interpolate string "x" or "xx"
@@ -665,7 +667,7 @@ repository:
 			# \m[X] - Alternate syntax for setting drawing/background colour (GNU)
 			name: "constant.character.escape.function.set-colour.gnu.roff"
 			begin: "((\\\\)[Mm](\\[))"
-			end: "(\\])|(?<!\\\\)(?=$)"
+			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
 			patterns: [include: "#params"]
 			beginCaptures:
@@ -673,7 +675,8 @@ repository:
 				2: {name: "punctuation.definition.escape.roff"}
 				3: {name: "punctuation.section.begin.bracket.square.roff"}
 			endCaptures:
-				1: {name: "punctuation.section.end.bracket.square.roff"}
+				1: {patterns: [include: "#params"]}
+				2: {name: "punctuation.section.end.bracket.square.roff"}
 		},{
 			
 			# \mX, \m(XX - Set drawing or background colour to "X" (GNU)
@@ -692,7 +695,7 @@ repository:
 			# \s[±n], \s±[n] - Set/adjust point-size (GNU)
 			name: "constant.character.escape.function.point-size.gnu.roff"
 			begin: "((\\\\)s([-+])?(\\[))"
-			end: "(\\])|(?<!\\\\)(?=$)"
+			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
 			patterns: [include: "#params"]
 			beginCaptures:
@@ -701,7 +704,8 @@ repository:
 				3: {name: "keyword.operator.arithmetic.roff"}
 				4: {name: "punctuation.section.begin.bracket.square.roff"}
 			endCaptures:
-				1: {name: "punctuation.section.end.bracket.square.roff"}
+				1: {patterns: [include: "#params"]}
+				2: {name: "punctuation.section.end.bracket.square.roff"}
 		},{
 			
 			# "Parametric" escape sequences supported in Groff (GNU)
@@ -747,7 +751,7 @@ repository:
 			# \V[x] - Alternate syntax for interpolating environment variable (GNU)
 			name: "constant.character.escape.function.interpolate-variable.gnu.roff"
 			begin: "((\\\\)[VY](\\[))"
-			end: "(\\])|(?<!\\\\)(?=$)"
+			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
 			patterns: [include: "#params"]
 			beginCaptures:
@@ -755,7 +759,8 @@ repository:
 				2: {name: "punctuation.definition.escape.roff"}
 				3: {name: "punctuation.section.begin.bracket.square.roff"}
 			endCaptures:
-				1: {name: "punctuation.section.end.bracket.square.roff"}
+				1: {patterns: [include: "#params"]}
+				2: {name: "punctuation.section.end.bracket.square.roff"}
 		},{
 			
 			# \Vx, \V(xx - Interpolate contents of environment variable (GNU)
@@ -804,7 +809,7 @@ repository:
 			# \$[nnn] - Alternate syntax for expanding n-th macro/string argument (GNU)
 			name: "constant.character.escape.function.interpolate-argument.gnu.roff"
 			begin: "((\\\\)\\$(\\[))"
-			end: "(\\])|(?<!\\\\)(?=$)"
+			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
 			patterns: [include: "#params"]
 			beginCaptures:
@@ -812,7 +817,8 @@ repository:
 				2: {name: "punctuation.definition.escape.roff"}
 				3: {name: "punctuation.section.begin.bracket.square.roff"}
 			endCaptures:
-				1: {name: "punctuation.section.end.bracket.square.roff"}
+				1: {patterns: [include: "#params"]}
+				2: {name: "punctuation.section.end.bracket.square.roff"}
 		}]
 	
 	
@@ -855,7 +861,7 @@ repository:
 				# \[aa] - Character named "aa" (GNU)
 				name: "constant.character.escape.function.named-char.gnu.roff"
 				begin: "(\\\\)(\\[)"
-				end: "(\\])|(?<!\\\\)(?=$)"
+				end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 				patterns: [
 					{include: "#params"}
 					{match: '(?:[^\\s\\]\\\\]|\\\\(?!["#]).)+', name: "variable.parameter.roff"}
@@ -864,7 +870,8 @@ repository:
 					1: {name: "punctuation.definition.escape.roff"}
 					2: {name: "punctuation.section.begin.bracket.square.roff"}
 				endCaptures:
-					1: {name: "punctuation.section.end.bracket.square.roff"}
+					1: {patterns: [include: "#params"]}
+					2: {name: "punctuation.section.end.bracket.square.roff"}
 			},{
 				
 				# Conditional input: Begin
