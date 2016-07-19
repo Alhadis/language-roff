@@ -87,8 +87,33 @@
 					"include": "#string"
 				},
 				{
-					"match": "[-+]?\\d+",
-					"name": "constant.numeric.roff"
+					"include": "#number"
+				},
+				{
+					"match": "\\S+",
+					"name": "variable.parameter.roff"
+				}
+			]
+		},
+		"number": {
+			"patterns": [
+				{
+					"name": "constant.numeric.roff",
+					"match": "(?:(?<!\\w)[-+])?\\d+(?:\\.\\d+|\\.(?=[A-Za-z\\)\\s]|$))?([A-Za-z]+)?",
+					"captures": {
+						"1": {
+							"name": "keyword.other.unit.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.numeric.roff",
+					"match": "(?<=\\s|^)[-+]?\\.(?=[A-Za-z\\)\\s]|$)([A-Za-z])?",
+					"captures": {
+						"1": {
+							"name": "keyword.other.unit.roff"
+						}
+					}
 				}
 			]
 		},
@@ -96,7 +121,7 @@
 			"patterns": [
 				{
 					"name": "string.quoted.double.empty.roff",
-					"match": "(\")(\")",
+					"match": "(?<=(?<=[^\\\\]|^)\\s|^)(\")(\")(?=\\s|$)",
 					"captures": {
 						"1": {
 							"name": "punctuation.definition.string.begin.roff"
@@ -108,7 +133,7 @@
 				},
 				{
 					"name": "string.quoted.double.roff",
-					"begin": "\"(?!\")",
+					"begin": "(?<=(?<=[^\\\\]|^)\\s|^)\"(?!\")",
 					"end": "(?<!\")\"(?!\")|(?<!\\\\)$|(?=\\\\\")",
 					"beginCaptures": {
 						"0": {
@@ -151,7 +176,7 @@
 		},
 		"3-part-title": {
 			"name": "string.3-part.other.roff",
-			"match": "\\G[ \t]*?(.)((?:(?!\\1).)+)(\\1)((?:(?!\\1).)+)(\\1)((?:(?!\\1).)+)(\\1)",
+			"match": "\\G[ \t]*(.)((?:(?!\\1).)*)(\\1)((?:(?!\\1).)*)(\\1)((?:(?!\\1).)*)(\\1)",
 			"captures": {
 				"1": {
 					"name": "punctuation.definition.string.begin.roff"
@@ -185,6 +210,142 @@
 		},
 		"requests": {
 			"patterns": [
+				{
+					"name": "meta.function.request.$2.gnu.roff",
+					"begin": "(?x) ^([.'])[ \t]* (aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color |cp|devicem|device|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom |gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm |mso|nop|nroff|opena|open|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj |rnn|schar|shc|shift|sizes|special|spreadwarn|sty|substring|tkf|tm1|tmc|trf |trin|trnt|troff|unformat|vpt|warnscale|warn|writec|writem|write)",
+					"end": "(?<!\\\\)(?=\n)|(?=\\\\\")",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#param-group"
+						}
+					]
+				},
+				{
+					"name": "meta.function.request.assign-class.gnu.roff",
+					"begin": "^([.'])[ \t]*(class)\\b[ \t]*(\\S+)?",
+					"end": "(?<!\\\\)(?=$)|(?=\\\\\")",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						},
+						"3": {
+							"name": "variable.parameter.roff"
+						}
+					},
+					"patterns": [
+						{
+							"match": "[^\\s\\\\]+(-)[^\\s\\\\]+",
+							"captures": {
+								"0": {
+									"name": "string.unquoted.character-range.roff"
+								},
+								"1": {
+									"name": "punctuation.separator.dash.roff"
+								}
+							}
+						},
+						{
+							"include": "#params"
+						}
+					]
+				},
+				{
+					"name": "meta.function.request.$2.gnu.roff",
+					"begin": "^([.'])[ \t]*(char)[ \t]*(\\S+)?[ \t]*(.*)(?=$|\\\\[\"#])",
+					"end": "(?<!\\\\)(?=$)|(?=\\\\[\"#])",
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "storage.type.var.roff"
+						},
+						"3": {
+							"name": "variable.parameter.roff"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#param-group"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "meta.function.request.define-colour.gnu.roff",
+					"begin": "^([.'])[ \t]*(defcolor)\\b[ \t]*((?:[^\\s\\\\]|\\\\(?![\"#]).)*)[ \t]*(rgb|cmyk?|gr[ae]y)?",
+					"end": "(?<!\\\\)(?=$)|(?=\\\\[\"#])",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "storage.type.var.roff"
+						},
+						"3": {
+							"name": "string.other.colour-name.roff",
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						},
+						"4": {
+							"name": "constant.language.colour-scheme.roff"
+						}
+					},
+					"patterns": [
+						{
+							"name": "constant.other.colour.hex.roff",
+							"match": "(#{1,2})[A-Fa-f0-9]+",
+							"captures": {
+								"1": {
+									"name": "punctuation.definition.colour.roff"
+								}
+							}
+						},
+						{
+							"include": "#params"
+						}
+					]
+				},
+				{
+					"begin": "^([.'])[ \t]*(break|continue|return|while)\\b",
+					"end": "(?<!\\\\)(?=$)|(?=\\\\\")",
+					"patterns": [
+						{
+							"include": "#param-group"
+						}
+					],
+					"beginCaptures": {
+						"0": {
+							"name": "meta.function.request.control.gnu.roff"
+						},
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "keyword.control.roff"
+						}
+					}
+				},
 				{
 					"name": "meta.function.request.$2.roff",
 					"begin": "(?x) ^([.'])[ \t]* (ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|dt|ec|em|eo |ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg|lf|ll|ls|lt |mc|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd |rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)",
@@ -249,7 +410,7 @@
 				},
 				{
 					"name": "meta.function.request.$2.roff",
-					"begin": "^([.'])[ \t]*((ds)|(as))[ \t]*(\\S+)?[ \t]*(.*)$",
+					"begin": "^([.'])[ \t]*((ds1?)|(as1?))[ \t]*(\\S+)?[ \t]*(.*)$",
 					"end": "(?<!\\\\)$",
 					"beginCaptures": {
 						"1": {
@@ -300,7 +461,7 @@
 		"conditionals": {
 			"patterns": [
 				{
-					"begin": "(?x)^\n([.'])   [ \t]*      # 1: punctuation.definition.request.roff\n(ie|if)  [ \t]*      # 2: keyword.control.roff\n(!)?                 # 3: keyword.operator.logical\n\n(?:\n\t# One-character built-in comparison name\n\t([note])         # 4: constant.language.comparison-name.builtin.$4.roff\n\t\n\t|\n\t\n\t# Arithmetic\n\t(                # 5: meta.equation.roff\n\t\t\n\t\t# Starts with a bracket\n\t\t(\\()        # 6: punctuation.definition.begin.roff\n\t\t(.*?)        # 7: Include “#arithmetic”\n\t\t(\\))        # 8: punctuation.definition.end.roff\n\t\t\n\t\t# Anything else affixed to it\n\t\t(            # 9: Include “#arithmetic”\n\t\t\t(?:\n\t\t\t\t[^\\s\\(] | # Operators/numbers\n\t\t\t\t\\(.*?\\)   # More brackets\n\t\t\t)*\n\t\t)\n\t\t\n\t\t|\n\t\t\n\t\t# Doesn’t start with a bracket\n\t\t(?:\n\t\t\t# Starts with a long-form string/register\n\t\t\t(\\\\+[n*]\\(\\S{2}) # 10: Include “#escapes”\n\t\t\t|\n\t\t\t# Starts with a digit or backslash\n\t\t\t(?=\\d|\\\\)\n\t\t)\n\t\t([^\\s\\(]*) # 11: Sandwiched mathematical junk\n\t\t\n\t\t(?: # Possible embedded brackets\n\t\t\t(\\()    # 12: punctuation.definition.begin.roff\n\t\t\t(.*?)    # 13: Include “#arithmetic”\n\t\t\t(\\))    # 14: punctuation.definition.end.roff\n\t\t)?\n\t\t(?: # Possible trailing digits/operators\n\t\t\t[^\\s\\(]*?\n\t\t\t\\d+\n\t\t)?\n\t\t\n\t\t# Ends with a...\n\t\t(?<=\n\t\t\t# Digit\n\t\t\t\\d  |\n\t\t\t\n\t\t\t# Closing bracket\n\t\t\t\\)  |\n\t\t\t\n\t\t\t# String/register: Long-form\n\t\t\t\\\\[n*]\n\t\t\t\\(\n\t\t\t\\S{2} |\n\t\t\t\n\t\t\t# String/register: Short-form\n\t\t\t\\\\[n*]\\S\n\t\t)\n\t)\n\t\n\t|\n\t\n\t# String/variable comparison\n\t([^\\d\\s\\\\])  # 15: punctuation.definition.string.begin.roff\n\t(                # 16: variable.parameter.operand.left.roff\n\t\t(.*?)        # 17: Include “#escapes”\n\t)\n\t(\\15)           # 18: punctuation.definition.string.roff\n\t(                # 19: variable.parameter.operand.right.roff\n\t\t(.*?)        # 20: Include “#escapes”\n\t)\n\t(\\15)           # 21: punctuation.definition.string.end.roff\n\t\n\t|\n\t\n\t# Anything not recognised\n\t(\\S)            # 22: meta.operand.single.roff\n)?\n\n(.*)                 # 23: Include “#conditional-innards”",
+					"begin": "(?x)^\n([.'])   [ \t]*      # 1: punctuation.definition.request.roff\n(ie|if)  [ \t]*      # 2: keyword.control.roff\n(!)?                 # 3: keyword.operator.logical\n\n(?:\n\t# One-character built-in comparison name\n\t([note])         # 4: constant.language.builtin-comparison.$4.roff\n\t\n\t|\n\t\n\t# GNU extensions\n\t([cdfmrs])       # 5: constant.language.builtin-comparison.$5.gnu.roff\n\t\n\t# Name being validated\n\t[ \t]*\n\t((?:[^ \\t\\\\]|\\\\(?![\"#]).)+) # 6: Include “#escapes”\n\t\n\t|\n\t\n\t# Arithmetic\n\t(                # 7: meta.equation.roff\n\t\t\n\t\t# Starts with a bracket\n\t\t(\\()        # 8:  punctuation.definition.begin.roff\n\t\t(.*?)        # 9:  Include “#arithmetic”\n\t\t(\\))        # 10: punctuation.definition.end.roff\n\t\t\n\t\t# Anything else affixed to it\n\t\t(            # 11: Include “#arithmetic”\n\t\t\t(?:\n\t\t\t\t[^\\s\\(] | # Operators/numbers\n\t\t\t\t\\(.*?\\)   # More brackets\n\t\t\t)*\n\t\t)\n\t\t\n\t\t|\n\t\t\n\t\t# Doesn’t start with a bracket\n\t\t(?:\n\t\t\t# Starts with a long-form string/register\n\t\t\t(\\\\+[n*]\\(\\S{2}) # 12: Include “#escapes”\n\t\t\t|\n\t\t\t# Starts with a digit or backslash\n\t\t\t(?=\\d|\\\\)\n\t\t)\n\t\t([^\\s\\(]*) # 13: Sandwiched mathematical junk\n\t\t\n\t\t(?: # Possible embedded brackets\n\t\t\t(\\()    # 14: punctuation.definition.begin.roff\n\t\t\t(.*?)    # 15: Include “#arithmetic”\n\t\t\t(\\))    # 16: punctuation.definition.end.roff\n\t\t)?\n\t\t(?: # Possible trailing digits/operators\n\t\t\t[^\\s\\(]*?\n\t\t\t\\d+\n\t\t)?\n\t\t\n\t\t# Ends with a...\n\t\t(?<=\n\t\t\t# Digit\n\t\t\t\\d |\n\t\t\t\n\t\t\t# Unit suffix\n\t\t\t(?<=[\\d.])\n\t\t\t[A-Za-z] |\n\t\t\t\n\t\t\t# Closing bracket\n\t\t\t[\\)\\]] |\n\t\t\t\n\t\t\t# String/register: Long-form\n\t\t\t\\\\[n*]\n\t\t\t\\(\n\t\t\t\\S{2} |\n\t\t\t\n\t\t\t# String/register: Short-form\n\t\t\t\\\\[n*]\\S\n\t\t)\n\t)\n\t\n\t|\n\t\n\t# String/variable comparison\n\t([^\\d\\s\\\\])  # 17: punctuation.definition.string.begin.roff\n\t(                # 18: variable.parameter.operand.left.roff\n\t\t(.*?)        # 19: Include “#escapes”\n\t)\n\t(\\17)           # 20: punctuation.definition.string.roff\n\t(                # 21: variable.parameter.operand.right.roff\n\t\t(.*?)        # 22: Include “#escapes”\n\t)\n\t(\\17)           # 23: punctuation.definition.string.end.roff\n\t\n\t|\n\t\n\t# Anything not recognised\n\t(\\S)            # 24: meta.operand.single.roff\n)?\n\n(.*)                 # 25: Include “#conditional-innards”",
 					"end": "$",
 					"beginCaptures": {
 						"0": {
@@ -319,20 +480,20 @@
 							"name": "constant.language.builtin-comparison.$4.roff"
 						},
 						"5": {
-							"name": "meta.equation.roff"
+							"name": "constant.language.builtin-comparison.$5.gnu.roff"
 						},
 						"6": {
-							"name": "punctuation.definition.begin.roff"
-						},
-						"7": {
 							"patterns": [
 								{
-									"include": "#arithmetic"
+									"include": "#escapes"
 								}
 							]
 						},
+						"7": {
+							"name": "meta.equation.roff"
+						},
 						"8": {
-							"name": "punctuation.definition.end.roff"
+							"name": "punctuation.definition.begin.roff"
 						},
 						"9": {
 							"patterns": [
@@ -342,11 +503,7 @@
 							]
 						},
 						"10": {
-							"patterns": [
-								{
-									"include": "#escapes"
-								}
-							]
+							"name": "punctuation.definition.end.roff"
 						},
 						"11": {
 							"patterns": [
@@ -356,7 +513,11 @@
 							]
 						},
 						"12": {
-							"name": "punctuation.definition.begin.roff"
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
 						},
 						"13": {
 							"patterns": [
@@ -366,41 +527,51 @@
 							]
 						},
 						"14": {
-							"name": "punctuation.definition.end.roff"
+							"name": "punctuation.definition.begin.roff"
 						},
 						"15": {
-							"name": "punctuation.definition.string.begin.roff"
+							"patterns": [
+								{
+									"include": "#arithmetic"
+								}
+							]
 						},
 						"16": {
-							"name": "variable.parameter.operand.left.roff"
+							"name": "punctuation.definition.end.roff"
 						},
 						"17": {
-							"patterns": [
-								{
-									"include": "#escapes"
-								}
-							]
+							"name": "punctuation.definition.string.begin.roff"
 						},
 						"18": {
-							"name": "punctuation.definition.string.roff"
+							"name": "variable.parameter.operand.left.roff"
 						},
 						"19": {
-							"name": "variable.parameter.operand.right.roff"
-						},
-						"20": {
 							"patterns": [
 								{
 									"include": "#escapes"
 								}
 							]
 						},
+						"20": {
+							"name": "punctuation.definition.string.roff"
+						},
 						"21": {
-							"name": "punctuation.definition.string.end.roff"
+							"name": "variable.parameter.operand.right.roff"
 						},
 						"22": {
-							"name": "meta.operand.single.roff"
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
 						},
 						"23": {
+							"name": "punctuation.definition.string.end.roff"
+						},
+						"24": {
+							"name": "meta.operand.single.roff"
+						},
+						"25": {
 							"patterns": [
 								{
 									"include": "#conditional-innards"
@@ -478,13 +649,7 @@
 					}
 				},
 				{
-					"name": "constant.numeric.arithmetic.roff",
-					"match": "\\d+(?:\\.\\d+)?([A-Za-z]+)?",
-					"captures": {
-						"1": {
-							"name": "punctuation.unit.arithmetic.roff"
-						}
-					}
+					"include": "#number"
 				},
 				{
 					"match": "[-/+*%]",
@@ -504,7 +669,7 @@
 			"patterns": [
 				{
 					"name": "meta.function.definition.request.$2.roff",
-					"begin": "^([.'])[ \t]*((de)|(am))\\s*(\\S+?)?\\s*(\\\\\".*)?$",
+					"begin": "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s*(\\S+?)?\\s*(\\\\[\"#].*)?$",
 					"end": "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\.",
 					"beginCaptures": {
 						"1": {
@@ -547,7 +712,7 @@
 				},
 				{
 					"name": "meta.function.definition.request.with-terminator.$2.roff",
-					"begin": "^([.'])[ \t]*((de)|(am))\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\\"))?(.*)$",
+					"begin": "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\[\"#]))?(.*)$",
 					"end": "^(\\.)[ \t]*((\\6)(?=$|\\s|\\\\(?:$|\")))",
 					"beginCaptures": {
 						"1": {
@@ -563,7 +728,7 @@
 							"name": "variable.parameter.roff"
 						},
 						"6": {
-							"name": "entity.terminator.roff",
+							"name": "keyword.control.terminator.roff",
 							"patterns": [
 								{
 									"include": "#string"
@@ -583,7 +748,7 @@
 							"name": "punctuation.definition.request.roff"
 						},
 						"2": {
-							"name": "entity.terminator.roff"
+							"name": "keyword.control.terminator.roff"
 						},
 						"3": {
 							"patterns": [
@@ -670,10 +835,6 @@
 		"escapes": {
 			"patterns": [
 				{
-					"match": "(\\\\+?)(?=\\1\\S)",
-					"name": "punctuation.definition.concealed.escape.backslash.roff"
-				},
-				{
 					"include": "#escapes-copymode"
 				},
 				{
@@ -684,9 +845,26 @@
 		"escapes-copymode": {
 			"patterns": [
 				{
+					"match": "(\\\\+?)(?=\\1\\S)",
+					"name": "punctuation.definition.concealed.escape.backslash.roff"
+				},
+				{
 					"name": "comment.line.roff",
 					"begin": "(?:^(\\.|'+)\\s*)?(\\\\\")",
 					"end": "$",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.comment.roff"
+						}
+					}
+				},
+				{
+					"name": "comment.line.number-sign.gnu.roff",
+					"begin": "(?:^(\\.|'+)\\s*)?(\\\\#).*$\\n?",
+					"end": "^",
 					"beginCaptures": {
 						"1": {
 							"name": "punctuation.definition.comment.roff"
@@ -707,85 +885,534 @@
 				},
 				{
 					"name": "constant.character.escape.newline.roff",
-					"begin": "\\\\$\\n?",
-					"end": "^"
+					"begin": "(\\\\)$\\n?",
+					"end": "^(?:[.'])?",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\t",
-					"name": "constant.character.escape.tab.roff"
+					"match": "(\\\\)\\1",
+					"name": "constant.character.escape.backslash.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\a",
-					"name": "constant.character.escape.leader-char.roff"
+					"match": "(\\\\)t",
+					"name": "constant.character.escape.tab.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\x5C{2}",
-					"name": "constant.character.escape.backslash.roff"
+					"match": "(\\\\)a",
+					"name": "constant.character.escape.leader-char.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\\\.",
-					"name": "constant.character.escape.dot.roff"
+					"match": "(\\\\)\\.",
+					"name": "constant.character.escape.dot.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.expand-register.gnu.roff",
+					"begin": "((\\\\)n(\\[))",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"contentName": "variable.parameter.roff",
+					"patterns": [
+						{
+							"include": "#params"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
+						}
+					}
 				},
 				{
 					"name": "constant.character.escape.function.expand-register.roff",
-					"match": "(\\\\n\\()(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|(\\\\n)(?:(%)|(\\S))",
+					"match": "((\\\\)n(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)(?:(%)|(\\S))",
 					"captures": {
 						"1": {
 							"name": "entity.name.roff"
 						},
 						"2": {
-							"name": "constant.language.predefined.register.roff"
+							"name": "punctuation.definition.escape.roff"
 						},
 						"3": {
-							"name": "constant.language.predefined.register.gnu.roff"
+							"name": "punctuation.definition.brace.roff"
 						},
 						"4": {
-							"name": "constant.language.predefined.register.readonly.roff"
-						},
-						"5": {
-							"name": "constant.language.predefined.register.readonly.gnu.roff"
-						},
-						"6": {
-							"name": "variable.parameter.roff"
-						},
-						"7": {
-							"name": "entity.name.roff"
-						},
-						"8": {
 							"name": "constant.language.predefined.register.roff"
 						},
+						"5": {
+							"name": "constant.language.predefined.register.gnu.roff"
+						},
+						"6": {
+							"name": "constant.language.predefined.register.readonly.roff"
+						},
+						"7": {
+							"name": "constant.language.predefined.register.readonly.gnu.roff"
+						},
+						"8": {
+							"name": "variable.parameter.roff"
+						},
 						"9": {
+							"name": "entity.name.roff"
+						},
+						"10": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"11": {
+							"name": "constant.language.predefined.register.roff"
+						},
+						"12": {
 							"name": "variable.parameter.roff"
 						}
 					}
 				},
 				{
+					"name": "constant.character.escape.function.interpolate-string.gnu.roff",
+					"begin": "((\\\\)\\*(\\[))([^\\]\\s]+)",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"contentName": "function-call.arguments.roff",
+					"patterns": [
+						{
+							"include": "#params"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						},
+						"4": {
+							"name": "variable.other.string.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
+						}
+					}
+				},
+				{
 					"name": "constant.character.escape.function.interpolate-string.roff",
-					"match": "(\\\\\\*\\()(\\S{2})|(\\\\\\*)(\\S)",
+					"match": "((\\\\)\\*(\\())(\\S{2})|((\\\\)\\*)(\\S)",
 					"captures": {
 						"1": {
 							"name": "entity.name.roff"
 						},
 						"2": {
-							"name": "variable.parameter.roff"
+							"name": "punctuation.definition.escape.roff"
 						},
 						"3": {
-							"name": "entity.name.roff"
+							"name": "punctuation.definition.brace.roff"
 						},
 						"4": {
+							"name": "variable.parameter.roff"
+						},
+						"5": {
+							"name": "entity.name.roff"
+						},
+						"6": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"7": {
 							"name": "variable.parameter.roff"
 						}
 					}
 				},
 				{
 					"name": "constant.character.escape.function.interpolate-argument.roff",
-					"match": "(\\\\\\$)(\\d)",
+					"match": "((\\\\)\\$)(\\d)",
 					"captures": {
 						"1": {
 							"name": "entity.name.roff"
 						},
 						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
 							"name": "variable.parameter.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.set-colour.gnu.roff",
+					"begin": "((\\\\)[Mm](\\[))",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"contentName": "variable.parameter.roff",
+					"patterns": [
+						{
+							"include": "#params"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.set-colour.gnu.roff",
+					"match": "((\\\\)[Mm](\\())(\\S{2})|((\\\\)[Mm])(\\S)",
+					"captures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.definition.brace.roff"
+						},
+						"4": {
+							"name": "variable.parameter.roff"
+						},
+						"5": {
+							"name": "entity.name.roff"
+						},
+						"6": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"7": {
+							"name": "variable.parameter.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.point-size.gnu.roff",
+					"begin": "((\\\\)s([-+])?(\\[))",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"contentName": "variable.parameter.roff",
+					"patterns": [
+						{
+							"include": "#params"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "keyword.operator.arithmetic.roff"
+						},
+						"4": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.check-identifier.gnu.roff",
+					"begin": "((\\\\)[ABRsZ])((.))",
+					"end": "(\\4)|(?<!\\\\)(?=$)",
+					"contentName": "string.other.roff",
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.function.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "string.other.roff"
+						},
+						"4": {
+							"name": "punctuation.definition.begin.roff"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "string.other.roff"
+						},
+						"1": {
+							"name": "punctuation.definition.end.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.internal.gnu.roff",
+					"match": "((\\\\)O([0-4]))",
+					"captures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "constant.numeric.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.internal.stderr-write-file.gnu.roff",
+					"begin": "((\\\\)O(5)(\\[))",
+					"end": "(\\])|(?<!\\\\)(?=$)",
+					"contentName": "string.unquoted.filename.roff",
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "constant.numeric.roff"
+						},
+						"4": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.section.end.bracket.square.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.interpolate-variable.gnu.roff",
+					"begin": "((\\\\)[VY](\\[))",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"contentName": "variable.parameter.roff",
+					"patterns": [
+						{
+							"include": "#params"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.interpolate-variable.gnu.roff",
+					"match": "((\\\\)[VY](\\())(\\S{2})|((\\\\)[VY])(\\S)",
+					"captures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.definition.brace.roff"
+						},
+						"4": {
+							"name": "variable.parameter.roff"
+						},
+						"5": {
+							"name": "entity.name.roff"
+						},
+						"6": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"7": {
+							"name": "variable.parameter.roff"
+						}
+					}
+				},
+				{
+					"match": "((\\\\)(\\?))(.*)((\\\\)(\\?))",
+					"captures": {
+						"1": {
+							"name": "constant.character.escape.embed-diversion.start.gnu.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.definition.script.roff"
+						},
+						"4": {
+							"name": "string.interpolated.roff",
+							"patterns": [
+								{
+									"include": "$self"
+								}
+							]
+						},
+						"5": {
+							"name": "constant.character.escape.embed-diversion.start.gnu.roff"
+						},
+						"6": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"7": {
+							"name": "punctuation.definition.script.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.concatenated-arguments.gnu.roff",
+					"match": "((\\\\)\\$[*@^])",
+					"captures": {
+						"1": {
+							"name": "variable.language.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.interpolate-argument.gnu.roff",
+					"match": "((\\\\)\\$(\\())(\\S{2})",
+					"captures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.definition.brace.roff"
+						},
+						"4": {
+							"name": "variable.parameter.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.interpolate-argument.gnu.roff",
+					"begin": "((\\\\)\\$(\\[))",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"contentName": "variable.parameter.roff",
+					"patterns": [
+						{
+							"include": "#params"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
 				}
@@ -794,74 +1421,189 @@
 		"escapes-full": {
 			"patterns": [
 				{
-					"match": "\\\\e",
-					"name": "constant.character.escape.current-escape-char.roff"
+					"match": "(\\\\)e",
+					"name": "constant.character.escape.current-escape-char.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\´",
-					"name": "constant.character.escape.acute-accent.roff"
+					"match": "(\\\\)´",
+					"name": "constant.character.escape.acute-accent.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\`",
-					"name": "constant.character.escape.grave-accent.roff"
+					"match": "(\\\\)`",
+					"name": "constant.character.escape.grave-accent.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\-",
-					"name": "constant.character.escape.minus.roff"
+					"match": "(\\\\)-",
+					"name": "constant.character.escape.minus.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\ ",
-					"name": "constant.character.escape.space.roff"
+					"match": "(\\\\) ",
+					"name": "constant.character.escape.space.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\0",
-					"name": "constant.character.escape.space.digit-width.roff"
+					"match": "(\\\\)0",
+					"name": "constant.character.escape.space.digit-width.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\\\|",
-					"name": "constant.character.escape.space.one-sixth-em.roff"
+					"match": "(\\\\)\\|",
+					"name": "constant.character.escape.space.one-sixth-em.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\\\^",
-					"name": "constant.character.escape.space.one-twelfth-em.roff"
+					"match": "(\\\\)\\^",
+					"name": "constant.character.escape.space.one-twelfth-em.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\&",
-					"name": "constant.character.escape.zero-width-marker.roff"
+					"match": "(\\\\)&",
+					"name": "constant.character.escape.zero-width-marker.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\%",
-					"name": "constant.character.escape.hyphenation-char.roff"
+					"match": "(\\\\)%",
+					"name": "constant.character.escape.hyphenation-char.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\c",
-					"name": "constant.character.escape.connect.roff"
+					"match": "(\\\\)c",
+					"name": "constant.character.escape.connect.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\d",
-					"name": "constant.character.escape.downwards.roff"
+					"match": "(\\\\)d",
+					"name": "constant.character.escape.downwards.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\p",
-					"name": "constant.character.escape.spread-line.roff"
+					"match": "(\\\\)p",
+					"name": "constant.character.escape.spread-line.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\r",
-					"name": "constant.character.escape.reverse.roff"
+					"match": "(\\\\)r",
+					"name": "constant.character.escape.reverse.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
-					"match": "\\\\u",
-					"name": "constant.character.escape.upwards.roff"
+					"match": "(\\\\)u",
+					"name": "constant.character.escape.upwards.roff",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
 					"name": "constant.character.escape.function.named-char.roff",
-					"match": "(?x) (\\\\ \\() ( em|hy|bu|sq|ru|14|12|34|fi|fl|ff|Fi|Fl|de|dg|fm|ct|rg|co|pl|mi|eq|sc|aa|ga|ul|sl|ts|sr|rn|ap| ua|da|mu|di|cu|ca|sb|sp|ib|ip|if|pd|gr|no|is|pt|es|mo|br|dd|rh|lh|bs|or|ci|lt|lb|rt|rb|lk|rk| bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z] )",
+					"match": "(?x) ((\\\\)(\\()) (em|hy|bu|sq|ru|14|12|34|fi|fl|ff|Fi|Fl|de|dg|fm|ct|rg|co|pl|mi|eq|sc|aa|ga|ul|sl|ts|sr|rn|ap |ua|da|mu|di|cu|ca|sb|sp|ib|ip|if|pd|gr|no|is|pt|es|mo|br|dd|rh|lh|bs|or|ci|lt|lb|rt|rb|lk|rk |bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z])",
 					"captures": {
 						"1": {
 							"name": "entity.name.roff"
 						},
 						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.definition.brace.roff"
+						},
+						"4": {
 							"name": "variable.parameter.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.named-char.gnu.roff",
+					"begin": "(\\\\)(\\[)",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"patterns": [
+						{
+							"include": "#params"
+						},
+						{
+							"match": "(?:[^\\s\\]\\\\]|\\\\(?![\"#]).)+",
+							"name": "variable.parameter.roff"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"2": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
 				},
@@ -891,38 +1633,49 @@
 				},
 				{
 					"name": "constant.character.escape.function.roff",
-					"match": "(\\\\[bCDhHSlLovwxXN])((.)(.*?)(\\3))",
-					"captures": {
+					"begin": "((\\\\)[bCDhHSlLovwxXN])((.))",
+					"end": "(\\4)|(?<!\\\\)(?=$)",
+					"contentName": "string.other.roff",
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					],
+					"beginCaptures": {
 						"1": {
 							"name": "entity.name.function.roff"
 						},
 						"2": {
-							"name": "string.other.roff"
+							"name": "punctuation.definition.escape.roff"
 						},
 						"3": {
-							"name": "punctuation.definition.begin.roff"
+							"name": "string.other.roff"
 						},
 						"4": {
-							"patterns": [
-								{
-									"include": "#escapes"
-								}
-							]
+							"name": "punctuation.definition.begin.roff"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "string.other.roff"
 						},
-						"5": {
+						"1": {
 							"name": "punctuation.definition.end.roff"
 						}
 					}
 				},
 				{
 					"name": "meta.throughput.roff",
-					"begin": "\\\\!",
+					"begin": "(\\\\)!",
+					"end": "(?<!\\\\)$",
 					"beginCaptures": {
 						"0": {
 							"name": "constant.character.escape.transparent-line.roff"
+						},
+						"1": {
+							"name": "punctuation.definition.escape.roff"
 						}
 					},
-					"end": "(?<!\\\\)$",
 					"patterns": [
 						{
 							"include": "#escapes-copymode"
@@ -931,73 +1684,196 @@
 				},
 				{
 					"name": "constant.character.escape.font.roff",
-					"match": "\\\\f[RP1]",
+					"match": "(\\\\)f[RP1]",
 					"captures": {
 						"0": {
 							"name": "entity.name.roff"
+						},
+						"1": {
+							"name": "punctuation.definition.escape.roff"
 						}
 					}
 				},
 				{
-					"name": "markup.italic.roff",
-					"begin": "(\\\\f[I2])",
-					"end": "(?=\\\\f[A-Za-z0-9])",
+					"begin": "((\\\\)f[I2])",
+					"end": "(?=\\\\f[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)",
 					"beginCaptures": {
+						"0": {
+							"name": "constant.character.escape.font.roff"
+						},
 						"1": {
 							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
 						}
-					}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"name": "markup.italic.roff",
+							"match": "\\S+?(?=\\\\|$|\\s)"
+						}
+					]
 				},
 				{
-					"name": "markup.bold.roff",
-					"begin": "(\\\\f[B3])",
-					"end": "(?=\\\\f[A-Za-z0-9])",
+					"begin": "((\\\\)f[B3])",
+					"end": "(?=\\\\f[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)",
 					"beginCaptures": {
+						"0": {
+							"name": "constant.character.escape.font.roff"
+						},
 						"1": {
 							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
 						}
-					}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"name": "markup.bold.roff",
+							"match": "\\S+?(?=\\\\|$|\\s)"
+						}
+					]
 				},
 				{
-					"name": "markup.bold.italic.roff",
-					"begin": "(\\\\f4)",
-					"end": "(?=\\\\f[A-Za-z0-9])",
+					"begin": "((\\\\)f4)",
+					"end": "(?=\\\\f[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)",
+					"beginCaptures": {
+						"0": {
+							"name": "constant.character.escape.font.roff"
+						},
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"name": "markup.bold.italic.roff",
+							"match": "\\S+?(?=\\\\|$|\\s)"
+						}
+					]
+				},
+				{
+					"name": "constant.character.escape.function.font.gnu.roff",
+					"begin": "((\\\\)[Ff](\\[))",
+					"end": "(\\])|(?<!\\\\)(?=$)",
+					"contentName": "variable.parameter.roff",
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					],
 					"beginCaptures": {
 						"1": {
 							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
 				},
 				{
 					"name": "constant.character.escape.function.font.roff",
-					"match": "(\\\\f\\()(\\S{2})|(\\\\f)(\\S)",
+					"match": "((\\\\)[Ff](\\())(\\S{2})|((\\\\)[Ff])(\\S)",
 					"captures": {
 						"1": {
 							"name": "entity.name.roff"
 						},
 						"2": {
-							"name": "variable.parameter.roff"
+							"name": "punctuation.definition.escape.roff"
 						},
 						"3": {
-							"name": "entity.name.roff"
+							"name": "punctuation.definition.brace.roff"
 						},
 						"4": {
+							"name": "variable.parameter.roff"
+						},
+						"5": {
+							"name": "entity.name.roff"
+						},
+						"6": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"7": {
 							"name": "variable.parameter.roff"
 						}
 					}
 				},
 				{
 					"name": "constant.character.escape.function.format-register.roff",
-					"match": "(\\\\g\\()(\\S{2})|(\\\\g)(\\S)",
+					"match": "((\\\\)g(\\())(\\S{2})|((\\\\)g)(\\S)",
 					"captures": {
 						"1": {
 							"name": "entity.name.roff"
 						},
 						"2": {
-							"name": "variable.parameter.roff"
+							"name": "punctuation.definition.escape.roff"
 						},
 						"3": {
+							"name": "punctuation.definition.brace.roff"
+						},
+						"4": {
+							"name": "variable.parameter.roff"
+						},
+						"5": {
 							"name": "entity.name.roff"
+						},
+						"6": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"7": {
+							"name": "variable.parameter.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.mark-input.roff",
+					"match": "((\\\\)k)(\\S)",
+					"captures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "variable.parameter.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.point-size.roff",
+					"match": "((\\\\)s[-+]?(\\()?)(\\d+)",
+					"captures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "punctuation.definition.brace.roff"
 						},
 						"4": {
 							"name": "variable.parameter.roff"
@@ -1005,44 +1881,28 @@
 					}
 				},
 				{
-					"name": "constant.character.escape.function.mark-input.roff",
-					"match": "(\\\\k)(\\S)",
-					"captures": {
-						"1": {
-							"name": "entity.name.roff"
-						},
-						"2": {
-							"name": "variable.parameter.roff"
-						}
-					}
-				},
-				{
-					"name": "constant.character.escape.function.point-size.roff",
-					"match": "(\\\\s[-+]?\\(?)(\\d+)",
-					"captures": {
-						"1": {
-							"name": "entity.name.roff"
-						},
-						"2": {
-							"name": "variable.parameter.roff"
-						}
-					}
-				},
-				{
 					"name": "constant.character.escape.function.zero-width-print.roff",
-					"match": "(\\\\z)(\\S)",
+					"match": "((\\\\)z)([^\\s\\\\])",
 					"captures": {
 						"1": {
 							"name": "entity.name.roff"
 						},
 						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
 							"name": "variable.parameter.roff"
 						}
 					}
 				},
 				{
 					"name": "constant.character.escape.misc.roff",
-					"match": "\\\\\\S"
+					"match": "(\\\\)\\S",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				}
 			]
 		},
@@ -1130,7 +1990,7 @@
 				},
 				{
 					"name": "meta.function.reference.ms.macro.roff",
-					"begin": "^([.'])[ \t]*(\\[)\\s*(\\\\\".*)?$",
+					"begin": "^([.'])[ \t]*(\\[)\\s*(\\\\[#\"].*)?$",
 					"end": "^([.'])[ \t]*(\\])(?=\\s|$|\\\\\")",
 					"contentName": "entity.reference.name.ms.macro.roff",
 					"patterns": [
@@ -1325,7 +2185,7 @@
 					]
 				},
 				{
-					"begin": "^([.'])[ \t]*(\\(l)\\b[ \t]*(?=$|\\n|\\\\\")",
+					"begin": "^([.'])[ \t]*(\\(l)\\b[ \t]*(?=$|\\n|\\\\[#\"])",
 					"end": "^([.'])[ \t]*(\\)l)\\b",
 					"contentName": "markup.list.unnumbered.roff",
 					"patterns": [
@@ -1534,7 +2394,7 @@
 				{
 					"name": "meta.function.${2:/downcase}.www.macro.roff",
 					"contentName": "markup.raw.roff",
-					"begin": "^([.'])[ \t]*(CDS)\\b\\s*(\\\\\".*)?$",
+					"begin": "^([.'])[ \t]*(CDS)\\b\\s*(\\\\[#\"].*)?$",
 					"end": "^([.'])[ \t]*(CDE)\\b",
 					"beginCaptures": {
 						"1": {
@@ -1568,7 +2428,7 @@
 				{
 					"name": "markup.heading.$3.www.macro.roff",
 					"contentName": "string.unquoted.heading.roff",
-					"begin": "^([.'])[ \t]*(HnS)\\b(?:\\s*(\\d+))?(?:\\s*(\\\\\".*)$)?",
+					"begin": "^([.'])[ \t]*(HnS)\\b(?:\\s*(\\d+))?(?:\\s*(\\\\[#\"].*)$)?",
 					"end": "^([.'])[ \t]*(HnE)\\b(.*)$",
 					"beginCaptures": {
 						"0": {
@@ -1615,7 +2475,7 @@
 				{
 					"name": "meta.function.${2:/downcase}.www.macro.roff",
 					"contentName": "markup.list.ordered.roff",
-					"begin": "^([.'])[ \t]*(OLS)\\b\\s*(\\\\\".*)?$",
+					"begin": "^([.'])[ \t]*(OLS)\\b\\s*(\\\\[#\"].*)?$",
 					"end": "^([.'])[ \t]*(OLE)\\b",
 					"beginCaptures": {
 						"1": {
@@ -1649,7 +2509,7 @@
 				{
 					"name": "meta.function.${2:/downcase}.www.macro.roff",
 					"contentName": "markup.list.ordered.roff",
-					"begin": "^([.'])[ \t]*(ULS)\\b\\s*(\\\\\".*)?$",
+					"begin": "^([.'])[ \t]*(ULS)\\b\\s*(\\\\[#\"].*)?$",
 					"end": "^([.'])[ \t]*(ULE)\\b",
 					"beginCaptures": {
 						"1": {
@@ -1788,7 +2648,7 @@
 				},
 				{
 					"contentName": "markup.raw.roff",
-					"begin": "^([.'])[ \t]*(EX)\\s*(\\\\\".*)?$",
+					"begin": "^([.'])[ \t]*(EX)\\s*(\\\\[#\"].*)?$",
 					"end": "^([.'])[ \t]*(EE)\\b",
 					"patterns": [
 						{
@@ -1862,26 +2722,53 @@
 					]
 				},
 				{
-					"name": "meta.function.titled-paragraph.man.macro.roff",
-					"begin": "^([.'])[ \t]*(TP)\\b",
-					"end": "(?<!\\\\)(?=$)|(?=\\\\\")",
+					"begin": "^([.'])[ \t]*(TP)\\b(.*)?$\\n?",
+					"end": "^(.*)(?<!\\\\)$",
+					"patterns": [
+						{
+							"match": ".+",
+							"captures": {
+								"0": {
+									"patterns": [
+										{
+											"include": "$self"
+										}
+									]
+								}
+							}
+						}
+					],
 					"beginCaptures": {
+						"0": {
+							"name": "meta.function.titled-paragraph.man.macro.roff"
+						},
 						"1": {
 							"name": "punctuation.definition.macro.roff"
 						},
 						"2": {
 							"name": "entity.function.name.roff"
+						},
+						"3": {
+							"patterns": [
+								{
+									"include": "#param-group"
+								}
+							]
 						}
 					},
-					"patterns": [
-						{
-							"include": "#param-group"
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "$self"
+								}
+							]
 						}
-					]
+					}
 				},
 				{
 					"name": "markup.list.unnumbered.man.macro.gnu.roff",
-					"begin": "^([.'])[ \t]*(TQ)[ \t]*(\\\\\".*)?$",
+					"begin": "^([.'])[ \t]*(TQ)[ \t]*(\\\\[#\"].*)?$",
 					"end": "^(?=[.'][ \t]*TP\\b)",
 					"beginCaptures": {
 						"0": {
@@ -2082,12 +2969,15 @@
 				},
 				{},
 				{
-					"contentName": "markup.bold.roff",
-					"begin": "^([.'])[ \t]*(S?B)(\\s*\\\\\".*$)?(?=$|[ \t]+|\\\\)",
-					"end": "^(?=[.'])|(?=\\\\\")|((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)",
+					"begin": "^([.'])[ \t]*(S?B)(\\s*\\\\[#\"].*$)?(?=$|[ \t]+|\\\\)",
+					"end": "^(?=[.'])|(?=\\\\\")|(?!\\\\#)((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)",
 					"patterns": [
 						{
 							"include": "$self"
+						},
+						{
+							"match": "\\S+",
+							"name": "markup.bold.roff"
 						}
 					],
 					"beginCaptures": {
@@ -2122,12 +3012,15 @@
 					}
 				},
 				{
-					"contentName": "markup.italic.roff",
-					"begin": "^([.'])[ \t]*(I)(\\s*\\\\\".*$)?(?=$|[ \t]+|\\\\)",
-					"end": "^(?=[.'])|(?=\\\\\")|((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)",
+					"begin": "^([.'])[ \t]*(I)(\\s*\\\\[#\"].*$)?(?=$|[ \t]+|\\\\)",
+					"end": "^(?=[.'])|(?=\\\\\")|(?!\\\\#)((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)",
 					"patterns": [
 						{
 							"include": "$self"
+						},
+						{
+							"match": "\\S+",
+							"name": "markup.italic.roff"
 						}
 					],
 					"beginCaptures": {
@@ -2169,7 +3062,6 @@
 		"alternating-fonts": {
 			"patterns": [
 				{
-					"name": "meta.bold-italic.roff",
 					"begin": "^([.'])[ \t]*(BI)\\b",
 					"end": "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 					"beginCaptures": {
@@ -2199,7 +3091,6 @@
 					]
 				},
 				{
-					"name": "meta.bold-roman.roff",
 					"begin": "^([.'])[ \t]*(BR)\\b",
 					"end": "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 					"beginCaptures": {
@@ -2229,7 +3120,6 @@
 					]
 				},
 				{
-					"name": "meta.italic-bold.roff",
 					"begin": "^([.'])[ \t]*(IB)\\b",
 					"end": "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 					"beginCaptures": {
@@ -2259,7 +3149,6 @@
 					]
 				},
 				{
-					"name": "meta.italic-roman.roff",
 					"begin": "^([.'])[ \t]*(IR)\\b",
 					"end": "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 					"beginCaptures": {
@@ -2289,7 +3178,6 @@
 					]
 				},
 				{
-					"name": "meta.roman-bold.roff",
 					"begin": "^([.'])[ \t]*(RB)\\b",
 					"end": "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 					"beginCaptures": {
@@ -2319,7 +3207,6 @@
 					]
 				},
 				{
-					"name": "meta.roman-italic.roff",
 					"begin": "^([.'])[ \t]*(RI)\\b",
 					"end": "(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\\")",
 					"beginCaptures": {
@@ -2354,13 +3241,23 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.newline.roff",
-					"begin": "[ \t]+\\\\$\\n?",
-					"end": "^"
+					"begin": "[ \t]+(\\\\)$\\n?",
+					"end": "^",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				},
 				{
 					"name": "constant.character.escape.newline.roff",
-					"begin": "\\\\$\\n?",
-					"end": "^[ \t]*"
+					"begin": "(\\\\)$\\n?",
+					"end": "^[ \t]*",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.escape.roff"
+						}
+					}
 				}
 			]
 		},
