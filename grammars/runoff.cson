@@ -105,7 +105,7 @@ repository:
 			# Generic command
 			name: "meta.function.runoff"
 			begin: "(?i)(?:^|(?<=;))((\\.)(?:END\\s+)?[^;\\s\\-+]+)"
-			end:   "$|(;)(?=\\.)"
+			end:   "$|(;)(?=\\.)|(?=;[^.])"
 			patterns: [include: "#arguments"]
 			beginCaptures:
 				1: name: "keyword.function.name.runoff"
