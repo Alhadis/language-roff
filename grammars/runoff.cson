@@ -86,7 +86,7 @@ repository:
 			# .if/.endif: Control flow
 			name: "meta.condition.runoff"
 			begin: "(?i)(?:^|(?<=;))((\\.)(?:IF|ELSE|ENDIF))(?=$|\\s|;)"
-			end: "$|(;)"
+			end: "$|(;)|(?=!)"
 			beginCaptures:
 				1: name: "keyword.control.runoff"
 				2: name: "punctuation.definition.function.runoff"
