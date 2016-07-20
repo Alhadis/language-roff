@@ -65,6 +65,7 @@ repository:
 		}]
 
 
+
 	# Control lines
 	commands:
 		name: "meta.control-line.runoff"
@@ -96,11 +97,14 @@ repository:
 			
 			# .var: Variable declaration
 			name: "meta.function.runoff"
-			match: "(?i)^\x0C*((\\.)VAR|VR|VARIABLE)(?:$|[ \t]+(\\S*))"
-			captures:
+			begin: "(?i)(?:^|(?<=;))((\\.)VAR|VR|VARIABLE)(?=$|\\s)"
+			end: "$|;|(?=!)"
+			beginCaptures:
 				1: name: "storage.type.var.runoff"
 				2: name: "punctuation.definition.function.runoff"
-				3: name: "variable.name.runoff"
+			endCaptures:
+				1: name: "punctuation.terminator.statement.runoff"
+			patterns: [include: "#arguments"]
 		},{
 			
 			# Generic command
