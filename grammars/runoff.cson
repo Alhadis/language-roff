@@ -44,17 +44,53 @@ repository:
 		match: "[^_]\x08(?=_)|(?<=_)\x08[^_]"
 
 
+	# Parameters passed to control lines
+	arguments:
+		patterns: [{
+			name: "constant.numeric.runoff"
+			match: "[-+]?\\d+(?:\\.\\d+)?"
+		},{
+			# Double-quoted string
+			name: "string.quoted.runoff"
+			begin: '"'
+			end:   '"'
+			beginCaptures: 0: name: "punctuation.definition.string.begin.runoff"
+			endCaptures:   0: name: "punctuation.definition.string.end.runoff"
+		},{
+			# Unquoted string
+			name: "variable.parameter.runoff"
+			match: "(?!\\.)[^\\s;]+"
+			captures:
+				0: name: "string.unquoted.runoff"
+		}]
+
+
 	# Control lines
 	commands:
+		name: "meta.control-line.runoff"
+		begin: "^\x0C*(?=\\.)"
+		end: "$|;(?!\\.)"
+		endCaptures:
+			0: name: "punctuation.terminator.statement.runoff"
 		patterns: [{
 			
+			# Trailing comment
+			name: "comment.line.runoff"
+			begin: "!"
+			end:   "$"
+			beginCaptures:
+				0: "punctuation.definition.comment.runoff"
+		},{
 			# .if/.endif: Control flow
 			name: "meta.condition.runoff"
-			match: "(?i)^\x0C*((\\.)(?:IF|ELSE|ENDIF))(?:$|[ \t]+(\\S*))"
-			captures:
+			begin: "(?:^|(?<=;))((\\.)(?:IF|ELSE|ENDIF))(?=$|\\s|;)"
+			end: "$|(;)"
+			beginCaptures:
 				1: name: "keyword.control.runoff"
 				2: name: "punctuation.definition.function.runoff"
-				3: name: "variable.parameter.runoff"
+			endCaptures:
+				1: name: "punctuation.terminator.statement.runoff"
+			patterns: [include: "#arguments"]
 		},{
 			
 			# .var: Variable declaration
@@ -68,13 +104,12 @@ repository:
 			
 			# Generic command
 			name: "meta.function.runoff"
-			begin: "^\x0C*((\\.)[^;\\s]+)"
-			end: "$|(;)(?!\\.)|((!).*)"
+			begin: "(?i)(?:^|(?<=;))((\\.)(?:END\\s+)?[^;\\s\\-+]+)"
+			end:   "$|(;)(?=\\.)"
+			patterns: [include: "#arguments"]
 			beginCaptures:
-				1: name: "entity.function.name.runoff"
-				2: name: "punctuation.definition.macro.runoff"
+				1: name: "keyword.function.name.runoff"
+				2: name: "punctuation.definition.function.runoff"
 			endCaptures:
 				1: name: "punctuation.terminator.statement.runoff"
-				2: name: "comment.line.runoff"
-				3: name: "punctuation.definition.comment.runoff"
 		}]
