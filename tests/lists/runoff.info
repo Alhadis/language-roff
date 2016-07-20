@@ -1,0 +1,178 @@
+08/30/79  runoff, rf
+
+Syntax:  rf paths {-control_args}
+
+
+Function: types out text segments in manuscript form.
+
+
+Arguments: 
+paths
+   are pathnames of input segments or multisegment files; the runoff suffix
+   need not be given.
+
+
+Control arguments: 
+-ball N, -bl N
+   convert output to a form suitable for an N typeball.
+-character, -ch
+   create entryname.chars, listing page and line numbers of special characters,
+   normally not printable, that must be drawn in by hand.
+-device N, -dv N
+   prepare output compatible with device N.
+-from N, -fm N
+   start printing at the page numbered N.
+-hyphenate, -hph
+   call user-supplied procedure to perform hyphenation.
+-indent N, -in N
+   set initial indentation to N.
+-no_pagination, -npgn
+   suppress page breaks.
+-number, -nb
+   print source segment line numbers in output.
+-page N, -pg N
+   change the initial page number to N.
+-parameter arg, -pm arg
+   assign arg as a string to the internal variable "Parameter".
+-pass N
+   make N passes over the input.
+-segment, -sm
+   direct output to the segment or multisegment file named entryname.runout,
+   where entryname is the name of the input segment.
+-stop, -sp
+   wait for a carriage return before each page.
+-to N
+   finish printing after the page numbered N.
+-wait, -wt
+   wait for a carriage return before the first page.
+
+
+Control requests:  are defined below.  If the request has a
+default, it is in parentheses following the definition.
+The following conventions are used to specify arguments of
+control requests.
+#     integer constant
+c     character
+cd    character pair
+exp   expression (either numeric or string)
+n     integer expression
++/-n  +/- indicates update by n; if sign not present, set to n
+f     segment name
+t     title of the form 'part1'part2'part3'
+
+.ad          Right justify text (on)
+.ar          Arabic page numbers (arabic)
+.bp          Begin new page
+.br          Break, begin new line
+.cc c        Change special character from % to c (%)
+.ce n        Center next n lines (1)
+.ch cd....   Note "c" in chars segment as "d"
+.ds          Double space (off)
+.ef # t      Defines even footer line #
+.eh # t      Defines even header line #
+.eq N        Next N lines are equations (1)
+.ex text     Call command processor with "text"
+.fh t        Format of footnote demarcation line (underscore)
+.fi          Fill output lines (on)
+.fo # t      Equivalent to--  .ef # t, .of # t
+.fr c        Controls footnote numbering--  "t" reset each page, "f" continuous, "u" suppress numbering
+.ft          Delimits footnotes
+.gb xxx      "Go back" to label xxx
+.gf xxx      "Go forward" to label xxx
+.he # t      Equivalent to: .eh # t, .oh # t
+.if f exp    Segment f.runoff inserted at point of request; value of "exp" assigned to "Parameter"
+.in +/-n     Indent left margin n spaces (0)
+.la xxx      Define label xxx
+.li n        Next n lines treated as text (1)
+.ll +/-n     Line length is n (65)
+.ma +/-n     Equivalent to-- .m1 +/-n, .m4 +/-n (4)
+.mp +/-n     Print only every nth page (1)
+.ms +/-n     Multiple space of n lines (1)
+.m1 +/-n     Margin above headers set to n (4)
+.m2 +/-n     Margin between headers and footers set to n (2)
+.m3 +/-n     Margin between last text line and last footer set to n (2)
+.m4 +/-n     Margin between first footer and page bottom set to n (4)
+.na          Does not right justify (off)
+.ne n        Need n lines; begin new page if not enough remain (1)
+.nf          Does not fill output lines; print them exactly as entered (off)
+.of # t      Defines odd footer line #
+.oh # t      Defines odd header line #
+.op          Next page number is odd
+.pa +/-n     Begin page n
+.pi n        Skip n lines if n remain; otherwise skip n on next page before any text (1)
+.pl +/-n     Set page length to n lines
+.rd          Read one line of text from the user_input I/O switch and process it in place of .rd line
+.ro          Roman numeral page numbers (arabic)
+.rt          "Return" from this input segment
+.sk n        Skip n page numbers (1)
+.sp n        Space n lines (1)
+.sr sym exp  Assign value of "exp" to variable named "sym"
+.ss          Single space (on)
+.tr cd....   Translate nonblank character c into d on output
+.ts n        Process next input line only if n is not zero (1)
+.ty xxx      Write "xxx" onto error_output I/O switch
+.un n        Indent next text line n spaces less (left margin)
+.ur text     Substitute values of variables in "text", and scan line again
+.wt          Read one line of text from user_input I/O switch and discard it
+.*           Comment line; ignored
+.~           Comment line; ignored, but included in chars output segment
+
+
+Built-in symbols:  runoff has over 50 internal variables,
+which are available to the user.  In addition, the user can
+set his own variables with the .sr control request.  See the
+runoff command in the MPM Commands for the list of built-in
+symbols.
+
+
+Expressions:  can be either arithmetic or string and consist
+of numbers and operators in appropriate combinations.  The
+operators and order of precedence are--
+^  (bit-wise negation), -(unary)
+*,/,\  (remainder)
++,-  (binary)
+=, <, >, /, <, >  (all are comparison operators
+                   that yield -1 for true or 0 for false)
+&  (bit-wise AND)
+|  (bit-wise OR), = (bit-wise equivalence)
+Parentheses for grouping.
+
+The values can have the following forms --
+String
+   <string>=<basicstring> | <concatenation> | <substr>; <basicstring>="xxx"
+   <concatenation>=<string><basicstring>; <substr>=<string>(x,y)
+   escape sequences - *b,*t,*n,*s,*",**,*cnnn (BS,HT,NL,space,",*,\nnn)
+Arithmetic adecimal number; # followed by octal digits - an octal number; @
+   followed by hexadecimal digits - a hexadecimal number
+
+
+                                          -----------------------------------------------------------
+
+
+Historical Background
+
+This edition of the Multics software materials and documentation is provided and donated
+to Massachusetts Institute of Technology by Group BULL including BULL HN Information Systems Inc. 
+as a contribution to computer science knowledge.  
+This donation is made also to give evidence of the common contributions of Massachusetts Institute of Technology,
+Bell Laboratories, General Electric, Honeywell Information Systems Inc., Honeywell BULL Inc., Groupe BULL
+and BULL HN Information Systems Inc. to the development of this operating system. 
+Multics development was initiated by Massachusetts Institute of Technology Project MAC (1963-1970),
+renamed the MIT Laboratory for Computer Science and Artificial Intelligence in the mid 1970s, under the leadership
+of Professor Fernando Jose Corbato. Users consider that Multics provided the best software architecture 
+for managing computer hardware properly and for executing programs. Many subsequent operating systems 
+incorporated Multics principles.
+Multics was distributed in 1975 to 2000 by Group Bull in Europe , and in the U.S. by Bull HN Information Systems Inc., 
+as successor in interest by change in name only to Honeywell Bull Inc. and Honeywell Information Systems Inc. .
+
+                                          -----------------------------------------------------------
+
+Permission to use, copy, modify, and distribute these programs and their documentation for any purpose and without
+fee is hereby granted,provided that the below copyright notice and historical background appear in all copies
+and that both the copyright notice and historical background and this permission notice appear in supporting
+documentation, and that the names of MIT, HIS, BULL or BULL HN not be used in advertising or publicity pertaining
+to distribution of the programs without specific prior written permission.
+    Copyright 1972 by Massachusetts Institute of Technology and Honeywell Information Systems Inc.
+    Copyright 2006 by BULL HN Information Systems Inc.
+    Copyright 2006 by Bull SAS
+    All Rights Reserved
