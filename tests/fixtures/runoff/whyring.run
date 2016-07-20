@@ -1,0 +1,777 @@
+.ll 78
+.na
+.ss
+.he $$%$$
+.ce
+WHY A RING?
+.sp
+.ce
+J. H. Saltzer
+.ce
+K. T. Pogran
+.ce
+D. D. Clark
+.sp
+.ce
+_A_b_s_t_r_a_c_t
+.sp
+     In a world increasingly populated with Ethernets and Ethernet-like
+nets there nevertheless continues to be a strong interest in rings of
+active repeaters for local data communication.  This paper explores
+some of the engineering problems involved in designing a ring
+that has no central control.  It then compares one ring design
+with the Ethernet on several different operational and subtle technical points
+of
+design, maintainability, and future prospects.
+On each of these points the ring possesses important or interesting advantages.
+At the same time, the most commonly cited advantage of a ring,
+"deterministic access time," is shown to be illusory.  The paper concludes
+that the data communication ring is a sound idea that will prove its
+value on operational rather than theoretical issues.
+.sp 2
+.ce
+_K_e_y_w_o_r_d_s
+.sp
+.in 10
+local networks, ring networks, local network topology
+.sp 3
+.in 0
+.ss
+Authors' addresses:  J. H. Saltzer and D. D. Clark, M.I.T. Laboratory for
+Computer Science, Cambridge, Massachusetts, U.S.A.  K. T. Pogran, Bolt Beranek
+and Newman Inc., Cambridge, Massachusetts, U.S.A.
+.sp
+.fr u
+.fh $________________________$$$
+.ft
+This research was supported by the Advanced Research Projects Agency of the
+Department of Defense and was monitored by the Office of Naval Research under
+contract number N00014-75-C-0661.
+.sp
+Slightly revised from a paper of the same title appearing
+in the _P_r_o_c. _I_E_EE_ _7_t_h _D_a_t_a
+_C_o_m_m_u_n_i_c_a_t_i_o_n _S_y_m_p_o_s_i_u_m, October
+27-29, 1982,
+Mexico City, Mexico.  Reprinted with permission.  c  1981 IEEE
+.sp
+Ethernet is a trademark of the Xerox Corporation.
+.ft
+.ds
+.bp
+.ce
+_I_n_t_r_o_d_u_c_t_i_o_n
+.sp
+    The M.I.T. Laboratory for Computer Science has, for more than three years,
+operated a prototype one Mbit/sec. distributed control ring network of eight
+nodes.  About one year ago, the laboratory installed an improved, simpler,
+and now commercially available,
+ten Mbit/sec. ring design, intended to link groups of up to 250
+desktop computers.  Since there are already several competing local network
+designs
+that use contention-controlled broadcast on passive coaxial cable rather than a
+repeater ring, we are
+often asked why one should bother to develop an alternative approach--the
+contention-controlled broadcast technology is field proven, its properties are
+well
+understood and adequate for the application.
+In addition, there are at least three difficult engineering problems
+involved in the design of a distributed control ring network:
+reliability of the repeater string, distributed initialization and
+recovery, and closed-loop clock coordination.
+Of course the ring approach has also been
+field-proven in the forms both of laboratory developments [1,2,3], and
+commercial products [4,5], but in no case in a way that settles all the
+questions.
+Upon analysis, it appears that an apparent preference for contention-controlled
+broadcast
+networks in the United States but for ring networks in Europe has been
+more determined by accidental historical precedents than by
+persuasive technical arguments.
+.sp
+     This paper examines briefly nine technical differences between the
+contention-controlled
+broadcast approach and the ring, and argues that it is interesting to
+pursue the ring technology.  It assumes that the reader is familiar with the
+basic concepts involved in local networks and in ring networks as described
+in published papers [1,2,3,4,5,6,7].
+There are a wide variety of possible designs both for rings and for
+broadcast networks, and these design choices have both gross and subtle
+differences that affect comparisons.
+To be specific, the kind of ring network assumed in this discussion is a
+token-controlled
+system in which the originator removes his own message and in which
+there is no central control or monitor station.  Both the one and ten
+Mbit/sec. rings at M.I.T. mentioned earlier, as well as the IBM Z-ring [3],
+are of this design.
+For contrast, the Ethernet local communication network developed
+by the Xerox Palo Alto Research Center will be used, with the understanding
+that it is typical of a contention-controlled passive coaxial cable broadcast
+design [8,9,10].
+The Mitre Corporation MITREBUS [11], another contention-controlled broadcast
+design, is mentioned for
+comparison also.
+.sp
+     These specific designs are chosen because they reflect two distinct
+and important design choices:
+.sp
+.in 8
+.un 3
+-  access control by contention (Ethernet) versus token (ring), and
+.sp
+.un 3
+-  communication by broadcast (Ethernet) versus point-to-point (ring).
+.in 0
+.sp
+As shall be seen, the nine technical differences discussed all flow directly
+from these two choices.  This point should be kept in mind when applying
+the observations to other local network designs that use a different
+combination of design choices, for example, a token-controlled broadcast
+net or a contention-controlled ring.
+.sp
+.ce
+_R_i_n_g _d_e_s_i_g_n _p_r_o_b_l_e_m_s
+.sp
+     The three difficult ring engineering problems referred to above appear
+to have elegant and straightforward solutions, and one of the reasons
+for trying out ring technology in the field is to verify that these
+solutions work well in practice.  Other papers [2,12,13,14] explore these three
+engineering problems and considerations in their solution in some depth, so
+they are only summarized here:
+.sp
+.in 5
+.un 5
+1.   Reliability of the repeater string.  The basic problem here is that
+a failure in any one repeater can disrupt the entire local network and, if
+one strings together one hundred or more active repeaters, one would
+expect to end up with a very fragile system.
+Further, locating
+the troublesome repeater could require perambulation of the entire network.
+Very reliable repeaters and careful system engineering seem to be needed
+at first glance.  However, a simpler
+solution to these problems is to arrange the transmission links between
+successive
+nodes so that each internode link loops through a central point, a wire center.
+At the wire center, bypass relays that are energized remotely by
+the network stations can do a majority of the reconfiguration
+operations automatically.
+The resulting configuration, a star-shaped ring, creates a centralized
+location for maintenance and reconfiguration and at the same time provides
+reliability, without compromising
+the distributed nature of the ring control.
+Further, clusters of nodes can be connected by nearby wire centers that are
+in turn connected hierarchically through more distant wire centers.
+This approach reduces the wiring cost that one might anticipate in a
+star topology.
+.sp
+.un 5
+2.   Distributed initialization and recovery.  To avoid designating some one
+ring
+node as special (and thereby making ring operation depend on that node's
+continued good health) some algorithm is required whereby all active repeaters
+can quickly and simply agree upon the need for initialization and recovery,
+and not fall all over one another trying to accomplish it.  A suitable
+strategy can be devised using two ideas developed for passive broadcast
+networks.  First, when any node detects ring trouble, it jams (as in Ethernet)
+the ring net with a characteristic signal that insures agreement among all
+participants.  Second, after jamming, a virtual token, whose time of arrival
+is based on the station's address (as in the Chaosnet [15],) determines which
+single
+station actually performs network reinitialization.
+.sp
+.un 5
+3.   Closed-loop clock coordination.  A subtle problem of 
+distributed agreement on data transmission rate arises in a ring.
+The issue is that not only must the collection of repeaters agree on a
+common clock rate, but that clock rate must result in an integral
+number of bit times of delay when traversing the closed ring.
+Fortunately, there appear to be at least three different, workable ways of
+achieving this agreement.  The simplest of these ways is to
+open the ring when originating a message, and thereby allow all non-originating
+repeaters simply to track the originator.
+An intermediate approach based on inserting time wedges in the clock at
+repeaters that fall behind the fastest repeater was used in the prototype
+ring [6].  The most sophisticated approach is to have a
+phase-locked-loop in each repeater tracking its preceding neighbor, and design
+loop filters so that the resulting ring of PLL's is stable [14].
+.sp
+.in 0
+     These three problems are, of course, problems only until they are solved.
+Since good solutions appear to be in hand,
+the following discussion assumes that the ring design being
+compared with the Ethernet includes the star topology, automatic
+decentralized reinitialization, and any one of the clock coordination
+techniques.
+.sp
+.ce
+_N_i_n_e _p_o_i_n_t_s _o_f _c_o_m_p_a_r_i_s_o_n _o_f
+_r_i_n_g_s _w_i_t_h _E_t_h_e_r_n_e_t_s
+.sp
+1.   The contention-controlled broadcast net has a significant analog
+engineering component,
+while the ring net is almost entirely a digital
+design.  This difference looks very interesting to explore, because of its
+possible ramifications in ability to exploit rapidly advancing
+progress in digital technology and VLSI.  To understand this difference,
+consider that a broadcast net transmitter's signal
+must be receivable by all receivers on the
+cable.  These receivers are at varying distances from the transmitter and
+therefore will experience different attenuations and echoes.  Similarly
+each receiver must be able to hear every transmitter.  In all, there are N(N-1) 
+such combinations that must work in an N-node network, and the transceiver
+system must be designed conservatively enough that the worst possible
+receiver-transmitter placement combination (in terms of echo buildup
+and attenuation) must deliver acceptable performance.
+The analog noise level contributed by idle transmitters grows with
+the number of nodes, though probably less than linearly.
+Finally, in order
+for a "listen-while-transmit" collision detection feature of an Ethernet
+to work, an active transceiver must be
+able to notice that it is not the only active one.  Thus the
+receiver part must be capable of detecting the weakest other transmitter
+during its own transmissions and distinguishing
+that other transmitter from its own transmitter's echoes.
+This set of requirements is not impossible to meet, but 
+very careful analog transmission system engineering is needed, and the
+resulting design has many analog components.
+In contrast, the analog part of a ring network repeater is more tractable.
+Any given transmitter sends a signal down a private line to
+only one receiver.  The receiver has one echo environment and one received
+signal level to cope with.  Thus, a relatively simple line driver/line
+receiver combination can suffice.  For this reason, the passive broadcast
+technology is straining to reach a 10 Mbit/sec. signalling rate with
+a 200 node net, while the ring can operate at that speed and scale with a fairly
+elementary analog system.
+.sp
+     While engineering in the analog domain is
+substantially easier in the ring, in the digital domain the
+situation reverses.  Note that two of the three difficult ring engineering
+problems discussed earlier (initialization and clock coordination) can be
+handled by techniques that are mostly digital.
+This difference in the character of the hard
+engineering problems of the two technologies offers an exploitation
+opportunity that may favor the ring network.  The recent and projected
+waves of technology improvement have benefited the digital domain
+more than the analog, mostly because it is easy to see how to
+solve problems systematically by increasing digital component count; it often
+seems to be harder to take systematic advantage of increased numbers of
+components in the analog domain.  A less compelling, but still interesting,
+argument is that because of the simple analog transmission system
+required by the ring, even the line drivers and receivers might be
+integrable into a future VLSI implementation; it is probably harder to do
+this integration for the more complex analog transceiver technology of the
+passive broadcast net.
+.sp
+2.   A problem with the Ethernet that is closely related to its analog
+domain engineering emphasis lies in ground reference and power supply.  It
+is important that a local network not impose a uniform ground reference
+on all attached hosts.  If it did, the network risks carrying large ground
+currents or creating ground loops.  In order to obtain acceptable transceiver
+performance in a broadcast environment,
+all present Ethernet designs seem to require direct coupling of
+an active component (e.g., the base of a transistor) to the cable, with
+consequent need for a power supply whose ground reference is the cable
+shield.  To avoid adding a central, shared component, a per-node, isolated
+power supply for the active part of the transceiver electronics seems to be a
+requirement of
+an Ethernet.  The ring, on the other hand, can be designed to deliver
+enough energy that ground isolation can be achieved in the signal path ahead
+of the first active component of the receiver.  (The prototype M.I.T. ring used
+optical
+isolators for this purpose; the ten Mbit/sec. ring uses pulse transformers.)
+Finally, because sensitive, active electronic components are directly attached
+to
+the Ethernet coaxial cable conductors, transient suppression (e.g., from
+lightning)
+requires that the coaxial cable ground shield system be grounded at no more
+than one point.  (To enforce this requirement whle maintaining the ability to
+divide a long cable into sections for trouble shooting, the initial Ethernet 
+specification [10] required
+that there be _n_o ground for the cable.  Such a floating
+conductive system becomes a personnel hazard in the case in which it
+accidentally becomes shorted to an electric power conductor.)
+.sp
+3.   Electromagnetic compatibility between the net and other physically
+adjacent electrical equipment is generally easier to engineer with a
+balanced transmission medium than with an unbalanced one.  One of
+the attractions of the Ethernet is the ease of attaching to it at
+any point, which ease relies on the use of clamp-on connectors with coaxial
+cable, an unbalanced
+medium.  If one tried to use a balanced transmission medium for the
+Ethernet, it would probably become necessary to install ordinary connectors
+every time a new node is added, and the easy attachment virtue would be
+compromised.
+In addition, the Ethernet strategy of listening for collisions
+depends on the transmitter generating an average DC level.  Collision detection
+with balanced lines would
+probably become more complex,
+since in the most obvious balanced waveform modulation schemes the average DC
+level is zero.
+In contrast, the ring
+network can use shielded twisted
+pair and balanced waveform modulation, thereby reducing both radiation
+to other equipment and susceptibility of the network to noise spikes
+and electrical interference originating elsewhere.  At the same
+time, the passive star arrangement for a ring captures much of the easy
+attachment property.
+.sp
+4.   An attraction of the passive broadcast net is the intrinsic high
+reliability
+that comes from having a minimum number of active components whose
+failure can disrupt the net.  The most important shared component--the
+coaxial cable--is completely passive.  In contrast, the primary
+objection to a ring network is the operational fragility of a
+series string of 100 or more repeaters.  However, this fragility
+disappears when using the passive star arrangement of
+the ring network.
+.sp
+5.   Another attraction of the passive broadcast net is that it is exceptionally
+easy
+to install--a single cable is routed through the building, near
+every office or other location in which a network node might be needed.
+Actual attachment of nodes can be deferred until the node is required,
+at which time attachment can be accomplished by clamp-on connectors;
+attachment does not disrupt network operation.  However, hand-in-hand
+with this convenience goes an associated inconvenience, namely that
+trouble isolation and first-aid repair cannot easily be centralized.
+Some kinds of failures will require foot-by-foot inspection of the
+network and each node attachment, involving access to offices
+and other spaces
+throughout the building.  The passive star configuration of the ring network
+completely overcomes this potential problem.
+With a passive star, addition of a new station involves running a cable
+from the office to a nearby wire center, so one might consider wiring a building
+in advance by running one such cable per office.  Then, installation of a
+station is done by attaching a connector and plugging it in.  No extra
+disruption is associated with this kind of installation.
+Further, many buildings are already designed with cable trays and wire ducts
+in place that emanate from a wire center, because both telephone and
+electric power wiring practice also call for wire centers.
+Field experience with both kinds of networks is really required to
+determine which is more effective on day-to-day operational issues such as
+this and the previous two.
+Such experience is being reported for the Ethernet [9,16]; corresponding
+experience with a ring is not yet so extensive.
+.sp
+6.   There is an intrinsic limitation in the contention-controlled broadcast net
+approach in its
+ability to make effective use of higher speed transmission media,
+such as optical fibers.
+In a contention network,
+at the beginning of each packet transmission there is a period when there
+is a risk of collision:  this period is proportional to the length of the
+transmission medium, since the packet is exposed to
+collision until its first bit propagates to the farthest transceiver.
+The duration of this exposure is thus fixed by the physical configuration.
+As the transmission speed increases, the time required to transmit an average
+size packet decreases, until at some transmission rate the packet transmission
+time becomes
+as short as the cable propagation time.  At that point, most
+of the advantage of carrier
+sense is lost and the system becomes an ordinary Aloha channel, with
+an intrinsic data capacity limit of about 18% of the channel capacity [3,17].
+For a 1 Km. coaxial cable, the end-to-end propagation time is typically 4500
+nsec.
+This is comparable to the time required to transmit a 60-octet packet at
+100 Mbit/sec.  Thus an attempt to build a 100 Mbit/sec. passive broadcast net
+might result
+in an effective performance limit near 20 Mbit/sec.  The ring, because it
+does not use a contention access scheme, does not have any corresponding
+limiting effect, and thus can be scaled up directly to a 100 Mbit/sec.
+configuration.
+(The importance of this limitation in contention-controlled nets depends
+critically on
+the distribution of packet sizes.  If most packets are 6000, rather than 60,
+octets in length the limitation would be inconsequential at a 100 Mbit/sec.
+rate.
+One can make a good argument that any application that requires a
+100 Mbit/sec. transmission rate for 100 nodes will not typically generate
+small packets because of per-packet software overhead, so there should be an
+opportunity
+to avoid the Aloha phenomenon.  Until some more
+experience is gained with applications that really require this
+bandwidth, the question will remain unanswered.  Experience with the
+Hyperchannel [18] network, which is a contention-controlled net
+that runs at 50 Mbit/sec., may be useful in this regard.
+.sp
+7.   A second limitation of the passive broadcast net approach that appears to
+require some considerable ingenuity to overcome is to
+take advantage of fiber optic technology.  This technology offers the
+attraction of very high speed, excellent electromagnetic compatibility,
+avoidance of lightning and ground reference problems, and (predicted) low cost.
+However, the problems of turning optical fiber into a broadcast medium 
+are formidable.  One must invent a satisfactory technique for tapping an optical
+fiber and detecting a signal without diverting too much optical energy or
+else the system will not scale up very well in number of nodes.  Yet the
+same tap must allow introducing a new signal without loss.
+(Some recent experiments with many-tailed star couplers are promising, but that
+approach
+gives up the single cable routed by every office that is one of the
+chief attractions of the Ethernet [19].)  In
+contrast, since a ring network uses one-way, point-to-point transmission,
+replacing the wire links in a ring network with fiber optic links is
+quite straightforward.
+The Cambridge ring has operated for some time with one fiber optic link [1].
+.sp
+.in 0
+8.   Because it uses repeaters, a ring network can with ease span much
+greater physical distances than can the passive broadcast net.  The
+passive broadcast net can also be augmented with repeaters, as in the
+Ethernet standard and the Mitrebus.  However, use of contention
+control, which makes the propagation time between the two most widely
+separated stations a critical, performance-limiting parameter, limits the
+distance that one can extend a broadcast net even with repeaters.
+Since in order to arrange a ring to span a longer distance at least
+parts of it must be "stretched out" rather than fully looped back in a
+passive star, one trades away some maintenance ease to gain a
+greater geographical span.  Thus the contention-controlled broadcast
+net trades both performance and maintenance ease with increased
+geographical coverage, while the ring trades only maintenance ease.
+The distance spanning effect is quite substantial, for two reasons.
+First, when using comparably expensive driver, receiver, and cable
+technology, a single ring link, being point-to-point rather than
+broadcast, can be longer than a single broadcast cable segment.
+Second, when successive ring links are placed in tandem the
+maximum geographical span is multiplied by half the number of stations--perhaps
+a factor of 100.  Thus for an area such as a campus of a
+.bp
+hundred buildings
+and building wings, a ring may have a considerable advantage over a
+passive broadcast network.
+.sp
+.in 0
+9.   A final, practical question to consider is whether or not there might be
+anything about a ring network that intrinsically requires either more or
+less complex logic than a contention-controlled broadcast network.  Only
+examination
+of in-field designs can answer this question, but such examination is trickier
+than one might expect, because every local net designer seems to have
+chosen a different function packaging approach.  Thus one design
+includes packet buffers, another doesn't but includes a direct memory
+access channel for some popular computer bus, the next assumes that part
+of the network control will be handled by software rather than hardware.
+To compare more carefully, implementations in medium-scale integration for the
+experimental Ethernet,
+the M.I.T. Artificial Intelligence Laboratory Chaosnet, and the ten
+Mbit/sec. ring network were compared by measuring the board area required to
+hold
+the implementation of the network control logic up to but not
+including speed-matching buffers.  All three were found to require something
+less than 50 square inches of densely packed wire-wrap card.
+Casual observation of the
+implementation of a Mitrebus interface and a Prime Computer ring net
+controller suggested that these two network designs were similar in
+complexity to the others.
+.sp
+    The conclusion is that there is
+no significant intrinsic difference in the complexity of implementation
+of the two approaches, and a straightforward TTL implementation
+of a ring network should require about the same amount
+of hardware as an equivalent function contention-controlled broadcast net
+operating at the same speed.
+(This comparison of hardware complexity is distinct from that of point one,
+earlier, which raised some questions about the ease of VLSI implementation
+of the analog components of the broadcast network.)
+.sp
+.ce
+_N_o_n-_d_e_t_e_r_m_i_n_i_s_m
+.sp
+     A sometimes-mentioned point of difference between token control as used
+in the ring and contention control as used in the Ethernet is the ability
+to predict the maximum time one must wait to obtain access.
+Superficially, it appears that a carefully-designed token control net
+could have an advantage here.  If one limits the maximum message length,
+and insists that the token must be passed along after sending one message,
+then every network user has a guarantee that the token makes steady progress,
+and one can calculate with confidence the maximum length of time one might
+have to wait for access.  In contrast, in the case of the Ethernet,
+since every attempt to transmit could in principle produce a collision,
+there is a worrisome possibility that one could go on engaging in
+collisions indefinitely.  Such a possibility would be of concern, for
+example, in a distributed real-time process control application in which
+a deadline might be missed.  This property is sometimes summarized by saying
+that the Ethernet is "non-deterministic".
+.sp
+     That analysis is, however, superficial, because it omits a real-world
+consideration that intervenes to make the contention network
+and the token network much more similar than one might expect.  In any network,
+no matter how access is controlled. there is a finite probability of
+transmission
+error.  In a token-controlled ring, an error may destroy the token at the
+worst possible time, or when a station nearing a deadline finally receives
+the token the message it sends may be damaged by an error, and retransmission
+may be needed.  Thus the prospective recipient of the message can find that the
+deadline has been missed; the token ring is non-deterministic, too.
+One must accept the fact that the real world provides no guarantees, only
+a probability of success.  Once that principle is clear, one can specify
+a required success probability and choose system parameters accordingly.
+However, this approach applies equally well to the token and contention
+networks.
+Given a required probability of successfully meeting a deadline, one can
+calculate immediately a loading level for an Ethernet that meets the
+deadline with more than the required probability in the face of contention.
+The rest of the system must, of course, be designed to insure that the
+intended Ethernet load is not exceeded, either absolutely or else with a
+probability consistent with the system success goal.
+.sp
+     The numbers that result can be quite practical.  For
+example, in a 50-node ring, one must plan to wait for as many as
+50 maximum length messages to be sent until the token
+arrives.  The probability that an Ethernet is busy for n or more successive
+message intervals when it is loaded to a fraction of its capacity
+r (r<1, exponential message arrivals, fixed message length)
+is approximately r .  For r = 0.5 (a 50% loaded network) the
+probability that a wait of more the 50 message intervals occurs
+is thus less than about 10   , probably 5 orders of magnitude smaller
+than the probability of a transmission error that calls for retry
+or reinitialization.
+.sp
+     In practice there is one more level of subtlety to this line of argument.
+Suppose we have designed both an Ethernet and a ringnet for a time-critical
+application, and have determined the error rates on both nets and the
+maximum allowed load on the Ethernet so that the chance of missing the
+deadline is acceptably small.  In the case of a token-controlled ring, if
+any host attempts to present an abnormal traffic load to
+the network, the token-control mechanism effectively throttles the runaway host,
+and other network participants still have their usual chance of meeting
+their deadlines.  In the contention-controlled Ethernet, an abnormally active
+host can increase the probability of contention and thereby lower the
+chance of meeting deadlines.  This difference represents a genuine
+advantage of the token ring.  But if the system is correctly designed,
+this effect must be second order, when
+one considers that any single host is normally throttled internally by
+software overhead anyway.  One might hypothesize a conspiracy
+of several runaway nodes, but such a hypothesis takes us
+into the realm of predictably low-probability events.
+(One can also argue about whether incorrectly designed Ethernets
+fail more spectacularly than incorrectly designed token rings, but
+that somehow seems to be an uninteresting discussion.)
+.sp
+     Thus it appears to us that non-determinism is an
+unimportant difference between the contention system and the token approach.
+.in 0
+.sp
+.ce
+_B_r_o_a_d_b_a_n_d
+.sp
+     A related idea is that of using
+radio frequency broadcast signalling on coaxial cable ("Broadband") as, for
+example,
+the Mitre Corporation has done [11].  In these systems, both broadcast
+and contention control of access are used, so this scheme boils down to
+translating
+an Ethernet from baseband to some carrier frequency.  It thus has most of the
+same
+attractions and disadvantages of the Ethernet, but with three extra appeals:
+.in 5
+.sp
+.un 5
+a)   The same coaxial cable can also carry other radio frequency signals
+with different purposes, for example cable television.  Thus bringing the data
+network into an office would automatically bring the CATV system there, too.
+.sp
+.un 5
+b)   The coaxial cable is used in a frequency range where there is less
+dispersion
+(change of propagation velocity with frequency) so a greater bandwidth
+can be obtained.
+.sp
+.un 5
+c)   The cable television industry has developed a useful collection
+of modestly priced components, including cable attachment hardware
+and radio frequency linear integrated circuits that one could exploit.
+In particular, high bandwidth, low delay analog repeaters are available
+at a modest price; this availability leads to more uniform, higher signal
+levels.  Higher signal levels in turn allow simpler analog design and
+ground isolation techniques to be used.
+.in 0
+.sp
+The radio frequency signalling approach, however, ends up with the same kind
+of large analog engineering component as does the Ethernet-type broadcast net,
+this time in the
+form of wide-band linear amplifiers, voltage controlled oscillators, filters,
+modems, and phase-locked loops.  Although there are available integrated
+circuits that help
+perform those functions, in real applications those circuits must be surrounded
+by additional analog components--capacitors, resistors, transformers, etc.
+In exploiting
+cable television industry developments, one misses the opportunity
+to exploit what may be even more potent (by reason of volume and potential
+total integration) economic forces in the digital logic area.
+Finally, if one tries to make use of the potential for higher bandwidth it
+turns out that one cannot so easily take advantage of the television
+industry chips.  But if one uses discrete
+components, the cost climbs substantially.
+.sp
+     Apart from these considerations, the broadband network is an example
+of a contention-controlled broadcast system, so the earlier technical
+comparisons with the token-controlled ring seem to apply to it also.
+.sp
+.ce
+_C_o_n_c_l_u_s_i_o_n_s
+.sp
+     Considering these various technical arguments, it appears that one
+cannot make a clear case for either the contention-controlled broadcast net or
+the ring
+technologies.  Both approaches have good arguments
+in their favor, and it is likely that operational issues such as ease of
+installation, maintenance, and administration will dominate the detailed
+technical issues.  Thus practical experience with 100-node ring networks
+is really required to establish concrete comparisons of reliability and
+ease of maintenance and reconfiguration in the field.  The answer
+to the question asked in the opening paragraph is that there seems to be
+substantial technical interest in continuing to pursue ring technology.
+.sp
+     A second conclusion concerns the development and use of standards for local
+networks,
+such as the Ethernet standard of Xerox, Intel,
+Digital Equipment Corporation [10], and the IEEE Project 802
+proposed standards. [20]  With the current state of understanding
+and with substantial technical issues still to be resolved, it is clear that
+such standards
+cannot provide guidance on the choice of local network technology
+for a particular application; they can only provide guidance on how to
+implement a particular technology.  Separate standards are required for
+bus and ring technologies,
+just as separate standards apply to phonograph records and magnetic
+tapes.  In recognition of this requirement, IEEE Project
+802 has recently reorganized itself into three parts, concerned respectively
+with Ethernet-like networks, token rings, and token buses.
+.sp
+     Finally, the diversity of local network technologies prompts a need for a
+network interconnection standard that is technology-independent.  One
+approach to such a standard may be found in the fourth part of the IEEE
+Project 802 standard--the High-Level Interface (HILI) standard, which
+takes a formal, functional approach to specifying a general interface to a
+local network.  Another approach, which we believe bears investigation, is to
+define an interconnection standard at a hardware level that is
+technology-independent, a standard that specifies a common
+interface between a local network controller, or access device,
+and the hardware that is specific to a host processor's I/O structure.
+.sp
+.ce
+_A_c_k_n_o_w_l_e_d_g_e_m_e_n_t_s
+.sp
+     This paper is a collection of conclusions and
+thoughts developed in conversations over several years with ring and Ethernet
+advocates too numerous to identify.  Comments on drafts of this paper by
+Butler Lampson and David Reed sharpened up several of the observations.
+.sp 2
+.ss
+.in 5
+.un 5
+.ce
+_R_e_f_e_r_e_n_c_e_s
+.sp 2
+.un 5
+1.   Wilkes, M.V., and Wheeler, D.J., "The Cambridge Digital Communication
+Ring," P__r_o_c. _M_i_t_r_e-_N_BS_ L__o_c_a_l A__r_e_a
+C__o_m_m. N__e_t_w_o_r_k S__y_m_p_o_s_i_u_m,
+Boston, MA, May, 1979, pp. 47-61.
+.sp
+.un 5
+2.   Okuda, N., Kunikyo, T., and Kaji, T., "Ring Century Bus-an Experimental
+High Speed Channel for Computer Communications," P__r_o_c.
+F__o_u_r_t_h I__n_t.
+C__o_n_f. _o_n C__o_m_p_u_t_e_r
+C__o_m_m_u_n_i_c_a_t_i_o_n_s, September, 1978, pp. 116-166.
+.sp
+.un 5
+3.   Bux, W., et al., "A Local-Area Communication Network Based on a
+Reliable Token Ring System," P__r_o_c. I_F_I_P_ T_C_._6_
+I__n_t_e_r_n_a_t_i_o_n_a_l
+I__n-_D__e_p_t_h S__y_m_p_o_s_i_u_m _o_n L__o_c_a_l
+C__o_m_p_u_t_e_r N__e_t_w_o_r_k_s, Florence, Italy,
+April, 1982, pp. 69-82.
+.sp
+.un 5
+4.   "IBM Series/1 Local Communications Controller Feature Description,"
+IBM Publication GA34-0142, 3rd edition, April, 1982.
+.sp
+.bp
+.un 5
+5.   Gordon, R.L., et al., "Ringnet:  A packet switched local network with
+decentralized control," 4__t_h C__o_n_f. _o_n L__o_c_a_l
+N__e_t_w_o_r_k_s, Minneapolis, MN,
+October, 1979, pp. 13-19.
+.sp
+.un 5
+6.   Mockapetris, P.V., et al., "On the Design of Local Network Interfaces,"
+_1_9_77_ _I_F_IP_ _C_o_n_g_r_e_s_s
+_P_r_o_c_e_e_d_i_n_g_s, pp. 427-430.
+.sp
+.un 5
+7.   Clark, D.D., Pogran, K.T., and Reed, D.P., "An Introduction to Local Area
+Networks," P__r_o_c. I_E_E_E_ 6_6_, 11 (November, 1978), pp.
+1497-1517.
+.sp
+.un 5
+8.   Metcalfe, R.M., and Boggs, D.R., "Ethernet:  Distributed Packet
+Switching for Local Computer Networks," _C_A_CM_ _19_, 7 (July, 1976)
+pp. 395-404.
+.sp
+.un 5
+9.   Crane, R.C., and Taft, E.A., "Practical Considerations in
+Ethernet Local Network Design," Xerox Palo Alto Resesach Center
+Technical Report CSL-80-2, February, 1980.
+.sp
+.un 5
+10.  "The Ethernet," Version 1.0, _D_i_g_i_t_a_l
+_E_q_u_i_p_m_e_n_t _C_o_r_p., _I_n_t_e_l _C_o_r_p., and
+_X_e_r_o_x _C_o_r_p., September, 1980.
+.sp
+.un 5
+11.  Meisner, N.B., et al., "Time Division Digital Bus Techniques
+Implemented on Coaxial Cable," _P_r_o_c. _C_o_m_p. _N_e_t_w_o_r_k
+_S_y_m_p_o_s_i_u_m,
+National Bureau of Standards, Gaithersburg, Md., December 15, 1977,
+pp. 112-117.
+.sp
+.un 5
+12.  Saltzer, J.H., and Pogran, K., "A Star-Shaped Ring Network with High
+Maintainability," _P_r_o_c. _M_i_t_r_e-_N_BS_ _L_o_c_a_l
+_A_r_e_a _C_o_m_m_u_n_i_c_a_t_i_o_n_s _N_e_t_w_o_r_k
+_S_y_m_p_o_s_i_u_m, Boston, MA, May, 1979, pp. 179-190.
+.sp
+.un 5
+13.  Saltzer, J.H., "Communication ring initialization without central
+control," M.I.T. Laboratory for Computer Science Technical Memorandum
+TM-202, July, 1981.
+.sp
+.un 5
+14.  Leslie, I.M., "Frequency Stability in a Unidirectional Ring
+of Phase Locked Loops," unpublished working paper of University of Cambridge
+Computer Laboratory, ca. 1979.
+.sp
+.un 5
+15.  Moon, D.A., "Chaosnet," Massachusetts Institute of Technology
+Artificial Intelligence Laboratory Memorandum 628, (June, 1981).
+.sp
+.un 5
+16.  Shoch, J.E., and Hupp, J.A., "Performance of an Ethernet Local
+Network:  A Preliminary Report," _P_r_o_c. _I_E_EE_
+_C_O_M_P_C_O_N_80_, February, 1980,
+pp. 318-322.
+.sp
+.un 5
+17.  Abramson, N., "Packet switching with satellites," _A_F_I_PS_
+_C_o_n_f.
+_P_r_o_c. (_N_C_C _19__7_3), New York, June, 1973, pp. 695-702.
+.sp
+.un 5
+18.  Thornton, J.E., "Overview of Hyperchannel," _C_O_M_P_C_ON_
+_S_p_r_i_n_g _1_9_86_,
+San Francisco, CA., February, 1979, pp. 262-265.
+.sp
+.un 5
+19.  Rawson, E.G., "Application of Fiber Optics to Local Networks,"
+_P_r_o_c. _M_i_t_r_e-_N_BS_ _L_o_c_a_l _A_r_e_a
+_N_e_t_w_o_r_k_s _S_y_m_p_o_s_i_u_m, Boston, MA, May, 1979,
+pp. 155-167.
+.sp
+.un 5
+20.  I_E_E_E_ P__r_o_j_e_c_t 8_0_2_, L__o_c_a_l
+N__e_t_w_o_r_k
+_S_t_a_n_d_a_r_d_s _C_o_m_m_i_t_t_e_e, _S_t_a_t_u_s
+_R_e_p_o_r_t _D_r_a_f_t B_,
+October, 1981, IEEE Computer Society, Silver Springs, MD.
+

@@ -1,0 +1,3 @@
+".text.runoff":
+	editor:
+		commentStart: ".! "

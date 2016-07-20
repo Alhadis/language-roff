@@ -1,0 +1,44 @@
+name: "RUNOFF"
+scopeName: "text.runoff"
+fileTypes: [
+	"rnb"
+	"rnc"
+	"rnd"
+	"rne"
+	"rnh"
+	"rnl"
+	"rnm"
+	"rno"
+	"rnp"
+	"rns"
+	"rnt"
+	"rnx"
+	"run"
+]
+patterns: [include: "#main"]
+
+
+repository:
+	
+	# Common patterns
+	main:
+		patterns: [
+			{include: "#comment"}
+			{include: "#underline"}
+			{include: "#commands"}
+		]
+	
+	
+	# Comment lines
+	comment:
+		name: "comment.line.runoff"
+		begin: "^\\.!"
+		end: "$"
+		beginCaptures:
+			0: name: "punctuation.definition.comment.runoff"
+
+	
+	# Single underlined character
+	underline:
+		name: "markup.underline.link.runoff"
+		match: "[^_]\x08(?=_)|(?<=_)\x08[^_]"
