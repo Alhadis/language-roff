@@ -42,3 +42,18 @@ repository:
 	underline:
 		name: "markup.underline.link.runoff"
 		match: "[^_]\x08(?=_)|(?<=_)\x08[^_]"
+
+
+	# Control lines
+	commands:
+		patterns: [{
+			
+			name: "meta.function.runoff"
+			begin: "^\x0C*((\\.)[^;\\s]+)"
+			end: "$|(;)"
+			beginCaptures:
+				1: name: "entity.function.name.runoff"
+				2: name: "punctuation.definition.macro.runoff"
+			endCaptures:
+				1: name: "punctuation.terminator.statement.runoff"
+		}]
