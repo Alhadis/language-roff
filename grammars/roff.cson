@@ -707,7 +707,7 @@ repository:
 			
 			# "Parametric" escape sequences supported in Groff (GNU)
 			name: "constant.character.escape.function.check-identifier.gnu.roff"
-			begin: "((\\\\)[ABRsZ])((.))"
+			begin: "((\\\\)(?!s[-+]?\\d)[ABRsZ])((.))"
 			end:   "(\\4)|(?<!\\\\)(?=$)"
 			contentName: "string.other.roff"
 			patterns: [include: "#escapes"]
