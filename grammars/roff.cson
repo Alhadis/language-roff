@@ -40,7 +40,7 @@ firstLineMatch: """(?x)
 	|
 	
 	# Emacs modeline
-	(?i:-\\*-[^*]*(mode:\\s*)?nroff(\\s*;.*?)?\\s*-\\*-
+	(?i:-\\*-[^*]*(mode:\\s*)?\\b[gnt]?roff(\\s*;.*?)?\\s*-\\*-
 	|
 	
 	# Vim modeline
