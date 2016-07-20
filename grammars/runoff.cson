@@ -32,7 +32,7 @@ repository:
 	# Comment lines
 	comment:
 		name: "comment.line.runoff"
-		begin: "^\\.!"
+		begin: "^\\.[!*~]"
 		end: "$"
 		beginCaptures:
 			0: name: "punctuation.definition.comment.runoff"
