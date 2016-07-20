@@ -1,0 +1,486 @@
+.comment This .RNH file produces the .HLP files for APLSF and APL-BASIC,
+.comment -10 and -20
+.COMMENT VARIANT VSF PRODUCES HELP FILE FOR SF (DEFAULT)
+.COMMENT VARIANT VB PRODUCES HELP FILE FOR BASIC
+.VAR VSF S B
+.VAR VB B S
+.comment variant VTWENTY produces HELP file for TOPS-20 (default)
+.comment variant VTEN produces HELP file for TOPS-10
+.var VTWENTY 2 1
+.var VTEN 1 2
+.ts 55
+.IF VB
+.if VTEN
+APL.HLP - Help File for APL-BASIC-10 v2	September, 1979
+.t APL-BASIC-10 v2 Help File
+.else VTEN
+APL.HLP - Help File for APL-BASIC-20 v2	September, 1979
+.t APL-BASIC-20 v2 Help File
+.endif VTEN
+.else vb
+.if VTEN
+APLSF.HLP - Help File for APLSF-10 v2	September, 1979
+.t APLSF-10 v2 Help File
+.else VTEN
+APLSF.HLP - Help File for APLSF-20 v2	September, 1979
+.t APLSF-20 v2 Help File
+.endif VTEN
+.endif vb
+.b 2
+.lm0.rm70.f.j.sp1.ps58,70.c
+SYSTEM COMMANDS
+.c
+---------------
+.b3
+A maximum of 4 characters are necessary for uniqueness.
+.b 2
+<#>#=#Required Specifier
+.b1
+[#]#=#Optional Specifier
+.b1
+#!##=#Choice Between Two Options
+.b2.lm5
+.comment	.i-5
+.comment	)ASSIGN N [FILENAME] [PASSWORD] [/FILE-TYPE] [/SHARE] [/DUMP]
+.comment	.br
+.comment	Is equivalent to .BXASS
+.comment	.b1
+.i-5
+)BLOT [N]
+.br
+Provides a random pattern mask of length N.
+.b1.i-5
+)C [N] <FILENAME>
+.br
+Terminates the current APL session, runs the filename specified
+with a default device specification of SYS:, and facilitates a
+return to APL.
+.b1.i-5
+)CALL [N] <FILENAME>
+.br
+Terminates the current APL session, runs the filename
+specified, and facilitates a return to APL.
+.b1.i-5
+)CHARGE
+.br
+Displays the record of activity (connect, CPU...).
+.b1.i-5
+)CLEAR
+.br
+Replaces active workspace with CLEAR WS.
+.comment	.b1.i-5
+.comment	)CLOSE [N]
+.comment	.br
+.comment	Is equivalent to .BXCLS
+.b1.i-5
+)CONTINUE [HOLD]
+.br
+Saves the active WS as CONTINUE and exits from APL.
+.b1.i-5
+)COPY <WSNAME> [PASSWORD] [NAMED-OBJECT-LIST]
+.br
+Copies objects from WSNAME.
+.if vb
+.else vb
+.b1.i-5
+)CREATE [NUMBER-OF-COMPONENTS] <FILENAME> [PASSWORD] [RECORD-SIZE]
+.br
+Creates a file for use with direct access I/O.
+.endif vb
+.comment	.b1.i-5
+.comment	)DEASSIGN [N]
+.comment	.br
+.comment	Is equivalent to .BXDAS
+.b1.i-5
+)DIGITS [N]
+.br
+Displays or changes the number of significant digits.
+.b1.i-5
+)DROP <WSNAME> [SWITCH-LIST]
+.br
+Deletes the workspace WSNAME from the user's disk area.
+.b1.i-5
+)ECHO [ON!OFF]
+.br
+Allows or suppresses the printing of error lines.
+.b1.i-5
+)ERASE <NAME-LIST>
+.br
+Erases the named objects from the current workspace.
+.b1.i-5
+)FNS [LETTER]
+.br
+Displays an alphabetic list of function names in the WS.
+.b1.i-5
+)GROUP <GROUP-NAME> [GROUP-MEMBER-LIST]
+.br
+Collects named objects in the group-member-list into the group group-name.
+.b1.i-5
+)GRP <GROUP-NAME>
+.br
+Lists the members of a particular group.
+.b1.i-5
+)GRPS [LETTER]
+.br
+Displays an alphabetic list of group-names.
+.comment	.b1.i-5
+.comment	)HI [LITERAL MESSAGE]
+.comment	.br
+.comment	Creates [or deletes] the HI file specified by GENSF
+.if vb
+.else vb
+.b1.i-5
+)INPUT [FILENAME] [/CHARACTER-SET]
+.br
+Changes source of terminal input to be FILENAME.
+.endif vb
+.b1.i-5
+)LIB [WSNAME] [SWITCH-LIST]
+.br
+Displays names of workspaces.
+.b1.i-5
+)LOAD [MAGTAPE-POSITION] <WSNAME> [PASSWORD]
+.br
+Retrieves a workspace from secondary storage.
+.comment	.b1.i-5
+.comment	)MAXTIME [N]
+.comment	.br
+.comment	Displays or changes the allowable maximum runtime (OLS)
+.b1.i-5
+)MAXCORE [K-OF-CORE]
+.br
+Displays or changes the setting for the maximum WS size.
+.b1.i-5
+)MINCORE [K-OF-CORE]
+.br
+Displays or changes the setting for the minimum WS size.
+.b1.i-5
+)MODE [KEYWORD!ESCAPE]
+.br
+Displays or changes the mode of output for teletype devices.
+.b1.i-5
+)MON
+.br
+Returns the user directly to monitor mode.
+.b1.i-5
+)OFF [HOLD]
+.br
+Terminates the current APL session.
+.b1.i-5
+)ORIGIN [0!1]
+.br
+Displays or changes the index origin.
+.if vb
+.else vb
+.b1.i-5
+)OUTPUT [FILENAME] [/CHARACTER-SET]
+.br
+Directs the destination of terminal output to FILENAME.
+.endif vb
+.b1.i-5
+)OWNER
+.br
+Displays the PPN of the user who created the active workspace.
+.b1.i-5
+)PASSWORD [PASSWORD]
+.br
+Displays or alters the password of the WS.
+.b1.i-5
+)PCOPY <WSNAME> [PASSWORD] [NAMED-OBJECT-LIST]
+.br
+Copies objects from WSNAME to the current workspace.
+.b1.i-5
+)R [N] <FILENAME>
+.br
+Terminates the APL session and runs the filename specified, with a
+default device of SYS:.
+.b1.i-5
+)RUN [N] <FILENAME>
+.br
+Terminates the APL session and runs the filename specified.
+.b1.i-5
+)SAVE [MAGTAPE-POSITION] [WSNAME] [PASSWORD]
+.br
+Saves a copy of the active WS on secondary storage.
+.b1.i-5
+)SEAL [ON!OFF]
+.br
+Turns the workspace seal on or off.
+.b1.i-5
+)SI
+.br
+Displays the WS state indicator of function execution progress.
+.b1.i-5
+)SIV
+.br
+Displays the WS state indicator with local variable names.
+.b1.i-5
+)SIZE
+.br
+Displays the size of the currently active workspace.
+.b1.i-5
+)TABS [N]
+.br
+Displays or sets to N the increment between tab settings for APL output.
+.b1.i-5
+)TIME
+.br
+Displays connect and CPU times accumulated.
+.b1.i-5
+)VARS [LETTER]
+.br
+Displays an alphabetic list of global variables.
+.b1.i-5
+)VERSION
+.br
+Displays the APL version number with which the WS was last saved.
+.b1.i-5
+)WIDTH [N]
+.br
+Displays or alters the terminal line width.
+.b1.i-5
+)WSID [WSNAME] [PASSWORD]
+.br
+Displays or changes the name of the WS.
+.pg.c
+SYSTEM INFORMATION (I-BEAM)
+.C
+---------------------------
+.B3.LM10.TS10.I-10
+VALUE	ACTION OR RETURNED VALUE
+.i-10
+-----	------------------------
+.b1.i-8
+17	Symbol table size, entries used.
+.b1.i-8
+18	Status of WS (0=OK).
+.b1.i-8
+19	Time in 60ths of a second during which the keyboard has been unlocked.
+.b1.i-8
+20	Time of day in 60ths of a second.
+.b1.i-8
+21	CPU time since APL sign-on in 60ths of a second.
+.b1.i-8
+22	The maximum size your workspace may increase (in words).
+.b1.i-8
+23	User's job number in base 10.
+.b1.i-8
+24	Your APL sign-on time in 60ths of a second since midnight.
+.b1.i-8
+25	Today's date as mmddyy in base 10.
+.b1.i-8
+26	First line number in the state indicator.
+.b1.i-8
+27	Vector of line numbers of functions in the state indicator.
+.b1.i-8
+28	0 for the APL character set, 1 for the TTY character set.
+.b1.i-8
+29	Returns the user's project-programmer number in base 10.
+.b1.i-8
+30	Clears state indicator.
+.b1.i-8
+31	Number of APL statements executed since sign-on.
+.b1.i-8
+32	Number of APL operations executed since sign-on.
+.b1
+.if VTEN
+.i-8
+33	Number of kilo-core-seconds used since sign-on.
+.else VTEN
+.i-8
+33	Returns zero on the DECSYSTEM-20.
+.endif VTEN
+.pg.c
+SYSTEM VARIABLES
+.c
+------------------------------
+.b3.lm20.ts5,20.i-15
+SYNTAX	DESCRIPTION
+.i-15
+------	-----------
+.b2.i-15
+The following variables can be set by the user:
+.b2.i-15
+_.BXAUS	Automatic save indicator.  If this variable is#1 the
+workspace is automatically backed up each time a function
+definition is closed.
+.b1.i-15
+_.BXCT	Degree of tolerance or relative fuzz to be applied
+in performing comparisons.  Value must be in range 0 to
+approximately 1E-8.
+.b1.i-15
+_.BXGAG	Allow other users to communicate with your terminal.  Value of
+1 means allow such action;  0 means disallow.
+.b1.i-15
+_.BXIO	Index origin for arrays.  Possible values are 0 or
+1.
+.ifnot vb
+.b1.i-15
+_.BXLX	Latent expression to be executed automatically when
+the workspace is activated.
+.endif vb
+.b1.i-15
+_.BXPP	Precision of non-integer numeric output.  Value must
+be integer in range 1 to 18.
+.b1.i-15
+_.BXPW	Maximum number of characters that may appear on an
+output line.  Value must be integer in range 30 to 390.
+.b1.i-15
+_.BXRL	Current link in the chain of random numbers
+generated by the roll and deal operators.
+.b1.i-15
+_.BXSF	Prompt or signal message for evaluated input.
+.b1.i-15
+_.BXTIMELIMIT	Amount of time APL waits for user input when doing
+quote-quad and quad-del input.
+.ifnot vb
+.b1.i-15
+_.BXTRAP	Expression to be executed automatically when
+an error occurs.
+.endif vb
+.b2.i-15
+The following variables retain system specified values:
+.b2.i-15
+_.BXAI	Account information on the current APL session.
+.b1.i-15
+_.BXALPHA	Vector containing the 27 characters: .LD and
+A-Z.
+.b1.i-15
+_.BXALPHAU	Vector containing the 27 characters: .Z@ and
+_.ZA-.ZZ.
+.b1.i-15
+_.BXASCII	Vector containing the 128 ASCII characters:
+octal 000-177.
+.b1.i-15
+_.BXAV	Vector of all possible characters which can be
+expressed in the APL system. 
+.b1.i-15
+_.BXCTRL	Vector containing the 32 ASCII control
+characters: octal 000-037.
+.b1.i-15
+_.BXERROR	Error message from last error.
+.b1.i-15
+_.BXLC	Vector of the line numbers in the APL workspace's
+state indicator.
+.b1.i-15
+_.BXNUM	Vector containing the 10 digits: 0-9.
+.b1.i-15
+_.BXTIMEOUT	Flag indicating whether or not .BXTIMELIMIT
+expired on last quad input.  Also indicates whether or not last
+input from a PTY was terminated with a LF.
+.b1.i-15
+_.BXTS	Current date and time in base 10 format.
+.b1.i-15
+_.BXTT	Type of terminal being used in the current APL session.
+.b1.i-15
+_.BXUL	Job number associated with the current APL session
+(in base 10).
+.b1.i-15
+_.BXWA	Returns the amount that the active workspace may increase.
+.pg.c
+SYSTEM FUNCTIONS
+.c
+------------------------------
+.b3.lm20.ts5,20.i-15
+SYNTAX	DESCRIPTION
+.i-15
+------	-----------
+.b1.i-15
+_.BXBREAK#A	Causes execution to terminate, suspending
+the current function and entering immediate mode.
+.ifnot vb
+.b1.i-15
+_.BXCR#A	Returns a canonical representation of the defined
+function whose name is the character string A.
+.endif vb
+.b1.i-15
+_.BXDL#S	Delays execution for S seconds.
+.b1.i-15
+_.BXEX#A	Erases an existing use of a name in the user's workspace.
+.b1.i-15
+_.BXFI#A	Parses the character vector A as a numeric vector.
+.ifnot vb
+.b1.i-15
+_.BXFX#M	Reverses the operation performed by .BXCR.
+.endif vb
+.b1.i-15
+_.BXNC#A	Returns the classification of one or more
+names.  Values returned are 0-available for any use, 1-label
+name, 2-variable name, 3-function name, 4-not available for
+use as a name.
+.B1.I-15
+[A]#.BXNL#N[...]
+.br
+Constructs a list of named objects in the user's workspace.
+.b1.i-15
+_.BXQCO#A	Quietly Copies a workspace according to the
+information in A.
+.b1.i-15
+_.BXQLD#A	Quietly Loads a workspace according to the information
+in A.
+.b1.i-15
+_.BXQPC#A	Quietly Protected Copies a workspace according to the
+information in A.
+.ifnot vb
+.b1.i-15
+['TEXT'] .BXSIGNAL E
+.br
+Signals the error E from the current function.
+.endif vb
+.b1.i-15
+_.BXVI#A	Validates the character vector A as a numeric vector.
+.ifnot vb
+.b2.i-15
+The following functions are related to the file system:
+.b2.i-15
+A#.BXAPPEND#C,H,T
+.br
+Appends a data item to a /BU or /DA file.
+.b1.i-15
+_.BXASS '[N] [FILENAME] [PASSWORD] [/FILE-TYPE] [/SHARE] [/DUMP]'
+.br
+Assigns a file on the (optionally specified) channel.
+Returns channel number used.
+.b1.i-15
+_.BXCHS#N	Returns file status on channel N.
+.b1.i-15
+_A#.BXCIQ#H,T	Interprets part of a logical input record
+made up of different data types.
+.b1.i-15
+_.BXCLS#N	Closes files on one or more channels.
+.b1.i-15
+_A#.BXCOQ#H,T	Combines several different data types into a
+single logical output record.
+.b1.i-15
+_.BXDAS#N	Deassigns files on one or more channels.
+.b1.i-15
+_.BXDEQ#N [LOCK-NUMBER] [SHARE-BIT]
+.br
+Synchronizes shared access to multiple-user files by releasing the locked file.
+.b1.i-15
+_.BXDVC#N	Returns device characteristics word and
+block size for one or more channels.
+.b1.i-15
+_.BXENQ#N#[LOCK-NUMBER]#[SHARE-BIT]
+.br
+Synchronizes shared access to multiple-user files by locking
+the requested file.
+.b1.i-15
+_.BXFCM#N	Returns component numbers and sizes for all
+components in a direct access file.
+.b1.i-15
+_.BXFLS#N	Returns sharing status, record size, and
+pointer information for one or more files.
+.b1.i-15
+N#.BXMTP#OPS	Performs a variety of magnetic tape operations.
+.b1.i-15
+N#.BXRENAME#C	Renames the file associated with channel C using the file
+specification N.
+.endif vb
+.b 2
+.lm0
+.if VB
+[End of APL.HLP]
+.else VB
+[End of APLSF.HLP]
+.endif VB

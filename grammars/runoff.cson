@@ -48,6 +48,25 @@ repository:
 	commands:
 		patterns: [{
 			
+			# .if/.endif: Control flow
+			name: "meta.condition.runoff"
+			match: "(?i)^\x0C*((\\.)(?:IF|ELSE|ENDIF))(?:$|[ \t]+(\\S*))"
+			captures:
+				1: name: "keyword.control.runoff"
+				2: name: "punctuation.definition.function.runoff"
+				3: name: "variable.parameter.runoff"
+		},{
+			
+			# .var: Variable declaration
+			name: "meta.function.runoff"
+			match: "(?i)^\x0C*((\\.)VAR|VR|VARIABLE)(?:$|[ \t]+(\\S*))"
+			captures:
+				1: name: "storage.type.var.runoff"
+				2: name: "punctuation.definition.function.runoff"
+				3: name: "variable.name.runoff"
+		},{
+			
+			# Generic command
 			name: "meta.function.runoff"
 			begin: "^\x0C*((\\.)[^;\\s]+)"
 			end: "$|(;)"
