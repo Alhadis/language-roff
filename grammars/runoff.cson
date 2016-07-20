@@ -69,10 +69,12 @@ repository:
 			# Generic command
 			name: "meta.function.runoff"
 			begin: "^\x0C*((\\.)[^;\\s]+)"
-			end: "$|(;)"
+			end: "$|(;)(?!\\.)|((!).*)"
 			beginCaptures:
 				1: name: "entity.function.name.runoff"
 				2: name: "punctuation.definition.macro.runoff"
 			endCaptures:
 				1: name: "punctuation.terminator.statement.runoff"
+				2: name: "comment.line.runoff"
+				3: name: "punctuation.definition.comment.runoff"
 		}]
