@@ -1,3 +1,7 @@
 ".text.roff":
 	editor:
 		commentStart: ".\\\" "
+
+".text.runoff":
+	editor:
+		commentStart: ".! "
