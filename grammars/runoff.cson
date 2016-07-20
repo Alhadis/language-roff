@@ -26,6 +26,7 @@ repository:
 			{include: "#comment"}
 			{include: "#underline"}
 			{include: "#commands"}
+			{include: "#special-characters"}
 		]
 	
 	
@@ -117,4 +118,51 @@ repository:
 				2: name: "punctuation.definition.function.runoff"
 			endCaptures:
 				1: name: "punctuation.terminator.statement.runoff"
+		}]
+
+
+
+	# Characters which affect processing of printed text
+	"special-characters":
+		patterns: [{
+			
+			# Escaped special character
+			name: "constant.character.escape.special-character.runoff"
+			match: "(_)[!^\\\\#&_.]"
+			captures:
+				1: name: "punctuation.definition.escape.runoff"
+		},{
+			
+			# End of footnote
+			name: "keyword.operator.end-footnote.runoff"
+			match: "^!"
+		},{
+			# ^  Uppercase next character
+			# ^^ Uppercase next word
+			name: "constant.character.escape.uppercase.runoff"
+			match: "\\^{1,2}"
+			captures:
+				0: name: "punctuation.definition.escape.runoff"
+		},{
+			
+			# \  Lowecase next character
+			# \\ Lowercase next word
+			name: "constant.character.escape.lowercase.runoff"
+			match: "\\\\{1,2}"
+			captures:
+				0: name: "punctuation.definition.escape.runoff"
+		},{
+			
+			# &  Underline next word
+			match: "(&)([!^\\\\#&_.]*)(\\S+)"
+			captures:
+				1: name: "punctuation.definition.entity.runoff"
+				2: patterns: [include: "#special-characters"]
+				3: name: "markup.underline.link.runoff"
+		},{
+			# # "Quoted" space (no filling/justification)
+			name: "constant.character.escape.space.runoff"
+			match: "#"
+			captures:
+				0: name: "punctuation.definition.escape.runoff"
 		}]
