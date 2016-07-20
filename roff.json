@@ -48,17 +48,14 @@
 		"mom",
 		"n",
 		"nroff",
-		"rnh",
-		"rno",
 		"roff",
-		"run",
 		"t",
 		"tmac",
 		"tmac-u",
 		"tr",
 		"troff"
 	],
-	"firstLineMatch": "(?x)\n\n# Manual page with .TH macro on first line\n^\\.TH[ \t]+(?:\\S+)\n|\n\n# Preprocessor line\n# See: https://www.gnu.org/software/groff/manual/html_node/Preprocessors-in-man-pages.html\n^'\\\\\"\\x20[tre]+(?=\\s|$)\n|\n\n# Emacs modeline\n(?i:-\\*-[^*]*(mode:\\s*)?nroff(\\s*;.*?)?\\s*-\\*-\n|\n\n# Vim modeline\n(?:vim?|ex):\\s*(?:set?.*\\s)?(?:syntax|filetype|ft)=[gn]roff\\s?(?:.*:)?)",
+	"firstLineMatch": "(?x)\n\n# Manual page with .TH macro on first line\n^\\.TH[ \t]+(?:\\S+)\n|\n\n# Preprocessor line\n# See: https://www.gnu.org/software/groff/manual/html_node/Preprocessors-in-man-pages.html\n^'\\\\\"\\x20[tre]+(?=\\s|$)\n|\n\n# Emacs modeline\n(?i:-\\*-[^*]*(mode:\\s*)?\\b[gnt]?roff(\\s*;.*?)?\\s*-\\*-\n|\n\n# Vim modeline\n(?:vim?|ex):\\s*(?:set?.*\\s)?(?:syntax|filetype|ft)=[gn]roff\\s?(?:.*:)?)",
 	"patterns": [
 		{
 			"include": "#main"
@@ -1184,7 +1181,7 @@
 				},
 				{
 					"name": "constant.character.escape.function.check-identifier.gnu.roff",
-					"begin": "((\\\\)[ABRsZ])((.))",
+					"begin": "((\\\\)(?!s[-+]?\\d)[ABRsZ])((.))",
 					"end": "(\\4)|(?<!\\\\)(?=$)",
 					"contentName": "string.other.roff",
 					"patterns": [
