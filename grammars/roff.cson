@@ -2145,6 +2145,8 @@ repository:
 			{match: ",",         name: "punctuation.separator.comma.pic.roff"}
 			{match: "<-|<->|->", name: "keyword.operator.arrow.pic.roff"}
 			{match: "[-/+*%]",   name: "keyword.operator.arithmetic.pic.roff"}
+			{match: "<|>",       name: "punctuation.definition.bracket.angle.pic.roff"}
+			{match: "\\(|\\)",   name: "punctuation.definition.bracket.round.pic.roff"}
 			{
 				# Comment
 				name: "comment.line.pic.roff"
