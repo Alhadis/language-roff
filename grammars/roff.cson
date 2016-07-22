@@ -2176,7 +2176,7 @@ repository:
 					|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
 					|moveht|movewid|scale|textht|textwid)\\b[ \t]*(=)?"
 				captures:
-					1: name: "variable.global.pic.roff"
+					1: name: "support.variable.global.pic.roff"
 					2: name: "keyword.operator.assignment.pic.roff"
 			},{
 				# Instance backreferences: "1st, last, 2nd last, 8th", etc
