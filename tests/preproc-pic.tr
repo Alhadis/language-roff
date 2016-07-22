@@ -107,4 +107,9 @@ B: box "B.c" ht 1 wid 1.5
 +, -, *, /, %, ^
 
 
+a = 0.5; b = 1
+box wid a ht b
+ellipse wid a/2 ht 1.5*b
+Box2: Box1 - (a/2, b/2)
+
 .PE

@@ -2143,6 +2143,7 @@ repository:
 		patterns: [
 			{match: ";",         name: "punctuation.terminator.statement.pic.roff"}
 			{match: ",",         name: "punctuation.separator.comma.pic.roff"}
+			{match: "=",         name: "keyword.operator.assignment.pic.roff"}
 			{match: "<-|<->|->", name: "keyword.operator.arrow.pic.roff"}
 			{match: "[-/+*%^]",  name: "keyword.operator.arithmetic.pic.roff"}
 			{match: "<|>",       name: "punctuation.definition.bracket.angle.pic.roff"}
@@ -2171,13 +2172,11 @@ repository:
 					|invis|left|move|radius|rad|right|same|up|width|wid)\\b"""
 			},{
 				# Global variables
+				name: "support.variable.global.pic.roff"
 				match: "(?x)\\b
 					(arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid
 					|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
-					|moveht|movewid|scale|textht|textwid)\\b[ \t]*(=)?"
-				captures:
-					1: name: "support.variable.global.pic.roff"
-					2: name: "keyword.operator.assignment.pic.roff"
+					|moveht|movewid|scale|textht|textwid)\\b"
 			},{
 				# Instance backreferences: "1st, last, 2nd last, 8th", etc
 				name: "variable.language.backreference.pic.roff"
