@@ -34,3 +34,17 @@ IGNORE
 .macro
 IGNORE
 ."END OF IGNORANCE" \a a
+
+
+.\" Auto-incrementing registers ARE affected, so highlight those
+.nr X 0 20
+.ig
+IGNORED
+IGNORED
+\nX <- NOT IGNORED, INCREMENTED
+IGNORED
+\a  <- NOT REGISTER, WGAF
+IGNORED
+..
+
+Displayed: \nX \"20

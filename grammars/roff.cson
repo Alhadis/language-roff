@@ -510,6 +510,7 @@ repository:
 			contentName: "comment.block.ignored-input.with-terminator.roff"
 			begin: "^([.'])[ \t]*(ig)[ \t]+(?!\\\\[\"#])((\"[^\"]+\")|\\S+?(?=\\s|\\\\[\"#]))(.*)$"
 			end:   "^([.'])[ \t]*(\\3)(?=\\s|$|\\\\)"
+			patterns: [include: "#register-expansion"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
@@ -525,6 +526,7 @@ repository:
 			contentName: "comment.block.ignored-input.roff"
 			begin: "^([.'])[ \t]*(ig)\\b(.*)$"
 			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
+			patterns: [include: "#register-expansion"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
@@ -583,6 +585,44 @@ repository:
 		]
 	
 	
+	# Register interpolation
+	"register-expansion":
+		patterns: [{
+			
+			# \n[xx] - Contents of number register "XX" (GNU)
+			name: "constant.character.escape.function.expand-register.gnu.roff"
+			begin: "((\\\\)n(\\[))"
+			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
+			contentName: "variable.parameter.roff"
+			patterns: [include: "#params"]
+			beginCaptures:
+				1: {name: "entity.name.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "punctuation.section.begin.bracket.square.roff"}
+			endCaptures:
+				1: {patterns: [include: "#params"]}
+				2: {name: "punctuation.section.end.bracket.square.roff"}
+		},{
+			
+			# \nX, \n(XX - Contents of number register "X" or "XX"
+			name: "constant.character.escape.function.expand-register.roff"
+			match: "((\\\\)n(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)(?:(%)|(\\S))"
+			captures:
+				1:  {name: "entity.name.roff"}
+				2:  {name: "punctuation.definition.escape.roff"}
+				3:  {name: "punctuation.definition.brace.roff"}
+				4:  {name: "constant.language.predefined.register.roff"}
+				5:  {name: "constant.language.predefined.register.gnu.roff"}
+				6:  {name: "constant.language.predefined.register.readonly.roff"}
+				7:  {name: "constant.language.predefined.register.readonly.gnu.roff"}
+				8:  {name: "variable.parameter.roff"}
+				9:  {name: "entity.name.roff"}
+				10: {name: "punctuation.definition.escape.roff"}
+				11: {name: "constant.language.predefined.register.roff"}
+				12: {name: "variable.parameter.roff"}
+		}]
+	
+	
 	# Limited range of escape sequences permitted in copy-mode
 	"escapes-copymode":
 		patterns: [{
@@ -625,43 +665,11 @@ repository:
 		}
 		
 		# Basic sequences
+		{include: "#register-expansion"}
 		{match: "(\\\\)\\1", name: "constant.character.escape.backslash.roff",   captures: 1: name: "punctuation.definition.escape.roff"}
 		{match: "(\\\\)t",   name: "constant.character.escape.tab.roff",         captures: 1: name: "punctuation.definition.escape.roff"}
 		{match: "(\\\\)a",   name: "constant.character.escape.leader-char.roff", captures: 1: name: "punctuation.definition.escape.roff"}
 		{match: "(\\\\)\\.", name: "constant.character.escape.dot.roff",         captures: 1: name: "punctuation.definition.escape.roff"}, {
-			
-			# \n[xx] - Contents of number register "XX" (GNU)
-			name: "constant.character.escape.function.expand-register.gnu.roff"
-			begin: "((\\\\)n(\\[))"
-			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
-			contentName: "variable.parameter.roff"
-			patterns: [include: "#params"]
-			beginCaptures:
-				1: {name: "entity.name.roff"}
-				2: {name: "punctuation.definition.escape.roff"}
-				3: {name: "punctuation.section.begin.bracket.square.roff"}
-			endCaptures:
-				1: {patterns: [include: "#params"]}
-				2: {name: "punctuation.section.end.bracket.square.roff"}
-		},{
-			
-			# \nX, \n(XX - Contents of number register "X" or "XX"
-			name: "constant.character.escape.function.expand-register.roff"
-			match: "((\\\\)n(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)(?:(%)|(\\S))"
-			captures:
-				1:  {name: "entity.name.roff"}
-				2:  {name: "punctuation.definition.escape.roff"}
-				3:  {name: "punctuation.definition.brace.roff"}
-				4:  {name: "constant.language.predefined.register.roff"}
-				5:  {name: "constant.language.predefined.register.gnu.roff"}
-				6:  {name: "constant.language.predefined.register.readonly.roff"}
-				7:  {name: "constant.language.predefined.register.readonly.gnu.roff"}
-				8:  {name: "variable.parameter.roff"}
-				9:  {name: "entity.name.roff"}
-				10: {name: "punctuation.definition.escape.roff"}
-				11: {name: "constant.language.predefined.register.roff"}
-				12: {name: "variable.parameter.roff"}
-		},{
 			
 			# \*[xx args…] - Interpolate string "xx" with optional arguments (GNU)
 			name: "constant.character.escape.function.interpolate-string.gnu.roff"
