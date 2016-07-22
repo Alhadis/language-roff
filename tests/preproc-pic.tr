@@ -75,6 +75,19 @@ arc -> from 0.5,0 to 0,0.5
 arc -> cw from 0,0 to 1,0.5
 
 
+box ht 0.75 wid 0.75
+box ht 0.5 wid 0.5 with .sw at last box.se
+
+ellipse
+ellipse ht .2 wid .3 with .se at 1st ellipse.nw
+ellipse ht .2 wid .3 with .sw at 1st ellipse.ne
+
+circlerad = 0.15; arrowhead = 7
+circle "a"
+circle "b" at 1st circle - (0.4, 0.6)
+circle "c" at 1st circle + (0.4, -0.6)
+arrow from 1st circle to 2nd circle chop
+arrow from 1st circle to 3rd circle chop
 
 B: box "B.c" ht 1 wid 1.5
 	" B.e" at B.e ljust
