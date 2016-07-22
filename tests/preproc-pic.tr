@@ -1,0 +1,88 @@
+.PS
+lineht = lineht / 2
+
+box "\fIletter.tr\fP"
+arrow
+circle dashed "tbl"
+arrow
+Eqn: circle "eqn"
+arrow
+Troff: circle "troff"
+arc cw
+line down
+arc cw
+left
+arrow
+circle "grops"
+arrow
+box "\fIletter.ps\fP"
+
+up
+line <- from Troff.n
+arc
+line
+box "\fItmac.m\fP"
+
+arc; arc; arc; arc
+arrow; box "input"; arrow; box "process"; arrow; box "output"; arrow
+box; move; box; move; box
+.PE
+
+
+.PS
+line right 5 dashed; move left 5 down .25; right
+line right 5 dashed 0.25; move left 5 down .25; right
+line right 5 dashed 0.5; move left 5 down .25; right
+line right 5 dashed 1
+box invis "input"; arrow; box invis "output"
+down; box ht 0.2 wid 1.5; move down 0.15; box same; move same; box same
+
+boxwid = 0.1; boxht = 1
+movewid = 0.2
+box; move; box; move; box
+
+reset boxht, boxwid  # Comment
+reset
+
+box fill
+box ht boxht/2 wid boxwid/2 "hello" at last box
+
+unknown command
+.PE
+
+.PS
+box ht 0.2 wid 0.2 at 0,0 "1"
+move right 0.5                  # or "move to 0.5,0"
+box ht 0.2 wid 0.2 "2"
+move right 0.5                  # or "move 0.5" or "move same"
+box ht 0.2 wid 0.2 "3"
+
+Box1: box
+
+Box1: Box1 + 1,1
+
+line from Box1 to Box2
+move to Box1 up 0.1 right 0.2
+move to Box1 + 0.2,0.1  # same as previous
+line to Box1 - 0.5,0
+
+
+move to 1st box
+move to 3rd last circle
+
+"+" at 0,0
+arc -> from 0.5,0 to 0,0.5
+arc -> cw from 0,0 to 1,0.5
+
+
+
+B: box "B.c" ht 1 wid 1.5
+	" B.e" at B.e ljust
+	" B.ne" at B.ne ljust
+	" B.se" at B.se ljust
+	"B.s" at B.s below
+	"B.n" at B.n above
+	"B.sw " at B.sw rjust
+	"B.w " at B.w rjust
+	"B.nw " at B.nw rjust
+.PE

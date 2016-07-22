@@ -1,0 +1,76 @@
+'\" t
+.mso man.tmac
+.if !dTS \{
+.	tm WARNING:
+.	tm \a    "tbl" package not found. Parts of this document will render incorrectly.
+.	tm \a    Rerun groff with the `-t` flag set.
+.\}
+
+.TS
+allbox;
+l c c .
+ID	Name	Type
+1	Apple	Fruit
+2	Lettuce	Vegetable
+.TE
+
+
+
+.TS
+tab(:) linesize(20);
+c s s
+26.4.12
+c | c | c
+l | l | n.
+Major New York Bridges
+=
+Bridge:Designer:Length
+_
+.T&
+l | l | n.
+Brooklyn:J. A. Roebling:1595
+Manhattan:G. Lindenthal…T{
+block of
+text
+T}…
+}: 1470
+Williamsburg:L. L. Buck:1600
+_
+Queensborough:Palmer &:1182
+\^:  Hornbostel:\^
+_
+Triborough:O. H. Ammann:1380
+\^:\^:383
+_
+\R=
+Bronx Whitestone:O. H. Ammann:2300
+Throgs Neck:O. H. Ammann:1800
+_
+George Washington:O. H. Ammann:3500
+_
+.TE
+
+
+.FP helvetica
+.TS
+box;
+cf(CW s s s.
+Composition of Foods
+_
+.T&
+c | c s s
+c | c s s
+.TE
+
+
+.TS
+box;
+c c c
+l l r.
+Fact	Location	Statistic
+Largest state	Alaska	591,004 sq. mi.
+Smallest state	Rhode Island	1,212 sq. mi.
+Longest river	Mississippi-Missouri	3,710 mi.
+Highest mountain	Mount McKinley, AK	20,320 ft.
+Lowest point	Death Valley, CA	–282 ft.
+.TE
