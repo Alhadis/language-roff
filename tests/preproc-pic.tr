@@ -1,3 +1,6 @@
+.PS <file \" Deprecated
+This: shouldn't be highlighted
+
 .PS
 lineht = lineht / 2
 
