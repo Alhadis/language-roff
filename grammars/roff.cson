@@ -77,24 +77,9 @@ repository:
 	
 	# Numeric literal
 	number:
-		patterns: [{
-			name: "constant.numeric.roff"
-			match: "(?:(?<!\\w)[-+])?\\d+(?:\\.\\d+|\\.(?=[A-Za-z\\)\\s]|$))?([A-Za-z]+)?"
-			captures:
-				1: {name: "keyword.other.unit.roff"}
-		},{
-			# Decimal value without leading digit
-			name: "constant.numeric.roff"
-			match: "(?<=\\s|^)[-+]?\\.\\d+([A-Za-z])?"
-			captures:
-				1: {name: "keyword.other.unit.roff"}
-		},{
-			# Oddly-formed (but valid) numeric input: `.i` = `0.0i`
-			name: "constant.numeric.roff"
-			match: "(?<=\\s|^)[-+]?\\.(?=[A-Za-z\\)\\s]|$)([A-Za-z])?"
-			captures:
-				1: {name: "keyword.other.unit.roff"}
-		}]
+		name: "constant.numeric.roff"
+		match: "(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([cfimnPpsuvz])?"
+		captures: 1: name: "keyword.other.unit.roff"
 
 	
 	
