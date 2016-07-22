@@ -591,14 +591,15 @@ repository:
 			
 			# \n[xx] - Contents of number register "XX" (GNU)
 			name: "constant.character.escape.function.expand-register.gnu.roff"
-			begin: "((\\\\)n(\\[))"
+			begin: "((\\\\)n([-+])?(\\[))"
 			end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
 			patterns: [include: "#params"]
 			beginCaptures:
 				1: {name: "entity.name.roff"}
 				2: {name: "punctuation.definition.escape.roff"}
-				3: {name: "punctuation.section.begin.bracket.square.roff"}
+				3: {name: "keyword.operator.arithmetic.roff"}
+				4: {name: "punctuation.section.begin.bracket.square.roff"}
 			endCaptures:
 				1: {patterns: [include: "#params"]}
 				2: {name: "punctuation.section.end.bracket.square.roff"}
@@ -606,20 +607,22 @@ repository:
 			
 			# \nX, \n(XX - Contents of number register "X" or "XX"
 			name: "constant.character.escape.function.expand-register.roff"
-			match: "((\\\\)n(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)(?:(%)|(\\S))"
+			match: "((\\\\)n([-+])?(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)([-+])?(?:(%)|(\\S))"
 			captures:
 				1:  {name: "entity.name.roff"}
 				2:  {name: "punctuation.definition.escape.roff"}
-				3:  {name: "punctuation.definition.brace.roff"}
-				4:  {name: "constant.language.predefined.register.roff"}
-				5:  {name: "constant.language.predefined.register.gnu.roff"}
-				6:  {name: "constant.language.predefined.register.readonly.roff"}
-				7:  {name: "constant.language.predefined.register.readonly.gnu.roff"}
-				8:  {name: "variable.parameter.roff"}
-				9:  {name: "entity.name.roff"}
-				10: {name: "punctuation.definition.escape.roff"}
-				11: {name: "constant.language.predefined.register.roff"}
-				12: {name: "variable.parameter.roff"}
+				3:  {name: "keyword.operator.arithmetic.roff"}
+				4:  {name: "punctuation.definition.brace.roff"}
+				5:  {name: "constant.language.predefined.register.roff"}
+				6:  {name: "constant.language.predefined.register.gnu.roff"}
+				7:  {name: "constant.language.predefined.register.readonly.roff"}
+				8:  {name: "constant.language.predefined.register.readonly.gnu.roff"}
+				9:  {name: "variable.parameter.roff"}
+				10: {name: "entity.name.roff"}
+				11: {name: "punctuation.definition.escape.roff"}
+				12: {name: "keyword.operator.arithmetic.roff"}
+				13: {name: "constant.language.predefined.register.roff"}
+				14: {name: "variable.parameter.roff"}
 		}]
 	
 	
