@@ -89,6 +89,10 @@ circle "c" at 1st circle + (0.4, -0.6)
 arrow from 1st circle to 2nd circle chop
 arrow from 1st circle to 3rd circle chop
 
+box
+arrow right from 1/3 of the way between last box.ne and last box.se
+arrow right from 2/3 <last box.ne, last box.se>
+
 B: box "B.c" ht 1 wid 1.5
 	" B.e" at B.e ljust
 	" B.ne" at B.ne ljust
