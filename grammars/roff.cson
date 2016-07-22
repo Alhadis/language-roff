@@ -228,9 +228,9 @@ repository:
 			name: "meta.function.request.$2.roff"
 			begin: "(?x) ^([.'])[ \t]*
 				(ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|dt|ec|em|eo
-				|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg|lf|ll|ls|lt
-				|mc|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd
-				|rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)"
+				|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|in|it|lc|lg|lf|ll|ls|lt|mc
+				|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd|rm
+				|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)"
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -240,6 +240,7 @@ repository:
 		}
 		{ include: "#conditionals" }
 		{ include: "#definition"   }
+		{ include: "#ignore"       }
 		{ include: "#underlines"   }
 		{
 			# Register assignment
@@ -498,6 +499,38 @@ repository:
 				2: {name: "keyword.control.terminator.roff"}
 				3: {patterns: [{include: "#string"}]}
 			patterns: [{include: "$self"}]
+		}]
+	
+	
+	# Ignored content
+	ignore:
+		patterns: [{
+			
+			# Terminator specified
+			contentName: "comment.block.ignored-input.with-terminator.roff"
+			begin: "^([.'])[ \t]*(ig)[ \t]+(?!\\\\[\"#])((\"[^\"]+\")|\\S+?(?=\\s|\\\\[\"#]))(.*)$"
+			end:   "^([.'])[ \t]*(\\3)(?=\\s|$|\\\\)"
+			beginCaptures:
+				1: name: "punctuation.definition.request.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "keyword.control.terminator.roff"
+				4: patterns: [include: "#string"]
+				5: patterns: [include: "#params"]
+			endCaptures:
+				1: name: "punctuation.definition.request.roff"
+				2: name: "keyword.control.terminator.roff", patterns: [include: "#string"]
+		},{
+			
+			# No terminator given
+			contentName: "comment.block.ignored-input.roff"
+			begin: "^([.'])[ \t]*(ig)\\b(.*)$"
+			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
+			beginCaptures:
+				1: name: "punctuation.definition.request.roff"
+				2: name: "entity.function.name.roff"
+				3: patterns: [include: "#params"]
+			endCaptures:
+				0: name: "punctuation.definition.request.roff"
 		}]
 	
 
