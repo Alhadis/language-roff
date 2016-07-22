@@ -102,4 +102,9 @@ B: box "B.c" ht 1 wid 1.5
 	"B.sw " at B.sw rjust
 	"B.w " at B.w rjust
 	"B.nw " at B.nw rjust
+
+# Standard operators for arithmetic
++, -, *, /, %, ^
+
+
 .PE
