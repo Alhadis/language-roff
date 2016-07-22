@@ -2130,7 +2130,7 @@ repository:
 				4: {patterns: [include: "#params"]}
 		},{
 			# .PS/.PE: Pic
-			begin: "^([.'])[ \t]*(PS)\\b(.*)"
+			begin: "^([.'])[ \t]*(PS)\\b[ \t]*(\\\\[#\"].*)?$"
 			end:   "^([.'])[ \t]*(PE)\\b"
 			contentName: "markup.other.graphics.preprocessor.pic.roff"
 			patterns: [include: "#pic"]

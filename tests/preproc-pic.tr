@@ -1,7 +1,10 @@
 .PS <file \" Deprecated
 This: shouldn't be highlighted
 
-.PS
+.PS Don't start a new PIC block if arguments are passed to .PS
+Neither: should this
+
+.PS \" Comments are okay, obviously
 lineht = lineht / 2
 
 box "\fIletter.tr\fP"
