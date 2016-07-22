@@ -22,6 +22,7 @@ fileTypes: [
 	"mom",
 	"n",
 	"nroff",
+	"pic",
 	"roff",
 	"t",
 	"tmac", "tmac-u",
@@ -56,6 +57,7 @@ repository:
 		patterns: [
 			{include: "#escapes"}
 			{include: "#requests"}
+			{include: "#preprocessors"}
 			{include: "#macros"}
 		]
 	
@@ -1041,7 +1043,6 @@ repository:
 	# Macros
 	macros:
 		patterns: [
-			{include: "#tbl"}
 			{include: "#man"}
 			{include: "#ms"}
 			{include: "#mm"}
@@ -1380,95 +1381,6 @@ repository:
 			patterns: [include: "$self"]
 		}]
 	
-	
-	# Table preprocessor
-	tbl:
-		begin: "^([.'])[ \t]*(TS)\\b(.*)"
-		end:   "^([.'])[ \t]*(TE)\\b"
-		contentName: "markup.other.table.preprocessor.tbl.roff"
-		patterns: [{
-			
-			# Options/Formats
-			name: "meta.function-call.arguments.tbl.roff"
-			begin: "\\G|^((\\.)T&)[ \t]*$"
-			end:   "(\\.)$\\n?|^(?=[.'][ \t]*TE\\b)"
-			beginCaptures:
-				1: {name: "entity.function.name.roff"}
-				2: {name: "punctuation.definition.macro.roff"}
-			endCaptures:
-				1: patterns: [include: "#params"]
-				2: name: "punctuation.terminator.section.tbl.roff"
-			patterns: [{
-				
-				# Global options
-				match: "^(.+)(;)$"
-				captures:
-					1: patterns: [
-						{match: ",", name: "punctuation.separator.comma.tbl.roff"}
-						{match: "\\b(center|expand|box|allbox|doublebox)\\b", name: "constant.language.$1.tbl.roff"}
-						{match: "\\b((tab|linesize|delim)(\\()([^\\)\\s]*)(\\)))"
-						captures:
-							1: name: "constant.language.$2.tbl.roff"
-							3: name: "punctuation.definition.arguments.begin.tbl.roff"
-							4: patterns: [include: "#params"]
-							5: name: "punctuation.definition.arguments.end.tbl.roff"}]
-					2: name: "punctuation.terminator.line.tbl.roff"}
-				
-				# Field specifiers
-				{match: "[ABCEFILNPRSTUVWZabcefilnprstuvwz^]", name: "constant.language.key-letter.tbl.roff"}
-				{match: "[|_=]",     name: "punctuation.keyword.tbl.roff"}
-				{match: "[-+]?\\d+", name: "constant.numeric.tbl.roff"}
-				{match: "\\.",       name: "punctuation.delimiter.period.full-stop.tbl.roff"}
-				{match: ",",         name: "punctuation.separator.comma.tbl.roff"}
-				{include: "#params"}
-			]
-		},{
-			
-			# Horizontal line indicators
-			name: "punctuation.keyword.tbl.roff"
-			match: "^\\s*([=_]|\\\\_)\\s*$"
-		},{
-			
-			# Column-filling repeated character sequence
-			name: "constant.character.escape.repeat.tbl.roff"
-			match: "(?<!\\\\)((\\\\)R)(.)"
-			captures:
-				1: {name: "keyword.operator.tbl.roff"}
-				2: {name: "punctuation.definition.escape.roff"}
-				3: {name: "string.unquoted.tbl.roff"}
-		},{
-			
-			# Vertically-spanned item indicator
-			name: "constant.character.escape.vertical-span.tbl.roff"
-			match: "(\\\\)\\^"
-			captures:
-				0: {name: "keyword.operator.tbl.roff"}
-				1: {name: "punctuation.definition.escape.roff"}
-		},{
-			
-			# Multiline cell content
-			name: "meta.multiline-cell.tbl.roff"
-			contentName: "string.unquoted.tbl.roff"
-			begin: "T(\\{)"
-			end:  "^T(\\})|^(?=[.'][ \t]*TE\\b)"
-			patterns: [include: "$self"]
-			beginCaptures:
-				0: name: "keyword.operator.section.begin.tbl.roff"
-				1: name: "punctuation.embedded.tbl.roff"
-			endCaptures:
-				0: name: "keyword.operator.section.end.tbl.roff"
-				1: name: "punctuation.embedded.tbl.roff"
-			
-		}, include: "$self"]
-		beginCaptures:
-			0: {name: "meta.function.begin.table.section.macro.roff"}
-			1: {name: "punctuation.definition.macro.roff"}
-			2: {name: "entity.function.name.roff"}
-			3: {patterns: [include: "#escapes"]}
-		endCaptures:
-			0: {name: "meta.function.end.table.section.macro.roff"}
-			1: {name: "punctuation.definition.macro.roff"}
-			2: {name: "entity.name.function.roff"}
 	
 	
 	# Manual-page macros
@@ -2180,3 +2092,212 @@ repository:
 		}
 		{include: "#escapes"}
 		{include: "#string"}]
+
+
+
+	# Preprocessor languages for preparing Troff documents
+	preprocessors:
+		patterns: [
+			{include: "#tbl"}
+			{include: "#pic"}
+		]
+
+
+
+	# Picture preprocessor
+	pic:
+		begin: "^([.'])[ \t]*(PS)\\b(.*)"
+		end:   "^([.'])[ \t]*(PE)\\b"
+		contentName: "markup.other.graphics.preprocessor.pic.roff"
+		beginCaptures:
+			0: {name: "meta.function.begin.picture.section.macro.roff"}
+			1: {name: "punctuation.definition.macro.roff"}
+			2: {name: "entity.function.name.roff"}
+			3: {patterns: [include: "#escapes"]}
+		endCaptures:
+			0: {name: "meta.function.end.picture.section.macro.roff"}
+			1: {name: "punctuation.definition.macro.roff"}
+			2: {name: "entity.name.function.roff"}
+		patterns: [{
+			
+			# Comment
+			name: "comment.line.pic.roff"
+			begin: "#"
+			end:   "$"
+			beginCaptures:
+				0: name: "punctuation.definition.comment.pic.roff"
+		},{
+			
+			# Reset variable
+			begin: "\\b(reset)\\b"
+			end:   "$|(?=[#;])"
+			beginCaptures:
+				0: name: "keyword.operator.pic.roff"
+			patterns: [
+				{include: "#pic-includes"}
+				{match: "[^\\s;,]+", name: "variable.global.pic.roff"}
+			]
+		},{
+			
+			# Basic commands
+			begin: "\\b(box|line|arrow|circle|ellipse|arc|left|down|up|right|move)\\b"
+			end:   "$|(?=[#;])"
+			beginCaptures:
+				0: name: "keyword.function.pic.roff"
+				1: name: "entity.function.name.pic.roff"
+			patterns: [{
+				name: "variable.other.property.$1.pic.roff"
+				match: "\\b(cw|dashed|diam|diameter|dotted|height|ht|invis|rad|radius|right|same|up|wid|width)\\b"
+			}, include: "#pic-includes"]
+		
+		}, include: "#pic-includes"]
+
+
+	# Bunch of patterns used repeatedly throughout #pic's patterns
+	"pic-includes":
+		patterns: [
+			{match: ";",         name: "punctuation.terminator.statement.pic.roff"}
+			{match: ",",         name: "punctuation.separator.comma.pic.roff"}
+			{match: "<-|<->|->", name: "keyword.operator.arrow.pic.roff"}
+			{match: "[-/+*%]",   name: "keyword.operator.arithmetic.pic.roff"}
+			{
+				# Global variables
+				match: "(?x)\\b
+					(arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid
+					|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
+					|moveht|movewid|scale|textht|textwid)\\b[ \t]*(=)?"
+				captures:
+					1: name: "variable.global.pic.roff"
+					2: name: "keyword.operator.assignment.pic.roff"
+			},{
+				# Position controls
+				match: """(?x)
+					\\b(at|from|to)\\b
+					[ \t]*
+					((?!at|from|to|last|\\d)(?=[A-Za-z])([^;#\\s.]+))?
+				"""
+				captures:
+					1: name: "keyword.operator.$1.positional.pic.roff"
+					2: name: "variable.other.reference.pic.roff"
+					3: name: "entity.variable.name.pic.roff"
+			},{
+				# Instance backreferences
+				match: """(?x)\\b
+					((?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)[ \t]*(?:last)?|(?:last))\\b
+					[ \t]*
+					((arc|arrow|box|circle|ellipse|line|spline))?\\b
+				"""
+				captures:
+					1: name: "keyword.operator.$1.pic.roff"
+					2: name: "variable.other.reference.pic.roff"
+					3: name: "entity.function.name.pic.roff"
+			},{
+				# Labelled positions
+				match: "([A-Z][^#\\s:]*)(:)"
+				captures:
+					1: name: "storage.type.label.pic.roff"
+					2: name: "punctuation.separator.key-value.pic.roff"
+			},{
+				# Variable
+				name: "variable.other.pic.roff"
+				match: "(?!\\d)\\w+"
+			},{
+				# Full-stop/decimal point
+				name: "punctuation.delimiter.period.full-stop.pic.roff"
+				match: "\\.(?!\\d)"
+			}
+			{include: "#escapes"}
+			{include: "#string"}
+			{include: "#number"}
+		]
+
+
+
+	# Table preprocessor
+	tbl:
+		begin: "^([.'])[ \t]*(TS)\\b(.*)"
+		end:   "^([.'])[ \t]*(TE)\\b"
+		contentName: "markup.other.table.preprocessor.tbl.roff"
+		patterns: [{
+			
+			# Options/Formats
+			name: "meta.function-call.arguments.tbl.roff"
+			begin: "\\G|^((\\.)T&)[ \t]*$"
+			end:   "(\\.)$\\n?|^(?=[.'][ \t]*TE\\b)"
+			beginCaptures:
+				1: {name: "entity.function.name.roff"}
+				2: {name: "punctuation.definition.macro.roff"}
+			endCaptures:
+				1: patterns: [include: "#params"]
+				2: name: "punctuation.terminator.section.tbl.roff"
+			patterns: [{
+				
+				# Global options
+				match: "^(.+)(;)$"
+				captures:
+					1: patterns: [
+						{match: ",", name: "punctuation.separator.comma.tbl.roff"}
+						{match: "\\b(center|expand|box|allbox|doublebox)\\b", name: "constant.language.$1.tbl.roff"}
+						{match: "\\b((tab|linesize|delim)(\\()([^\\)\\s]*)(\\)))"
+						captures:
+							1: name: "constant.language.$2.tbl.roff"
+							3: name: "punctuation.definition.arguments.begin.tbl.roff"
+							4: patterns: [include: "#params"]
+							5: name: "punctuation.definition.arguments.end.tbl.roff"}]
+					2: name: "punctuation.terminator.line.tbl.roff"}
+				
+				# Field specifiers
+				{match: "[ABCEFILNPRSTUVWZabcefilnprstuvwz^]", name: "constant.language.key-letter.tbl.roff"}
+				{match: "[|_=]",     name: "punctuation.keyword.tbl.roff"}
+				{match: "[-+]?\\d+", name: "constant.numeric.tbl.roff"}
+				{match: "\\.",       name: "punctuation.delimiter.period.full-stop.tbl.roff"}
+				{match: ",",         name: "punctuation.separator.comma.tbl.roff"}
+				{include: "#params"}
+			]
+		},{
+			
+			# Horizontal line indicators
+			name: "punctuation.keyword.tbl.roff"
+			match: "^\\s*([=_]|\\\\_)\\s*$"
+		},{
+			
+			# Column-filling repeated character sequence
+			name: "constant.character.escape.repeat.tbl.roff"
+			match: "(?<!\\\\)((\\\\)R)(.)"
+			captures:
+				1: {name: "keyword.operator.tbl.roff"}
+				2: {name: "punctuation.definition.escape.roff"}
+				3: {name: "string.unquoted.tbl.roff"}
+		},{
+			
+			# Vertically-spanned item indicator
+			name: "constant.character.escape.vertical-span.tbl.roff"
+			match: "(\\\\)\\^"
+			captures:
+				0: {name: "keyword.operator.tbl.roff"}
+				1: {name: "punctuation.definition.escape.roff"}
+		},{
+			
+			# Multiline cell content
+			name: "meta.multiline-cell.tbl.roff"
+			contentName: "string.unquoted.tbl.roff"
+			begin: "T(\\{)"
+			end:  "^T(\\})|^(?=[.'][ \t]*TE\\b)"
+			patterns: [include: "$self"]
+			beginCaptures:
+				0: name: "keyword.operator.section.begin.tbl.roff"
+				1: name: "punctuation.embedded.tbl.roff"
+			endCaptures:
+				0: name: "keyword.operator.section.end.tbl.roff"
+				1: name: "punctuation.embedded.tbl.roff"
+			
+		}, include: "$self"]
+		beginCaptures:
+			0: {name: "meta.function.begin.table.section.macro.roff"}
+			1: {name: "punctuation.definition.macro.roff"}
+			2: {name: "entity.function.name.roff"}
+			3: {patterns: [include: "#escapes"]}
+		endCaptures:
+			0: {name: "meta.function.end.table.section.macro.roff"}
+			1: {name: "punctuation.definition.macro.roff"}
+			2: {name: "entity.name.function.roff"}

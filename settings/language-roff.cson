@@ -2,6 +2,10 @@
 	editor:
 		commentStart: ".\\\" "
 
+".text.roff .pic":
+	editor:
+		commentStart: "# "
+
 ".text.runoff":
 	editor:
 		commentStart: ".! "
