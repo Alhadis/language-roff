@@ -97,35 +97,13 @@
 			]
 		},
 		"number": {
-			"patterns": [
-				{
-					"name": "constant.numeric.roff",
-					"match": "(?:(?<!\\w)[-+])?\\d+(?:\\.\\d+|\\.(?=[A-Za-z\\)\\s]|$))?([A-Za-z]+)?",
-					"captures": {
-						"1": {
-							"name": "keyword.other.unit.roff"
-						}
-					}
-				},
-				{
-					"name": "constant.numeric.roff",
-					"match": "(?<=\\s|^)[-+]?\\.\\d+([A-Za-z])?",
-					"captures": {
-						"1": {
-							"name": "keyword.other.unit.roff"
-						}
-					}
-				},
-				{
-					"name": "constant.numeric.roff",
-					"match": "(?<=\\s|^)[-+]?\\.(?=[A-Za-z\\)\\s]|$)([A-Za-z])?",
-					"captures": {
-						"1": {
-							"name": "keyword.other.unit.roff"
-						}
-					}
+			"name": "constant.numeric.roff",
+			"match": "(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([cfimnPpsuvz])?",
+			"captures": {
+				"1": {
+					"name": "keyword.other.unit.roff"
 				}
-			]
+			}
 		},
 		"string": {
 			"patterns": [
@@ -358,7 +336,7 @@
 				},
 				{
 					"name": "meta.function.request.$2.roff",
-					"begin": "(?x) ^([.'])[ \t]* (ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|dt|ec|em|eo |ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|ig|in|it|lc|lg|lf|ll|ls|lt |mc|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd |rm|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)",
+					"begin": "(?x) ^([.'])[ \t]* (ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|dt|ec|em|eo |ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|in|it|lc|lg|lf|ll|ls|lt|mc |mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd|rm |rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)",
 					"end": "(?<!\\\\)(?=\n)|(?=\\\\\")",
 					"beginCaptures": {
 						"1": {
@@ -379,6 +357,9 @@
 				},
 				{
 					"include": "#definition"
+				},
+				{
+					"include": "#ignore"
 				},
 				{
 					"include": "#underlines"
@@ -776,6 +757,88 @@
 				}
 			]
 		},
+		"ignore": {
+			"patterns": [
+				{
+					"contentName": "comment.block.ignored-input.with-terminator.roff",
+					"begin": "^([.'])[ \t]*(ig)[ \t]+(?!\\\\[\"#])((\"[^\"]+\")|\\S+?(?=\\s|\\\\[\"#]))(.*)$",
+					"end": "^([.'])[ \t]*(\\3)(?=\\s|$|\\\\)",
+					"patterns": [
+						{
+							"include": "#register-expansion"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						},
+						"3": {
+							"name": "keyword.control.terminator.roff"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#string"
+								}
+							]
+						},
+						"5": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "keyword.control.terminator.roff",
+							"patterns": [
+								{
+									"include": "#string"
+								}
+							]
+						}
+					}
+				},
+				{
+					"contentName": "comment.block.ignored-input.roff",
+					"begin": "^([.'])[ \t]*(ig)\\b(.*)$",
+					"end": "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\.",
+					"patterns": [
+						{
+							"include": "#register-expansion"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.request.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						},
+						"3": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.request.roff"
+						}
+					}
+				}
+			]
+		},
 		"underlines": {
 			"patterns": [
 				{
@@ -852,6 +915,95 @@
 				}
 			]
 		},
+		"register-expansion": {
+			"patterns": [
+				{
+					"name": "constant.character.escape.function.expand-register.gnu.roff",
+					"begin": "((\\\\)n([-+])?(\\[))",
+					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"contentName": "variable.parameter.roff",
+					"patterns": [
+						{
+							"include": "#params"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "keyword.operator.arithmetic.roff"
+						},
+						"4": {
+							"name": "punctuation.section.begin.bracket.square.roff"
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#params"
+								}
+							]
+						},
+						"2": {
+							"name": "punctuation.section.end.bracket.square.roff"
+						}
+					}
+				},
+				{
+					"name": "constant.character.escape.function.expand-register.roff",
+					"match": "((\\\\)n([-+])?(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)([-+])?(?:(%)|(\\S))",
+					"captures": {
+						"1": {
+							"name": "entity.name.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"3": {
+							"name": "keyword.operator.arithmetic.roff"
+						},
+						"4": {
+							"name": "punctuation.definition.brace.roff"
+						},
+						"5": {
+							"name": "constant.language.predefined.register.roff"
+						},
+						"6": {
+							"name": "constant.language.predefined.register.gnu.roff"
+						},
+						"7": {
+							"name": "constant.language.predefined.register.readonly.roff"
+						},
+						"8": {
+							"name": "constant.language.predefined.register.readonly.gnu.roff"
+						},
+						"9": {
+							"name": "variable.parameter.roff"
+						},
+						"10": {
+							"name": "entity.name.roff"
+						},
+						"11": {
+							"name": "punctuation.definition.escape.roff"
+						},
+						"12": {
+							"name": "keyword.operator.arithmetic.roff"
+						},
+						"13": {
+							"name": "constant.language.predefined.register.roff"
+						},
+						"14": {
+							"name": "variable.parameter.roff"
+						}
+					}
+				}
+			]
+		},
 		"escapes-copymode": {
 			"patterns": [
 				{
@@ -904,6 +1056,9 @@
 					}
 				},
 				{
+					"include": "#register-expansion"
+				},
+				{
 					"match": "(\\\\)\\1",
 					"name": "constant.character.escape.backslash.roff",
 					"captures": {
@@ -936,82 +1091,6 @@
 					"captures": {
 						"1": {
 							"name": "punctuation.definition.escape.roff"
-						}
-					}
-				},
-				{
-					"name": "constant.character.escape.function.expand-register.gnu.roff",
-					"begin": "((\\\\)n(\\[))",
-					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
-					"contentName": "variable.parameter.roff",
-					"patterns": [
-						{
-							"include": "#params"
-						}
-					],
-					"beginCaptures": {
-						"1": {
-							"name": "entity.name.roff"
-						},
-						"2": {
-							"name": "punctuation.definition.escape.roff"
-						},
-						"3": {
-							"name": "punctuation.section.begin.bracket.square.roff"
-						}
-					},
-					"endCaptures": {
-						"1": {
-							"patterns": [
-								{
-									"include": "#params"
-								}
-							]
-						},
-						"2": {
-							"name": "punctuation.section.end.bracket.square.roff"
-						}
-					}
-				},
-				{
-					"name": "constant.character.escape.function.expand-register.roff",
-					"match": "((\\\\)n(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)(?:(%)|(\\S))",
-					"captures": {
-						"1": {
-							"name": "entity.name.roff"
-						},
-						"2": {
-							"name": "punctuation.definition.escape.roff"
-						},
-						"3": {
-							"name": "punctuation.definition.brace.roff"
-						},
-						"4": {
-							"name": "constant.language.predefined.register.roff"
-						},
-						"5": {
-							"name": "constant.language.predefined.register.gnu.roff"
-						},
-						"6": {
-							"name": "constant.language.predefined.register.readonly.roff"
-						},
-						"7": {
-							"name": "constant.language.predefined.register.readonly.gnu.roff"
-						},
-						"8": {
-							"name": "variable.parameter.roff"
-						},
-						"9": {
-							"name": "entity.name.roff"
-						},
-						"10": {
-							"name": "punctuation.definition.escape.roff"
-						},
-						"11": {
-							"name": "constant.language.predefined.register.roff"
-						},
-						"12": {
-							"name": "variable.parameter.roff"
 						}
 					}
 				},
