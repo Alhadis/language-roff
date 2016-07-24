@@ -2159,7 +2159,7 @@ repository:
 				4: {patterns: [include: "#params"]}
 		},{
 			# .PS/.PE: Pic
-			begin: "^([.'])[ \t]*(PS)\\b[ \t]*(\\\\[#\"].*)?$"
+			begin: "^([.'])[ \t]*(PS)\\b[ \t]*(?:(#.*)|(\\\\[#\"].*))?$"
 			end:   "^([.'])[ \t]*(PE)\\b"
 			contentName: "markup.other.graphics.preprocessor.pic.roff"
 			patterns: [include: "#pic"]
@@ -2167,7 +2167,8 @@ repository:
 				0: {name: "meta.function.begin.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
-				3: {patterns: [include: "#escapes"]}
+				3: {patterns: [include: "#pic"]}
+				4: {patterns: [include: "#escapes"]}
 			endCaptures:
 				0: {name: "meta.function.end.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
