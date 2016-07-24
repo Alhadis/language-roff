@@ -51,6 +51,9 @@ repository:
 			name: "constant.numeric.runoff"
 			match: "[-+]?\\d+(?:\\.\\d+)?"
 		},{
+			name: "punctuation.separator.comma.runoff"
+			match: ","
+		},{
 			# Double-quoted string
 			name: "string.quoted.runoff"
 			begin: '"'
@@ -60,7 +63,7 @@ repository:
 		},{
 			# Unquoted string
 			name: "variable.parameter.runoff"
-			match: "(?!\\.)[^\\s;]+"
+			match: "(?!\\.)[^\\s;,]+"
 			captures:
 				0: name: "string.unquoted.runoff"
 		}]
@@ -124,7 +127,8 @@ repository:
 					# Allow punctuation/parameters in clustered command-chains to be highlighted:
 					# .LM0.RM80 is likely a compressed form of ".LM 0; .RM 80"
 					{match: "\\.", name: "punctuation.delimiter.period.full-stop.runoff"}
-					{match: "\\d+(?=$|\\n|\\.(?!\\d))", name: "constant.numeric.runoff"}
+					{match: "\\,", name: "punctuation.separator.comma.runoff"}
+					{match: "\\d+(?=$|\\n|,|\\.(?!\\d))", name: "constant.numeric.runoff"}
 				]
 			endCaptures:
 				1: name: "punctuation.terminator.statement.runoff"
