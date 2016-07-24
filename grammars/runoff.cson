@@ -121,7 +121,8 @@ repository:
 			"""
 			patterns: [include: "#arguments"]
 			beginCaptures:
-				1: name: "keyword.function.name.runoff"
+				0: name: "keyword.function.name.runoff"
+				1: name: "entity.name.function.runoff"
 				2: name: "punctuation.definition.function.runoff"
 				3: patterns: [
 					# Allow punctuation/parameters in clustered command-chains to be highlighted:
