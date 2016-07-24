@@ -59,6 +59,10 @@
 					"match": "[-+]?\\d+(?:\\.\\d+)?"
 				},
 				{
+					"name": "punctuation.separator.comma.runoff",
+					"match": ","
+				},
+				{
 					"name": "string.quoted.runoff",
 					"begin": "\"",
 					"end": "\"",
@@ -75,10 +79,17 @@
 				},
 				{
 					"name": "variable.parameter.runoff",
-					"match": "(?!\\.)[^\\s;]+",
+					"match": "(?!\\.)([^\\s;,]+)",
 					"captures": {
 						"0": {
 							"name": "string.unquoted.runoff"
+						},
+						"1": {
+							"patterns": [
+								{
+									"include": "#name-innards"
+								}
+							]
 						}
 					}
 				}
@@ -126,40 +137,59 @@
 					]
 				},
 				{
-					"name": "meta.function.runoff",
-					"begin": "(?i)(?:^|(?<=;))((\\.)VAR|VR|VARIABLE)(?=$|\\s)",
-					"end": "$|;|(?=!)",
+					"contentName": "markup.raw.runoff",
+					"begin": "(?i)((\\.)LITERAL\\s*)(?:$|\\n)",
+					"end": "(?i)((\\.)END\\s+LITERAL)\\b",
 					"beginCaptures": {
+						"0": {
+							"name": "keyword.function.name.runoff"
+						},
 						"1": {
-							"name": "storage.type.var.runoff"
+							"name": "entity.name.function.runoff"
 						},
 						"2": {
 							"name": "punctuation.definition.function.runoff"
 						}
 					},
 					"endCaptures": {
+						"0": {
+							"name": "keyword.function.name.runoff"
+						},
 						"1": {
-							"name": "punctuation.terminator.statement.runoff"
+							"name": "entity.name.function.runoff"
+						},
+						"2": {
+							"name": "punctuation.definition.function.runoff"
 						}
-					},
-					"patterns": [
-						{
-							"include": "#arguments"
-						}
-					]
+					}
 				},
 				{
-					"name": "meta.function.runoff",
-					"begin": "(?i)(?:^|(?<=;))((\\.)(?:END\\s+)?[^;\\s\\-+]+)",
-					"end": "$|(;)(?=\\.)|(?=;[^.])",
-					"patterns": [
-						{
-							"include": "#arguments"
-						}
-					],
+					"contentName": "markup.raw.runoff",
+					"begin": "(?i)((\\.)LIT)\\s*(?:$|\\n)",
+					"end": "(?i)^(?=\\.EL(?:$|[\\s;!]))",
 					"beginCaptures": {
-						"1": {
+						"0": {
 							"name": "keyword.function.name.runoff"
+						},
+						"1": {
+							"name": "entity.name.function.runoff"
+						},
+						"2": {
+							"name": "punctuation.definition.function.runoff"
+						}
+					}
+				},
+				{
+					"name": "meta.function.debugging-comment.runoff",
+					"begin": "(?i)((\\.)COMMENT)\\b",
+					"end": "$|(;)|(?=!)",
+					"contentName": "string.unquoted.runoff",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.function.name.runoff"
+						},
+						"1": {
+							"name": "entity.name.function.runoff"
 						},
 						"2": {
 							"name": "punctuation.definition.function.runoff"
@@ -170,6 +200,58 @@
 							"name": "punctuation.terminator.statement.runoff"
 						}
 					}
+				},
+				{
+					"name": "meta.function.runoff",
+					"begin": "(?i)((\\.)(?:END\\s+)?([^;\\s\\-+]+))",
+					"end": "(?x)\n$               | # EOL\n(;)?\\s*(?=\\.) | # Followed by another command\n(?=;\\s*[^.])     # No more commands, don’t highlight trailing text as arguments",
+					"patterns": [
+						{
+							"include": "#arguments"
+						}
+					],
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.function.name.runoff"
+						},
+						"1": {
+							"name": "entity.name.function.runoff"
+						},
+						"2": {
+							"name": "punctuation.definition.function.runoff"
+						},
+						"3": {
+							"patterns": [
+								{
+									"include": "#name-innards"
+								}
+							]
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.terminator.statement.runoff"
+						}
+					}
+				}
+			]
+		},
+		"name-innards": {
+			"patterns": [
+				{
+					"include": "#special-characters"
+				},
+				{
+					"match": "\\.",
+					"name": "punctuation.delimiter.period.full-stop.runoff"
+				},
+				{
+					"match": "\\,",
+					"name": "punctuation.separator.comma.runoff"
+				},
+				{
+					"match": "\\d+(?=$|\\n|,|\\.(?!\\d))",
+					"name": "constant.numeric.runoff"
 				}
 			]
 		},
