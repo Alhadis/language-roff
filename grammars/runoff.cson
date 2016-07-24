@@ -110,12 +110,22 @@ repository:
 			
 			# Generic command
 			name: "meta.function.runoff"
-			begin: "(?i)(?:^|(?<=;))((\\.)(?:END\\s+)?[^;\\s\\-+]+)"
-			end:   "$|(;)(?=\\.)|(?=;[^.])"
+			begin: "(?i)((\\.)(?:END\\s+)?([^;\\s\\-+]+))"
+			end: """(?x)
+				$              | # EOL
+				(;)\\s*(?=\\.) | # Followed by another command
+				(?=;\\s*[^.])    # No more commands, don’t highlight trailing text as arguments
+			"""
 			patterns: [include: "#arguments"]
 			beginCaptures:
 				1: name: "keyword.function.name.runoff"
 				2: name: "punctuation.definition.function.runoff"
+				3: patterns: [
+					# Allow punctuation/parameters in clustered command-chains to be highlighted:
+					# .LM0.RM80 is likely a compressed form of ".LM 0; .RM 80"
+					{match: "\\.", name: "punctuation.delimiter.period.full-stop.runoff"}
+					{match: "\\d+(?=$|\\n|\\.(?!\\d))", name: "constant.numeric.runoff"}
+				]
 			endCaptures:
 				1: name: "punctuation.terminator.statement.runoff"
 		}]
