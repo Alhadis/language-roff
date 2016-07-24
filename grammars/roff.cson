@@ -2172,6 +2172,12 @@ repository:
 				0: {name: "meta.function.end.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
+		},{
+			#!/usr/bin/pic2plot: Pic hashbang
+			begin: "\\A#!?/.+/pic2plot(?=\\s|$)(.*)"
+			end:   "\\z"
+			patterns: [include: "#pic"]
+			beginCaptures: 0: name: "comment.line.shebang.pic.roff"
 		}]
 
 
