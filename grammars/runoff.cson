@@ -100,18 +100,6 @@ repository:
 			patterns: [include: "#arguments"]
 		},{
 			
-			# .var: Variable declaration
-			name: "meta.function.runoff"
-			begin: "(?i)(?:^|(?<=;))((\\.)VAR|VR|VARIABLE)(?=$|\\s)"
-			end: "$|;|(?=!)"
-			beginCaptures:
-				1: name: "storage.type.var.runoff"
-				2: name: "punctuation.definition.function.runoff"
-			endCaptures:
-				1: name: "punctuation.terminator.statement.runoff"
-			patterns: [include: "#arguments"]
-		},{
-			
 			# "Comment" command (debugging feedback?)
 			name: "meta.function.debugging-comment.runoff"
 			begin: "(?i)((\\.)COMMENT)\\b"
