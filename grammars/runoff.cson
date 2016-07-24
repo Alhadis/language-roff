@@ -63,9 +63,10 @@ repository:
 		},{
 			# Unquoted string
 			name: "variable.parameter.runoff"
-			match: "(?!\\.)[^\\s;,]+"
+			match: "(?!\\.)([^\\s;,]+)"
 			captures:
 				0: name: "string.unquoted.runoff"
+				1: patterns: [include: "#name-innards"]
 		}]
 
 
@@ -124,17 +125,20 @@ repository:
 				0: name: "keyword.function.name.runoff"
 				1: name: "entity.name.function.runoff"
 				2: name: "punctuation.definition.function.runoff"
-				3: patterns: [
-					# Allow punctuation/parameters in clustered command-chains to be highlighted:
-					# .LM0.RM80 is likely a compressed form of ".LM 0; .RM 80"
-					{match: "\\.", name: "punctuation.delimiter.period.full-stop.runoff"}
-					{match: "\\,", name: "punctuation.separator.comma.runoff"}
-					{match: "\\d+(?=$|\\n|,|\\.(?!\\d))", name: "constant.numeric.runoff"}
-				]
+				3: patterns: [include: "#name-innards"]
 			endCaptures:
 				1: name: "punctuation.terminator.statement.runoff"
 		}]
 
+
+	# Stuff to highlight inside words (which might also be a chain of commands without spaces)
+	"name-innards":
+		patterns: [
+			{include: "#special-characters"}
+			{match: "\\.", name: "punctuation.delimiter.period.full-stop.runoff"}
+			{match: "\\,", name: "punctuation.separator.comma.runoff"}
+			{match: "\\d+(?=$|\\n|,|\\.(?!\\d))", name: "constant.numeric.runoff"}
+		]
 
 
 	# Characters which affect processing of printed text
