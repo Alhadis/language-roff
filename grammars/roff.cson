@@ -2192,8 +2192,19 @@ repository:
 			{match: "<-|<->|->", name: "keyword.operator.arrow.pic.roff"}
 			{match: "[-/+*%^]",  name: "keyword.operator.arithmetic.pic.roff"}
 			{match: "<|>",       name: "punctuation.definition.bracket.angle.pic.roff"}
-			{match: "\\(|\\)",   name: "punctuation.definition.bracket.round.pic.roff"}
 			{
+				# Balanced brackets
+				begin: "\\("
+				end:   "(?=\\))|^(?=\\.PE\\b)"
+				patterns: [include: "#pic"]
+				beginCaptures:
+					0: name: "punctuation.definition.bracket.round.pic.roff"
+			},{
+				
+				# Unmatched closing bracket
+				name: "punctuation.definition.bracket.round.unmatched.pic.roff"
+				match: "\\)"
+			},{
 				# Comment
 				name: "comment.line.pic.roff"
 				begin: "#"
@@ -2222,6 +2233,18 @@ repository:
 					(arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid
 					|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
 					|moveht|movewid|scale|textht|textwid)\\b"
+			},{
+				# Standard library
+				contentName: "meta.function-call.pic.roff"
+				begin: "\\b(sin|cos|atan2|log|exp|sqrt|max|min|int|rand)(\\()"
+				end:   "\\)"
+				patterns: [include: "#pic"]
+				beginCaptures:
+					0: name: "support.function.math.pic.roff"
+					1: name: "entity.name.function.pic.roff"
+					2: name: "punctuation.definition.arguments.begin.pic.roff"
+				endCaptures:
+					0: name: "punctuation.definition.arguments.end.pic.roff"
 			},{
 				# Instance backreferences: "1st, last, 2nd last, 8th", etc
 				name: "variable.language.backreference.pic.roff"

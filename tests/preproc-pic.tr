@@ -118,4 +118,22 @@ box wid a ht b
 ellipse wid a/2 ht 1.5*b
 Box2: Box1 - (a/2, b/2)
 
+
+
+Box1.x               # the x coordinate of the center of Box1
+Box1.ne.y            # the y coordinate of the northeast corner of Box1 Box1.wid # the width of Box1
+Box1.ht              # and its height
+2nd last circle.rad  # the radius of the 2nd last circle
+
+
+sin(expr), cos(expr), atan2(y, (x)))
+log(expr), exp(expr)
+sqrt(expr), max(e1, e2), min(e1, e2)
+int(expr)
+rand()
+
+ "origin" "(0,0)" at 0,0
+ "this is" "(1,1)" at 1,1
+ box ht 1 wid 1 dotted with .sw at 0,0
+
 .PE
