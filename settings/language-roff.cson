@@ -2,7 +2,7 @@
 	editor:
 		commentStart: ".\\\" "
 
-".text.roff .pic":
+".source.pic":
 	editor:
 		commentStart: "# "
 

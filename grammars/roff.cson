@@ -22,7 +22,6 @@ fileTypes: [
 	"mom",
 	"n",
 	"nroff",
-	"pic",
 	"roff",
 	"t",
 	"tmac", "tmac-u",
@@ -2158,117 +2157,23 @@ repository:
 				3: {name: "punctuation.definition.filename.roff"}
 				4: {patterns: [include: "#params"]}
 		},{
+			
 			# .PS/.PE: Pic
 			begin: "^([.'])[ \t]*(PS)\\b[ \t]*(?:(#.*)|(\\\\[#\"].*))?$"
 			end:   "^([.'])[ \t]*(PE)\\b"
 			contentName: "markup.other.graphics.preprocessor.pic.roff"
-			patterns: [include: "#pic"]
+			patterns: [include: "source.pic"]
 			beginCaptures:
 				0: {name: "meta.function.begin.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
-				3: {patterns: [include: "#pic"]}
+				3: {patterns: [include: "source.pic"]}
 				4: {patterns: [include: "#escapes"]}
 			endCaptures:
 				0: {name: "meta.function.end.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-		},{
-			#!/usr/bin/pic2plot: Pic hashbang
-			begin: "\\A#!?/.+/pic2plot(?=\\s|$)(.*)"
-			end:   "\\z"
-			patterns: [include: "#pic"]
-			beginCaptures: 0: name: "comment.line.shebang.pic.roff"
 		}]
-
-
-
-	# Picture preprocessor
-	pic:
-		patterns: [
-			{match: ";",         name: "punctuation.terminator.statement.pic.roff"}
-			{match: ",",         name: "punctuation.separator.comma.pic.roff"}
-			{match: "=",         name: "keyword.operator.assignment.pic.roff"}
-			{match: "<-|<->|->", name: "keyword.operator.arrow.pic.roff"}
-			{match: "[-/+*%^]",  name: "keyword.operator.arithmetic.pic.roff"}
-			{match: "<|>",       name: "punctuation.definition.bracket.angle.pic.roff"}
-			{
-				# Balanced brackets
-				begin: "\\("
-				end:   "(?=\\))|^(?=\\.PE\\b)"
-				patterns: [include: "#pic"]
-				beginCaptures:
-					0: name: "punctuation.definition.bracket.round.pic.roff"
-			},{
-				
-				# Unmatched closing bracket
-				name: "punctuation.definition.bracket.round.unmatched.pic.roff"
-				match: "\\)"
-			},{
-				# Comment
-				name: "comment.line.pic.roff"
-				begin: "#"
-				end:   "$"
-				beginCaptures:
-					0: name: "punctuation.definition.comment.pic.roff"
-			},{
-				# Keywords
-				name: "keyword.operator.$1.pic.roff"
-				match: "\\b(and|at|from|reset|to|with|of\\s+the\\s+way\\s+between)\\b"
-			},{
-				# Primitives
-				name: "keyword.function.pic.roff"
-				match: "\\b(box|line|arrow|circle|ellipse|arc|spline)\\b"
-				captures: 0: name: "entity.function.name.pic.roff"
-			},{
-				# Attributes
-				name: "variable.other.property.$1.pic.roff"
-				match: """(?x)\\b
-					(cw|dashed|diameter|diam|dotted|down|height|ht|invisible
-					|invis|left|move|radius|rad|right|same|up|width|wid)\\b"""
-			},{
-				# Global variables
-				name: "support.variable.global.pic.roff"
-				match: "(?x)\\b
-					(arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid
-					|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
-					|moveht|movewid|scale|textht|textwid)\\b"
-			},{
-				# Standard library
-				contentName: "meta.function-call.pic.roff"
-				begin: "\\b(sin|cos|atan2|log|exp|sqrt|max|min|int|rand)(\\()"
-				end:   "\\)"
-				patterns: [include: "#pic"]
-				beginCaptures:
-					0: name: "support.function.math.pic.roff"
-					1: name: "entity.name.function.pic.roff"
-					2: name: "punctuation.definition.arguments.begin.pic.roff"
-				endCaptures:
-					0: name: "punctuation.definition.arguments.end.pic.roff"
-			},{
-				# Instance backreferences: "1st, last, 2nd last, 8th", etc
-				name: "variable.language.backreference.pic.roff"
-				match: "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \t]+last)?)\\b"
-				captures: 0: name: "entity.name.pic.roff"
-			},{
-				# Labelled positions
-				match: "([A-Z][^#\\s:]*)(:)"
-				captures:
-					1: name: "storage.type.label.pic.roff"
-					2: name: "punctuation.separator.key-value.pic.roff"
-			},{
-				# Variable
-				name: "variable.other.pic.roff"
-				match: "(?!\\d)\\w+"
-			},{
-				# Full-stop/decimal point
-				name: "punctuation.delimiter.period.full-stop.pic.roff"
-				match: "\\.(?!\\d)"
-			}
-			{include: "#escapes"}
-			{include: "#string"}
-			{include: "#number"}
-		]
 
 
 
