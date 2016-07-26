@@ -2222,6 +2222,32 @@ repository:
 				(above|back|bar|bold|ccol|col|cpile|define|delim|dot|dotdot|down|dyad|fat|font|from
 				|fwd|gfont|gsize|hat|italic|lcol|left|lineup|lpile|mark|matrix|ndefine|over|pile
 				|rcol|right|roman|rpile|size|sqrt|sub|sup|tdefine|tilde|to|under|up|vec)\\b"""
+		},{
+			# GNU Eqn: Keywords
+			name: "keyword.language.eqn.gnu.roff"
+			match: """(?x)\\b
+				(accent|big|chartype|smallover|type|vcenter|uaccent|split|nosplit
+				|opprime|special|sdefine|include|ifdef|undef|g[rb]font|space)\\b"""
+		},{
+			
+			# GNU Eqn: Character names
+			name: "constant.language.greek-letter.eqn.gnu.roff"
+			match: """(?x)\\b
+				(Alpha|Beta|Chi|Delta|Epsilon|Eta|Gamma|Iota|Kappa|Lambda|Mu|Nu
+				|Omega|Omicron|Phi|Pi|Psi|Rho|Sigma|Tau|Theta|Upsilon|Xi|Zeta)\\b"""
+		},{
+			
+			# GNU Eqn: Set MathML variables
+			name: "meta.set-variable.eqn.gnu.roff"
+			match: """(?x)\\b(set)[ \t]+
+				(accent_width|axis_height|baseline_sep|big_op_spacing[1-5]|body_depth|body_height|column_sep
+				|default_rule_thickness|delimiter_factor|delimiter_shortfall|denom[12]|draw_lines|fat_offset
+				|matrix_side_sep|medium_space|minimum_size|nroff|null_delimiter_space|num[12]|over_hang
+				|script_space|shift_down|su[bp]_drop|sub[12]|sup[1-3]|thick_space|thin_space|x_height)\\b"""
+			captures:
+				1: name: "storage.type.var.eqn.roff"
+				2: name: "variable.other.mathml.eqn.roff"
+		
 		}, include: "#string"]
 
 
