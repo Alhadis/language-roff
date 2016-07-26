@@ -129,7 +129,7 @@ repository:
 	# Keywords
 	keywords:
 		name: "keyword.operator.$1.pic"
-		match: "\\b(and|at|from|reset|then|to|with|of\\s+the\\s+way\\s+between)\\b"
+		match: "\\b(and|at|copy|from|reset|sh|then|thru|to|with|of\\s+the\\s+way\\s+between)\\b"
 
 
 	# Labelled position
