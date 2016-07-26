@@ -2,10 +2,22 @@ name: "Pic"
 scopeName: "source.pic"
 fileTypes: ["pic"]
 firstLineMatch: "^#[!/].*\\bpic2plot\\b"
-patterns: [include: "#main"]
+patterns: [
+	{include: "#embedded"}
+	{include: "#main"}
+]
 
 
 repository:
+	
+	# Any unexpected Roff lines caught inside Pic
+	embedded:
+		begin: "^(?=[.'][ \t]*\\w+)"
+		end:   "(?<!\\\\)$|(\\\\\".*)$"
+		patterns: [include: "text.roff"]
+		endCaptures:
+			1: patterns: [include: "text.roff"]
+	
 	
 	# Top-level patterns
 	main:
@@ -22,7 +34,6 @@ repository:
 			{include: "#backref"}
 			{include: "#label"}
 			{include: "#variable"}
-			{include: "text.roff"}
 		]
 
 
