@@ -26,6 +26,7 @@ repository:
 			{include: "#keywords"}
 			{include: "#string"}
 			{include: "#number"}
+			{include: "#escaped-newline"}
 			{include: "#punctuation"}
 			{include: "#shapes"}
 			{include: "#attributes"}
@@ -59,6 +60,15 @@ repository:
 		end:   "$"
 		beginCaptures:
 			0: name: "punctuation.definition.comment.pic"
+
+
+	# Concealed newline
+	"escaped-newline":
+		name: "constant.character.escape.newline.pic"
+		begin: "\\\\$\\n?"
+		end:   "^(?:[.'])?"
+		beginCaptures:
+			0: name: "punctuation.definition.escape.pic"
 
 
 	# Function call
