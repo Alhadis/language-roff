@@ -1,0 +1,46 @@
+# NOTE: Each snippet has been duplicated to be used with or without a leading
+# period. If changes are made to one, ensure they're reflected in the other.
+# Atom snippets don't yet support multiple prefixes. See atom/snippets#107.
+
+".text.roff":
+	
+	# Macro definition
+	".de":
+		prefix: ".de"
+		body: ".de ${1:NAME}\n.\t$3\n.."
+		description: "Define a new macro"
+		leftLabel: ".de"
+
+	de:
+		prefix: "de"
+		body: ".de ${1:NAME}\n.\t$3\n.."
+		description: "Define a new macro"
+		leftLabel: ".de"
+	
+
+	# "If" block
+	".if":
+		prefix: ".if"
+		body: ".if ${1:COND} \\\\{\\\\\n.\t$2\n.\\\\}"
+		description: "Multiline `if` statement"
+		leftLabel: ".if"
+
+	if:
+		prefix: "if"
+		body: ".if ${1:COND} \\\\{\\\\\n.\t$2\n.\\\\}"
+		description: "Multiline `if` statement"
+		leftLabel: ".if"
+
+	
+	# "If/else" block
+	".ie":
+		prefix: ".ie"
+		body: ".ie ${1:COND} \\\\{\\\\\n.\t$2\n.\\\\}\n.el \\\\{\\\\\n.\t$3\n.\\\\}"
+		description: "Multiline `if/else` block"
+		leftLabel: ".ie"
+
+	ie:
+		prefix: "ie"
+		body: ".ie ${1:COND} \\\\{\\\\\n.\t$2\n.\\\\}\n.el \\\\{\\\\\n.\t$3\n.\\\\}"
+		description: "Multiline `if/else` block"
+		leftLabel: ".ie"
