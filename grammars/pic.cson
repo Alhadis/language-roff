@@ -31,7 +31,7 @@ repository:
 			{include: "#escaped-newline"}
 			{include: "#operators"}
 			{include: "#punctuation"}
-			{include: "#shapes"}
+			{include: "#primitives"}
 			{include: "#attributes"}
 			{include: "#globals"}
 			{include: "#function-call"}
@@ -45,7 +45,7 @@ repository:
 		name: "variable.other.property.$1.pic"
 		match: """(?x)\\b
 			(cw|dashed|diameter|diam|dotted|down|height|ht|invisible
-			|invis|left|move|radius|rad|right|same|up|width|wid)\\b"""
+			|invis|left|radius|rad|right|same|up|width|wid)\\b"""
 
 
 	# Instance backreferences: "1st, last, 2nd last, 8th", etc
@@ -181,6 +181,14 @@ repository:
 			{match: "[-/+*%^]",   name: "keyword.operator.arithmetic.pic"}
 		]
 
+
+	# Shape primitives
+	primitives:
+		name: "keyword.function.pic"
+		match: "\\b(box|line|arrow|circle|ellipse|arc|move|spline)\\b"
+		captures: 0: name: "entity.function.name.pic"
+
+
 	# Punctuation
 	punctuation:
 		patterns: [
@@ -193,13 +201,6 @@ repository:
 			{match: "<|>",        name: "punctuation.definition.bracket.angle.pic"}
 			{match: "\\.(?!\\d)", name: "punctuation.delimiter.period.full-stop.pic"}
 		]
-
-
-	# Primitives
-	shapes:
-		name: "keyword.function.pic"
-		match: "\\b(box|line|arrow|circle|ellipse|arc|spline)\\b"
-		captures: 0: name: "entity.function.name.pic"
 
 
 	# "Double-quoted string"
