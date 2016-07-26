@@ -1,0 +1,27 @@
+.EQ I
+G(z)~mark =~ e sup { ln ~ G(z) }
+~=~ exp left (
+sum from k>=1 {S sub k z sup k} over k right )
+~=~ prod from k>=1 e sup {S sub k z sup k /k}
+.EN
+
+.EQ I
+lineup = left ( 1 + S sub 1 z +
+{ S sub 1 sup 2 z sup 2 } over 2! + ... right )
+left ( 1+ { S sub 2 z sup 2 } over 2
++ { S sub 2 sup 2 z sup 4 } over { 2 sup 2 cdot 2! }
++ ... right ) ...
+.EN
+
+.EQ I
+lineup = sum from m>=0 left (
+sum from
+pile { k sub 1 ,k sub 2 ,..., k sub m >=0
+above
+k sub 1 +2k sub 2 + ... +mk sub m =m}
+{ S sub 1 sup {k sub 1} } over {1 sup k sub 1 k sub 1 ! } ~
+{ S sub 2 sup {k sub 2} } over {2 sup k sub 2 k sub 1 ! } ~
+...
+{ S sub m sup {k sub m} } over {m sup k sub m k sub m ! }
+right ) z sup m
+.EN

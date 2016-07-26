@@ -11,7 +11,6 @@ fileTypes: [
 	"8",
 	"9", "9e", "9f", "9p", "9s",
 	"chem",
-	"eqn",
 	"groff",
 	"man",
 	"mandoc",
@@ -2148,6 +2147,22 @@ repository:
 				2: {name: "entity.name.function.roff"}
 		},{
 			
+			# .EQ/.EN: Eqn
+			begin: "^([.'])[ \t]*(EQ)\\b(.*)"
+			end:   "^([.'])[ \t]*(EN)\\b"
+			contentName: "markup.other.math.preprocessor.eqn.roff"
+			patterns: [include: "#eqn"]
+			beginCaptures:
+				0: {name: "meta.function.begin.math.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+				3: {patterns: [include: "#escapes"]}
+			endCaptures:
+				0: {name: "meta.function.end.math.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+		},{
+			
 			# .PS <file: Load a PIC file at current position
 			name: "invalid.deprecated.function.picture.macro.roff"
 			match: "^([.'])[ \t]*(PS)[ \t]*(<)(.*)(?=$|\\\\\")"
@@ -2175,6 +2190,39 @@ repository:
 				2: {name: "entity.name.function.roff"}
 		}]
 
+
+	# Equation preprocessor
+	eqn:
+		patterns: [{
+			
+			# Greek letters
+			name: "constant.language.greek-letter.eqn.roff"
+			match: """(?x)\\b
+				(DELTA|GAMMA|LAMBDA|OMEGA|PHI|PI|PSI|SIGMA|THETA|UPSILON|XI|alpha|beta|chi
+				|delta|epsilon|eta|gamma|iota|kappa|lambda|mu|nu|omega|omicron|phi|pi|psi
+				|rho|sigma|tau|theta|upsilon|xi|zeta)\\b"""
+		},{
+			# Recognised math terms
+			name: "constant.language.math-term.eqn.roff"
+			match: "\\b(and|arc|cosh?|det|exp|for|if|Im|lim|ln|log|max|min|Re|sinh?|tanh?)\\b"
+		},{
+			# Math symbols
+			name: "constant.character.math-symbol.eqn.roff"
+			match: """(?x)\\b
+				(sum|int|prod|union|inter|inf|partial|half|prime|approx|nothing|cdot
+				|times|del|grad|[><=!]=|\\+-|->|<-|<<|>>|\\.{3}|,\\.,)\\b"""
+		},{
+			# Punctuation
+			name: "punctuation.definition.eqn.roff"
+			match: "[~,^{}]"
+		},{
+			# Eqn keywords
+			name: "keyword.language.eqn.roff"
+			match: """(?x)\\b
+				(above|back|bar|bold|ccol|col|cpile|define|delim|dot|dotdot|down|dyad|fat|font|from
+				|fwd|gfont|gsize|hat|italic|lcol|left|lineup|lpile|mark|matrix|ndefine|over|pile
+				|rcol|right|roman|rpile|size|sqrt|sub|sup|tdefine|tilde|to|under|up|vec)\\b"""
+		}, include: "#string"]
 
 
 	# Table preprocessor
