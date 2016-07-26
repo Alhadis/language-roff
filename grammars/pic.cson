@@ -61,7 +61,7 @@ repository:
 			
 			# Round brackets/Parentheses
 			begin: "\\("
-			end:   "(?=\\))|^(?=\\.PE\\b)"
+			end:   "(?=\\))|^(?=\\.P[EF]\\b)"
 			patterns: [include: "#main"]
 			beginCaptures:
 				0: name: "punctuation.definition.bracket.round.pic"
@@ -69,7 +69,7 @@ repository:
 			
 			# Square brackets/brackets
 			begin: "\\["
-			end:   "(?=\\])|^(?=\\.PE\\b)"
+			end:   "(?=\\])|^(?=\\.P[EF]\\b)"
 			patterns: [include: "#main"]
 			beginCaptures:
 				0: name: "punctuation.definition.bracket.square.pic"
@@ -77,7 +77,7 @@ repository:
 			
 			# Curly brackets/braces
 			begin: "\\{"
-			end:   "(?=\\})|^(?=\\.PE\\b)"
+			end:   "(?=\\})|^(?=\\.P[EF]\\b)"
 			patterns: [include: "#main"]
 			beginCaptures:
 				0: name: "punctuation.definition.bracket.curly.pic"
