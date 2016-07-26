@@ -2159,7 +2159,7 @@ repository:
 		},{
 			
 			# .PS/.PE: Pic
-			begin: "^([.'])[ \t]*(PS)\\b[ \t]*(?:(#.*)|(\\\\[#\"].*))?$"
+			begin: "^([.'])[ \t]*(PS)\\b([\\d \t]*(?:#.*)?)?(\\\\[#\"].*)?$"
 			end:   "^([.'])[ \t]*(P[EF])\\b"
 			contentName: "markup.other.graphics.preprocessor.pic.roff"
 			patterns: [include: "source.pic"]
