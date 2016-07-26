@@ -29,6 +29,7 @@ repository:
 			{include: "#string"}
 			{include: "#number"}
 			{include: "#escaped-newline"}
+			{include: "#operators"}
 			{include: "#punctuation"}
 			{include: "#shapes"}
 			{include: "#attributes"}
@@ -92,8 +93,6 @@ repository:
 			0: name: "punctuation.definition.comment.pic"
 
 
-
-
 	# Concealed newline
 	"escaped-newline":
 		name: "constant.character.escape.newline.pic"
@@ -128,8 +127,13 @@ repository:
 
 	# Keywords
 	keywords:
-		name: "keyword.operator.$1.pic"
-		match: "\\b(and|at|copy|from|reset|sh|then|thru|to|with|of\\s+the\\s+way\\s+between)\\b"
+		patterns: [{
+			name: "keyword.control.$1.pic"
+			match: "\\b(for|do|if|then(?=\\s*\\{)|else)\\b"
+		},{
+			name: "keyword.operator.$1.pic"
+			match: "\\b(and|at|by|copy|from|reset|sh|then|thru|to|with|of\\s+the\\s+way\\s+between)\\b"
+		}]
 
 
 	# Labelled position
@@ -164,9 +168,20 @@ repository:
 	number:
 		name: "constant.numeric.pic"
 		match: "\\d+(?:\\.\\d+)?|\\.\\d+"
-	
 
-	# Symbols, operators and brackets
+
+	# Mathematical symbols
+	operators:
+		patterns: [
+			match: "[=><]=?|!=|&&|\\|\\|"
+			name: "keyword.operator.comparison.pic"
+			
+			{match: "=",          name: "keyword.operator.assignment.pic"}
+			{match: "<-|<->|->",  name: "keyword.operator.arrow.pic"}
+			{match: "[-/+*%^]",   name: "keyword.operator.arithmetic.pic"}
+		]
+
+	# Punctuation
 	punctuation:
 		patterns: [
 			{include: "#brackets"}
@@ -175,9 +190,6 @@ repository:
 			{match: "\\]",        name: "punctuation.definition.bracket.square.pic"}
 			{match: ";",          name: "punctuation.terminator.statement.pic"}
 			{match: ",",          name: "punctuation.separator.comma.pic"}
-			{match: "=",          name: "keyword.operator.assignment.pic"}
-			{match: "<-|<->|->",  name: "keyword.operator.arrow.pic"}
-			{match: "[-/+*%^]",   name: "keyword.operator.arithmetic.pic"}
 			{match: "<|>",        name: "punctuation.definition.bracket.angle.pic"}
 			{match: "\\.(?!\\d)", name: "punctuation.delimiter.period.full-stop.pic"}
 		]
