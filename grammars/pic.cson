@@ -182,10 +182,10 @@ repository:
 		]
 
 
-	# Shape primitives
+	# Primitives
 	primitives:
 		name: "keyword.function.pic"
-		match: "\\b(box|line|arrow|circle|ellipse|arc|move|spline)\\b"
+		match: "\\b(box|line|arrow|circle|ellipse|arc|move|spline|print|command|plot)\\b"
 		captures: 0: name: "entity.function.name.pic"
 
 
