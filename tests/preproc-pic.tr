@@ -184,4 +184,7 @@ h = .5; dh = .02;  dw = .1
 ]
 box dashed ht last [].ht+dw wid last [].wid+dw at last []
 
+
+define square { box ht $1 wid $1 $2 }
+
 .PE

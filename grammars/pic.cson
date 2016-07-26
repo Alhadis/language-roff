@@ -24,6 +24,7 @@ repository:
 		patterns: [
 			{include: "#comment"}
 			{include: "#keywords"}
+			{include: "#macros"}
 			{include: "#string"}
 			{include: "#number"}
 			{include: "#escaped-newline"}
@@ -65,12 +66,20 @@ repository:
 				0: name: "punctuation.definition.bracket.round.pic"
 		},{
 			
-			# Square brackets/braces
+			# Square brackets/brackets
 			begin: "\\["
 			end:   "(?=\\])|^(?=\\.PE\\b)"
 			patterns: [include: "#main"]
 			beginCaptures:
 				0: name: "punctuation.definition.bracket.square.pic"
+		},{
+			
+			# Curly brackets/braces
+			begin: "\\{"
+			end:   "(?=\\})|^(?=\\.PE\\b)"
+			patterns: [include: "#main"]
+			beginCaptures:
+				0: name: "punctuation.definition.bracket.curly.pic"
 		}]
 
 
@@ -81,6 +90,8 @@ repository:
 		end:   "$"
 		beginCaptures:
 			0: name: "punctuation.definition.comment.pic"
+
+
 
 
 	# Concealed newline
@@ -129,6 +140,26 @@ repository:
 			2: name: "punctuation.separator.key-value.pic"
 
 
+	# User-defined macros
+	macros:
+		patterns: [{
+			
+			# Definition or deletion
+			name: "meta.function.$1.pic"
+			match: "(define|undef)\\b\\s*(\\w*)"
+			captures:
+				1: name: "storage.type.function.pic"
+				2: name: "entity.name.function.pic"
+		},{
+			
+			# Argument reference inside macro
+			name: "variable.other.positional.pic"
+			match: "(\\$)\\d+"
+			captures:
+				1: name: "punctuation.definition.variable"
+		}]
+
+
 	# Numeric literal
 	number:
 		name: "constant.numeric.pic"
@@ -139,6 +170,7 @@ repository:
 	punctuation:
 		patterns: [
 			{include: "#brackets"}
+			{match: "\\}",        name: "punctuation.definition.bracket.curly.pic"}
 			{match: "\\)",        name: "punctuation.definition.bracket.round.pic"}
 			{match: "\\]",        name: "punctuation.definition.bracket.square.pic"}
 			{match: ";",          name: "punctuation.terminator.statement.pic"}
