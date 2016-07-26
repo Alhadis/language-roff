@@ -2161,7 +2161,7 @@ repository:
 			# .PS/.PE: Pic
 			begin: "^([.'])[ \t]*(PS)\\b([\\d \t]*(?:#.*)?)?(\\\\[#\"].*)?$"
 			end:   "^([.'])[ \t]*(P[EF])\\b"
-			contentName: "markup.other.graphics.preprocessor.pic.roff"
+			contentName: "source.embedded.pic"
 			patterns: [include: "source.pic"]
 			beginCaptures:
 				0: {name: "meta.function.begin.picture.section.macro.roff"}
