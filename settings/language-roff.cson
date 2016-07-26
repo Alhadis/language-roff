@@ -5,6 +5,8 @@
 ".source.pic":
 	editor:
 		commentStart: "# "
+		increaseIndentPattern: "[\\[({:]\\s*$"
+		decreaseIndentPattern: "^\\s*[\\])}]"
 
 ".text.runoff":
 	editor:
