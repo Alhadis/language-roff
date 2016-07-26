@@ -1,4 +1,4 @@
-.EQ I
+.EQ I (Label #3) \" Comment
 G(z)~mark =~ e sup { ln ~ G(z) }
 ~=~ exp left (
 sum from k>=1 {S sub k z sup k} over k right )

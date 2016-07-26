@@ -2148,7 +2148,7 @@ repository:
 		},{
 			
 			# .EQ/.EN: Eqn
-			begin: "^([.'])[ \t]*(EQ)\\b(.*)"
+			begin: "^([.'])[ \t]*(EQ)\\b[ \t]*([LIC]\\b)?\\s*([^\\\\\"]+|\\\\[^\"])*(\\\\\".*)?$"
 			end:   "^([.'])[ \t]*(EN)\\b"
 			contentName: "markup.other.math.preprocessor.eqn.roff"
 			patterns: [include: "#eqn"]
@@ -2156,7 +2156,9 @@ repository:
 				0: {name: "meta.function.begin.math.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
-				3: {patterns: [include: "#escapes"]}
+				3: {name: "constant.language.alignment-mode.eqn.roff"}
+				4: {name: "string.unquoted.equation-label.eqn.roff"}
+				5: {patterns: [include: "#escapes"]}
 			endCaptures:
 				0: {name: "meta.function.end.math.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
