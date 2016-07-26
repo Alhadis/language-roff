@@ -24,6 +24,7 @@ repository:
 		patterns: [
 			{include: "#comment"}
 			{include: "#keywords"}
+			{include: "#backref"}
 			{include: "#macros"}
 			{include: "#string"}
 			{include: "#number"}
@@ -33,7 +34,6 @@ repository:
 			{include: "#attributes"}
 			{include: "#globals"}
 			{include: "#function-call"}
-			{include: "#backref"}
 			{include: "#label"}
 			{include: "#variable"}
 		]
