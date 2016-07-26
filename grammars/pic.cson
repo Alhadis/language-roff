@@ -87,7 +87,7 @@ repository:
 	# Keywords
 	keywords:
 		name: "keyword.operator.$1.pic"
-		match: "\\b(and|at|from|reset|to|with|of\\s+the\\s+way\\s+between)\\b"
+		match: "\\b(and|at|from|reset|then|to|with|of\\s+the\\s+way\\s+between)\\b"
 
 
 	# Primitives
