@@ -132,8 +132,17 @@ sqrt(expr), max(e1, e2), min(e1, e2)
 int(expr)
 rand()
 
- "origin" "(0,0)" at 0,0
- "this is" "(1,1)" at 1,1
- box ht 1 wid 1 dotted with .sw at 0,0
+"origin" "(0,0)" at 0,0
+"this is" "(1,1)" at 1,1
+box ht 1 wid 1 dotted with .sw at 0,0
+
+line dashed right 1 then down .5 left 1 then right 1
+spline from start of last line \
+	right 1 then down .5 left 1 then right 1
+
+
+B: box wid log(20)
+	sprintf("width = %g, height = %g ", B.wid, B.ht) rjust at B.w
+
 
 .PE

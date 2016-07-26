@@ -18,7 +18,7 @@ repository:
 			{include: "#shapes"}
 			{include: "#attributes"}
 			{include: "#globals"}
-			{include: "#stdlib"}
+			{include: "#function-call"}
 			{include: "#backref"}
 			{include: "#label"}
 			{include: "#variable"}
@@ -103,14 +103,14 @@ repository:
 			|moveht|movewid|scale|textht|textwid)\\b"
 
 
-	# Standard library
-	stdlib:
+	# Function call
+	"function-call":
 		contentName: "meta.function-call.pic"
-		begin: "\\b(sin|cos|atan2|log|exp|sqrt|max|min|int|rand)(\\()"
+		begin: "\\b(?!\\d)(\\w+)(\\()"
 		end:   "\\)"
 		patterns: [include: "#main"]
 		beginCaptures:
-			0: name: "support.function.math.pic"
+			0: name: "support.function.pic"
 			1: name: "entity.name.function.pic"
 			2: name: "punctuation.definition.arguments.begin.pic"
 		endCaptures:
