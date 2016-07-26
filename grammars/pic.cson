@@ -176,7 +176,7 @@ repository:
 			match: "[=><]=?|!=|&&|\\|\\|"
 			name: "keyword.operator.comparison.pic"
 			
-			{match: "=",          name: "keyword.operator.assignment.pic"}
+			{match: ":?=",        name: "keyword.operator.assignment.pic"}
 			{match: "<-|<->|->",  name: "keyword.operator.arrow.pic"}
 			{match: "[-/+*%^]",   name: "keyword.operator.arithmetic.pic"}
 		]

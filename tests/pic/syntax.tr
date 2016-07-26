@@ -226,4 +226,5 @@ circle at (5,6)
 box
 
 x = 5e-2
+y := 456
 .PE
