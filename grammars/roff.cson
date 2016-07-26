@@ -2202,10 +2202,6 @@ repository:
 				|delta|epsilon|eta|gamma|iota|kappa|lambda|mu|nu|omega|omicron|phi|pi|psi
 				|rho|sigma|tau|theta|upsilon|xi|zeta)\\b"""
 		},{
-			# Recognised math terms
-			name: "constant.language.math-term.eqn.roff"
-			match: "\\b(and|arc|cosh?|det|exp|for|if|Im|lim|ln|log|max|min|Re|sinh?|tanh?)\\b"
-		},{
 			# Math symbols
 			name: "constant.character.math-symbol.eqn.roff"
 			match: """(?x)\\b
