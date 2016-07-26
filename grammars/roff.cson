@@ -2227,10 +2227,11 @@ repository:
 		},{
 			
 			# GNU Eqn: Character names
-			name: "constant.language.greek-letter.eqn.gnu.roff"
+			name: "constant.language.eqn.gnu.roff"
 			match: """(?x)\\b
 				(Alpha|Beta|Chi|Delta|Epsilon|Eta|Gamma|Iota|Kappa|Lambda|Mu|Nu
-				|Omega|Omicron|Phi|Pi|Psi|Rho|Sigma|Tau|Theta|Upsilon|Xi|Zeta)\\b"""
+				|Omega|Omicron|Phi|Pi|Psi|Rho|Sigma|Tau|Theta|Upsilon|Xi|Zeta
+				|ldots|dollar)\\b"""
 		},{
 			
 			# GNU Eqn: Set MathML variables
