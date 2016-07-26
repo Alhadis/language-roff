@@ -1,0 +1,357 @@
+.if !\n(.g .ab GNU tbl requires GNU troff.
+.if !dTS .ds TS
+.if !dTE .ds TE
+.TS
+.nr 3c \n(.C
+.cp 0
+.nr 3lps \n[.s]
+.nr 3cent \n[.ce]
+.de 3init
+.ft \n[.f]
+.ps \n[.s]
+.vs \n[.v]u
+.in \n[.i]u
+.ll \n[.l]u
+.ls \n[.L]
+.ad \n[.j]
+.ie \n[.u] .fi
+.el .nf
+.ce \n[.ce]
+..
+.nr 3ind \n[.i]
+.nr 3fnt \n[.f]
+.nr 3sz \n[.s]
+.nr 3fll \n[.u]
+.nr T. 0
+.nr 3crow 0-1
+.nr 3passed 0-1
+.nr 3sflag 0
+.ds 3trans
+.ds 3quote
+.nr 3brule 1
+.nr 3supbot 0
+.eo
+.de 3rmk
+.mk \$1
+.if !'\n(.z'' \!.3rmk "\$1"
+..
+.de 3rvpt
+.vpt \$1
+.if !'\n(.z'' \!.3rvpt "\$1"
+..
+.de 3rlns
+.ie !'\n(.z'' \{.nm
+\!.3rlns "\$1"
+.\}
+.el .if \n[ln] \{\
+.if '\$1'd' .nr 3lnst \n[ln]
+.if '\$1's' .nm \n[3lnst]
+.if '\$1'm' .nr 3lnmx \n[ln]>?\n[3lnmx]
+.\}
+..
+.de 3rlnx
+.ie !'\n(.z'' \{.nm
+\!.3rlnx "\$1"
+.\}
+.el .if \n[ln] \{\
+.ie '\$1's' \{\
+.nr 3lnsv \n(ln<?\n[3lnmx]
+.nm +0 \n[ln]+42
+.\}
+.el \{\
+.nr ln \n[3lnsv]
+.nm \n[ln] 1
+.\}
+.\}
+..
+.de 3keep
+.if '\n[.z]'' \{.ds 3quote \\
+.ds 3trans \!
+.di 3section
+.nr 3sflag 1
+.in 0
+.\}
+..
+.ig
+.EQ
+delim off
+.EN
+..
+.de 3release
+.if \n[3sflag] \{.di
+.in \n[3ind]u
+.nr 3dn \n[dn]
+.ds 3quote
+.ds 3trans
+.nr 3sflag 0
+.if \n[.t]<=\n[dn] \{.nr T. 1
+.T#
+.nr 3supbot 1
+.sp \n[.t]u
+.nr 3supbot 0
+.mk #T
+.\}
+.if \n[.t]<=\n[3dn] .tm warning: page \n%: table text block will not fit on one page
+.nf
+.if \n[ln] .nm \n[ln]
+.nr 3lnmx \n[ln]
+.ls 1
+.3section
+.ls
+.if \n[ln] .nm
+.rm 3section
+.\}
+..
+.ig
+.EQ
+delim on
+.EN
+..
+.nr 3tflag 0
+.de 3tkeep
+.if '\n[.z]'' \{.di 3table
+.nr 3tflag 1
+.\}
+..
+.de 3trelease
+.if \n[3tflag] \{.br
+.di
+.nr 3dn \n[dn]
+.ne \n[dn]u+\n[.V]u
+.ie \n[.t]<=\n[3dn] .tm error: page \n%: table will not fit on one page; use .TS H/.TH with a supporting macro package
+.el \{.in 0
+.ls 1
+.nf
+.if \n[ln] .nm \n[ln]
+.3table
+.\}
+.rm 3table
+.\}
+.if \n[ln] \{.nm
+.nr ln \n[3lnmx]
+.\}
+..
+.ec
+.ce 0
+.nf
+.nr 3sep 1n
+.nr 3w0 \n(.H
+.nr 3aw0 0
+.nr 3lnw0 0
+.nr 3rnw0 0
+.nr 3w1 \n(.H
+.nr 3aw1 0
+.nr 3lnw1 0
+.nr 3rnw1 0
+.nr 3w2 \n(.H
+.nr 3aw2 0
+.nr 3lnw2 0
+.nr 3rnw2 0
+.lf 4 aa.2
+.nr 3w0 \n[3w0]>?\w\[tbl]ID\[tbl]
+.lf 4
+.nr 3w1 \n[3w1]>?\w\[tbl]Name\[tbl]
+.lf 4
+.nr 3w2 \n[3w2]>?\w\[tbl]Type\[tbl]
+.lf 5
+.nr 3w0 \n[3w0]>?\w\[tbl]1\[tbl]
+.lf 5
+.nr 3w1 \n[3w1]>?\w\[tbl]Apple\[tbl]
+.lf 5
+.nr 3w2 \n[3w2]>?\w\[tbl]Fruit\[tbl]
+.lf 6
+.nr 3w0 \n[3w0]>?\w\[tbl]2\[tbl]
+.lf 6
+.nr 3w1 \n[3w1]>?\w\[tbl]Lettuce\[tbl]
+.lf 6
+.nr 3w2 \n[3w2]>?\w\[tbl]Vegetable\[tbl]
+.nr 3w0 \n[3w0]>?(\n[3lnw0]+\n[3rnw0])
+.if \n[3aw0] .nr 3w0 \n[3w0]>?(\n[3aw0]+2n)
+.nr 3w1 \n[3w1]>?(\n[3lnw1]+\n[3rnw1])
+.if \n[3aw1] .nr 3w1 \n[3w1]>?(\n[3aw1]+2n)
+.nr 3w2 \n[3w2]>?(\n[3lnw2]+\n[3rnw2])
+.if \n[3aw2] .nr 3w2 \n[3w2]>?(\n[3aw2]+2n)
+.nr 3expand \n[.l]-\n[.i]-\n[3w0]-\n[3w1]-\n[3w2]-8n
+.if \n[3expand]<0 \{\
+.lf 4
+.ig
+.EQ
+delim off
+.EN
+..
+.tm1 "warning: file `\n[.F]', around line \n[.c]:
+.tm1 "  table wider than line width
+.ig
+.EQ
+delim on
+.EN
+..
+.nr 3expand 0
+.\}
+.nr 3cd0 0
+.nr 3cl0 1*\n[3sep]
+.nr 3ce0 \n[3cl0]+\n[3w0]
+.nr 3cl1 \n[3ce0]+(3*\n[3sep])
+.nr 3cd1 \n[3ce0]+\n[3cl1]/2
+.nr 3ce1 \n[3cl1]+\n[3w1]
+.nr 3cl2 \n[3ce1]+(3*\n[3sep])
+.nr 3cd2 \n[3ce1]+\n[3cl2]/2
+.nr 3ce2 \n[3cl2]+\n[3w2]
+.nr 3cd3 \n[3ce2]+(1*\n[3sep])
+.nr TW \n[3cd3]
+.if \n[3cent] \{.in +(u;\n[.l]-\n[.i]-\n[TW]/2>?-\n[.i])
+.nr 3ind \n[.i]
+.\}
+.eo
+.ig
+.EQ
+delim off
+.EN
+..
+.de T#
+.if !\n[3supbot] \{.3rvpt 0
+.mk 3vert
+.if \n[T.]&\n[3brule] \{.vs 2p>?\n[.V]u
+.ls 1
+.3rlnx s
+\v'.25m'\s[\n[3lps]]\h'|\n[3cd0]u'\D'l |\n[3cd3]u 0'\s0
+.3rlnx r
+.ls
+.vs
+.\}
+.3rlnx s
+.ls 1
+.if \n[3crow]>=0 \{.if 0<=\n[3passed] .nr 3rt0 \n[#T]
+.sp -1
+\v'.25m'\h'\n[3cd3]u'\s[\n[3lps]]\D'l 0 |\n[3rt0]u-1v'\s0
+.\}
+.if \n[3crow]>=0 \{.if 0<=\n[3passed] .nr 3rt0 \n[#T]
+.sp -1
+\v'.25m'\h'\n[3cd0]u'\s[\n[3lps]]\D'l 0 |\n[3rt0]u-1v'\s0
+.\}
+.if \n[3crow]>=0 \{.if 0<=\n[3passed] .nr 3rt0 \n[#T]
+.sp -1
+\v'.25m'\h'\n[3cd2]u'\s[\n[3lps]]\D'l 0 |\n[3rt0]u-1v'\s0
+.\}
+.if \n[3crow]>=0 \{.if 0<=\n[3passed] .nr 3rt0 \n[#T]
+.sp -1
+\v'.25m'\h'\n[3cd1]u'\s[\n[3lps]]\D'l 0 |\n[3rt0]u-1v'\s0
+.\}
+.3rlnx r
+.ls
+.nr 3passed \n[3crow]
+.sp |\n[3vert]u
+.3rvpt 1
+.\}
+..
+.ig
+.EQ
+delim on
+.EN
+..
+.ec
+.fc 
+.3tkeep
+.vs 2p>?\n[.V]u
+.ls 1
+.3rlnx s
+\v'.25m'\s[\n[3lps]]\h'|\n[3cd0]u'\D'l |\n[3cd3]u 0'\s0
+.3rlnx r
+.ls
+.vs
+.3keep
+.3rmk 3rt0
+\*[3trans].nr 3crow 0
+.3keep
+.3rlns d
+.nr 3lnmx \n[ln]
+.mk 3rs0
+.mk 3bot
+.3rvpt 0
+.ta \n[3ce0]u \n[3ce1]u \n[3ce2]u
+.lf 4
+\&\h'|\n[3cl0]u'ID\h'|\n[3cl1]u'Name\h'|\n[3cl2]u'Type
+.nr 3bot \n[3bot]>?\n[.d]
+.sp |\n[3rs0]u
+.3rlns m
+.3rvpt 1
+.sp |\n[3bot]u
+\*[3trans].nr 3brule 1
+.vs 2p>?\n[.V]u
+.ls 1
+.3rlnx s
+\v'.25m'\s[\n[3lps]]\h'|\n[3cd0]u'\D'l |\n[3cd3]u 0'\s0
+.3rlnx r
+.ls
+.vs
+\*[3trans].nr 3brule 0
+.3release
+.if \n[ln] .nr ln \n[3lnmx]
+.3keep
+.3rmk 3rt1
+\*[3trans].nr 3crow 1
+.3keep
+.3rlns d
+.nr 3lnmx \n[ln]
+.mk 3rs1
+.mk 3bot
+.3rvpt 0
+.ta \n[3ce0]u \n[3ce1]u \n[3ce2]u
+.lf 5
+\&\h'|\n[3cl0]u'1\h'|\n[3cl1]u'Apple\h'|\n[3cl2]u'Fruit
+.nr 3bot \n[3bot]>?\n[.d]
+.sp |\n[3rs1]u
+.3rlns m
+.3rvpt 1
+.sp |\n[3bot]u
+\*[3trans].nr 3brule 1
+.vs 2p>?\n[.V]u
+.ls 1
+.3rlnx s
+\v'.25m'\s[\n[3lps]]\h'|\n[3cd0]u'\D'l |\n[3cd3]u 0'\s0
+.3rlnx r
+.ls
+.vs
+\*[3trans].nr 3brule 0
+.3release
+.if \n[ln] .nr ln \n[3lnmx]
+.3keep
+.3rmk 3rt2
+\*[3trans].nr 3crow 2
+.3keep
+.3rlns d
+.nr 3lnmx \n[ln]
+.mk 3rs2
+.mk 3bot
+.3rvpt 0
+.ta \n[3ce0]u \n[3ce1]u \n[3ce2]u
+.lf 6
+\&\h'|\n[3cl0]u'2\h'|\n[3cl1]u'Lettuce\h'|\n[3cl2]u'Vegetable
+.nr 3bot \n[3bot]>?\n[.d]
+.sp |\n[3rs2]u
+.3rlns m
+.3rvpt 1
+.sp |\n[3bot]u
+\*[3trans].nr 3brule 1
+.if \n[ln] .nr ln \n[3lnmx]
+.3release
+.mk 3rt3
+.nr 3brule 1
+.nr T. 1
+.ig
+.EQ
+delim off
+.EN
+..
+.T#
+.ig
+.EQ
+delim on
+.EN
+..
+.3trelease
+.3init
+.fc
+.cp \n(3c
+.lf 7
+.TE
