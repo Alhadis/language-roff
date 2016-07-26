@@ -167,7 +167,7 @@ repository:
 	# Numeric literal
 	number:
 		name: "constant.numeric.pic"
-		match: "\\d+(?:\\.\\d+)?|\\.\\d+"
+		match: "(?:\\d+(?:\\.\\d+)?|\\.\\d+|\\.(?=[Ee]))(?:[Ee][-+]?\\d+)?"
 
 
 	# Mathematical symbols
