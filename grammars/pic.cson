@@ -53,6 +53,27 @@ repository:
 		captures: 0: name: "entity.name.pic"
 
 
+	# Balanced brackets
+	brackets:
+		patterns: [{
+			
+			# Round brackets/Parentheses
+			begin: "\\("
+			end:   "(?=\\))|^(?=\\.PE\\b)"
+			patterns: [include: "#main"]
+			beginCaptures:
+				0: name: "punctuation.definition.bracket.round.pic"
+		},{
+			
+			# Square brackets/braces
+			begin: "\\["
+			end:   "(?=\\])|^(?=\\.PE\\b)"
+			patterns: [include: "#main"]
+			beginCaptures:
+				0: name: "punctuation.definition.bracket.square.pic"
+		}]
+
+
 	# Comment lines
 	comment:
 		name: "comment.line.pic"
@@ -117,21 +138,15 @@ repository:
 	# Symbols, operators and brackets
 	punctuation:
 		patterns: [
+			{include: "#brackets"}
+			{match: "\\)",        name: "punctuation.definition.bracket.round.pic"}
+			{match: "\\]",        name: "punctuation.definition.bracket.square.pic"}
 			{match: ";",          name: "punctuation.terminator.statement.pic"}
 			{match: ",",          name: "punctuation.separator.comma.pic"}
 			{match: "=",          name: "keyword.operator.assignment.pic"}
 			{match: "<-|<->|->",  name: "keyword.operator.arrow.pic"}
 			{match: "[-/+*%^]",   name: "keyword.operator.arithmetic.pic"}
 			{match: "<|>",        name: "punctuation.definition.bracket.angle.pic"}
-			{
-				# Balanced brackets
-				begin: "\\("
-				end:   "(?=\\))|^(?=\\.PE\\b)"
-				patterns: [include: "#main"]
-				beginCaptures:
-					0: name: "punctuation.definition.bracket.round.pic"
-			}
-			{match: "\\)",        name: "punctuation.definition.bracket.round.pic"}
 			{match: "\\.(?!\\d)", name: "punctuation.delimiter.period.full-stop.pic"}
 		]
 

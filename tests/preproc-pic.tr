@@ -139,10 +139,49 @@ box ht 1 wid 1 dotted with .sw at 0,0
 line dashed right 1 then down .5 left 1 then right 1
 spline from start of last line \
 	right 1 then down .5 left 1 then right 1
+spline right then up then left then down ->
+spline right then up left then down ->
+
+
+box "1"
+[ box "2"; arrow "3" above; box "4" ] with .n at last box.s - (0,0.1)
+"Thing 2: " rjust at last [].w
 
 
 B: box wid log(20)
 	sprintf("width = %g, height = %g ", B.wid, B.ht) rjust at B.w
 
+
+.PE
+
+
+
+.PS
+
+h = .5; dh = .02;  dw = .1
+[
+	Ptr: [
+		boxht = h; boxwid = dw
+		A: box
+		B: box
+		C: box
+		box wid 2*boxwid "..."
+		D: box
+	]
+	Block: [
+		boxht = 2*dw; boxwid = 2*dw
+		movewid = 2*dh
+		A: box; move
+		B: box; move
+		C: box; move
+		box invis "..." wid 2*boxwid; move
+		D: box
+	] with .t at Ptr.s - (0,h/2)
+	arrow from Ptr.A to Block.A.nw + (dh,0)
+	arrow from Ptr.B to Block.B.nw + (dh,0)
+	arrow from Ptr.C to Block.C.nw + (dh,0)
+	arrow from Ptr.D to Block.D.nw + (dh,0)
+]
+box dashed ht last [].ht+dw wid last [].wid+dw at last []
 
 .PE
