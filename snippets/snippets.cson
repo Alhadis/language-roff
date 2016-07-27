@@ -44,3 +44,16 @@
 		body: ".ie ${1:COND} \\\\{\\\\\n.\t$2\n.\\\\}\n.el \\\\{\\\\\n.\t$3\n.\\\\}"
 		description: "Multiline `if/else` block"
 		leftLabel: ".ie"
+
+
+
+".source.pic":
+
+	# DFORMAT block
+	".dformat":
+		prefix: ".df"
+		body: ".begin dformat\nstyle $1\n.end"
+	
+	dformat:
+		prefix: "df"
+		body: ".begin dformat\nstyle $1\n.end"

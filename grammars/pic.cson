@@ -163,6 +163,70 @@ repository:
 		end:   "$"
 		beginCaptures:
 			0: name: "punctuation.definition.comment.pic"
+	
+	
+	# DFORMAT preprocessor
+	dformat:
+		patterns: [{
+			
+			# Pic line
+			begin: "^(pic)\\b"
+			end:   "$"
+			beginCaptures:
+				1: name: "keyword.control.dformat.pic"
+			patterns: [include: "#main"]
+		},{
+			
+			# Formatting descriptions
+			name: "meta.format.dformat.pic"
+			begin: "^style\\b"
+			end:   "$"
+			beginCaptures: 0: name: "keyword.function.pic"
+			patterns: [{
+				
+				# Booleans
+				name: "constant.boolean.$1.dformat.pic"
+				match: "\\b(true|false|on|off)\\b"
+			},{
+				
+				# Recognised values
+				name: "constant.language.dformat.pic"
+				match: """(?x)\\b
+					(addr|addrdelta|addrht|bitwid|charwid|fill|linedisp
+					|linethrutext|recht|recspread|reset|textht)\\b"""
+			
+			}, include: "#number"]
+		},{
+			
+			# Record
+			name: "meta.record.dformat.pic"
+			begin: "^\\S.*$\\n?"
+			end:   "^(?=\\S)"
+			beginCaptures:
+				0: name: "markup.bold.heading.dformat.pic"
+			patterns: [
+				match: "^([ \t]+[^:\\s]+:)?(?:(?<=:)|[ \t]+)(\\S+)\\s+(.*)$"
+				captures:
+					0: name: "markup.list.unnumbered.dformat.pic"
+					1: patterns: [include: "#main"]
+					
+					# Field options, expressed as a dash-separated list of values
+					2: patterns: [
+						{match: "-", name: "punctuation.separator.dash.dformat.pic"}
+						{include: "#number"}
+					]
+					
+					# Inline equations to process with Eqn
+					3: patterns: [{
+						begin: "@"
+						end:   "@"
+						beginCaptures: 0: name: "punctuation.definition.section.begin.eqn"
+						endCaptures:   0: name: "punctuation.definition.section.end.eqn"
+						patterns: [include: "text.roff#eqn"]
+						contentName: "source.embedded.eqn.roff"
+					}]
+			]
+		}]
 
 
 	# Concealed newline
@@ -334,6 +398,21 @@ repository:
 				3: {name: "invalid.illegal.unexpected-characters.pic.chem"}
 			endCaptures:
 				0: {name: "meta.function.end.chemical.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+		},{
+			
+			# .begin dformat: DFORMAT delimiters
+			begin: "^([.'])[ \t]*(begin[ \t]+dformat)\\b"
+			end:   "^([.'])[ \t]*(end)\\b"
+			contentName: "source.embedded.dformat.pic"
+			patterns: [include: "#dformat"]
+			beginCaptures:
+				0: {name: "meta.function.begin.dformat.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.pic.dformat"}
+				2: {name: "entity.function.name.roff"}
+			endCaptures:
+				0: {name: "meta.function.end.dformat.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 		}]
