@@ -1195,20 +1195,6 @@ repository:
 				{include: "#string"}
 			]
 		},{
-			# Reference
-			name: "meta.function.reference.ms.macro.roff"
-			begin: "^([.'])[ \t]*(\\[)\\s*(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \t]*(\\])(?=\\s|$|\\\\\")"
-			contentName: "entity.reference.name.ms.macro.roff"
-			patterns: [include: "$self"]
-			beginCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "punctuation.section.function.begin.roff"}
-				3: {patterns: [include: "#escapes"]}
-			endCaptures:
-				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "punctuation.section.function.begin.roff"}
-		},{
 			
 			# Deprecated macros
 			name: "meta.deprecated.function.${2:/downcase}.ms.macro.roff"
@@ -2237,6 +2223,31 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
 		
+		},{
+			# .[/.]: Refer
+			begin: "^([.'])[ \t]*(\\[)(.*?)\\s*(\\\\[\"#].*)?$"
+			end:   "^([.'])[ \t]*(\\])(.*?)(?=\\s|$|\\\\\")"
+			contentName: "meta.citation.roff"
+			patterns: [{
+				
+				# First line: Flags + Keywords
+				begin: "\\G"
+				end: "$|(?=\\\\[#\"])"
+				patterns: [{
+					name: "constant.character.flags.refer.gnu.roff"
+					match: "^[#\\[\\]]+"
+				}, include: "#params"]
+			
+			}, include: "#refer"]
+			beginCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "punctuation.section.function.begin.roff"}
+				3: {name: "string.unquoted.opening-text.refer.roff", patterns: [include: "#escapes"]}
+				4: {patterns: [include: "#escapes"]}
+			endCaptures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "punctuation.section.function.end.roff"}
+				3: {name: "string.unquoted.closing-text.refer.roff", patterns: [include: "#escapes"]}
 		}, include: "source.pic#tags"]
 
 
@@ -2379,3 +2390,120 @@ repository:
 				1: name: "punctuation.embedded.tbl.roff"
 			
 		}, include: "$self"]
+
+
+	# Bibliographic references
+	refer:
+		patterns: [{
+			
+			# Comment
+			name: "comment.line.refer.roff"
+			begin: "#"
+			end:   "$"
+			beginCaptures:
+				0: name: "punctuation.definition.comment.refer.roff"
+		},{
+			
+			# Literal/single-quoted string
+			name: "string.quoted.single.refer.roff"
+			begin: "'"
+			end:   "'"
+			beginCaptures: 0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   0: name: "punctuation.definition.string.end.roff"
+		},{
+			
+			# Names of each author, concatenated with the string specified by `join-authors`
+			name: "variable.other.readonly.author-names.refer.roff"
+			match: "@"
+		},{
+			
+			# %KEY Value
+			name: "meta.structure.dictionary.refer.roff"
+			contentName: "meta.structure.dictionary.value.refer.rofff"
+			begin: "^\\s*(%)([A-Z])(?=\\s)"
+			end:   "(?<!\\\\)$"
+			patterns: [{
+				name: "string.unquoted.refer.roff"
+				begin: "\\G"
+				end:   "(?<!\\\\)$"
+				patterns: [{
+					
+					# Make sure "special" characters don't trigger refer patterns
+					name: "meta.symbol.refer.roff"
+					match: "[-+'\"<>\\].*\\[~!&?:]"
+					
+				}, include: "#refer"]
+			}, include: "#escapes"]
+			beginCaptures:
+				1: name: "punctuation.definition.percentage-sign.refer.roff"
+				2: name: "variable.other.readonly.key-letter.refer.roff"
+		},{
+			
+			# Formatted/placeholder value
+			name: "variable.other.readonly.formatted.refer.roff"
+			match: "(%+)[\\daiA-Z]"
+			captures:
+				1: name: "punctuation.definition.percentage-sign.refer.roff"
+		},{
+			# Label expressions
+			name: "keyword.operator.label-expression.refer.roff"
+			match: """(?x)
+				(?<=\\S)(?:\\*|[-+]\\d+|(\\.)(?:[-+]?y|[lucran]))(?=\\s|$) |
+				(?<=\\S)[~!&?:](?=\\S)"""
+			captures:
+				1: name: "punctuation.separator.period.full-stop.refer.roff"
+		},{
+			
+			# Angle brackets
+			begin: "<"
+			end:   ">|^(?=\\.\\])"
+			beginCaptures: 0: name: "punctuation.bracket.angle.refer.roff"
+			endCaptures:   0: name: "punctuation.bracket.angle.refer.roff"
+			patterns: [include: "#refer"]
+		},{
+			
+			# Round brackets
+			begin: "\\("
+			end:   "\\)|^(?=\\.\\])"
+			beginCaptures: 0: name: "punctuation.bracket.round.refer.roff"
+			endCaptures:   0: name: "punctuation.bracket.round.refer.roff"
+			patterns: [include: "#refer"]
+		},{
+			
+			# Negatable commands
+			name: "keyword.operator.negatable.refer.roff"
+			match: """(?x)\\b
+				(?:no-)?
+				(?:abbreviate|abbreviate-label-ranges|accumulate|annotate|compatible|date-as-label
+				|default-database|discard|et-al|label-in-reference|label-in-text|move-punctuation
+				|reverse|search-ignore|search-truncate|short-label|sort|sort-adjacent-labels)\\b"""
+			captures:
+				0: name: "entity.function.name.refer.roff"
+		},{
+			
+			# Non-negatable commands
+			name: "keyword.operator.refer.roff"
+			match: "\\b(articles|bibliography|capitalize|join-authors|label|separate-label-second-parts)\\b"
+			captures:
+				0: name: "entity.function.name.refer.roff" 
+		},{
+			
+			# Commands that take filenames as arguments
+			begin: "^\\s*\\b(database|include)\\b"
+			end: "(?<!\\\\)$"
+			beginCaptures:
+				0: name: "keyword.operator.refer.roff"
+				1: name: "entity.function.name.refer.roff"
+			patterns: [
+				{include: "#escapes"}
+				
+				# Add underlines to filenames for themes supporting them
+				name: "string.unquoted.filename.refer.roff"
+				match: "((?:[^\\\\\\s]|\\\\(?!\").)+)"
+				captures:
+					0: name: "markup.link.underline.refer.roff"
+					1: patterns: [include: "#escapes"]
+			]
+		}
+		{include: "#string"}
+		{include: "#escapes"}]

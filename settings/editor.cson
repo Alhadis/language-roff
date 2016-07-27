@@ -2,6 +2,10 @@
 	editor:
 		commentStart: ".\\\" "
 
+".text.roff .refer":
+	editor:
+		commentStart: "# "
+
 ".source.pic":
 	editor:
 		commentStart: "# "

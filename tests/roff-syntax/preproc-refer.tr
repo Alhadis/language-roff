@@ -1,0 +1,210 @@
+.[opening-text   \" Comment
+[] keywords      \" Comment
+fields # Comment
+"Quoted string
+
+include fields string1 \
+	string2 string3 string4
+no-abbreviate @
+
+%1
+%a
+%A
+expr*
+expr+2
+expr-2
+
+expr.l
+expr.u
+expr.c
+expr.r
+expr.a
+expr.y
+expr.+y
+expr.-y
+expr.n
+
+expr1~expre2
+<expr>
+(expr)
+.]clos\xing-text \" Comment
+
+
+preprocessor like
+.I eqn.
+.[
+%A B. W. Kernighan
+%A L. L. Cherry
+%T A System for Typesetting Mathematics %A Comm. ACM
+%V 18
+%N 3
+%P 1-2
+%P 151-157
+%D March 1975
+<name>
+.]
+It scans its input looking for items
+
+.[
+%A David Barron
+%A Mike Rees
+%T Text processing and typesetting with Unix
+%I International Computer Science Series/Addison-Wesley
+%G 0-201-14219-8
+%P 447
+%D 1987
+
+%A Kaare Christian
+%T The Unix text Processing System
+%I Wiley-Interscience
+%G 0-471-85581-2
+%P 250
+
+%A Trevor Darrell
+%A Ned Batchelder
+%T Psfig - A Ditroff Preprocessor for PostScript Figures
+%J USENIX Conferences Proceedings
+%P 12
+%C Phoenix
+%D 1987
+
+%A Dale Dougherty
+%A Tim O'Reilly
+%T Unix Text Processing
+%I Hayden Books
+%G ISBN 0-672-46291-5
+%P 666
+
+%A Narain Gehani
+%T Document Formatting and Typesetting on the UNIX System
+%V I
+%P 364
+%I SILICON PRESS
+%D 1986
+
+%A Narain Gehani
+%A Steven Lally
+%T Document Formatting and Typesetting on the UNIX System
+%V II
+%P 304
+%I SILICON PRESS
+%D 1988
+
+%A Brian W. Kernighan
+%T A TROFF Tutorial
+%P 13
+%I AT&T Bell Laboratories
+%C Murray Hill
+%D 1978
+
+%A Brian W. Kernighan
+%T PIC - A Crude Graphics Language For Typesetting
+%J Computing Science Technical Report
+%V No 85
+%I Bell Laboratories
+%D 1981
+
+%A Brian W. Kernighan
+%T pic - A Language for Typesetting Graphics
+%J Software Practice and Experience
+%V 12
+%P 21
+%D 1982
+
+%A Brian W. Kernighan
+%T PIC - A Graphics Language For Typesetting (Revised User Manual)
+%J Computing Science Technical Report
+%V No 116
+%I AT&T Bell Laboratories
+%C Murray Hill, New Jersey 07974, USA
+%D 1984
+
+%A Brian W. Kernighan
+%T A typesetter-Independent troff
+%P 15
+%I AT&T Bell Laboratories
+%C Murray Hill
+%D 1982
+
+%A Brian W. Kernighan
+%A Lorinda L. Cherry
+%T Typesetting Mathematics - User's Guide
+%P 11
+%I AT&T Bell Laboratories
+%C Murray Hill
+%D 1986
+
+%A Brian W. Kernighan
+%A Jon L. Bentley
+%T Grap - A language for Typesetting Graphs
+%J Communications of the ACM
+%P 11
+%V 29-8
+%D 1986
+
+%A Mike E. Lesk
+%T TBL - A Program To Format Tables
+%P 18
+%I AT&T Bell Laboratories
+%C Murray Hill
+%D 1976
+
+%A Mike E. Lesk
+%T Some Applications of Inverted Indexes on the Unix System
+%V 2a
+%P 13
+%I Bell Laboratories
+%D 1978
+
+%A Mike E. Lesk
+%T Typing Documents on the UNIX System: Using the -ms Macros with Troff and Nroff
+%P 8
+%I AT&T Bell Laboratories
+%C Murray Hill
+%D 1983
+
+%A Kevin P. Roddy
+%T UNIX Nroff/Troff: A User's Guide
+%I Holt, Rinehart, Winston
+%D 1987
+
+%A Bill Tuthill
+%T A Revised Version of -ms
+%P 3
+%I University of California Berkeley
+%D 1986
+
+%A Bill Tuthill
+%T Refer - A Bibliography System
+%P 10
+%I University of California Berkeley
+%D 1986
+
+%A C. J. Van Wyk
+%T A Graphics Typesetting Language
+%J Proceedings of the ACM SIGPLAN SIGOA Symposium on Text Manipulation
+%P 9
+%C Portland Oregon
+
+%A C. J. Van Wyk
+%T ideal Users's Manual
+%J Computing Science Technical Report
+%V 103
+%I AT&T Bell Laboratories
+%D 1981
+
+%A Sandra Emerson
+%A Karen Paulsell
+%T troff typesetting for UNIX Systems
+%P Prentice-Hall
+%G ISBN 0-13-930959-4
+%P 360
+
+%A Henry McNabb
+%A Mary McGilton
+%T Typesetting Tables on the UNIX System
+%P Trilithon Press
+%G ISBN 0-9626289-0-5
+%D 1990
+%P 282
+.]
