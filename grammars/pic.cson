@@ -1,23 +1,22 @@
 name: "Pic"
 scopeName: "source.pic"
-fileTypes: ["pic"]
+fileTypes: ["chem", "pic"]
 firstLineMatch: "^#[!/].*\\bpic2plot\\b"
 patterns: [
-	{include: "#embedded"}
+	{include: "#tags"}
+	
+	# Unexpected Roff lines caught inside Pic
+	begin: "^(?=[.'][ \t]*(?:\\w|\\\\))"
+	end:   "(?<!\\\\)$|(\\\\\".*)$"
+	patterns: [include: "text.roff"]
+	endCaptures:
+		1: patterns: [include: "text.roff"]
+	
 	{include: "#main"}
 ]
 
 
 repository:
-	
-	# Any unexpected Roff lines caught inside Pic
-	embedded:
-		begin: "^(?=[.'][ \t]*\\w+)"
-		end:   "(?<!\\\\)$|(\\\\\".*)$"
-		patterns: [include: "text.roff"]
-		endCaptures:
-			1: patterns: [include: "text.roff"]
-	
 	
 	# Top-level patterns
 	main:
@@ -36,7 +35,7 @@ repository:
 			{include: "#globals"}
 			{include: "#function-call"}
 			{include: "#label"}
-			{include: "#variable"}
+			{include: "#name"}
 		]
 
 
@@ -82,6 +81,79 @@ repository:
 			beginCaptures:
 				0: name: "punctuation.definition.bracket.curly.pic"
 		}]
+
+
+	# Chemical diagram preprocessor
+	chem:
+		patterns: [include: "#label", {
+			
+			# Bond
+			name: "keyword.function.bond.pic.chem"
+			match: "\\b((?:(?:double|triple|front|back)[ \t]+)?\\bbond)\\b"
+			captures:
+				0: name: "support.function.pic.chem"
+				1: name: "entity.name.function.pic.chem"
+		},{
+			
+			# Rings
+			name: "keyword.function.ring.pic.chem"
+			match: "(?:\\baromatic[ \t]+)?\\b(?:benzene|(?:flat)?ring\\d*)"
+			captures:
+				0: name: "entity.name.function.pic.chem"
+		},{
+			
+			# Directional modifier
+			name: "keyword.operator.direction.pic.chem"
+			match: "\\b(pointing)\\b"
+		},{
+			
+			# Set size
+			name: "keyword.function.set-size.pic.chem"
+			match: "\\b(size)\\b[ \t]*(\\d+)"
+			captures:
+				1: name: "entity.name.function.pic.chem"
+				2: name: "constant.numeric.parameter.pic.chem"
+		},{
+			
+			# Branch point
+			name: "keyword.control.branch-point.pic.chem"
+			match: "\\bBP\\b"
+		},{
+			
+			# Group/moiety name
+			name: "string.unquoted.group-name.pic.chem"
+			match: "(?=[A-Z])(?!BP)([\\w\\(\\).]+)"
+			captures: 1: patterns: [
+				{include: "#punctuation"}
+				{match: "\\.", name: "punctuation.delimiter.period.full-stop.chem.pic"}
+			]
+		
+		},{
+			
+			# Round brackets/Parentheses
+			begin: "\\("
+			end:   "(?=\\))|^(?=\\.P[EF]\\b|^[.']\\s*cend\\b)"
+			patterns: [include: "#chem"]
+			beginCaptures:
+				0: name: "punctuation.definition.bracket.round.chem.pic"
+		},{
+			
+			# Square brackets/brackets
+			begin: "\\["
+			end:   "(?=\\])|^(?=\\.P[EF]\\b|^[.']\\s*cend\\b)"
+			patterns: [include: "#chem"]
+			beginCaptures:
+				0: name: "punctuation.definition.bracket.square.chem.pic"
+		},{
+			
+			# Curly brackets/braces
+			begin: "\\{"
+			end:   "(?=\\})|^(?=\\.P[EF]\\b|^[.']\\s*cend\\b)"
+			patterns: [include: "#chem"]
+			beginCaptures:
+				0: name: "punctuation.definition.bracket.curly.chem.pic"
+			
+		}, include: "$self"]
 
 
 	# Comment lines
@@ -164,6 +236,12 @@ repository:
 		}]
 
 
+	# Generic variable
+	name:
+		name: "variable.other.pic"
+		match: "(?!\\d)\\w+"
+
+
 	# Numeric literal
 	number:
 		name: "constant.numeric.pic"
@@ -213,7 +291,49 @@ repository:
 		patterns: [include: "text.roff#escapes"]
 
 
-	# User-defined/generic variable
-	variable:
-		name: "variable.other.pic"
-		match: "(?!\\d)\\w+"
+	# Lines which delimit regions of preprocessor source
+	tags:
+		patterns: [{
+			
+			# .PS <file: Load a PIC file at current position
+			name: "invalid.deprecated.function.picture.macro.roff"
+			match: "^([.'])[ \t]*(PS)[ \t]*(<)(.*)(?=$|\\\\\")"
+			captures:
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+				3: {name: "punctuation.definition.filename.roff"}
+				4: {patterns: [include: "#params"]}
+		},{
+			
+			# .PS/.PE: Pic
+			begin: "^([.'])[ \t]*(PS)\\b([\\d \t]*(?:#.*)?)?(\\\\[#\"].*)?$"
+			end:   "^([.'])[ \t]*(P[EF])\\b"
+			contentName: "source.embedded.pic"
+			patterns: [include: "$self"]
+			beginCaptures:
+				0: {name: "meta.function.begin.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+				3: {patterns: [include: "source.pic"]}
+				4: {patterns: [include: "#escapes"]}
+			endCaptures:
+				0: {name: "meta.function.end.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+		},{
+			
+			# .cstart/.cend: Chem
+			begin: "^([.'])[ \t]*(cstart)\\b\\s*(\\S.*)?"
+			end:   "^([.'])[ \t]*(cend)\\b"
+			contentName: "source.embedded.chem.pic"
+			patterns: [include: "#chem"]
+			beginCaptures:
+				0: {name: "meta.function.begin.chemical.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.pic.chem"}
+				2: {name: "entity.function.name.roff"}
+				3: {name: "invalid.illegal.unexpected-characters.pic.chem"}
+			endCaptures:
+				0: {name: "meta.function.end.chemical.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+		}]

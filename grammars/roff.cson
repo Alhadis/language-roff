@@ -10,7 +10,6 @@ fileTypes: [
 	"7", "7d", "7fs", "7i", "7ipp", "7m", "7p",
 	"8",
 	"9", "9e", "9f", "9p", "9s",
-	"chem",
 	"groff",
 	"man",
 	"mandoc",
@@ -53,9 +52,9 @@ repository:
 	# Common patterns
 	main:
 		patterns: [
+			{include: "#preprocessors"}
 			{include: "#escapes"}
 			{include: "#requests"}
-			{include: "#preprocessors"}
 			{include: "#macros"}
 		]
 	
@@ -2237,34 +2236,8 @@ repository:
 				0: {name: "meta.function.end.math.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.name.function.roff"}
-		},{
-			
-			# .PS <file: Load a PIC file at current position
-			name: "invalid.deprecated.function.picture.macro.roff"
-			match: "^([.'])[ \t]*(PS)[ \t]*(<)(.*)(?=$|\\\\\")"
-			captures:
-				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.function.name.roff"}
-				3: {name: "punctuation.definition.filename.roff"}
-				4: {patterns: [include: "#params"]}
-		},{
-			
-			# .PS/.PE: Pic
-			begin: "^([.'])[ \t]*(PS)\\b([\\d \t]*(?:#.*)?)?(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \t]*(P[EF])\\b"
-			contentName: "source.embedded.pic"
-			patterns: [include: "source.pic"]
-			beginCaptures:
-				0: {name: "meta.function.begin.picture.section.macro.roff"}
-				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.function.name.roff"}
-				3: {patterns: [include: "source.pic"]}
-				4: {patterns: [include: "#escapes"]}
-			endCaptures:
-				0: {name: "meta.function.end.picture.section.macro.roff"}
-				1: {name: "punctuation.definition.macro.roff"}
-				2: {name: "entity.name.function.roff"}
-		}]
+		
+		}, include: "source.pic#tags"]
 
 
 	# Equation preprocessor
