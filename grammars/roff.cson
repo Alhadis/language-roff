@@ -730,6 +730,14 @@ repository:
 		{match: "(\\\\)a",   name: "constant.character.escape.leader-char.roff", captures: 1: name: "punctuation.definition.escape.roff"}
 		{match: "(\\\\)\\.", name: "constant.character.escape.dot.roff",         captures: 1: name: "punctuation.definition.escape.roff"}, {
 			
+			# \*[name].macro - Adhoc matching to improve tbl's "\*[3trans]" hack (GNU)
+			begin: "^(\\\\\\*\\[[^\\]]+\\])\\s*(\\.\\w+.*)"
+			end: "$"
+			beginCaptures:
+				1: patterns: [include: "#escapes"]
+				2: patterns: [include: "#conditional-innards"]
+		},{
+			
 			# \*[xx args…] - Interpolate string "xx" with optional arguments (GNU)
 			name: "constant.character.escape.function.interpolate-string.gnu.roff"
 			begin: "((\\\\)\\*(\\[))([^\\]\\s]+)"
@@ -1679,7 +1687,6 @@ repository:
 			},{include: "$self"}]
 		},{
 
-		},{
 			# .B/.SB: Bold
 			begin: "^([.'])[ \t]*(S?B)(\\s*\\\\[#\"].*$)?(?=$|[ \t]+|\\\\)"
 			end:   "^(?=[.'])|(?=\\\\\")|(?!\\\\#)((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)"
@@ -2332,6 +2339,12 @@ repository:
 				1: patterns: [include: "#params"]
 				2: name: "punctuation.terminator.section.tbl.roff"
 			patterns: [{
+				
+				# Not preprocessor source; abandon ship
+				begin: "^(?=\\.)"
+				end: "^(?=[.'][ \t]*TE\\b)"
+				patterns: [include: "$self"]},{
+				
 				
 				# Global options
 				match: "^(.+)(;)$"
