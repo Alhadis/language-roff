@@ -29,6 +29,7 @@ repository:
 			{include: "#number"}
 			{include: "#escaped-newline"}
 			{include: "#operators"}
+			{include: "#brackets"}
 			{include: "#punctuation"}
 			{include: "#primitives"}
 			{include: "#attributes"}
@@ -52,6 +53,12 @@ repository:
 		name: "variable.language.backreference.pic"
 		match: "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \t]+last)?)\\b"
 		captures: 0: name: "entity.name.pic"
+
+
+	# Booleans, used in DFORMAT and Grap
+	boolean:
+		name: "constant.boolean.$1.dformat.pic"
+		match: "\\b(true|false|on|off)\\b"
 
 
 	# Balanced brackets
@@ -167,27 +174,14 @@ repository:
 	
 	# DFORMAT preprocessor
 	dformat:
-		patterns: [{
-			
-			# Pic line
-			begin: "^(pic)\\b"
-			end:   "$"
-			beginCaptures:
-				1: name: "keyword.control.dformat.pic"
-			patterns: [include: "#main"]
-		},{
+		patterns: [ include: "#pic-line", {
 			
 			# Formatting descriptions
 			name: "meta.format.dformat.pic"
 			begin: "^style\\b"
 			end:   "$"
 			beginCaptures: 0: name: "keyword.function.pic"
-			patterns: [{
-				
-				# Booleans
-				name: "constant.boolean.$1.dformat.pic"
-				match: "\\b(true|false|on|off)\\b"
-			},{
+			patterns: [ include: "#boolean", {
 				
 				# Recognised values
 				name: "constant.language.dformat.pic"
@@ -261,6 +255,73 @@ repository:
 			|moveht|movewid|scale|textht|textwid)\\b"
 
 
+	# Graphs
+	grap:
+		patterns: [
+			# Grap-specific keywords
+			{match: "\\bpid\\b",              name: "variable.language.process-id.pic.grap"}
+			{match: "\\bthen\\b",             name: "keyword.control.then.pic.grap"}
+			{match: "\\b(in|out|through)\\b", name: "keyword.operator.pic.grap"}
+			
+			# Stuff shared with Pic
+			{include: "#comment"}
+			{include: "#string"}
+			{include: "#number"}
+			{include: "#boolean"}
+			{include: "#punctuation"}
+			{include: "#operators"}
+			{include: "#function-call"}
+			{include: "#macros"}
+			{include: "#pic-line"}
+			{
+				# Primitives
+				name: "keyword.function.pic.grap"
+				match: """(?x)\\b
+					(assignment|circle|coord|copy|draw|for|frame|graph|grid|if|label
+					|line|new|next|numberlist|pic|plot|print|sh|ticks?)\\b"""
+				captures: 0: name: "entity.function.name.pic.grap"
+			},{
+				
+				# Attributes
+				name: "variable.other.property.$1.pic.grap"
+				match: """(?x)\\b
+					(above|arrow|below|bot|bottom|dashed|dotted|down|ht|invis
+					|left|log|radius|right|[lr]just|size|solid|top|up|wid|x|y)\\b"""
+			},{
+				
+				# Built-in functions/Standard macros
+				name: "support.function.grap.pic"
+				match: """(?x)\\b
+					(atan2|cos|exp|int|log|max|min|rand|sin|sqrt|bullet
+					|plus|box|star|dot|times|htick|vtick|square|delta)\\b"""
+			},{
+				
+				# Round brackets/Parentheses
+				begin: "\\("
+				end:   "(?=\\))|^(?=\\.P[EF]\\b|^[.']\\s*G2\\b)"
+				patterns: [include: "#grap"]
+				beginCaptures:
+					0: name: "punctuation.definition.bracket.round.chem.pic"
+			},{
+				
+				# Square brackets/brackets
+				begin: "\\["
+				end:   "(?=\\])|^(?=\\.P[EF]\\b|^[.']\\s*G2\\b)"
+				patterns: [include: "#grap"]
+				beginCaptures:
+					0: name: "punctuation.definition.bracket.square.chem.pic"
+			},{
+				
+				# Curly brackets/braces
+				begin: "\\{"
+				end:   "(?=\\})|^(?=\\.P[EF]\\b|^[.']\\s*G2\\b)"
+				patterns: [include: "#grap"]
+				beginCaptures:
+					0: name: "punctuation.definition.bracket.curly.chem.pic"
+
+			}, include: "#keywords"]
+
+
 	# Keywords
 	keywords:
 		patterns: [{
@@ -297,6 +358,19 @@ repository:
 			match: "(\\$)\\d+"
 			captures:
 				1: name: "punctuation.definition.variable"
+		},{
+			
+			# Pass-through macro terminator
+			begin: '(until)[ \t]+((")([^"]+)("))\\s*$\\n?'
+			end:   "^[ ]*(\\4)\\b"
+			patterns: [include: "$self"]
+			beginCaptures:
+				1: name: "keyword.control.until.pic"
+				2: name: "string.quoted.double.pic"
+				3: name: "punctuation.definition.string.begin.pic"
+				5: name: "punctuation.definition.string.end.pic"
+			endCaptures:
+				1: name: "keyword.control.terminator.pic"
 		}]
 
 
@@ -331,10 +405,19 @@ repository:
 		captures: 0: name: "entity.function.name.pic"
 
 
+	
+	# A line of Pic source embeded inside DFORMAT, Grap, etc. Obviously not used by Pic itself.
+	"pic-line":
+		begin: "^(pic)\\b"
+		end:   "$"
+		beginCaptures:
+			1: name: "keyword.control.dformat.pic"
+		patterns: [include: "#main"]
+
+
 	# Punctuation
 	punctuation:
 		patterns: [
-			{include: "#brackets"}
 			{match: "\\}",        name: "punctuation.definition.bracket.curly.pic"}
 			{match: "\\)",        name: "punctuation.definition.bracket.round.pic"}
 			{match: "\\]",        name: "punctuation.definition.bracket.square.pic"}
@@ -379,7 +462,7 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 				3: {patterns: [include: "source.pic"]}
-				4: {patterns: [include: "#escapes"]}
+				4: {patterns: [include: "text.roff#escapes"]}
 			endCaptures:
 				0: {name: "meta.function.end.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
@@ -414,5 +497,22 @@ repository:
 			endCaptures:
 				0: {name: "meta.function.end.dformat.picture.section.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.function.name.roff"}
+		},{
+			
+			# .G1/.G2: Grap
+			begin: "^([.'])[ \t]*(G1)\\b(\\s*\\d+)?(\\s*\\\\\".*$)?"
+			end:   "^([.'])[ \t]*(G2)\\b"
+			contentName: "source.embedded.grap.pic"
+			patterns: [include: "#grap"]
+			beginCaptures:
+				0: {name: "meta.function.begin.graph.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.pic.grap"}
+				2: {name: "entity.function.name.roff"}
+				3: {name: "constant.numeric.parameter.pic.grap"}
+				4: {patterns: [include: "text.roff#escapes"]}
+			endCaptures:
+				0: {name: "meta.function.end.graph.picture.section.macro.roff"}
+				1: {name: "punctuation.definition.macro.pic.grap"}
 				2: {name: "entity.function.name.roff"}
 		}]
