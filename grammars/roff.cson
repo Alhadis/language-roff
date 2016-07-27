@@ -76,7 +76,7 @@ repository:
 	# Numeric literal
 	number:
 		name: "constant.numeric.roff"
-		match: "(\\|)?(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([cfimnPpsuvz])?"
+		match: "(?!\\d+[cfimnPpsuvz]\\w)(\\|)?(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([cfimnPpsuvz])?"
 		captures:
 			1: name: "keyword.operator.absolute.roff"
 			2: name: "keyword.other.unit.roff"
