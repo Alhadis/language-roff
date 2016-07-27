@@ -2248,7 +2248,9 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "punctuation.section.function.end.roff"}
 				3: {name: "string.unquoted.closing-text.refer.roff", patterns: [include: "#escapes"]}
-		}, include: "source.pic#tags"]
+		}
+		{include: "source.pic#tags"}
+		{include: "source.ideal#tags"}]
 
 
 	# Equation preprocessor

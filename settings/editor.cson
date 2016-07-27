@@ -12,6 +12,11 @@
 		increaseIndentPattern: "[\\[({:]\\s*$|\\.cstart\\b"
 		decreaseIndentPattern: "^\\s*[\\])}]|\\.cend\\b"
 
+".source.ideal":
+	editor:
+		commentStart: "/* "
+		commentEnd:   " */"
+
 ".text.runoff":
 	editor:
 		commentStart: ".! "
