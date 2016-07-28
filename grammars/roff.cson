@@ -2361,7 +2361,7 @@ repository:
 				captures:
 					1: patterns: [
 						{match: ",", name: "punctuation.separator.comma.tbl.roff"}
-						{match: "\\b(center|expand|box|allbox|doublebox)\\b", name: "constant.language.$1.tbl.roff"}
+						{match: "\\b(center|centre|expand|box|allbox|doublebox)\\b", name: "constant.language.$1.tbl.roff"}
 						{match: "\\b((tab|linesize|delim)(\\()([^\\)\\s]*)(\\)))"
 						captures:
 							1: name: "constant.language.$2.tbl.roff"
