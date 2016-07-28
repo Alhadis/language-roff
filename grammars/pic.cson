@@ -449,7 +449,7 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
 				3: {name: "punctuation.definition.filename.roff"}
-				4: {patterns: [include: "#params"]}
+				4: {patterns: [include: "text.roff#params"]}
 		},{
 			
 			# .PS/.PE: Pic
