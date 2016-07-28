@@ -65,10 +65,7 @@ repository:
 			{include: "#escapes"}
 			{include: "#string"}
 			{include: "#number"}
-			
-			# Highlight anything else as a parameter
-			match: "[^\\s\\\\]+"
-			name: "variable.parameter.roff"
+			{include: "#generic-parameter"}
 		]
 	
 	
@@ -105,6 +102,12 @@ repository:
 			{match: '""', name: "constant.character.escape.quote.double.roff"}
 			{include: "#escapes"}
 		]
+	
+	
+	# Highlighting for macro arguments that don't match anything else
+	"generic-parameter":
+		name: "variable.parameter.roff"
+		match: "[^\\s\\\\]+"
 	
 	
 	# List of arguments passed to a request or macro
@@ -1229,12 +1232,8 @@ repository:
 					|hyphen|inset|item|literal|nested|nosplit|ohang|ragged|split|std|symbolic|tag|type|unfilled
 					|width|words|offset(?:\\s+(?:left|center|indent|indent-two|right))?)\\b"""
 				captures: 1: name: "punctuation.definition.dash.roff"
-			},{
-				# Generic parameter highlights
-				name: "string.other.parameter.roff"
-				match: "[^\\s\\\\]+"
-			}
-		]
+			
+			}, include: "#generic-parameter"]
 
 	
 	# Mdoc macros that're executed as arguments by "parsed" macros
