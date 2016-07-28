@@ -1150,6 +1150,7 @@ repository:
 	macros:
 		patterns: [
 			{include: "#man"}
+			{include: "#mdoc"}
 			{include: "#ms"}
 			{include: "#mm"}
 			{include: "#me"}
@@ -1165,6 +1166,89 @@ repository:
 			patterns: [include: "#param-group"]
 		]
 	
+	
+	# Document macros
+	mdoc:
+		patterns: [{
+			
+			# Unparsed macros: passing callable macros as arguments won't invoke them
+			name: "meta.function.mdoc.unparsed.macro.roff.box"
+			begin: "^([.'])\\s*(%[ABCDIJNOPQRTUV]|B[dfklt]|br|D[bdt]|E[dfklx]|F[do]|Hf|In|L[bp]|Nd|Os|Pp|R[esv]|Sm|sp|Ud)\\b"
+			end:   "(?<!\\\\)$"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+			patterns: [
+				{include: "#mdoc-delimiters"}
+				{include: "#mdoc-args"}
+			]
+		},{
+			
+			# Parsed macros: will execute callable mdoc macros
+			name: "meta.function.mdoc.parsed.macro.roff.box"
+			begin: """(?x)^([.'])\\s*
+				(Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|D1|Dc
+				|Dl|Do|Dq|Dv|Dx|Ec|Em|En|Eo|Eq|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|It
+				|Li|Lk|Me|Ms|Mt|Nm|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa|Pc|Pf|Po|Pq|Qc|Ql
+				|Qo|Qq|Rd|Sc|Sh|So|Sq|Ss|St|Sx|Sy|Ta|Tn|Ux|Va|Vt|Vt|Xc|Xo|Xr)\\b"""
+			end: "(?<!\\\\)$"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+			patterns: [
+				{include: "#mdoc-callables"}
+				{include: "#mdoc-args"}
+			]
+		}]
+
+
+	# Arguments passed to mdoc macros
+	"mdoc-args":
+		patterns: [
+			{include: "#escapes"}
+			{include: "#string"}
+			{
+				# Document revision date
+				name: "string.quoted.other.date.roff"
+				begin: "\\$(?=Mdocdate)"
+				end:   "\\$"
+				beginCaptures: 0: name: "punctuation.section.begin.date.roff"
+				endCaptures:   0: name: "punctuation.section.end.date.roff"
+			}
+			{
+				# "Delimiters" (in mdoc's terms)
+				name: "punctuation.delimiter.mdoc.macro.roff"
+				match: "(?<=\\s)[(\\[.,:|;)\\]?!](?=\\s|$)"
+			},{
+				
+				# Option flags used by some macros
+				name: "constant.language.option.mdoc.macro.roff"
+				match: """(?x)
+					(?<=\\s) (-)
+					(alpha|beta|bullet|centered|column|compact|dash|devel|diag|emphasis|enum|file|filled|hang
+					|hyphen|inset|item|literal|nested|nosplit|ohang|ragged|split|std|symbolic|tag|type|unfilled
+					|width|words|offset(?:\\s+(?:left|center|indent|indent-two|right))?)\\b"""
+				captures: 1: name: "punctuation.definition.dash.roff"
+			},{
+				# Generic parameter highlights
+				name: "string.other.parameter.roff"
+				match: "[^\\s\\\\]+"
+			}
+		]
+
+	
+	# Mdoc macros that're executed as arguments by "parsed" macros
+	"mdoc-callables":
+		name: "meta.function.mdoc.callable.macro.box"
+		match: """(?x)
+			(?:\\G[ \t]*|(?<=[ \t]))
+			(Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em|En
+			|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa|Pc
+			|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Vt|Xc|Xo|Xr)(?=\\s)"""
+		captures:
+			1: name: "entity.function.name.roff"
+
+
 	
 	# Manuscript macros
 	ms:
