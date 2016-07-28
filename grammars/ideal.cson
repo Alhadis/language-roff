@@ -1,15 +1,30 @@
 # IDEAL picture preprocesor
 scopeName: "source.ideal"
-patterns: [ include: "#main" ]
+patterns: [
+	{include: "#external"}
+	{include: "#main"}
+]
 
 repository:
+
+	# Sensible handling of embedded processor source
+	external:
+		patterns: [include: "source.pic#tags", {
+			
+			# Roff lines
+			begin: "^(?=[.'][ \t]*(?:\\w|\\\\))"
+			end:   "(?<!\\\\)$|(\\\\\".*)$"
+			patterns: [include: "text.roff"]
+			endCaptures:
+				1: patterns: [include: "text.roff"]
+		}]
 	
 	# Tags used for embedding IDEAL source
 	tags:
 		begin: "^([.'])[ \t]*(IS)\\b\\s*(\\\\[\"#].*$)?"
 		end:   "^([.'])[ \t]*(IE)\\b"
 		contentName: "source.embedded.ideal"
-		patterns: [include: "#main"]
+		patterns: [include: "$self"]
 		beginCaptures:
 			0: name: "meta.function.begin.ideal.section.macro.roff"
 			1: name: "punctuation.definition.macro.roff"
@@ -25,7 +40,9 @@ repository:
 	main:
 		patterns: [
 			{include: "#comment"}
+			{include: "#strings"}
 			{include: "#number"}
+			{include: "#libfile"}
 			{include: "#variables"}
 			{include: "#box"}
 			{include: "#function-call"}
@@ -65,19 +82,32 @@ repository:
 			2: name: "punctuation.definition.bracket.round.ideal"
 		patterns: [include: "$self"]
 
+	
+	libfile:
+		name: "meta.libfile.include.ideal"
+		match: "((\\.{3})libfile)\\b"
+		captures:
+			1: name: "keyword.control.directive.include.ideal"
+			2: name: "punctuation.definition.directive.include.ideal"
+		
 
 	# Textual keywords
 	keywords:
-		patterns: [
+		patterns: [{
 			name: "keyword.operator.$1.ideal"
-			match: "\\b(conn|to|put)\\b"
-		]
+			match: "\\b(at|box|conn|construct|to|put|using|opaque(?:\\s+exterior)?)\\b(?:\\s+(?:\\w+)\\s*(:)\\s*?)?"
+			captures:
+				2: name: "punctuation.separator.dictionary.key-value.ideal"
+		},{
+			name: "entity.function.box.name.ideal"
+			match: "\\b(left|right|spline)\\b"
+		}]
 	
 	
 	# Numeric literals
 	number:
 		name: "constant.numeric.ideal"
-		match: "\\d+(?:\\.\\d+)?"
+		match: "(?<![A-Za-z])\\d+(?:\\.\\d+)?"
 	
 	
 	# Symbolic/mathematical operators
@@ -90,11 +120,12 @@ repository:
 
 	punctuation:
 		patterns: [
-			{name: "punctuation.delimiter.object.comma.ideal",    match: ","}
-			{name: "punctuation.terminator.statement.ideal",      match: ";"}
-			{name: "punctuation.definition.bracket.round.ideal",  match: "\\)"}
-			{name: "punctuation.definition.bracket.square.ideal", match: "\\]"}
-			{name: "punctuation.definition.bracket.curly.ideal",  match: "\\}"}
+			{name: "punctuation.delimiter.full-stop.period.ideal", match: "\\."}
+			{name: "punctuation.delimiter.object.comma.ideal",     match: ","}
+			{name: "punctuation.terminator.statement.ideal",       match: ";"}
+			{name: "punctuation.definition.bracket.round.ideal",   match: "\\)"}
+			{name: "punctuation.definition.bracket.square.ideal",  match: "\\]"}
+			{name: "punctuation.definition.bracket.curly.ideal",   match: "\\}"}
 			{
 				# Round brackets
 				begin: "\\("
@@ -118,7 +149,35 @@ repository:
 				beginCaptures: 0: name: "punctuation.definition.bracket.curly.ideal"
 				endCaptures:   0: name: "punctuation.definition.bracket.curly.ideal"
 				patterns: [include: "$self"]
+			},{
+				
+				# Angle brackets
+				begin: "<"
+				end:   ">"
+				beginCaptures: 0: name: "punctuation.definition.bracket.angle.ideal"
+				endCaptures:   0: name: "punctuation.definition.bracket.angle.ideal"
 			}]
+
+
+	strings:
+		patterns: [{
+			
+			# 'Single-quoted string'
+			name: "string.quoted.single.ideal"
+			begin: "'"
+			end:   "'"
+			beginCaptures: 0: name: "punctuation.definition.string.begin.ideal"
+			endCaptures:   0: name: "punctuation.definition.string.end.ideal"
+			
+		}, {
+			# "Double-quoted string"
+			name: "string.quoted.double.ideal"
+			begin: '"'
+			end:   '"'
+			beginCaptures: 0: name: "punctuation.definition.string.begin.ideal"
+			endCaptures:   0: name: "punctuation.definition.string.end.ideal"
+			patterns: [include: "#escapes"]
+		}]
 
 
 	# Local variables
