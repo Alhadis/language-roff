@@ -2248,6 +2248,30 @@ repository:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "punctuation.section.function.end.roff"}
 				3: {name: "string.unquoted.closing-text.refer.roff", patterns: [include: "#escapes"]}
+		},{
+			# .GS/.GE: Gremlin pictures
+			begin: "^([.'])[ \t]*(GS)\\b(.*)$"
+			end:   "^([.'])[ \t]*(GE)\\b"
+			beginCaptures:
+				0: name: "meta.function.begin.gremlin.macro.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: patterns: [include: "#escapes"]
+			endCaptures:
+				0: {name: "meta.function.end.gremlin.macro.roff"}
+				1: {name: "punctuation.definition.macro.roff"}
+				2: {name: "entity.name.function.roff"}
+			patterns: [
+				
+				# Gremlin keywords
+				name: "keyword.operator.gremlin"
+				match: """(?x)
+					\\b((?:sun)?gremlinfile|ARC|BEZIER|BOTCENT|BOTLEFT|BOTRIGHT
+					|BSPLINE|CENTCENT|CENTLEFT|CENTRIGHT|CURVE|POLYGON|TOPCENT
+					|TOPLEFT|TOPRIGHT|VECTOR)\\b"""
+				
+				{include: "#params"}
+			]
 		}
 		{include: "source.pic#tags"}
 		{include: "source.ideal#tags"}]
