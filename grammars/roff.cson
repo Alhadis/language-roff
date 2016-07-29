@@ -1174,6 +1174,51 @@ repository:
 	mdoc:
 		patterns: [{
 			
+			# .Bf [ -emphasis | Em ]: Begin emphasised text
+			name: "meta.function.begin-emphasis.unparsed.macro.mdoc.roff"
+			begin: "^([.'])\\s*(Bf)[ \t]+(-emphasis|Em)\\b(.*)"
+			end:   "^(?=[.']\\s*[BE]f\\s)"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.option.mdoc.macro.roff"
+				4: patterns: [include: "#escapes"]
+			patterns: [
+				{include: "$self"}
+				{include: "#italic-word"}
+			]
+		},{
+
+			# .Bf [ -literal | Li ]: Begin literal text
+			name: "meta.function.begin-literal.unparsed.macro.mdoc.roff"
+			begin: "^([.'])\\s*(Bf)[ \t]+(-literal|Li)\\b(.*)"
+			end:   "^(?=[.']\\s*[BE]f\\s)"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.option.mdoc.macro.roff"
+				4: patterns: [include: "#escapes"]
+			patterns: [
+				{include: "$self"}
+				{include: "#monospace-word"}
+			]
+		},{
+			
+			# .Bf [ -symbolic | Sy ]: Begin symbolic text
+			name: "meta.function.begin-symbolic.unparsed.macro.mdoc.roff"
+			begin: "^([.'])\\s*(Bf)[ \t]+(-symbolic|Sy)\\b(.*)"
+			end:   "^(?=[.']\\s*[BE]f\\s)"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.option.mdoc.macro.roff"
+				4: patterns: [include: "#escapes"]
+			patterns: [
+				{include: "$self"}
+				{include: "#bold-word"}
+			]
+		},{
+			
 			# Unparsed macros: passing callable macros as arguments won't invoke them
 			name: "meta.function.$2.unparsed.macro.mdoc.roff"
 			begin: "^([.'])\\s*(%[ABCDIJNOPQRTUV]|B[dfklt]|br|D[bdt]|E[dfklx]|F[do]|Hf|In|L[bp]|Nd|Os|Pp|R[esv]|Sm|sp|Ud)\\b"
