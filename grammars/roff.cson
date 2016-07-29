@@ -1259,7 +1259,17 @@ repository:
 			# .Em: Emphasised text (Italic)
 			name: "meta.function.$1.callable.macro.mdoc.roff"
 			begin: "(?<=Em)\\G|(?<=\\s)(Em)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   """(?x)
+				(?<!\\\\)$ |
+				(?=
+					\\s+
+					(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em
+					|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa
+					|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Vt|Xc|Xo|Xr)
+					\\s+   |
+					\\\\"  |
+					\\\\f[A-Za-z0-9]
+				)"""
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
@@ -1272,7 +1282,17 @@ repository:
 			# .Sy: Symbolic text (Bold)
 			name: "meta.function.$1.callable.macro.mdoc.roff"
 			begin: "(?<=Sy)\\G|(?<=\\s)(Sy)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   """(?x)
+				(?<!\\\\)$ |
+				(?=
+					\\s+
+					(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em
+					|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa
+					|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Vt|Xc|Xo|Xr)
+					\\s+   |
+					\\\\"  |
+					\\\\f[A-Za-z0-9]
+				)"""
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
@@ -1285,7 +1305,17 @@ repository:
 			# .Li: Literal text (Monospaced)
 			name: "meta.function.$1.callable.macro.mdoc.roff"
 			begin: "(?<=Li)\\G|(?<=\\s)(Li)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   """(?x)
+				(?<!\\\\)$ |
+				(?=
+					\\s+
+					(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em
+					|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa
+					|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Vt|Xc|Xo|Xr)
+					\\s+   |
+					\\\\"  |
+					\\\\f[A-Za-z0-9]
+				)"""
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
@@ -1298,7 +1328,17 @@ repository:
 			# .Ar: Command arguments, displayed in fixed-width italics
 			name: "meta.function.argument-names.callable.macro.mdoc.roff"
 			begin: "(?<=Ar)\\G|(?<=\\s)(Ar)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   """(?x)
+				(?<!\\\\)$ |
+				(?=
+					\\s+
+					(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em
+					|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa
+					|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Vt|Xc|Xo|Xr)
+					\\s+   |
+					\\\\"  |
+					\\\\f[A-Za-z0-9]
+				)"""
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
@@ -1311,7 +1351,17 @@ repository:
 			# .Fl: Program flags, displayed in fixed-width bold type
 			name: "meta.function.flags.callable.macro.mdoc.roff"
 			begin: "(?<=Fl)\\G|(?<=\\s)(Fl)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   """(?x)
+				(?<!\\\\)$ |
+				(?=
+					\\s+
+					(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em
+					|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa
+					|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Vt|Xc|Xo|Xr)
+					\\s+   |
+					\\\\"  |
+					\\\\f[A-Za-z0-9]
+				)"""
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
