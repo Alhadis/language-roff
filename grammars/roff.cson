@@ -1325,6 +1325,16 @@ repository:
 			]
 		},{
 			
+			# .Lk/.Mt: Hyperlink or mailto
+			name: "meta.function.$1.callable.macro.mdoc.roff"
+			begin: "(?<=Lk|Mt)\\G|(?<=\\s)(Lk|Mt)(?=\\s)"
+			end:   "$|(?=\\\\\")|(\\S+?)(?=$|\\s|\\\\\")"
+			beginCaptures:
+				1: name: "entity.function.name.roff"
+			endCaptures:
+				0: name: "markup.underline.link.hyperlink.mdoc.roff"
+				1: patterns: [include: "#escapes"]
+		},{
 			# Embedded macro name inside argument list
 			name: "meta.function.$1.callable.macro.mdoc.roff"
 			match: """(?x) (?<=[ \t])
