@@ -1219,6 +1219,22 @@ repository:
 			]
 		},{
 			
+			# .Rs/.Re: Bibliographic block
+			begin: "^([.'])\\s*(Rs)\\b(.*)$"
+			end:   "^([.'])\\s*(Re)\\b"
+			patterns: [include: "#refer"]
+			contentName: "meta.citation.mdoc.roff"
+			beginCaptures:
+				0: name: "meta.function.unparsed.macro.mdoc.roff"
+				1: name: "punctuation.definition.macro.mdoc.roff"
+				2: name: "entity.function.name.mdoc.roff"
+				3: patterns: [include: "#escapes"]
+			endCaptures:
+				0: name: "meta.function.unparsed.macro.mdoc.roff"
+				1: name: "punctuation.definition.mdoc.macro.roff"
+				2: name: "entity.function.name.mdoc.roff"
+		},{
+			
 			# Unparsed macros: passing callable macros as arguments won't invoke them
 			name: "meta.function.$2.unparsed.macro.mdoc.roff"
 			begin: "^([.'])\\s*(%[ABCDIJNOPQRTUV]|B[dfklt]|br|D[bdt]|E[dfklx]|F[do]|Hf|In|L[bp]|Nd|Os|Pp|R[esv]|Sm|sp|Ud)\\b"
@@ -2664,14 +2680,6 @@ repository:
 				0: name: "punctuation.definition.comment.refer.roff"
 		},{
 			
-			# Literal/single-quoted string
-			name: "string.quoted.single.refer.roff"
-			begin: "'"
-			end:   "'"
-			beginCaptures: 0: name: "punctuation.definition.string.begin.roff"
-			endCaptures:   0: name: "punctuation.definition.string.end.roff"
-		},{
-			
 			# Names of each author, concatenated with the string specified by `join-authors`
 			name: "variable.other.readonly.author-names.refer.roff"
 			match: "@"
@@ -2680,7 +2688,7 @@ repository:
 			# %KEY Value
 			name: "meta.structure.dictionary.refer.roff"
 			contentName: "meta.structure.dictionary.value.refer.rofff"
-			begin: "^\\s*(%)([A-Z])(?=\\s)"
+			begin: "^([.'])?\\s*(%)([A-Z])(?=\\s)"
 			end:   "(?<!\\\\)$"
 			patterns: [{
 				name: "string.unquoted.refer.roff"
@@ -2695,8 +2703,17 @@ repository:
 				}, include: "#refer"]
 			}, include: "#escapes"]
 			beginCaptures:
-				1: name: "punctuation.definition.percentage-sign.refer.roff"
-				2: name: "variable.other.readonly.key-letter.refer.roff"
+				1: name: "punctuation.definition.macro.mdoc.roff"
+				2: name: "punctuation.definition.percentage-sign.refer.roff"
+				3: name: "variable.other.readonly.key-letter.refer.roff"
+		},{
+			
+			# Literal/single-quoted string
+			name: "string.quoted.single.refer.roff"
+			begin: "'"
+			end:   "'"
+			beginCaptures: 0: name: "punctuation.definition.string.begin.roff"
+			endCaptures:   0: name: "punctuation.definition.string.end.roff"
 		},{
 			
 			# Formatted/placeholder value
