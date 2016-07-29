@@ -1259,7 +1259,7 @@ repository:
 			# .Em: Emphasised text (Italic)
 			name: "meta.function.$1.callable.macro.mdoc.roff"
 			begin: "(?<=Em)\\G|(?<=\\s)(Em)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
@@ -1272,7 +1272,7 @@ repository:
 			# .Sy: Symbolic text (Bold)
 			name: "meta.function.$1.callable.macro.mdoc.roff"
 			begin: "(?<=Sy)\\G|(?<=\\s)(Sy)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
@@ -1285,13 +1285,39 @@ repository:
 			# .Li: Literal text (Monospaced)
 			name: "meta.function.$1.callable.macro.mdoc.roff"
 			begin: "(?<=Li)\\G|(?<=\\s)(Li)(?=\\s)"
-			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			patterns: [
 				{include: "#mdoc-args"}
 				{include: "$self"}
 				{include: "#monospace-word"}
+			]
+		},{
+			
+			# .Ar: Command arguments, displayed in fixed-width italics
+			name: "meta.function.argument-names.callable.macro.mdoc.roff"
+			begin: "(?<=Ar)\\G|(?<=\\s)(Ar)(?=\\s)"
+			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			beginCaptures:
+				1: name: "entity.function.name.roff"
+			patterns: [
+				{include: "#mdoc-args"}
+				{include: "$self"}
+				{include: "#italic-word"}
+			]
+		},{
+			
+			# .Fl: Program flags, displayed in fixed-width bold type
+			name: "meta.function.flags.callable.macro.mdoc.roff"
+			begin: "(?<=Fl)\\G|(?<=\\s)(Fl)(?=\\s)"
+			end:   "(?<!\\\\)$|(?=\\s+(?:Em|Li|Sy|No|Bf|Ar|Fl|Op|Ta))|(?=\\\\(?:\"|f[A-Za-z0-9]))"
+			beginCaptures:
+				1: name: "entity.function.name.roff"
+			patterns: [
+				{include: "#mdoc-args"}
+				{include: "$self"}
+				{include: "#bold-word"}
 			]
 		},{
 			
