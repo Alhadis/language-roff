@@ -35,8 +35,6 @@
 		"9f",
 		"9p",
 		"9s",
-		"chem",
-		"eqn",
 		"groff",
 		"man",
 		"mandoc",
@@ -48,7 +46,6 @@
 		"mom",
 		"n",
 		"nroff",
-		"pic",
 		"roff",
 		"t",
 		"tmac",
@@ -66,13 +63,13 @@
 		"main": {
 			"patterns": [
 				{
+					"include": "#preprocessors"
+				},
+				{
 					"include": "#escapes"
 				},
 				{
 					"include": "#requests"
-				},
-				{
-					"include": "#preprocessors"
 				},
 				{
 					"include": "#macros"
@@ -91,16 +88,18 @@
 					"include": "#number"
 				},
 				{
-					"match": "\\S+",
-					"name": "variable.parameter.roff"
+					"include": "#generic-parameter"
 				}
 			]
 		},
 		"number": {
 			"name": "constant.numeric.roff",
-			"match": "(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([cfimnPpsuvz])?",
+			"match": "(?!\\d+[cfimnPpsuvz]\\w)(\\|)?(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([cfimnPpsuvz])?",
 			"captures": {
 				"1": {
+					"name": "keyword.operator.absolute.roff"
+				},
+				"2": {
 					"name": "keyword.other.unit.roff"
 				}
 			}
@@ -152,6 +151,10 @@
 				}
 			]
 		},
+		"generic-parameter": {
+			"name": "variable.parameter.roff",
+			"match": "[^\\s\\\\]+"
+		},
 		"param-group": {
 			"name": "function-call.arguments.roff",
 			"begin": "\\G|^",
@@ -159,6 +162,29 @@
 			"patterns": [
 				{
 					"include": "#params"
+				}
+			]
+		},
+		"long-name": {
+			"patterns": [
+				{
+					"name": "variable.parameter.roff",
+					"begin": "\\G\\s*",
+					"end": "(?=\\]|\\s)",
+					"patterns": [
+						{
+							"include": "#escapes"
+						}
+					]
+				},
+				{
+					"include": "#escapes"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#number"
 				}
 			]
 		},
@@ -452,7 +478,7 @@
 		"conditionals": {
 			"patterns": [
 				{
-					"begin": "(?x)^\n([.'])   [ \t]*      # 1: punctuation.definition.request.roff\n(ie|if)  [ \t]*      # 2: keyword.control.roff\n(!)?                 # 3: keyword.operator.logical\n\n(?:\n\t# One-character built-in comparison name\n\t([notev])        # 4: constant.language.builtin-comparison.$4.roff\n\t\n\t|\n\t\n\t# GNU extensions\n\t([cdfmrs])       # 5: constant.language.builtin-comparison.$5.gnu.roff\n\t\n\t# Name being validated\n\t[ \t]*\n\t((?:[^ \\t\\\\]|\\\\(?![\"#]).)+) # 6: Include “#escapes”\n\t\n\t|\n\t\n\t# Arithmetic\n\t(                # 7: meta.equation.roff\n\t\t\n\t\t# Starts with a bracket\n\t\t(\\()        # 8:  punctuation.definition.begin.roff\n\t\t(.*?)        # 9:  Include “#arithmetic”\n\t\t(\\))        # 10: punctuation.definition.end.roff\n\t\t\n\t\t# Anything else affixed to it\n\t\t(            # 11: Include “#arithmetic”\n\t\t\t(?:\n\t\t\t\t[^\\s\\(] | # Operators/numbers\n\t\t\t\t\\(.*?\\)   # More brackets\n\t\t\t)*\n\t\t)\n\t\t\n\t\t|\n\t\t\n\t\t# Doesn’t start with a bracket\n\t\t(?:\n\t\t\t# Starts with a long-form string/register\n\t\t\t(\\\\+[n*]\\(\\S{2}) # 12: Include “#escapes”\n\t\t\t|\n\t\t\t# Starts with a digit or backslash\n\t\t\t(?=\\d|\\\\)\n\t\t)\n\t\t([^\\s\\(]*) # 13: Sandwiched mathematical junk\n\t\t\n\t\t(?: # Possible embedded brackets\n\t\t\t(\\()    # 14: punctuation.definition.begin.roff\n\t\t\t(.*?)    # 15: Include “#arithmetic”\n\t\t\t(\\))    # 16: punctuation.definition.end.roff\n\t\t)?\n\t\t(?: # Possible trailing digits/operators\n\t\t\t[^\\s\\(]*?\n\t\t\t\\d+\n\t\t)?\n\t\t\n\t\t# Ends with a...\n\t\t(?<=\n\t\t\t# Digit\n\t\t\t\\d |\n\t\t\t\n\t\t\t# Unit suffix\n\t\t\t(?<=[\\d.])\n\t\t\t[A-Za-z] |\n\t\t\t\n\t\t\t# Closing bracket\n\t\t\t[\\)\\]] |\n\t\t\t\n\t\t\t# String/register: Long-form\n\t\t\t\\\\[n*]\n\t\t\t\\(\n\t\t\t\\S{2} |\n\t\t\t\n\t\t\t# String/register: Short-form\n\t\t\t\\\\[n*]\\S\n\t\t)\n\t)\n\t\n\t|\n\t\n\t# String/variable comparison\n\t([^\\d\\s\\\\])  # 17: punctuation.definition.string.begin.roff\n\t(                # 18: variable.parameter.operand.left.roff\n\t\t(.*?)        # 19: Include “#escapes”\n\t)\n\t(\\17)           # 20: punctuation.definition.string.roff\n\t(                # 21: variable.parameter.operand.right.roff\n\t\t(.*?)        # 22: Include “#escapes”\n\t)\n\t(\\17)           # 23: punctuation.definition.string.end.roff\n\t\n\t|\n\t\n\t# Anything not recognised\n\t(\\S)            # 24: meta.operand.single.roff\n)?\n\n(.*)                 # 25: Include “#conditional-innards”",
+					"begin": "(?x)^\n([.'])   [ \t]*      # 1: punctuation.definition.request.roff\n(ie|if)  [ \t]*      # 2: keyword.control.roff\n(!)?                 # 3: keyword.operator.logical\n\n(?:\n\t# One-character built-in comparison name\n\t([notev])        # 4: constant.language.builtin-comparison.$4.roff\n\t\n\t|\n\t\n\t# GNU extensions\n\t([cdfmrs])       # 5: constant.language.builtin-comparison.$5.gnu.roff\n\t\n\t# Name being validated\n\t[ \t]*\n\t((?:[^ \\t\\\\]|\\\\(?![\"#]).)+) # 6: Include “#escapes”\n\t\n\t|\n\t\n\t# Arithmetic\n\t(                # 7: meta.equation.roff\n\t\t\n\t\t# Starts with a bracket\n\t\t(\\()        # 8:  punctuation.definition.begin.roff\n\t\t(.*?)        # 9:  Include “#arithmetic”\n\t\t(\\))        # 10: punctuation.definition.end.roff\n\t\t\n\t\t# Anything else affixed to it\n\t\t(            # 11: Include “#arithmetic”\n\t\t\t(?:\n\t\t\t\t[^\\s\\(] | # Operators/numbers\n\t\t\t\t\\(.*?\\)   # More brackets\n\t\t\t)*\n\t\t)\n\t\t\n\t\t|\n\t\t\n\t\t# Doesn’t start with a bracket\n\t\t(?:\n\t\t\t# Starts with a long-form string/register\n\t\t\t(\\|?\\\\+[n*]\\(\\S{2}) # 12: Include “#escapes”\n\t\t\t|\n\t\t\t# Starts with a digit or backslash\n\t\t\t(?=\\d|\\\\)\n\t\t)\n\t\t([^\\s\\(]*) # 13: Sandwiched mathematical junk\n\t\t\n\t\t(?: # Possible embedded brackets\n\t\t\t(\\()    # 14: punctuation.definition.begin.roff\n\t\t\t(.*?)    # 15: Include “#arithmetic”\n\t\t\t(\\))    # 16: punctuation.definition.end.roff\n\t\t)?\n\t\t(?: # Possible trailing digits/operators\n\t\t\t[^\\s\\(]*?\n\t\t\t\\d+\n\t\t)?\n\t\t\n\t\t# Ends with a...\n\t\t(?<=\n\t\t\t# Digit\n\t\t\t\\d |\n\t\t\t\n\t\t\t# Unit suffix\n\t\t\t(?<=[\\d.])\n\t\t\t[A-Za-z] |\n\t\t\t\n\t\t\t# Closing bracket\n\t\t\t[\\)\\]] |\n\t\t\t\n\t\t\t# String/register: Long-form\n\t\t\t\\\\[n*]\n\t\t\t\\(\n\t\t\t\\S{2} |\n\t\t\t\n\t\t\t# String/register: Short-form\n\t\t\t\\\\[n*]\\S\n\t\t)\n\t)\n\t\n\t|\n\t\n\t# String/variable comparison\n\t([^\\d\\s\\\\])  # 17: punctuation.definition.string.begin.roff\n\t(                # 18: variable.parameter.operand.left.roff\n\t\t(.*?)        # 19: Include “#escapes”\n\t)\n\t(\\17)           # 20: punctuation.definition.string.roff\n\t(                # 21: variable.parameter.operand.right.roff\n\t\t(.*?)        # 22: Include “#escapes”\n\t)\n\t(\\17)           # 23: punctuation.definition.string.end.roff\n\t\n\t|\n\t\n\t# Anything not recognised\n\t(\\S)            # 24: meta.operand.single.roff\n)?\n\n(.*)                 # 25: Include “#conditional-innards”",
 					"end": "$",
 					"beginCaptures": {
 						"0": {
@@ -919,85 +945,86 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.function.expand-register.gnu.roff",
-					"begin": "((\\\\)n([-+])?(\\[))",
-					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
-					"contentName": "variable.parameter.roff",
+					"begin": "(\\|)?(((?:(?<=\\|)\\\\*?)?\\\\)n([-+])?(\\[))",
+					"end": "(\\])|(?<!\\\\)(?=$)",
 					"patterns": [
 						{
-							"include": "#params"
+							"include": "#long-name"
 						}
 					],
 					"beginCaptures": {
 						"1": {
-							"name": "entity.name.roff"
+							"name": "keyword.operator.absolute.roff"
 						},
 						"2": {
-							"name": "punctuation.definition.escape.roff"
+							"name": "entity.name.roff"
 						},
 						"3": {
-							"name": "keyword.operator.arithmetic.roff"
+							"name": "punctuation.definition.escape.roff"
 						},
 						"4": {
+							"name": "keyword.operator.arithmetic.roff"
+						},
+						"5": {
 							"name": "punctuation.section.begin.bracket.square.roff"
 						}
 					},
 					"endCaptures": {
 						"1": {
-							"patterns": [
-								{
-									"include": "#params"
-								}
-							]
-						},
-						"2": {
 							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
 				},
 				{
 					"name": "constant.character.escape.function.expand-register.roff",
-					"match": "((\\\\)n([-+])?(\\())(?:(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S{2}))|((\\\\)n)([-+])?(?:(%)|(\\S))",
+					"match": "(?x)\n\n# 1: keyword.operator.absolute.roff\n(\\|)?\n\n# 2: entity.name.roff\n(\n\t# 3: punctuation.definition.escape.roff\n\t(\n\t\t(?:(?<=\\|)\\\\*?)?\n\t\t\\\\\n\t)\n\tn\n\t([-+])?   # 4: keyword.operator.arithmetic.roff\n\t(\\()     # 5: punctuation.definition.brace.roff\n)\n\n# Name of register\n(?:\n\t# 6: constant.language.predefined.register.roff\n\t(ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)\n\t|\n\t# 7: constant.language.predefined.register.gnu.roff\n\t(c\\.)\n\t|\n\t# 8: constant.language.predefined.register.readonly.roff\n\t(\\${2}  |  \\.[$aAbcdfFhHijklLnopRTstuvVwxyz])\n\t|\n\t# 9: constant.language.predefined.register.readonly.gnu.roff\n\t(\\.[CgmMOPUxyY])\n\t|\n\t# 10: variable.parameter.roff\n\t(\\S{2})\n)\n\n|\n\n# 11: keyword.operator.absolute.roff\n(\\|)?\n\n# 12: entity.name.roff\n(\n\t# 13: punctuation.definition.escape.roff\n\t(\n\t\t(?:(?<=\\|)\\\\*?)?\n\t\t\\\\\n\t)\n\tn\n)\n\n# 14: keyword.operator.arithmetic.roff\n([-+])?\n\n# Name of register\n(?:\n\t(%) |  # 15: constant.language.predefined.register.roff\n\t(\\S)  # 16: variable.parameter.roff\n)",
 					"captures": {
 						"1": {
-							"name": "entity.name.roff"
+							"name": "keyword.operator.absolute.roff"
 						},
 						"2": {
-							"name": "punctuation.definition.escape.roff"
-						},
-						"3": {
-							"name": "keyword.operator.arithmetic.roff"
-						},
-						"4": {
-							"name": "punctuation.definition.brace.roff"
-						},
-						"5": {
-							"name": "constant.language.predefined.register.roff"
-						},
-						"6": {
-							"name": "constant.language.predefined.register.gnu.roff"
-						},
-						"7": {
-							"name": "constant.language.predefined.register.readonly.roff"
-						},
-						"8": {
-							"name": "constant.language.predefined.register.readonly.gnu.roff"
-						},
-						"9": {
-							"name": "variable.parameter.roff"
-						},
-						"10": {
 							"name": "entity.name.roff"
 						},
-						"11": {
+						"3": {
 							"name": "punctuation.definition.escape.roff"
 						},
-						"12": {
+						"4": {
 							"name": "keyword.operator.arithmetic.roff"
 						},
-						"13": {
+						"5": {
+							"name": "punctuation.definition.brace.roff"
+						},
+						"6": {
 							"name": "constant.language.predefined.register.roff"
 						},
+						"7": {
+							"name": "constant.language.predefined.register.gnu.roff"
+						},
+						"8": {
+							"name": "constant.language.predefined.register.readonly.roff"
+						},
+						"9": {
+							"name": "constant.language.predefined.register.readonly.gnu.roff"
+						},
+						"10": {
+							"name": "variable.parameter.roff"
+						},
+						"11": {
+							"name": "keyword.operator.absolute.roff"
+						},
+						"12": {
+							"name": "entity.name.roff"
+						},
+						"13": {
+							"name": "punctuation.definition.escape.roff"
+						},
 						"14": {
+							"name": "keyword.operator.arithmetic.roff"
+						},
+						"15": {
+							"name": "constant.language.predefined.register.roff"
+						},
+						"16": {
 							"name": "variable.parameter.roff"
 						}
 					}
@@ -1095,13 +1122,33 @@
 					}
 				},
 				{
+					"begin": "^(\\\\\\*\\[[^\\]]+\\])\\s*(\\.\\w+.*)",
+					"end": "$",
+					"beginCaptures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						},
+						"2": {
+							"patterns": [
+								{
+									"include": "#conditional-innards"
+								}
+							]
+						}
+					}
+				},
+				{
 					"name": "constant.character.escape.function.interpolate-string.gnu.roff",
 					"begin": "((\\\\)\\*(\\[))([^\\]\\s]+)",
-					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"end": "(\\])|(?<!\\\\)(?=$)",
 					"contentName": "function-call.arguments.roff",
 					"patterns": [
 						{
-							"include": "#params"
+							"include": "#long-name"
 						}
 					],
 					"beginCaptures": {
@@ -1120,13 +1167,6 @@
 					},
 					"endCaptures": {
 						"1": {
-							"patterns": [
-								{
-									"include": "#params"
-								}
-							]
-						},
-						"2": {
 							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
@@ -1176,7 +1216,7 @@
 				{
 					"name": "constant.character.escape.function.set-colour.gnu.roff",
 					"begin": "((\\\\)[Mm](\\[))",
-					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"end": "(\\])|(?<!\\\\)(?=$)",
 					"contentName": "variable.parameter.roff",
 					"patterns": [
 						{
@@ -1196,13 +1236,6 @@
 					},
 					"endCaptures": {
 						"1": {
-							"patterns": [
-								{
-									"include": "#params"
-								}
-							]
-						},
-						"2": {
 							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
@@ -1237,7 +1270,7 @@
 				{
 					"name": "constant.character.escape.function.point-size.gnu.roff",
 					"begin": "((\\\\)s([-+])?(\\[))",
-					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"end": "(\\])|(?<!\\\\)(?=$)",
 					"contentName": "variable.parameter.roff",
 					"patterns": [
 						{
@@ -1260,13 +1293,6 @@
 					},
 					"endCaptures": {
 						"1": {
-							"patterns": [
-								{
-									"include": "#params"
-								}
-							]
-						},
-						"2": {
 							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
@@ -1352,11 +1378,10 @@
 				{
 					"name": "constant.character.escape.function.interpolate-variable.gnu.roff",
 					"begin": "((\\\\)[VY](\\[))",
-					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
-					"contentName": "variable.parameter.roff",
+					"end": "(\\])|(?<!\\\\)(?=$)",
 					"patterns": [
 						{
-							"include": "#params"
+							"include": "#long-name"
 						}
 					],
 					"beginCaptures": {
@@ -1372,13 +1397,6 @@
 					},
 					"endCaptures": {
 						"1": {
-							"patterns": [
-								{
-									"include": "#params"
-								}
-							]
-						},
-						"2": {
 							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
@@ -1474,11 +1492,11 @@
 				{
 					"name": "constant.character.escape.function.interpolate-argument.gnu.roff",
 					"begin": "((\\\\)\\$(\\[))",
-					"end": "(\\S*)(\\])|(?<!\\\\)(?=$)",
+					"end": "(\\])|(?<!\\\\)(?=$)",
 					"contentName": "variable.parameter.roff",
 					"patterns": [
 						{
-							"include": "#params"
+							"include": "#long-name"
 						}
 					],
 					"beginCaptures": {
@@ -1494,13 +1512,6 @@
 					},
 					"endCaptures": {
 						"1": {
-							"patterns": [
-								{
-									"include": "#params"
-								}
-							]
-						},
-						"2": {
 							"name": "punctuation.section.end.bracket.square.roff"
 						}
 					}
@@ -1802,8 +1813,7 @@
 							"include": "$self"
 						},
 						{
-							"name": "markup.italic.roff",
-							"match": "\\S+?(?=\\\\|$|\\s)"
+							"include": "#italic-word"
 						}
 					]
 				},
@@ -1826,8 +1836,7 @@
 							"include": "$self"
 						},
 						{
-							"name": "markup.bold.roff",
-							"match": "\\S+?(?=\\\\|$|\\s)"
+							"include": "#bold-word"
 						}
 					]
 				},
@@ -1850,8 +1859,7 @@
 							"include": "$self"
 						},
 						{
-							"name": "markup.bold.italic.roff",
-							"match": "\\S+?(?=\\\\|$|\\s)"
+							"include": "#bold-italic-word"
 						}
 					]
 				},
@@ -2001,6 +2009,9 @@
 					"include": "#man"
 				},
 				{
+					"include": "#mdoc"
+				},
+				{
 					"include": "#ms"
 				},
 				{
@@ -2014,7 +2025,7 @@
 				},
 				{
 					"name": "meta.function.macro.roff",
-					"begin": "^([.'])[ \t]*(\\S+)\\b",
+					"begin": "^([.'])[ \t]*(\\S+)",
 					"end": "(?<!\\\\)(?=$)|(?=\\\\\")",
 					"beginCaptures": {
 						"1": {
@@ -2029,6 +2040,326 @@
 							"include": "#param-group"
 						}
 					]
+				}
+			]
+		},
+		"mdoc": {
+			"patterns": [
+				{
+					"name": "meta.function.begin-emphasis.unparsed.macro.mdoc.roff",
+					"begin": "^([.'])\\s*(Bf)[ \t]+(-emphasis|Em)\\b(.*)",
+					"end": "^(?=[.']\\s*[BE]f\\s)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						},
+						"3": {
+							"name": "constant.language.option.mdoc.macro.roff"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#italic-word"
+						}
+					]
+				},
+				{
+					"name": "meta.function.begin-literal.unparsed.macro.mdoc.roff",
+					"begin": "^([.'])\\s*(Bf)[ \t]+(-literal|Li)\\b(.*)",
+					"end": "^(?=[.']\\s*[BE]f\\s)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						},
+						"3": {
+							"name": "constant.language.option.mdoc.macro.roff"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#monospace-word"
+						}
+					]
+				},
+				{
+					"name": "meta.function.begin-symbolic.unparsed.macro.mdoc.roff",
+					"begin": "^([.'])\\s*(Bf)[ \t]+(-symbolic|Sy)\\b(.*)",
+					"end": "^(?=[.']\\s*[BE]f\\s)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						},
+						"3": {
+							"name": "constant.language.option.mdoc.macro.roff"
+						},
+						"4": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					},
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#bold-word"
+						}
+					]
+				},
+				{
+					"begin": "^([.'])\\s*(Rs)\\b(.*)$",
+					"end": "^([.'])\\s*(Re)\\b",
+					"patterns": [
+						{
+							"include": "#refer"
+						}
+					],
+					"contentName": "meta.citation.mdoc.roff",
+					"beginCaptures": {
+						"0": {
+							"name": "meta.function.unparsed.macro.mdoc.roff"
+						},
+						"1": {
+							"name": "punctuation.definition.macro.mdoc.roff"
+						},
+						"2": {
+							"name": "entity.function.name.mdoc.roff"
+						},
+						"3": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "meta.function.unparsed.macro.mdoc.roff"
+						},
+						"1": {
+							"name": "punctuation.definition.mdoc.macro.roff"
+						},
+						"2": {
+							"name": "entity.function.name.mdoc.roff"
+						}
+					}
+				},
+				{
+					"name": "meta.function.$2.unparsed.macro.mdoc.roff",
+					"begin": "^([.'])\\s*(%[ABCDIJNOPQRTUV]|B[dfklt]|br|D[bdt]|E[dfklx]|F[do]|Hf|In|L[bp]|Nd|Os|Pp|R[esv]|Sm|sp|Ud)\\b",
+					"end": "(?<!\\\\)$",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#mdoc-delimiters"
+						},
+						{
+							"include": "#mdoc-args"
+						},
+						{
+							"include": "#generic-parameter"
+						}
+					]
+				},
+				{
+					"name": "meta.function.$2.parsed.macro.mdoc.roff",
+					"begin": "(?x)^([.'])\\s*\n(Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|D1|Dc\n|Dl|Do|Dq|Dv|Dx|Ec|Em|En|Eo|Eq|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic\n|It|Li|Lk|Me|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa|Pc|Pf|Po|Pq|Qc\n|Ql|Qo|Qq|Rd|Sc|Sh|So|Sq|Ss|St|Sx|Sy|Ta|Tn|Ux|Va|Vt|Xc|Xo|Xr)\\b",
+					"end": "(?<!\\\\)$",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "entity.function.name.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#mdoc-callables"
+						},
+						{
+							"include": "#mdoc-args"
+						},
+						{
+							"include": "#generic-parameter"
+						}
+					]
+				}
+			]
+		},
+		"mdoc-callables": {
+			"patterns": [
+				{
+					"name": "meta.function.$1.callable.macro.mdoc.roff",
+					"begin": "(?<=Em|Ar)\\G|(?<=\\s)(Em|Ar)(?=\\s)",
+					"end": "(?x)\n(?<!\\\\)$ |\n(?=\n\t\\s+\n\t(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em\n\t|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa\n\t|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Xc|Xo|Xr)\n\t\\s   |\n\t\\\\\" |\n\t\\\\f[A-Za-z0-9]\n)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.function.name.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#mdoc-args"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#italic-word"
+						}
+					]
+				},
+				{
+					"name": "meta.function.$1.callable.macro.mdoc.roff",
+					"begin": "(?<=Sy|Fl|Cm)\\G|(?<=\\s)(Sy|Fl|Cm)(?=\\s)",
+					"end": "(?x)\n(?<!\\\\)$ |\n(?=\n\t\\s+\n\t(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em\n\t|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa\n\t|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Xc|Xo|Xr)\n\t\\s   |\n\t\\\\\" |\n\t\\\\f[A-Za-z0-9]\n)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.function.name.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#mdoc-args"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#bold-word"
+						}
+					]
+				},
+				{
+					"name": "meta.function.$1.callable.macro.mdoc.roff",
+					"begin": "(?<=Li)\\G|(?<=\\s)(Li)(?=\\s)",
+					"end": "(?x)\n(?<!\\\\)$ |\n(?=\n\t\\s+\n\t(?:Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|Em\n\t|En|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa\n\t|Pc|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Sy|Ta|Tn|Ux|Va|Vt|Xc|Xo|Xr)\n\t\\s   |\n\t\\\\\" |\n\t\\\\f[A-Za-z0-9]\n)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.function.name.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#mdoc-args"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#monospace-word"
+						}
+					]
+				},
+				{
+					"name": "meta.function.$1.callable.macro.mdoc.roff",
+					"begin": "(?<=Lk|Mt)\\G|(?<=\\s)(Lk|Mt)(?=\\s)",
+					"end": "$|(?=\\\\\")|(\\S+?)(?=$|\\s|\\\\\")",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.function.name.roff"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "markup.underline.link.hyperlink.mdoc.roff"
+						},
+						"1": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "meta.function.$1.callable.macro.mdoc.roff",
+					"match": "(?x) (?<=[ \t])\n(Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|Dc|Do|Dq|Dv|Dx|Ec|En\n|Eo|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic|Li|Lk|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa|Pc\n|Pf|Po|Pq|Qc|Ql|Qo|Qq|Sc|So|Sq|Sx|Ta|Tn|Ux|Va|Vt|Xc|Xo|Xr)(?=\\s)",
+					"captures": {
+						"1": {
+							"name": "entity.function.name.roff"
+						}
+					}
+				}
+			]
+		},
+		"mdoc-args": {
+			"patterns": [
+				{
+					"include": "#escapes"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"name": "string.quoted.other.date.roff",
+					"begin": "\\$(?=Mdocdate)",
+					"end": "\\$",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.section.begin.date.roff"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.section.end.date.roff"
+						}
+					}
+				},
+				{
+					"name": "punctuation.delimiter.mdoc.macro.roff",
+					"match": "(?<=\\s)[(\\[.,:|;)\\]?!](?=\\s|$)"
+				},
+				{
+					"name": "constant.language.option.mdoc.macro.roff",
+					"match": "(?x)\n(?<=\\s) (-)\n(alpha|beta|bullet|centered|column|compact|dash|devel|diag|emphasis|enum|file|filled|hang\n|hyphen|inset|item|literal|nested|nosplit|ohang|ragged|split|std|symbolic|tag|type|unfilled\n|width|words|offset(?:\\s+(?:left|center|indent|indent-two|right))?)\\b",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.dash.roff"
+						}
+					}
 				}
 			]
 		},
@@ -2076,40 +2407,6 @@
 							"include": "#string"
 						}
 					]
-				},
-				{
-					"name": "meta.function.reference.ms.macro.roff",
-					"begin": "^([.'])[ \t]*(\\[)\\s*(\\\\[#\"].*)?$",
-					"end": "^([.'])[ \t]*(\\])(?=\\s|$|\\\\\")",
-					"contentName": "entity.reference.name.ms.macro.roff",
-					"patterns": [
-						{
-							"include": "$self"
-						}
-					],
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.definition.macro.roff"
-						},
-						"2": {
-							"name": "punctuation.section.function.begin.roff"
-						},
-						"3": {
-							"patterns": [
-								{
-									"include": "#escapes"
-								}
-							]
-						}
-					},
-					"endCaptures": {
-						"1": {
-							"name": "punctuation.definition.macro.roff"
-						},
-						"2": {
-							"name": "punctuation.section.function.begin.roff"
-						}
-					}
 				},
 				{
 					"name": "meta.deprecated.function.${2:/downcase}.ms.macro.roff",
@@ -3056,7 +3353,6 @@
 						}
 					]
 				},
-				{},
 				{
 					"begin": "^([.'])[ \t]*(S?B)(\\s*\\\\[#\"].*$)?(?=$|[ \t]+|\\\\)",
 					"end": "^(?=[.'])|(?=\\\\\")|(?!\\\\#)((\\S+[ \t]*)(?<![^\\\\]\\\\)\n)",
@@ -4124,6 +4420,22 @@
 				}
 			]
 		},
+		"bold-word": {
+			"name": "markup.bold.roff",
+			"match": "\\S+?(?=\\\\|$|\\s)"
+		},
+		"italic-word": {
+			"match": "\\S+?(?=\\\\|$|\\s)",
+			"name": "markup.italic.roff"
+		},
+		"bold-italic-word": {
+			"name": "markup.bold.italic.roff",
+			"match": "\\S+?(?=\\\\|$|\\s)"
+		},
+		"monospace-word": {
+			"name": "markup.raw.monospaced.roff",
+			"match": "\\S+?(?=\\\\|$|\\s)"
+		},
 		"underline-first": {
 			"patterns": [
 				{
@@ -4229,9 +4541,18 @@
 					}
 				},
 				{
-					"name": "invalid.deprecated.function.picture.macro.roff",
-					"match": "^([.'])[ \t]*(PS)[ \t]*(<)(.*)(?=$|\\\\\")",
-					"captures": {
+					"begin": "^([.'])[ \t]*(EQ)\\b[ \t]*([LIC]\\b)?\\s*([^\\\\\"]+|\\\\[^\"])*(\\\\\".*)?$",
+					"end": "^([.'])[ \t]*(EN)\\b",
+					"contentName": "markup.other.math.preprocessor.eqn.roff",
+					"patterns": [
+						{
+							"include": "#eqn"
+						}
+					],
+					"beginCaptures": {
+						"0": {
+							"name": "meta.function.begin.math.section.macro.roff"
+						},
 						"1": {
 							"name": "punctuation.definition.macro.roff"
 						},
@@ -4239,29 +4560,99 @@
 							"name": "entity.function.name.roff"
 						},
 						"3": {
-							"name": "punctuation.definition.filename.roff"
+							"name": "constant.language.alignment-mode.eqn.roff"
+						},
+						"4": {
+							"name": "string.unquoted.equation-label.eqn.roff"
+						},
+						"5": {
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "meta.function.end.math.section.macro.roff"
+						},
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "entity.name.function.roff"
+						}
+					}
+				},
+				{
+					"begin": "^([.'])[ \t]*(\\[)(.*?)\\s*(\\\\[\"#].*)?$",
+					"end": "^([.'])[ \t]*(\\])(.*?)(?=\\s|$|\\\\\")",
+					"contentName": "meta.citation.roff",
+					"patterns": [
+						{
+							"begin": "\\G",
+							"end": "$|(?=\\\\[#\"])",
+							"patterns": [
+								{
+									"name": "constant.character.flags.refer.gnu.roff",
+									"match": "^[#\\[\\]]+"
+								},
+								{
+									"include": "#params"
+								}
+							]
+						},
+						{
+							"include": "#refer"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "punctuation.section.function.begin.roff"
+						},
+						"3": {
+							"name": "string.unquoted.opening-text.refer.roff",
+							"patterns": [
+								{
+									"include": "#escapes"
+								}
+							]
 						},
 						"4": {
 							"patterns": [
 								{
-									"include": "#params"
+									"include": "#escapes"
+								}
+							]
+						}
+					},
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.roff"
+						},
+						"2": {
+							"name": "punctuation.section.function.end.roff"
+						},
+						"3": {
+							"name": "string.unquoted.closing-text.refer.roff",
+							"patterns": [
+								{
+									"include": "#escapes"
 								}
 							]
 						}
 					}
 				},
 				{
-					"begin": "^([.'])[ \t]*(PS)\\b[ \t]*(\\\\[#\"].*)?$",
-					"end": "^([.'])[ \t]*(PE)\\b",
-					"contentName": "markup.other.graphics.preprocessor.pic.roff",
-					"patterns": [
-						{
-							"include": "#pic"
-						}
-					],
+					"begin": "^([.'])[ \t]*(GS)\\b(.*)$",
+					"end": "^([.'])[ \t]*(GE)\\b",
 					"beginCaptures": {
 						"0": {
-							"name": "meta.function.begin.picture.section.macro.roff"
+							"name": "meta.function.begin.gremlin.macro.roff"
 						},
 						"1": {
 							"name": "punctuation.definition.macro.roff"
@@ -4279,7 +4670,7 @@
 					},
 					"endCaptures": {
 						"0": {
-							"name": "meta.function.end.picture.section.macro.roff"
+							"name": "meta.function.end.gremlin.macro.roff"
 						},
 						"1": {
 							"name": "punctuation.definition.macro.roff"
@@ -4287,107 +4678,65 @@
 						"2": {
 							"name": "entity.name.function.roff"
 						}
-					}
+					},
+					"patterns": [
+						{
+							"name": "keyword.operator.gremlin",
+							"match": "(?x)\n\\b((?:sun)?gremlinfile|ARC|BEZIER|BOTCENT|BOTLEFT|BOTRIGHT\n|BSPLINE|CENTCENT|CENTLEFT|CENTRIGHT|CURVE|POLYGON|TOPCENT\n|TOPLEFT|TOPRIGHT|VECTOR)\\b"
+						},
+						{
+							"include": "#params"
+						}
+					]
+				},
+				{
+					"include": "source.pic#tags"
+				},
+				{
+					"include": "source.ideal#tags"
 				}
 			]
 		},
-		"pic": {
+		"eqn": {
 			"patterns": [
 				{
-					"match": ";",
-					"name": "punctuation.terminator.statement.pic.roff"
+					"name": "constant.language.greek-letter.eqn.roff",
+					"match": "(?x)\\b\n(DELTA|GAMMA|LAMBDA|OMEGA|PHI|PI|PSI|SIGMA|THETA|UPSILON|XI|alpha|beta|chi\n|delta|epsilon|eta|gamma|iota|kappa|lambda|mu|nu|omega|omicron|phi|pi|psi\n|rho|sigma|tau|theta|upsilon|xi|zeta)\\b"
 				},
 				{
-					"match": ",",
-					"name": "punctuation.separator.comma.pic.roff"
+					"name": "constant.character.math-symbol.eqn.roff",
+					"match": "(?x)\\b\n(sum|int|prod|union|inter|inf|partial|half|prime|approx|nothing|cdot\n|times|del|grad|[><=!]=|\\+-|->|<-|<<|>>|\\.{3}|,\\.,)\\b"
 				},
 				{
-					"match": "=",
-					"name": "keyword.operator.assignment.pic.roff"
+					"name": "punctuation.definition.eqn.roff",
+					"match": "[~,^{}]"
 				},
 				{
-					"match": "<-|<->|->",
-					"name": "keyword.operator.arrow.pic.roff"
+					"name": "keyword.language.eqn.roff",
+					"match": "(?x)\\b\n(above|back|bar|bold|ccol|col|cpile|define|delim|dot|dotdot|down|dyad|fat|font|from\n|fwd|gfont|gsize|hat|italic|lcol|left|lineup|lpile|mark|matrix|ndefine|over|pile\n|rcol|right|roman|rpile|size|sqrt|sub|sup|tdefine|tilde|to|under|up|vec)\\b"
 				},
 				{
-					"match": "[-/+*%^]",
-					"name": "keyword.operator.arithmetic.pic.roff"
+					"name": "keyword.language.eqn.gnu.roff",
+					"match": "(?x)\\b\n(accent|big|chartype|smallover|type|vcenter|uaccent|split|nosplit\n|opprime|special|sdefine|include|ifdef|undef|g[rb]font|space)\\b"
 				},
 				{
-					"match": "<|>",
-					"name": "punctuation.definition.bracket.angle.pic.roff"
+					"name": "constant.language.eqn.gnu.roff",
+					"match": "(?x)\\b\n(Alpha|Beta|Chi|Delta|Epsilon|Eta|Gamma|Iota|Kappa|Lambda|Mu|Nu\n|Omega|Omicron|Phi|Pi|Psi|Rho|Sigma|Tau|Theta|Upsilon|Xi|Zeta\n|ldots|dollar)\\b"
 				},
 				{
-					"match": "\\(|\\)",
-					"name": "punctuation.definition.bracket.round.pic.roff"
-				},
-				{
-					"name": "comment.line.pic.roff",
-					"begin": "#",
-					"end": "$",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.pic.roff"
-						}
-					}
-				},
-				{
-					"name": "keyword.operator.$1.pic.roff",
-					"match": "\\b(and|at|from|reset|to|with|of\\s+the\\s+way\\s+between)\\b"
-				},
-				{
-					"name": "keyword.function.pic.roff",
-					"match": "\\b(box|line|arrow|circle|ellipse|arc|spline)\\b",
-					"captures": {
-						"0": {
-							"name": "entity.function.name.pic.roff"
-						}
-					}
-				},
-				{
-					"name": "variable.other.property.$1.pic.roff",
-					"match": "(?x)\\b\n(cw|dashed|diameter|diam|dotted|down|height|ht|invisible\n|invis|left|move|radius|rad|right|same|up|width|wid)\\b"
-				},
-				{
-					"name": "support.variable.global.pic.roff",
-					"match": "(?x)\\b (arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid |ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid |moveht|movewid|scale|textht|textwid)\\b"
-				},
-				{
-					"name": "variable.language.backreference.pic.roff",
-					"match": "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \t]+last)?)\\b",
-					"captures": {
-						"0": {
-							"name": "entity.name.pic.roff"
-						}
-					}
-				},
-				{
-					"match": "([A-Z][^#\\s:]*)(:)",
+					"name": "meta.set-variable.eqn.gnu.roff",
+					"match": "(?x)\\b(set)[ \t]+\n(accent_width|axis_height|baseline_sep|big_op_spacing[1-5]|body_depth|body_height|column_sep\n|default_rule_thickness|delimiter_factor|delimiter_shortfall|denom[12]|draw_lines|fat_offset\n|matrix_side_sep|medium_space|minimum_size|nroff|null_delimiter_space|num[12]|over_hang\n|script_space|shift_down|su[bp]_drop|sub[12]|sup[1-3]|thick_space|thin_space|x_height)\\b",
 					"captures": {
 						"1": {
-							"name": "storage.type.label.pic.roff"
+							"name": "storage.type.var.eqn.roff"
 						},
 						"2": {
-							"name": "punctuation.separator.key-value.pic.roff"
+							"name": "variable.other.mathml.eqn.roff"
 						}
 					}
-				},
-				{
-					"name": "variable.other.pic.roff",
-					"match": "(?!\\d)\\w+"
-				},
-				{
-					"name": "punctuation.delimiter.period.full-stop.pic.roff",
-					"match": "\\.(?!\\d)"
-				},
-				{
-					"include": "#escapes"
 				},
 				{
 					"include": "#string"
-				},
-				{
-					"include": "#number"
 				}
 			]
 		},
@@ -4419,6 +4768,15 @@
 					},
 					"patterns": [
 						{
+							"begin": "^(?=\\.)",
+							"end": "^(?=[.'][ \t]*TE\\b)",
+							"patterns": [
+								{
+									"include": "$self"
+								}
+							]
+						},
+						{
 							"match": "^(.+)(;)$",
 							"captures": {
 								"1": {
@@ -4428,7 +4786,7 @@
 											"name": "punctuation.separator.comma.tbl.roff"
 										},
 										{
-											"match": "\\b(center|expand|box|allbox|doublebox)\\b",
+											"match": "\\b(center|centre|expand|box|allbox|doublebox)\\b",
 											"name": "constant.language.$1.tbl.roff"
 										},
 										{
@@ -4544,6 +4902,188 @@
 				},
 				{
 					"include": "$self"
+				}
+			]
+		},
+		"refer": {
+			"patterns": [
+				{
+					"name": "comment.line.refer.roff",
+					"begin": "#",
+					"end": "$",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.refer.roff"
+						}
+					}
+				},
+				{
+					"name": "variable.other.readonly.author-names.refer.roff",
+					"match": "@"
+				},
+				{
+					"name": "meta.structure.dictionary.refer.roff",
+					"contentName": "meta.structure.dictionary.value.refer.rofff",
+					"begin": "^([.'])?\\s*(%)([A-Z])(?=\\s)",
+					"end": "(?<!\\\\)$",
+					"patterns": [
+						{
+							"name": "string.unquoted.refer.roff",
+							"begin": "\\G",
+							"end": "(?<!\\\\)$",
+							"patterns": [
+								{
+									"name": "meta.symbol.refer.roff",
+									"match": "[-+'\"<>\\].*\\[~!&?:]"
+								},
+								{
+									"include": "#refer"
+								}
+							]
+						},
+						{
+							"include": "#escapes"
+						}
+					],
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.macro.mdoc.roff"
+						},
+						"2": {
+							"name": "punctuation.definition.percentage-sign.refer.roff"
+						},
+						"3": {
+							"name": "variable.other.readonly.key-letter.refer.roff"
+						}
+					}
+				},
+				{
+					"name": "string.quoted.single.refer.roff",
+					"begin": "'",
+					"end": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.roff"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.roff"
+						}
+					}
+				},
+				{
+					"name": "variable.other.readonly.formatted.refer.roff",
+					"match": "(%+)[\\daiA-Z]",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.percentage-sign.refer.roff"
+						}
+					}
+				},
+				{
+					"name": "keyword.operator.label-expression.refer.roff",
+					"match": "(?x)\n(?<=\\S)(?:\\*|[-+]\\d+|(\\.)(?:[-+]?y|[lucran]))(?=\\s|$) |\n(?<=\\S)[~!&?:](?=\\S)",
+					"captures": {
+						"1": {
+							"name": "punctuation.separator.period.full-stop.refer.roff"
+						}
+					}
+				},
+				{
+					"begin": "<",
+					"end": ">|^(?=\\.\\])",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.angle.refer.roff"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.angle.refer.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#refer"
+						}
+					]
+				},
+				{
+					"begin": "\\(",
+					"end": "\\)|^(?=\\.\\])",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.bracket.round.refer.roff"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.bracket.round.refer.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#refer"
+						}
+					]
+				},
+				{
+					"name": "keyword.operator.negatable.refer.roff",
+					"match": "(?x)\\b\n(?:no-)?\n(?:abbreviate|abbreviate-label-ranges|accumulate|annotate|compatible|date-as-label\n|default-database|discard|et-al|label-in-reference|label-in-text|move-punctuation\n|reverse|search-ignore|search-truncate|short-label|sort|sort-adjacent-labels)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.function.name.refer.roff"
+						}
+					}
+				},
+				{
+					"name": "keyword.operator.refer.roff",
+					"match": "\\b(articles|bibliography|capitalize|join-authors|label|separate-label-second-parts)\\b",
+					"captures": {
+						"0": {
+							"name": "entity.function.name.refer.roff"
+						}
+					}
+				},
+				{
+					"begin": "^\\s*\\b(database|include)\\b",
+					"end": "(?<!\\\\)$",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.operator.refer.roff"
+						},
+						"1": {
+							"name": "entity.function.name.refer.roff"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#escapes"
+						},
+						{
+							"name": "string.unquoted.filename.refer.roff",
+							"match": "((?:[^\\\\\\s]|\\\\(?!\").)+)",
+							"captures": {
+								"0": {
+									"name": "markup.link.underline.refer.roff"
+								},
+								"1": {
+									"patterns": [
+										{
+											"include": "#escapes"
+										}
+									]
+								}
+							}
+						}
+					]
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#escapes"
 				}
 			]
 		}
