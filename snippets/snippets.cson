@@ -44,7 +44,103 @@
 		body: ".ie ${1:COND} \\\\{\\\\\n.\t$2\n.\\\\}\n.el \\\\{\\\\\n.\t$3\n.\\\\}"
 		description: "Multiline `if/else` block"
 		leftLabel: ".ie"
+	
+	
+	# Manual pages
+	manpage:
+		prefix: "manpage"
+		body: """
+			.TH ${1:PROGNAME} 1
+			.SH NAME
+			${1:progname} \\- ${2:short description}
+			.SH SYNOPSIS
+			.B ${1:progname}
+			${3:[command-line options]
+			.\\\\" TIP: Use the `opt` snippet to insert options here}
+			.SH DESCRIPTION
+			${4:-- Extended description --}
+			.SH OPTIONS
+			${5:-- Options --}
+			.SH EXAMPLES
+			${6:-- Examples --}
+			$7
+		"""
+		leftLabel: "man"
+		description: "Template for a basic manual-page"
+		descriptionMoreURL: "http://liw.fi/manpages/"
+	
+	opt:
+		prefix: "opt"
+		body: "[\\\\fB\\\\-${1:o}\\\\fR \\\\fI${2:value}\\\\fR]\n$3"
+		leftLabel: "man"
+		description: "Short option: [-o value]"
+	
+	optl:
+		prefix: "optl"
+		body: "[\\\\fB\\\\-\\\\-${1:option}\\\\fR \\\\fI${2:value}\\\\fR]\n$3"
+		leftLabel: "man"
+		description: "Long option: [--option value]"
+	
+	optinfo:
+		prefix: "optinfo"
+		body: '.TP\n.BI \\\\-${1:o} " ${2:value}" \\\\fR, "\\\\fB \\\\-\\\\-${3:option}" \\\\fR=\\\\fI${2:value}\\\\fR\n${4:Description}\n$5'
+		leftLabel: "man"
+		description: "Extended information about an option"
+		descriptionMoreURL: "http://liw.fi/manpages/"
+	
+	
+	# Code snippets for manpages
+	".code":
+		prefix: ".code"
+		body: ".PP\n.nf\n.RS\n.ft C\n${1:Enter code block here}\n.ft\n.RE\n.fi\n.PP"
+		leftLabel: "man"
+		description: "Block of example code"
+		descriptionMoreURL: "http://liw.fi/manpages/"
+	
+	code:
+		prefix: "code"
+		body: ".PP\n.nf\n.RS\n.ft C\n${1:Enter code block here}\n.ft\n.RE\n.fi\n.PP"
+		leftLabel: "man"
+		description: "Block of example code"
+		descriptionMoreURL: "http://liw.fi/manpages/"
+		
 
+
+	# Mandoc template
+	mandoc:
+		prefix: "mandoc"
+		body: """
+			.Dd $Mdocdate$
+			.Dt ${1:PROGNAME} 1
+			.Os 
+			.Sh NAME
+			.Nm ${1:progname}
+			.Nd ${2:Short description}
+			.Sh SYNOPSIS
+			.Nm ${1:progname}
+			.Op Fl ${3:options}
+			.Ar ${4:arguments}
+			.Sh DESCRIPTION
+			${5:-- Text --}
+			.Sh ENVIRONMENT
+			${6:-- Text --}
+			.Sh FILES
+			${7:-- Text --}
+			.Sh EXIT STATUS
+			${8:-- Text --}
+			.Sh EXAMPLES
+			${9:-- Text --}
+			.Sh DIAGNOSTICS
+			${10:-- Text --}
+			.Sh ERRORS
+			${11:-- Text --}
+			.Sh SEE ALSO
+			.Xr ${12:manpage} 1
+			$13
+		"""
+		leftLabel: "mdoc"
+		description: "Skeleton for a mandoc manual page"
+		descriptionMoreURL: "http://mdocml.bsd.lv/man/mdoc.7.html"
 
 
 ".source.pic":
