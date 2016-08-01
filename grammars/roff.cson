@@ -1728,7 +1728,8 @@ repository:
 			name: "markup.heading.title.function.man.macro.roff"
 			patterns: [include: "#param-group"]
 			begin: "^([.'])[ \t]*(TH)(?=\\s)"
-			end: "$|(?=\\\\\")"
+			end: "(?<!\\\\)$|(?=\\\\\")"
+			patterns: [include: "#escapes"]
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1739,7 +1740,8 @@ repository:
 			name: "markup.heading.section.function.man.macro.roff"
 			patterns: [include: "#param-group"]
 			begin: "^([.'])[ \t]*(SH)(?=\\s)"
-			end: "$|(?=\\\\\")"
+			end: "(?<!\\\\)$|(?=\\\\\")"
+			patterns: [include: "#escapes"]
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1750,7 +1752,8 @@ repository:
 			name: "markup.heading.subsection.function.man.macro.roff"
 			patterns: [include: "#param-group"]
 			begin: "^([.'])[ \t]*(SS)(?=\\s)"
-			end: "$|(?=\\\\\")"
+			end: "(?<!\\\\)$|(?=\\\\\")"
+			patterns: [include: "#escapes"]
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
