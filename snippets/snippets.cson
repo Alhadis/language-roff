@@ -141,6 +141,15 @@
 		leftLabel: "mdoc"
 		description: "Skeleton for a mandoc manual page"
 		descriptionMoreURL: "http://mdocml.bsd.lv/man/mdoc.7.html"
+	
+	
+	# Table template
+	tbl:
+		prefix: "tbl"
+		body: ".TS\nallbox;\nl c c .\n${1:Header1}\t${2:Header2}\t${3:Header3}\n${4:Body1\tBody2\tBody3}\n.TE\n"
+		leftLabel: "tbl"
+		description: "Template for a 3-column bordered table"
+		descriptionMoreURL: "http://linux.die.net/man/1/tbl"
 
 
 ".source.pic":
