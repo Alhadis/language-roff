@@ -259,14 +259,15 @@ repository:
 			
 			# String definition
 			name: "meta.function.request.$2.roff"
-			begin: "^([.'])[ \t]*((ds1?)|(as1?))[ \t]*(\\S+)?[ \t]*(.*)$"
+			begin: "^([.'])[ \t]*([ad]s1?)[ \t]*(((?:[^\\s\\\\]|\\\\(?!\").)+))?"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
-				1: {name: "punctuation.definition.request.roff"}
-				3: {name: "storage.type.var.roff"}
-				4: {name: "entity.name.function.roff"}
-				5: {name: "variable.parameter.roff"}
-				6: {patterns: [include: "#param-group"]}
+				1: name: "punctuation.definition.request.roff"
+				2: name: "storage.type.var.roff"
+				3: name: "variable.parameter.roff"
+				4: name: "entity.name.roff", patterns: [include: "#escapes"]
+			contentName: "string.unquoted.roff"
+			patterns: [include: "#escapes"]
 		},{
 			
 			# Three-part title
