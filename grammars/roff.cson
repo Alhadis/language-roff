@@ -168,7 +168,7 @@ repository:
 			
 			# .class: Assign a name to a range of characters (GNU)
 			name: "meta.function.request.assign-class.gnu.roff"
-			begin: "^([.'])[ \t]*(class)\\b[ \t]*(\\S+)?"
+			begin: "^([.'])[ \t]*(class)[ \t]+(\\S+)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -196,7 +196,7 @@ repository:
 			
 			# .defcolor: Define colour (GNU)
 			name: "meta.function.request.define-colour.gnu.roff"
-			begin: "^([.'])[ \t]*(defcolor)\\b[ \t]*((?:[^\\s\\\\]|\\\\(?![\"#]).)*)[ \t]*(rgb|cmyk?|gr[ae]y)?"
+			begin: "^([.'])[ \t]*(defcolor)(?=\\s)[ \t]*((?:[^\\s\\\\]|\\\\(?![\"#]).)*)[ \t]*(rgb|cmyk?|gr[ae]y)?"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\[\"#])"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -214,7 +214,7 @@ repository:
 		},{
 			
 			# Requests for controlling program flow (GNU)
-			begin: "^([.'])[ \t]*(break|continue|return|while)\\b"
+			begin: "^([.'])[ \t]*(break|continue|return|while)(?=\\s)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			patterns: [include: "#param-group"]
 			beginCaptures:
@@ -272,7 +272,7 @@ repository:
 			
 			# Three-part title
 			name: "meta.function.request.$2.roff"
-			begin: "^([.'])[ \t]*(tl)\\b"
+			begin: "^([.'])[ \t]*(tl)(?=\\s)"
 			end:   "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -524,8 +524,8 @@ repository:
 			
 			# No terminator given
 			contentName: "comment.block.ignored-input.roff"
-			begin: "^([.'])[ \t]*(ig)\\b(.*)$"
-			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
+			begin: "^([.'])[ \t]*(ig)(?=\\s|\\\\[\"#])(.*)$"
+			end:   "^([.'])[ \t]*\\.(?=\\s|\\\\[\"#])"
 			patterns: [include: "#register-expansion"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
@@ -1176,7 +1176,7 @@ repository:
 			
 			# .Bf [ -emphasis | Em ]: Begin emphasised text
 			name: "meta.function.begin-emphasis.unparsed.macro.mdoc.roff"
-			begin: "^([.'])\\s*(Bf)[ \t]+(-emphasis|Em)\\b(.*)"
+			begin: "^([.'])\\s*(Bf)[ \t]+(-emphasis|Em)(?=\\s)(.*)"
 			end:   "^(?=[.']\\s*[BE]f\\s)"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.roff"
@@ -1191,7 +1191,7 @@ repository:
 
 			# .Bf [ -literal | Li ]: Begin literal text
 			name: "meta.function.begin-literal.unparsed.macro.mdoc.roff"
-			begin: "^([.'])\\s*(Bf)[ \t]+(-literal|Li)\\b(.*)"
+			begin: "^([.'])\\s*(Bf)[ \t]+(-literal|Li)(?=\\s)(.*)"
 			end:   "^(?=[.']\\s*[BE]f\\s)"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.roff"
@@ -1206,7 +1206,7 @@ repository:
 			
 			# .Bf [ -symbolic | Sy ]: Begin symbolic text
 			name: "meta.function.begin-symbolic.unparsed.macro.mdoc.roff"
-			begin: "^([.'])\\s*(Bf)[ \t]+(-symbolic|Sy)\\b(.*)"
+			begin: "^([.'])\\s*(Bf)[ \t]+(-symbolic|Sy)(?=\\s)(.*)"
 			end:   "^(?=[.']\\s*[BE]f\\s)"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.roff"
@@ -1220,8 +1220,8 @@ repository:
 		},{
 			
 			# .Rs/.Re: Bibliographic block
-			begin: "^([.'])\\s*(Rs)\\b(.*)$"
-			end:   "^([.'])\\s*(Re)\\b"
+			begin: "^([.'])\\s*(Rs)(?=\\s)(.*)$"
+			end:   "^([.'])\\s*(Re)(?=\\s)"
 			patterns: [include: "#refer"]
 			contentName: "meta.citation.mdoc.roff"
 			beginCaptures:
@@ -1237,7 +1237,7 @@ repository:
 			
 			# Unparsed macros: passing callable macros as arguments won't invoke them
 			name: "meta.function.$2.unparsed.macro.mdoc.roff"
-			begin: "^([.'])\\s*(%[ABCDIJNOPQRTUV]|B[dfklt]|br|D[bdt]|E[dfklx]|F[do]|Hf|In|L[bp]|Nd|Os|Pp|R[esv]|Sm|sp|Ud)\\b"
+			begin: "^([.'])\\s*(%[ABCDIJNOPQRTUV]|B[dfklt]|br|D[bdt]|E[dfklx]|F[do]|Hf|In|L[bp]|Nd|Os|Pp|R[esv]|Sm|sp|Ud)(?=\\s)"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.roff"
@@ -1255,7 +1255,8 @@ repository:
 				(Ac|Ad|An|Ao|Ap|Aq|Ar|At|Bc|Bo|Bq|Brc|Bro|Brq|Bsx|Bx|Cd|Cm|D1|Dc
 				|Dl|Do|Dq|Dv|Dx|Ec|Em|En|Eo|Eq|Er|Es|Ev|Fa|Fc|Fl|Fn|Fr|Ft|Fx|Ic
 				|It|Li|Lk|Me|Ms|Mt|Nm|No|Ns|Nx|Oc|Oo|Op|Ot|Ox|Pa|Pc|Pf|Po|Pq|Qc
-				|Ql|Qo|Qq|Rd|Sc|Sh|So|Sq|Ss|St|Sx|Sy|Ta|Tn|Ux|Va|Vt|Xc|Xo|Xr)\\b"""
+				|Ql|Qo|Qq|Rd|Sc|Sh|So|Sq|Ss|St|Sx|Sy|Ta|Tn|Ux|Va|Vt|Xc|Xo|Xr)
+				(?=\\s)"""
 			end: "(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.roff"
@@ -1385,7 +1386,7 @@ repository:
 					(?<=\\s) (-)
 					(alpha|beta|bullet|centered|column|compact|dash|devel|diag|emphasis|enum|file|filled|hang
 					|hyphen|inset|item|literal|nested|nosplit|ohang|ragged|split|std|symbolic|tag|type|unfilled
-					|width|words|offset(?:\\s+(?:left|center|indent|indent-two|right))?)\\b"""
+					|width|words|offset(?:\\s+(?:left|center|indent|indent-two|right))?)(?=\\s)"""
 				captures: 1: name: "punctuation.definition.dash.roff"
 			}]
 
@@ -1398,7 +1399,7 @@ repository:
 			begin: "(?x) ^([.'])[ \t]*
 				(1C|2C|AB|AE|AI|AU|B1|B2|BT|BX|DA|DE|DS|EN|EQ|FE|FS|IP|KE|KF|KS|LG
 				|LP|MC|ND|NH|NL|P1|PE|PP|PS|PT|PX|QP|RP|SH|SM|TA|TC|TE|TL|TS|XA|XE
-				|XP|XS)\\b"
+				|XP|XS)(?=\\s)"
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1409,7 +1410,7 @@ repository:
 			# Headers and footers
 			name: "meta.function.${2:/downcase}.ms.macro.roff"
 			contentName: "function-call.arguments.roff"
-			begin: "^([.'])[ \t]*([EO][FH])\\b"
+			begin: "^([.'])[ \t]*([EO][FH])(?=\\s)"
 			end:   "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1424,7 +1425,7 @@ repository:
 			# Deprecated macros
 			name: "meta.deprecated.function.${2:/downcase}.ms.macro.roff"
 			contentName: "function-call.arguments.roff"
-			begin: "^([.'])[ \t]*((De|Ds))\\b"
+			begin: "^([.'])[ \t]*((De|Ds))(?=\\s)"
 			end: "(?<!\\\\)$|(?=\\s*\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1438,7 +1439,7 @@ repository:
 		
 			# Monospaced/constant-width text
 			name: "meta.function.cw.ms.macro.roff"
-			begin: "^([.'])[ \t]*(CW)\\b"
+			begin: "^([.'])[ \t]*(CW)(?=\\s)"
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1478,7 +1479,7 @@ repository:
 			
 			# Underlined text
 			name: "meta.function.ul.ms.macro.roff"
-			begin: "^([.'])[ \t]*(UL)\\b"
+			begin: "^([.'])[ \t]*(UL)(?=\\s)"
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1498,7 +1499,7 @@ repository:
 				|IND|INDP|ISODATE|LB|LC|LE|LI|LT|LO|MC|ML|MT|MOVE|MULB|MULN|MULE
 				|nP|NCOL|NS|ND|OF|OH|OP|PGFORM|PGNH|PIC|PE|PF|PH|PS|PX?|RD|RF|RL
 				|RP|RS|S|SA|SETR|SG|SK|SM|SP|TA?B|TC|TE|TL|TM|TP|TS|TX|TY|VERBON
-				|VERBOFF|VL|VM|WA|WE|WC|\\)E)\\b"
+				|VERBOFF|VL|VM|WA|WE|WC|\\)E)(?=\\s)"
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1516,7 +1517,7 @@ repository:
 			begin: "(?x) ^([.'])[ \t]*
 				((?:[()][cdfqxz]|\\+\\+|\\+c)|
 				(1c|2c|EN|EQ|GE|GS|PE|PS|TE|TH|TS|ba|bc|bu|bx|hx
-				|hl|ip|lp|np|pd|pp|r|re|sk|sm|sz|tp|uh|xp)\\b)"
+				|hl|ip|lp|np|pd|pp|r|re|sk|sm|sz|tp|uh|xp)(?=\\s))"
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1525,8 +1526,8 @@ repository:
 		},{
 			
 			# .(l: List
-			begin: "^([.'])[ \t]*(\\(l)\\b[ \t]*(?=$|\\n|\\\\[#\"])"
-			end:   "^([.'])[ \t]*(\\)l)\\b"
+			begin: "^([.'])[ \t]*(\\(l)(?=\\s)"
+			end:   "^([.'])[ \t]*(\\)l)(?=\\s)"
 			contentName: "markup.list.unnumbered.roff"
 			patterns: [include: "$self"]
 			beginCaptures:
@@ -1540,7 +1541,7 @@ repository:
 		},{
 			
 			# .b: Bold
-			begin: "^([.'])[ \t]*(b)\\b"
+			begin: "^([.'])[ \t]*(b)(?=\\s)"
 			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
 			contentName: "function-call.arguments.roff"
 			beginCaptures:
@@ -1551,7 +1552,7 @@ repository:
 		},{
 			
 			# .i: Italic
-			begin: "^([.'])[ \t]*(i)\\b"
+			begin: "^([.'])[ \t]*(i)(?=\\s)"
 			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
 			contentName: "function-call.arguments.roff"
 			beginCaptures:
@@ -1562,7 +1563,7 @@ repository:
 		},{
 			
 			# .bi: Bold/Italic
-			begin: "^([.'])[ \t]*(bi)\\b"
+			begin: "^([.'])[ \t]*(bi)(?=\\s)"
 			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
 			contentName: "function-call.arguments.roff"
 			beginCaptures:
@@ -1573,7 +1574,7 @@ repository:
 		},{
 			
 			# .u: Underline
-			begin: "^([.'])[ \t]*(u)\\b"
+			begin: "^([.'])[ \t]*(u)(?=\\s)"
 			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\n)|(?=\\\\\")"
 			contentName: "function-call.arguments.roff"
 			beginCaptures:
@@ -1597,7 +1598,7 @@ repository:
 			# Headers and footers
 			name: "meta.function.${2:/downcase}.me.macro.roff"
 			contentName: "function-call.arguments.roff"
-			begin: "^([.'])[ \t]*(of|oh|he|eh|fo|ef)\\b"
+			begin: "^([.'])[ \t]*(of|oh|he|eh|fo|ef)(?=\\s)"
 			end:   "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1617,7 +1618,7 @@ repository:
 			name: "meta.function.${2:/downcase}.www.macro.roff"
 			begin: "(?x) ^([.'])[ \t]*
 				(ALN|BCL|BGIMG|DC|DLE|DLS|HEAD|HR|HTM?L|HX|JOBNAME
-				|LI|LINKSTYLE|LK|LNE|LNS|MPIMG|NHR|P?IMG|TAG)\\b"
+				|LI|LINKSTYLE|LK|LNE|LNS|MPIMG|NHR|P?IMG|TAG)(?=\\s)"
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1627,7 +1628,7 @@ repository:
 			
 			# Macros that take URIs as their first argument
 			name: "meta.function.${2:/downcase}.www.macro.roff"
-			begin: "^([.'])[ \t]*(URL|FTP|MTO)\\b"
+			begin: "^([.'])[ \t]*(URL|FTP|MTO)(?=\\s)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1638,8 +1639,8 @@ repository:
 			# Code blocks
 			name: "meta.function.${2:/downcase}.www.macro.roff"
 			contentName: "markup.raw.roff"
-			begin: "^([.'])[ \t]*(CDS)\\b\\s*(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \t]*(CDE)\\b"
+			begin: "^([.'])[ \t]*(CDS)(?=\\s|\\\\[\"#])\\s*(\\\\[#\"].*)?$"
+			end:   "^([.'])[ \t]*(CDE)(?=\\s|\\\\[\"#])"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
@@ -1653,8 +1654,8 @@ repository:
 			# Headings
 			name: "markup.heading.$3.www.macro.roff"
 			contentName: "string.unquoted.heading.roff"
-			begin: "^([.'])[ \t]*(HnS)\\b(?:\\s*(\\d+))?(?:\\s*(\\\\[#\"].*)$)?"
-			end:   "^([.'])[ \t]*(HnE)\\b(.*)$"
+			begin: "^([.'])[ \t]*(HnS)(?=\\s)(?:\\s*(\\d+))?(?:\\s*(\\\\[#\"].*)$)?"
+			end:   "^([.'])[ \t]*(HnE)(?=\\s)(.*)$"
 			beginCaptures:
 				0: {name: "meta.function.${2:/downcase}.macro.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1671,8 +1672,8 @@ repository:
 			# Ordered lists
 			name: "meta.function.${2:/downcase}.www.macro.roff"
 			contentName: "markup.list.ordered.roff"
-			begin: "^([.'])[ \t]*(OLS)\\b\\s*(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \t]*(OLE)\\b"
+			begin: "^([.'])[ \t]*(OLS)(?=\\s)\\s*(\\\\[#\"].*)?$"
+			end:   "^([.'])[ \t]*(OLE)(?=\\s)"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
@@ -1686,8 +1687,8 @@ repository:
 			# Unordered lists
 			name: "meta.function.${2:/downcase}.www.macro.roff"
 			contentName: "markup.list.ordered.roff"
-			begin: "^([.'])[ \t]*(ULS)\\b\\s*(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \t]*(ULE)\\b"
+			begin: "^([.'])[ \t]*(ULS)(?=\\s)\\s*(\\\\[#\"].*)?$"
+			end:   "^([.'])[ \t]*(ULE)(?=\\s)"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
@@ -1706,7 +1707,7 @@ repository:
 			
 			# Various macros that don't need special highlighting
 			name: "meta.function.${2:/downcase}.man.macro.roff"
-			begin: "^([.'])[ \t]*(RE|RS|SM|BT|PT)\\b"
+			begin: "^([.'])[ \t]*(RE|RS|SM|BT|PT)(?=\\s)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1716,7 +1717,7 @@ repository:
 		
 			# Various deprecated macros
 			name: "meta.deprecated.function.${2:/downcase}.man.macro.roff"
-			begin: "^([.'])[ \t]*((AT|DT|PD|UC))\\b"
+			begin: "^([.'])[ \t]*((AT|DT|PD|UC))(?=\\s)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1727,7 +1728,7 @@ repository:
 			# .TH: Title
 			name: "markup.heading.title.function.man.macro.roff"
 			patterns: [include: "#param-group"]
-			begin: "^([.'])[ \t]*(TH)\\b"
+			begin: "^([.'])[ \t]*(TH)(?=\\s)"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1738,7 +1739,7 @@ repository:
 			# .SH: Section heading
 			name: "markup.heading.section.function.man.macro.roff"
 			patterns: [include: "#param-group"]
-			begin: "^([.'])[ \t]*(SH)\\b"
+			begin: "^([.'])[ \t]*(SH)(?=\\s)"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1749,7 +1750,7 @@ repository:
 			# .SS: Subsection
 			name: "markup.heading.subsection.function.man.macro.roff"
 			patterns: [include: "#param-group"]
-			begin: "^([.'])[ \t]*(SS)\\b"
+			begin: "^([.'])[ \t]*(SS)(?=\\s)"
 			end: "$|(?=\\\\\")"
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1760,7 +1761,7 @@ repository:
 			# .EX: Example code
 			contentName: "markup.raw.roff"
 			begin: "^([.'])[ \t]*(EX)\\s*(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \t]*(EE)\\b"
+			end:   "^([.'])[ \t]*(EE)(?=\\s|\\\\[#\"])"
 			patterns: [{ include: "$self" }]
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1775,7 +1776,7 @@ repository:
 			
 			# .LP/.PP/.P: Paragraph
 			name: "meta.function.paragraph.man.macro.roff"
-			begin: "^([.'])[ \t]*(LP|PP?)\\b"
+			begin: "^([.'])[ \t]*(LP|PP?)(?=\\s|\\\\[\"#])"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1785,7 +1786,7 @@ repository:
 			
 			# .IP: Indented paragraph
 			name: "meta.function.indented-paragraph.man.macro.roff"
-			begin: "^([.'])[ \t]*(IP)\\b"
+			begin: "^([.'])[ \t]*(IP)(?=\\s|\\\\[\"#])"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1794,7 +1795,7 @@ repository:
 		},{
 			
 			# .TP: Titled paragraph
-			begin: "^([.'])[ \t]*(TP)\\b(.*)?$\\n?"
+			begin: "^([.'])[ \t]*(TP)(?=\\s|\\\\[\"#])(.*)?$\\n?"
 			end:   "^(.*)(?<!\\\\)$"
 			patterns: [
 				match: ".+"
@@ -1812,7 +1813,7 @@ repository:
 			# .TQ: Header continuation for .TP (GNU extension)
 			name: "markup.list.unnumbered.man.macro.gnu.roff"
 			begin: "^([.'])[ \t]*(TQ)[ \t]*(\\\\[#\"].*)?$"
-			end:   "^(?=[.'][ \t]*TP\\b)"
+			end:   "^(?=[.'][ \t]*TP(?:\\s|\\\\[#\"]))"
 			beginCaptures:
 				0: {name: "meta.function.header-continuation.man.macro.gnu.roff"}
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1822,7 +1823,7 @@ repository:
 		},{
 			# .HP: Hanging paragraph (deprecated)
 			name: "meta.deprecated.function.hanging-paragraph.man.macro.roff"
-			begin: "^([.'])[ \t]*((HP))\\b"
+			begin: "^([.'])[ \t]*((HP))(?=\\s|\\\\[\"#])"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1833,8 +1834,8 @@ repository:
 			
 			# .MT/.ME: Hyperlink (GNU extension)
 			name: "meta.function.mailto.hyperlink.man.macro.gnu.roff"
-			begin: "^([.'])[ \t]*(MT)\\b"
-			end:   "^([.'])[ \t]*(ME)\\b(.*)\\s*(\\\\\".*)?$"
+			begin: "^([.'])[ \t]*(MT)(?=\\s|\\\\[\"#])"
+			end:   "^([.'])[ \t]*(ME)(?=\\s|\\\\[\"#])(.*)\\s*(\\\\[\"#].*)?$"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.gnu.roff"}
 				2: {name: "entity.function.name.gnu.roff"}
@@ -1848,8 +1849,8 @@ repository:
 			
 			# .UR/.UE: URL (GNU extension)
 			name: "meta.function.hyperlink.man.macro.gnu.roff"
-			begin: "^([.'])[ \t]*(UR)\\b"
-			end:   "^([.'])[ \t]*(UE)\\b(.*)\\s*(\\\\\".*)?$"
+			begin: "^([.'])[ \t]*(UR)(?=\\s|\\\\[\"#])"
+			end:   "^([.'])[ \t]*(UE)(?=\\s|\\\\[\"#])(.*)\\s*(\\\\[\"#].*)?$"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.gnu.roff"}
 				2: {name: "entity.function.name.gnu.roff"}
@@ -1863,8 +1864,8 @@ repository:
 			
 			# .SY: Command synopsis (GNU extension)
 			name: "meta.command-synopsis.roff"
-			begin: "^([.'])[ \t]*(SY)\\b"
-			end:   "^([.'])[ \t]*(YS)\\b"
+			begin: "^([.'])[ \t]*(SY)(?=\\s|\\\\[\"#])"
+			end:   "^([.'])[ \t]*(YS)(?=\\s|\\\\[\"#])"
 			beginCaptures:
 				0: {name: "meta.function.begin.synopsis.man.macro.gnu.roff"}
 				1: {name: "punctuation.definition.macro.gnu.roff"}
@@ -1877,7 +1878,7 @@ repository:
 				
 				# .OP: Option description (GNU extension)
 				name: "meta.function.option-description.man.macro.gnu.roff"
-				begin: "^([.'])[ \t]*(OP)\\b"
+				begin: "^([.'])[ \t]*(OP)(?=\\s)"
 				end:   "(?<!\\\\)(?=\\n)|(?=\\\\\")"
 				beginCaptures:
 					1: {name: "punctuation.definition.macro.gnu.roff"}
@@ -1932,7 +1933,7 @@ repository:
 		patterns: [{
 			
 			# .BI: Bold + Italic
-			begin: "^([.'])[ \t]*(BI)\\b"
+			begin: "^([.'])[ \t]*(BI)(?=\\s)"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1947,7 +1948,7 @@ repository:
 		},{
 			
 			# .BR: Bold + Roman
-			begin: "^([.'])[ \t]*(BR)\\b"
+			begin: "^([.'])[ \t]*(BR)(?=\\s)"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1962,7 +1963,7 @@ repository:
 		},{
 			
 			# .IB: Italic + Bold
-			begin: "^([.'])[ \t]*(IB)\\b"
+			begin: "^([.'])[ \t]*(IB)(?=\\s)"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1977,7 +1978,7 @@ repository:
 		},{
 			
 			# .IR: Italic + Roman
-			begin: "^([.'])[ \t]*(IR)\\b"
+			begin: "^([.'])[ \t]*(IR)(?=\\s)"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -1992,7 +1993,7 @@ repository:
 		},{
 			
 			# .RB: Roman + Bold
-			begin: "^([.'])[ \t]*(RB)\\b"
+			begin: "^([.'])[ \t]*(RB)(?=\\s)"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -2007,7 +2008,7 @@ repository:
 		},{
 			
 			# .RI: Roman + Italic
-			begin: "^([.'])[ \t]*(RI)\\b"
+			begin: "^([.'])[ \t]*(RI)(?=\\s)"
 			end:   '(?<![^\\\\]\\\\|^\\\\)(?=\\n|$)|(?=\\\\")'
 			beginCaptures:
 				0: {name: "meta.function.man.macro.roff"}
@@ -2441,8 +2442,8 @@ repository:
 		patterns: [{
 			
 			# .TS/.TE: Tbl
-			begin: "^([.'])[ \t]*(TS)\\b(.*)"
-			end:   "^([.'])[ \t]*(TE)\\b"
+			begin: "^([.'])[ \t]*(TS)(?=\\s|\\\\[\"#])(.*)"
+			end:   "^([.'])[ \t]*(TE)(?=\\s|\\\\[\"#])"
 			contentName: "markup.other.table.preprocessor.tbl.roff"
 			patterns: [include: "#tbl"]
 			beginCaptures:
@@ -2457,8 +2458,8 @@ repository:
 		},{
 			
 			# .EQ/.EN: Eqn
-			begin: "^([.'])[ \t]*(EQ)\\b[ \t]*([LIC]\\b)?\\s*([^\\\\\"]+|\\\\[^\"])*(\\\\\".*)?$"
-			end:   "^([.'])[ \t]*(EN)\\b"
+			begin: "^([.'])[ \t]*(EQ)(?=\\s|\\\\[\"#])[ \t]*([LIC]\\b)?\\s*([^\\\\\"]+|\\\\[^\"])*(\\\\\".*)?$"
+			end:   "^([.'])[ \t]*(EN)(?=\\s|\\\\[\"#])"
 			contentName: "markup.other.math.preprocessor.eqn.roff"
 			patterns: [include: "#eqn"]
 			beginCaptures:
@@ -2500,8 +2501,8 @@ repository:
 				3: {name: "string.unquoted.closing-text.refer.roff", patterns: [include: "#escapes"]}
 		},{
 			# .GS/.GE: Gremlin pictures
-			begin: "^([.'])[ \t]*(GS)\\b(.*)$"
-			end:   "^([.'])[ \t]*(GE)\\b"
+			begin: "^([.'])[ \t]*(GS)(?=\\s|\\\\[\"#])(.*)$"
+			end:   "^([.'])[ \t]*(GE)(?=\\s|\\\\[\"#])"
 			beginCaptures:
 				0: name: "meta.function.begin.gremlin.macro.roff"
 				1: name: "punctuation.definition.macro.roff"
@@ -2591,7 +2592,7 @@ repository:
 			# Options/Formats
 			name: "meta.function-call.arguments.tbl.roff"
 			begin: "\\G|^((\\.)T&)[ \t]*$"
-			end:   "(\\.)$\\n?|^(?=[.'][ \t]*TE\\b)"
+			end:   "(\\.)$\\n?|^(?=[.'][ \t]*TE(?=\\s))"
 			beginCaptures:
 				1: {name: "entity.function.name.roff"}
 				2: {name: "punctuation.definition.macro.roff"}
@@ -2602,7 +2603,7 @@ repository:
 				
 				# Not preprocessor source; abandon ship
 				begin: "^(?=\\.)"
-				end: "^(?=[.'][ \t]*TE\\b)"
+				end: "^(?=[.'][ \t]*TE(?=\\s|\\\\[\"#]))"
 				patterns: [include: "$self"]},{
 				
 				
