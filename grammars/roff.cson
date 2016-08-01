@@ -158,7 +158,8 @@ repository:
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
 				|mso|nop|nroff|opena|open|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|sty|substring|tkf|tm1|tmc|trf
-				|trin|trnt|troff|unformat|vpt|warnscale|warn|writec|writem|write)"
+				|trin|trnt|troff|unformat|vpt|warnscale|warn|writec|writem|write)
+				(?=\\s|\\\\[\"#])"
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -229,7 +230,8 @@ repository:
 				(ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|dt|ec|em|eo
 				|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|in|it|lc|lg|lf|ll|ls|lt|mc
 				|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd|rm
-				|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)"
+				|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)
+				(?=\\s|\\d+\\s*$|\\\\[\"#])"
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -259,7 +261,7 @@ repository:
 			
 			# String definition
 			name: "meta.function.request.$2.roff"
-			begin: "^([.'])[ \t]*([ad]s1?)[ \t]*(((?:[^\\s\\\\]|\\\\(?!\").)+))?"
+			begin: "^([.'])[ \t]*([ad]s1?)[ \t]+(((?:[^\\s\\\\]|\\\\(?!\").)+))?"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
@@ -469,7 +471,7 @@ repository:
 			
 			# No terminator specified
 			name: "meta.function.definition.request.$2.roff"
-			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s*(\\S+?)?\\s*(\\\\[\"#].*)?$"
+			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s+(\\S+?)?\\s*(\\\\[\"#].*)?$"
 			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -485,7 +487,7 @@ repository:
 			
 			# Terminator included
 			name: "meta.function.definition.request.with-terminator.$2.roff"
-			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s*(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\[\"#]))?(.*)$"
+			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s+(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\[\"#]))?(.*)$"
 			end:   "^(\\.)[ \t]*((\\6)(?=$|\\s|\\\\(?:$|\")))"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
