@@ -1161,7 +1161,7 @@ repository:
 			
 			# Generic macro highlighting
 			name: "meta.function.macro.roff"
-			begin: "^([.'])[ \t]*(\\S+)"
+			begin: "^([.'])[ \t]*((?:[^\\s\\\\]|\\\\(?![#\"]).)+)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
