@@ -121,7 +121,7 @@ repository:
 	# Bracket-delimited long-name (GNU)
 	"long-name":
 		patterns: [{
-			name: "variable.parameter.roff"
+			name: "variable.parameter.other.roff"
 			begin: "\\G\\s*"
 			end:   "(?=\\]|\\s)"
 			patterns: [include: "#escapes"]
@@ -743,7 +743,7 @@ repository:
 			
 			# \*[xx args…] - Interpolate string "xx" with optional arguments (GNU)
 			name: "constant.character.escape.function.interpolate-string.gnu.roff"
-			begin: "((\\\\)\\*(\\[))([^\\]\\s]+)"
+			begin: "((\\\\)\\*(\\[))"
 			end: "(\\])|(?<!\\\\)(?=$)"
 			contentName: "function-call.arguments.roff"
 			patterns: [include: "#long-name"]
@@ -751,7 +751,6 @@ repository:
 				1: {name: "entity.name.roff"}
 				2: {name: "punctuation.definition.escape.roff"}
 				3: {name: "punctuation.section.begin.bracket.square.roff"}
-				4: {name: "variable.other.string.roff"}
 			endCaptures:
 				1: {name: "punctuation.section.end.bracket.square.roff"}
 		},{
