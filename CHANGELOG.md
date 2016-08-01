@@ -4,6 +4,21 @@ Change Log
 This project adheres to [Semantic Versioning](http://semver.org).
 
 
+[v1.2.1]
+------------------------------------------------------------------------
+**August 1st, 2016**  
+Patch for several highlighting-related bugs.
+
+* __Added:__ Snippet for inserting 3-column table
+* __Fixed:__ Comments not highlighted without preceding whitespace
+* __Fixed:__ Escape sequences not detected inside GNU long-names
+* __Fixed:__ Escape sequences not recognised in string definitions
+* __Fixed:__ Inconsistent highlighting applied to interpolated arguments
+* __Fixed:__ Macros matched as substrings of longer names
+* __Fixed:__ String definitions unable to span multiple lines
+* __Improved:__ Handling of requests without whitespace
+
+
 [v1.2.0]
 ------------------------------------------------------------------------
 **July 29th, 2016**  
@@ -43,6 +58,7 @@ Initial release. Adds syntax highlighting and language support for Roff.
 
 
 [Referenced links]:_____________________________________________________
+[v1.2.1]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.1
 [v1.2.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.0
 [v1.1.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.1.0
 [v1.0.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.0.0

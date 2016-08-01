@@ -1,6 +1,6 @@
 {
 	"name": "language-roff",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Atom support for Unix manual pages (Groff/Troff) and the historical RUNOFF language.",
 	"keywords": ["Roff", "Groff", "Troff", "Nroff", "RUNOFF", "DSR", "BSD", "Unix Manual Page", "Manpage", "man",
 		"mandoc", "mdoc", "Ditroff", "Eqn", "Pic", "Chem", "DFORMAT", "Grap", "Refer", "Tbl", "IDEAL", "grn", "Plan9"],
