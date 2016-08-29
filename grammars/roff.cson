@@ -38,11 +38,11 @@ firstLineMatch: """(?x)
 	|
 	
 	# Emacs modeline
-	(?i:-\\*-[^*]*(mode:\\s*)?\\b[gnt]?roff(\\s*;.*?)?\\s*-\\*-
+	(?i:-\\*-[^*]*(?:mode:\\s*)?\\b[gnt]?roff(?:\\s*;.*?)?\\s*-\\*-
 	|
 	
 	# Vim modeline
-	(?:vim?|ex):\\s*(?:set?.*\\s)?(?:syntax|filetype|ft)=[gn]roff\\s?(?:.*:)?)
+	(?:vim?|ex):\\s*(?:set?.*\\s)?(?:syntax|filetype|ft)=[gnt]?roff\\s?(?:.*:)?)
 """
 patterns: [{ include: "#main" }]
 
