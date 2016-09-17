@@ -117,7 +117,7 @@ repository:
 			# .LIT: Literal/monospaced text
 			contentName: "markup.raw.runoff"
 			begin: "(?i)((\\.)LIT)\\s*(?:$|\\n)"
-			end: "(?i)^(?=\\.EL(?:$|[\\s;!]))"
+			end: "(?i)^(?=\\.(?:EL|END\\s+LIT)(?:$|[\\s;!]))"
 			beginCaptures:
 				0: name: "keyword.function.name.runoff"
 				1: name: "entity.name.function.runoff"
