@@ -37,12 +37,20 @@ firstLineMatch: """(?x)
 	^'\\\\\"\\x20[tre]+(?=\\s|$)
 	|
 	
-	# Emacs modeline
-	(?i:-\\*-[^*]*(?:mode:\\s*)?\\b[gnt]?roff(?:\\s*;.*?)?\\s*-\\*-
-	|
-	
-	# Vim modeline
-	(?:vim?|ex):\\s*(?:set?.*\\s)?(?:syntax|filetype|ft)=[gnt]?roff\\s?(?:.*:)?)
+	# Modeline
+	(?i:
+		# Emacs
+		-\\*-(?:\\s*(?=[^:;\\s]+\\s*-\\*-)|(?:.*?[;\\s]|(?<=-\\*-))mode\\s*:\\s*)
+			[gnt]?roff
+		(?=[\\s;]|(?<![-*])-\\*-).*?-\\*-
+		
+		|
+		
+		# Vim
+		(?:(?:\\s|^)vi(?:m[<=>]?\\d+|m)?|\\sex)(?=:(?=\\s*set?\\s[^\\n:]+:)|:(?!\\s* set?\\s))(?:(?:\\s|\\s*:\\s*)\\w*(?:\\s*=(?:[^\\n\\\\\\s]|\\\\.)*)?)*[\\s:](?:filetype|ft|syntax)\\s*=
+			[gnt]?roff
+		(?=\\s|:|$)
+	)
 """
 patterns: [{ include: "#main" }]
 
