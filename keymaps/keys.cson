@@ -1,0 +1,4 @@
+"atom-text-editor[data-grammar^='text roff'],
+ atom-text-editor[data-grammar^='text runoff']":
+	"tab":       "language-roff:indent"
+	"shift-tab": "language-roff:outdent"
