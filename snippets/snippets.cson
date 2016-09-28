@@ -152,6 +152,14 @@
 		descriptionMoreURL: "http://linux.die.net/man/1/tbl"
 
 
+	# Debugging message
+	log:
+		prefix: "log"
+		body: ".tm ${1:Text}"
+		leftLabel: ".tm"
+		description: "Trace message to STDERR"
+
+
 ".source.pic":
 
 	# DFORMAT block
@@ -162,3 +170,22 @@
 	dformat:
 		prefix: "df"
 		body: ".begin dformat\nstyle $1\n.end"
+
+
+	# CHEM: Dextroamphetamine molecule
+	dextroamphetamine:
+		prefix: "dex"
+		body: """
+			.cstart
+				.ps 26
+				size 28
+			R1:
+				ring double 1,2 3,4 5,6
+				bond 60 from R1.V2
+				bond 120
+			A1:
+				front bond down ; CH3
+				bond 60 from A1 ; NH2
+				.ps
+			.cend
+			"""
