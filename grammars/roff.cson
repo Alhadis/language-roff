@@ -149,7 +149,7 @@ repository:
 			3: name: "punctuation.definition.string.begin.roff"
 			4: name: "entity.string.centre.roff", patterns: [include: "#escapes"]
 			5: name: "punctuation.definition.string.end.roff"
-			2: name: "entity.string.right.roff", patterns: [include: "#escapes"]
+			6: name: "entity.string.right.roff", patterns: [include: "#escapes"]
 			7: name: "punctuation.definition.string.end.roff"
 	
 	
