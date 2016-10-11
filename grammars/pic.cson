@@ -443,7 +443,10 @@ repository:
 		end:   '"'
 		beginCaptures: 0: name: "punctuation.definition.string.begin.pic"
 		endCaptures:   0: name: "punctuation.definition.string.end.pic"
-		patterns: [include: "text.roff#escapes"]
+		patterns: [
+			{match: "\\\\(?:[bCDhHlLNoSvwxX]|s[^\\d\\-+])"}
+			{include: "text.roff#escapes"}
+		]
 
 
 	# Lines which delimit regions of preprocessor source
