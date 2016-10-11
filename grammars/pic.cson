@@ -5,14 +5,8 @@ firstLineMatch: "^#[!/].*\\bpic2plot\\b"
 patterns: [
 	{include: "#binary"}
 	{include: "#tags"}
-	
-	# Unexpected Roff lines caught inside Pic
-	begin: "^(?=[.'][ \t]*(?:\\w|\\\\))"
-	end:   "(?<!\\\\)$|(\\\\\".*)$"
-	patterns: [include: "text.roff"]
-	endCaptures:
-		1: patterns: [include: "text.roff"]
-	
+	{include: "#embedded-roff"}
+	{include: "#embedded-latex"}
 	{include: "#main"}
 ]
 
@@ -229,6 +223,22 @@ repository:
 					}]
 			]
 		}]
+
+	# Embedded TeX source
+	"embedded-latex":
+		name: "source.embedded.tex.pic"
+		match: "^(?:\\\\\\w|%).*$"
+		captures:
+			0: patterns: [include: "text.tex"]
+			
+
+	# Unexpected Roff lines caught inside Pic
+	"embedded-roff":
+		begin: "^(?=[.'][ \t]*(?:\\w|\\\\))"
+		end:   "(?<!\\\\)$|(\\\\\".*)$"
+		patterns: [include: "text.roff"]
+		endCaptures:
+			1: patterns: [include: "text.roff"]
 
 
 	# Concealed newline
