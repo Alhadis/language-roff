@@ -3,6 +3,7 @@ scopeName: "source.pic"
 fileTypes: ["chem", "pic"]
 firstLineMatch: "^#[!/].*\\bpic2plot\\b"
 patterns: [
+	{include: "#binary"}
 	{include: "#tags"}
 	
 	# Unexpected Roff lines caught inside Pic
@@ -53,6 +54,13 @@ repository:
 		name: "variable.language.backreference.pic"
 		match: "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \t]+last)?)\\b"
 		captures: 0: name: "entity.name.pic"
+
+
+	# Lookahead to avoid highlighting binary .PIC files
+	binary:
+		name: "raw.binary.data"
+		begin: "^(?=.*[\\x00-\\x06])"
+		end: "(?=A)B"
 
 
 	# Booleans, used in DFORMAT and Grap
