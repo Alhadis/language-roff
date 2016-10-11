@@ -343,7 +343,7 @@ repository:
 
 	# Labelled position
 	label:
-		match: "([A-Z][^#\\s:]*)(:)"
+		match: "([A-Z][^#(\"\\s:]*)(:)"
 		captures:
 			1: name: "storage.type.label.pic"
 			2: name: "punctuation.separator.key-value.pic"
