@@ -59,7 +59,7 @@ repository:
 	# Lookahead to avoid highlighting binary .PIC files
 	binary:
 		name: "raw.binary.data"
-		begin: "^(?=.*[\\x00-\\x06\\uFFFD])"
+		begin: "^(?=.*[\\x00-\\x06\\x{FFFD}])"
 		end: "(?=A)B"
 
 
