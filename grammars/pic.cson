@@ -455,7 +455,12 @@ repository:
 		beginCaptures: 0: name: "punctuation.definition.string.begin.pic"
 		endCaptures:   0: name: "punctuation.definition.string.end.pic"
 		patterns: [{
-			match: "(?:[^\"\\\\]|\\\\.)+"
+			name: "constant.character.escape.pic"
+			match: '(\\\\)[\\\\"]'
+			captures:
+				1: name: "punctuation.definition.escape.pic"
+		},{
+			match: "(?:[^\"\\\\]|\\\\[^\"])+"
 			captures:
 				0: patterns: [include: "text.roff#escapes"]
 		}]
