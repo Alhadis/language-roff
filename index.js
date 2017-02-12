@@ -38,18 +38,18 @@ class LanguageRoff{
 			for(const range of ed.getSelectedBufferRanges()){
 				const {start, end} = range;
 				
-				/** No range selected; insert a single tab */
+				// No range selected; insert a single tab
 				if(0 === start.compare(end)){
 					const firstRange = [[start.row, 0], [start.row, 1]];
 					let firstChar;
 					
-					/** Check if cursor's sitting before a control character */
+					// Check if cursor's sitting before a control character
 					!start.column && (firstChar = ed.getTextInBufferRange(firstRange).match(/^[.']/))
 						? ed.setTextInBufferRange(firstRange, firstChar + tab)
 						: ed.setTextInBufferRange(range, tab);
 				}
 				
-				/** Indent each row this range covers */
+				// Indent each row this range covers
 				else for(let {row} = start; row <= end.row; ++row){
 					const range = [[row, 0], [row, 1]];
 					const first = ed.getTextInBufferRange(range);
@@ -74,7 +74,7 @@ class LanguageRoff{
 			const tab         = ed.getTabText();
 			const untab       = "(?:\t|\\x20{1," + ed.getTabLength() + "})";
 			const untabBefore = new RegExp("^" + untab, "g");
-			const untabAfter  = new RegExp("(?<=^[.'])" + untab, "g");
+			const untabAfter  = new RegExp("(^[.'])" + untab, "g");
 			
 			for(const range of ed.getSelectedBufferRanges()){
 				const {start, end} = range;
@@ -83,11 +83,11 @@ class LanguageRoff{
 					const range = [[row, 0], [row, tab.length + 1]];
 					const first = ed.getTextInBufferRange(range);
 					
-					/** Control line */
+					// Control line
 					if(/^[.']/.test(first))
-						ed.setTextInBufferRange(range, first.replace(untabAfter, ""));
+						ed.setTextInBufferRange(range, first.replace(untabAfter, "$1"));
 					
-					/** Normal line */
+					// Normal line
 					else if(/^\s/.test(first))
 						ed.setTextInBufferRange(range, first.replace(untabBefore, ""));
 				}
