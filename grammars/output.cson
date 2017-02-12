@@ -1,0 +1,304 @@
+name: "Roff (Intermediate Output)"
+scopeName: "text.roff.output"
+firstLineMatch: "^x\\s*T\\s+(dvi|html|lbp|lj4|ps|pdf|ascii|cp1047|latin1|utf8|X75|X75-12|X100|X100-12)(?=\\s|$)"
+patterns: [include: "#main"]
+
+repository:
+	main:
+		patterns: [
+			{include: "#comment"}
+			{include: "#deviceControl"}
+			{include: "#colourMode"}
+			{include: "#print"}
+			{include: "#font"}
+			{include: "#eol"}
+			{include: "#move"}
+			{include: "#size"}
+			{include: "#page"}
+			{include: "#graphics"}
+			{include: "#movePrint"}
+			{include: "#wordSpace"}
+		]
+
+	
+	# Change colour model (GNU extension)
+	colourMode:
+		patterns: [{
+			# Restore default
+			name: "meta.colour-mode.default.gnu.roff.output"
+			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(d)"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.function.roff.output"
+				3: name: "entity.name.subcommand.roff.output"
+				4: name: "constant.language.colour-scheme.roff.output"
+		},{
+			# RGB
+			name: "meta.colour-mode.rgb.gnu.roff.output"
+			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(r)((?:\\s*\\d+){3})"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.function.roff.output"
+				3: name: "entity.name.subcommand.roff.output"
+				4: name: "constant.language.colour-scheme.roff.output"
+				5: patterns: [include: "text.roff#number"]
+		},{
+			# CMYK
+			name: "meta.colour-mode.cmyk.gnu.roff.output"
+			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(k)((?:\\s*\\d+){4})"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.function.roff.output"
+				3: name: "entity.name.subcommand.roff.output"
+				4: name: "constant.language.colour-scheme.roff.output"
+				5: patterns: [include: "text.roff#number"]
+		},{
+			# CMY
+			name: "meta.colour-mode.cmy.gnu.roff.output"
+			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(c)((?:\\s*\\d+){3})"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.function.roff.output"
+				3: name: "entity.name.subcommand.roff.output"
+				4: name: "constant.language.colour-scheme.roff.output"
+				5: patterns: [include: "text.roff#number"]
+		},{
+			# Greyscale
+			name: "meta.colour-mode.grey.gnu.roff.output"
+			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(g)\\s*(\\d+)"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.function.roff.output"
+				3: name: "entity.name.subcommand.roff.output"
+				4: name: "constant.language.colour-scheme.roff.output"
+				5: patterns: [include: "text.roff#number"]
+		}]
+
+
+	# Comment
+	comment:
+		name: "comment.line.number-sign.roff.output"
+		begin: "#"
+		end:   "$"
+		beginCaptures:
+			0: name: "punctuation.definition.comment.roff.output"
+	
+	
+	# Device control functions
+	deviceControl:
+		name: "meta.device-control.roff.output"
+		begin: "^\\s*(x)\\s*"
+		end:   "(?=$|#)"
+		beginCaptures:
+			1: name: "keyword.operator.other.roff.output"
+		patterns: [{
+			# Niladic commands
+			name: "keyword.device.control.roff.output"
+			match: "\\G([ipst]\\S*)\\s*?(?=$|#)"
+		},{
+			# Space underlining (GNU extension)
+			name: "meta.space-underlining.gnu.roff.output"
+			match: "\\G(u\\S*)\\s+(?:(1|0)|(\\d+))\\s*?(?=$|#)"
+			captures:
+				1: name: "keyword.device.control.roff.output"
+				2: name: "constant.numeric.integer.roff.output"
+				3: name: "invalid.illegal.argument.roff.output"
+		},{
+			# Name of source file (GNU extension)
+			name: "meta.source-filename.gnu.roff.output"
+			match: "\\G(F\\S*)\\s+(\\S+)\\s*?(?=$|#)"
+			captures:
+				1: name: "keyword.device.control.roff.output"
+				2: name: "variable.parameter.filename.roff.output"
+		},{
+			# Name of target output device
+			name: "meta.typesetter-device.roff.output"
+			match: "\\G(T\\S*)\\s+((\\S+))"
+			captures:
+				1: name: "keyword.device.control.roff.output"
+				2: name: "variable.parameter.roff.output"
+				3: patterns: [
+					name: "support.constant.device-name.roff.output"
+					match: "(?<=\\s|^)(?:dvi|html|lbp|lj4|ps|pdf|ascii|cp1047|latin1|utf8|X75|X75-12|X100|X100-12)(?=\\s|$)"]
+		},{
+			# Output resolution
+			name: "meta.device-resolution.roff.output"
+			match: "\\G(r\\S*)((?:\\s+(\\d+)){1,3})\\s*?(?=$|#)"
+			captures:
+				1: name: "keyword.device.control.roff.output"
+				2: patterns: [include: "text.roff#number"]
+		},{
+			# Mount font X on position N
+			name: "meta.mount-font.roff.output"
+			match: "\\G(f\\S*)(?:\\s+(\\d+))?(?:\\s+([-\\w]+))?\\s*?(?=$|#)"
+			captures:
+				1: name: "keyword.device.control.roff.output"
+				2: name: "constant.numeric.integer.roff.output"
+				3: name: "variable.parameter.roff.output"
+		},{
+			# Set character height or slant
+			name: "meta.set-character-property.roff.output"
+			match: "\\G([HS]\\S*)(?:\\s+(\\d+))?\\s*?(?=$|#)"
+			captures:
+				1: name: "keyword.device.control.roff.output"
+				2: name: "constant.numeric.roff.output"
+		},{
+			# Arbitrary device control function generated by \X
+			name: "meta.x-escape.custom-control.roff.output"
+			begin: "\\G(X\\S*)"
+			end:   "^(?!\\+)"
+			beginCaptures: 1: name: "keyword.device.control.roff.output"
+			contentName: "string.raw.unquoted.heredoc.roff.output"
+			patterns: [{
+				name: "keyword.operator.line-continuation.gnu.roff.output"
+				match: "^\\+"
+			}]
+		},{
+			# Unrecognised device control command
+			name: "meta.unknown-command.roff.output"
+			begin: "\\G(\\S+)"
+			end:   "(?=$|#)"
+			beginCaptures:
+				1: name: "keyword.device.control.roff.output"
+		}]
+
+
+	# End-of-line: information only, no action
+	eol:
+		name: "meta.end-of-line.roff.output"
+		match: "(n)((?:\\s*\\d+){2})"
+		captures:
+			1: name: "entity.name.function.roff.output"
+			2: patterns: [include: "text.roff#number"]
+		
+	
+	# Change font
+	font:
+		name: "meta.change-font.roff.output"
+		match: "(f)\\s*(\\d+)"
+		captures:
+			1: name: "entity.name.function.roff.output"
+			2: name: "constant.numeric.integer.roff.output"
+	
+	
+	# Drawing commands
+	graphics:
+		patterns: [{
+			# Coloured circle (GNU extension)
+			name: "meta.graphics.gnu.roff.output"
+			match: "^\\s*(D)\\s*(C)\\s*(\\d+)(?:\\s+(\\d+))?"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.subcommand.roff.output"
+				3: name: "constant.numeric.integer.roff.output"
+				4: name: "comment.dummy.argument.roff.output"
+		},{
+			# Coloured ellipse (GNU extension)
+			name: "meta.graphics.gnu.roff.output"
+			match: "^\\s*(D)\\s*(E)((?:\\s*(\\d+)){1,2})"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.subcommand.roff.output"
+				3: patterns: [include: "text.roff#number"]
+		},{
+			# Everything else
+			name: "meta.graphics.roff.output"
+			begin: "^\\s*(D)\\s*([lceafptP~])"
+			end:   "(?=$|#)"
+			patterns: [include: "text.roff#number"]
+			beginCaptures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.subcommand.roff.output"
+		},{
+			# Unrecognised drawing command
+			name: "meta.graphics.unknown-command.roff.output"
+			begin: "^\\s*(D)\\s*([^\\s\\\\])"
+			end:   "(?=$|#)"
+			contentName: "variable.parameter.roff.output"
+			beginCaptures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "entity.name.custom.subcommand.roff.output"
+		}]
+	
+	
+	# Move X units vertically or horizontally
+	move:
+		name: "meta.move.roff.output"
+		match: "([HhVv])\\s*(\\d+)"
+		captures:
+			1: name: "entity.name.function.roff.output"
+			2: name: "constant.numeric.integer.roff.output"
+	
+	
+	# Move right by X units, then print Y character
+	movePrint:
+		name: "meta.move-and-print.roff.output"
+		match: "(\\d{2})(.)"
+		captures:
+			1: name: "entity.name.function.roff.output"
+			2: name: "constant.character.roff.output"
+	
+	
+	# Begin page X
+	page:
+		name: "meta.start-page.roff.output"
+		match: "(p)\\s*(\\d+)"
+		captures:
+			1: name: "keyword.control.page.output"
+			2: name: "constant.numeric.integer.output"
+	
+	
+	# Print ASCII character/s
+	print:
+		patterns: [{
+			
+			# Print character by index in current font
+			name: "meta.print-character.indexed.roff.output"
+			match: "(N)\\s*(\\d+)"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "constant.numeric.integer.roff.output"
+		},{
+			# Print literal characters
+			name: "meta.print-character.roff.output"
+			match: "(c)\\s*(\\S)|(C)\\s*(\\S+)"
+			captures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "constant.character.roff.output"
+				3: name: "entity.name.function.roff.output"
+				4: name: "string.unquoted.roff.output"
+		},{
+			# Print sequence of named glyphs (GNU extension)
+			name: "meta.print-text.gnu.roff.output"
+			begin: "^\\s*(t)\\s*"
+			end:   "(?=$)|\\s+(\\d*)"
+			contentName: "string.quoted.double.roff.output"
+			beginCaptures:
+				0: name: "entity.name.function.roff.output"
+				1: name: "punctuation.definition.entity.roff.output"
+			endCaptures:
+				1: name: "comment.dummy.argument.roff.output"
+		},{
+			# Print text with track-kerning (GNU)
+			name: "meta.print-text.track-kerned.gnu.roff.output"
+			begin: "^\\s*(u)\\s*(\\d+)\\s*"
+			end:   "(?=\\s|$)"
+			contentName: "string.quoted.double.roff.output"
+			beginCaptures:
+				1: name: "entity.name.function.roff.output"
+				2: name: "constant.numeric.integer.roff.output"
+		}]
+
+
+	# Change point-size
+	size:
+		match: "(s)\\s*(\\d+)"
+		captures:
+			1: name: "entity.name.function.roff.output"
+			2: name: "constant.numeric.integer.roff.output"
+
+
+	# Paddable word-space: information only, no action
+	wordSpace:
+		name: "entity.name.function.roff.output"
+		match: "(?<=^|[\\s\\d])w"
