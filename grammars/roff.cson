@@ -978,7 +978,7 @@ repository:
 				# \[aa] - Character named "aa" (GNU)
 				name: "constant.character.escape.function.named-char.gnu.roff"
 				begin: "(\\\\)(\\[)"
-				end: "(\\S*)(\\])|(?<!\\\\)(?=$)"
+				end: "(\\S*?)(\\])|(?<!\\\\)(?=$)"
 				patterns: [
 					{include: "#params"}
 					{match: '(?:[^\\s\\]\\\\]|\\\\(?!["#]).)+', name: "variable.parameter.roff"}
