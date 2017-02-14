@@ -1,5 +1,5 @@
 name: "Roff (Intermediate Output)"
-scopeName: "text.roff.output"
+scopeName: "source.ditroff"
 firstLineMatch: "^x\\s*T\\s+(dvi|html|lbp|lj4|ps|pdf|ascii|cp1047|latin1|utf8|X75|X75-12|X100|X100-12)(?=\\s|$)"
 patterns: [include: "#main"]
 
@@ -25,224 +25,224 @@ repository:
 	colourMode:
 		patterns: [{
 			# Restore default
-			name: "meta.colour-mode.default.gnu.roff.output"
+			name: "meta.colour-mode.default.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(d)"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.function.roff.output"
-				3: name: "entity.name.subcommand.roff.output"
-				4: name: "constant.language.colour-scheme.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.function.ditroff"
+				3: name: "entity.name.subcommand.ditroff"
+				4: name: "constant.language.colour-scheme.ditroff"
 		},{
 			# RGB
-			name: "meta.colour-mode.rgb.gnu.roff.output"
+			name: "meta.colour-mode.rgb.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(r)((?:\\s*\\d+){3})"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.function.roff.output"
-				3: name: "entity.name.subcommand.roff.output"
-				4: name: "constant.language.colour-scheme.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.function.ditroff"
+				3: name: "entity.name.subcommand.ditroff"
+				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		},{
 			# CMYK
-			name: "meta.colour-mode.cmyk.gnu.roff.output"
+			name: "meta.colour-mode.cmyk.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(k)((?:\\s*\\d+){4})"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.function.roff.output"
-				3: name: "entity.name.subcommand.roff.output"
-				4: name: "constant.language.colour-scheme.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.function.ditroff"
+				3: name: "entity.name.subcommand.ditroff"
+				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		},{
 			# CMY
-			name: "meta.colour-mode.cmy.gnu.roff.output"
+			name: "meta.colour-mode.cmy.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(c)((?:\\s*\\d+){3})"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.function.roff.output"
-				3: name: "entity.name.subcommand.roff.output"
-				4: name: "constant.language.colour-scheme.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.function.ditroff"
+				3: name: "entity.name.subcommand.ditroff"
+				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		},{
 			# Greyscale
-			name: "meta.colour-mode.grey.gnu.roff.output"
+			name: "meta.colour-mode.grey.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(g)\\s*(\\d+)"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.function.roff.output"
-				3: name: "entity.name.subcommand.roff.output"
-				4: name: "constant.language.colour-scheme.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.function.ditroff"
+				3: name: "entity.name.subcommand.ditroff"
+				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		}]
 
 
 	# Comment
 	comment:
-		name: "comment.line.number-sign.roff.output"
+		name: "comment.line.number-sign.ditroff"
 		begin: "#"
 		end:   "$"
 		beginCaptures:
-			0: name: "punctuation.definition.comment.roff.output"
+			0: name: "punctuation.definition.comment.ditroff"
 	
 	
 	# Device control functions
 	deviceControl:
-		name: "meta.device-control.roff.output"
+		name: "meta.device-control.ditroff"
 		begin: "^\\s*(x)\\s*"
 		end:   "(?=$|#)"
 		beginCaptures:
-			1: name: "keyword.operator.other.roff.output"
+			1: name: "keyword.operator.other.ditroff"
 		patterns: [{
 			# Niladic commands
-			name: "keyword.device.control.roff.output"
+			name: "keyword.device.control.ditroff"
 			match: "\\G([ipst]\\S*)\\s*?(?=$|#)"
 		},{
 			# Space underlining (GNU extension)
-			name: "meta.space-underlining.gnu.roff.output"
+			name: "meta.space-underlining.gnu.ditroff"
 			match: "\\G(u\\S*)\\s+(?:(1|0)|(\\d+))\\s*?(?=$|#)"
 			captures:
-				1: name: "keyword.device.control.roff.output"
-				2: name: "constant.numeric.integer.roff.output"
-				3: name: "invalid.illegal.argument.roff.output"
+				1: name: "keyword.device.control.ditroff"
+				2: name: "constant.numeric.integer.ditroff"
+				3: name: "invalid.illegal.argument.ditroff"
 		},{
 			# Name of source file (GNU extension)
-			name: "meta.source-filename.gnu.roff.output"
+			name: "meta.source-filename.gnu.ditroff"
 			match: "\\G(F\\S*)\\s+(\\S+)\\s*?(?=$|#)"
 			captures:
-				1: name: "keyword.device.control.roff.output"
-				2: name: "variable.parameter.filename.roff.output"
+				1: name: "keyword.device.control.ditroff"
+				2: name: "variable.parameter.filename.ditroff"
 		},{
 			# Name of target output device
-			name: "meta.typesetter-device.roff.output"
+			name: "meta.typesetter-device.ditroff"
 			match: "\\G(T\\S*)\\s+((\\S+))"
 			captures:
-				1: name: "keyword.device.control.roff.output"
-				2: name: "variable.parameter.roff.output"
+				1: name: "keyword.device.control.ditroff"
+				2: name: "variable.parameter.ditroff"
 				3: patterns: [
-					name: "support.constant.device-name.roff.output"
+					name: "support.constant.device-name.ditroff"
 					match: "(?<=\\s|^)(?:dvi|html|lbp|lj4|ps|pdf|ascii|cp1047|latin1|utf8|X75|X75-12|X100|X100-12)(?=\\s|$)"]
 		},{
 			# Output resolution
-			name: "meta.device-resolution.roff.output"
+			name: "meta.device-resolution.ditroff"
 			match: "\\G(r\\S*)((?:\\s+(\\d+)){1,3})\\s*?(?=$|#)"
 			captures:
-				1: name: "keyword.device.control.roff.output"
+				1: name: "keyword.device.control.ditroff"
 				2: patterns: [include: "text.roff#number"]
 		},{
 			# Mount font X on position N
-			name: "meta.mount-font.roff.output"
+			name: "meta.mount-font.ditroff"
 			match: "\\G(f\\S*)(?:\\s+(\\d+))?(?:\\s+([-\\w]+))?\\s*?(?=$|#)"
 			captures:
-				1: name: "keyword.device.control.roff.output"
-				2: name: "constant.numeric.integer.roff.output"
-				3: name: "variable.parameter.roff.output"
+				1: name: "keyword.device.control.ditroff"
+				2: name: "constant.numeric.integer.ditroff"
+				3: name: "variable.parameter.ditroff"
 		},{
 			# Set character height or slant
-			name: "meta.set-character-property.roff.output"
+			name: "meta.set-character-property.ditroff"
 			match: "\\G([HS]\\S*)(?:\\s+(\\d+))?\\s*?(?=$|#)"
 			captures:
-				1: name: "keyword.device.control.roff.output"
-				2: name: "constant.numeric.roff.output"
+				1: name: "keyword.device.control.ditroff"
+				2: name: "constant.numeric.ditroff"
 		},{
 			# Arbitrary device control function generated by \X
-			name: "meta.x-escape.custom-control.roff.output"
+			name: "meta.x-escape.custom-control.ditroff"
 			begin: "\\G(X\\S*)"
 			end:   "^(?!\\+)(.*)"
-			beginCaptures: 1: name: "keyword.device.control.roff.output"
+			beginCaptures: 1: name: "keyword.device.control.ditroff"
 			endCaptures:   1: patterns: [include: "#main"]
-			contentName: "string.raw.unquoted.heredoc.roff.output"
+			contentName: "string.raw.unquoted.heredoc.ditroff"
 			patterns: [{
-				name: "keyword.operator.line-continuation.gnu.roff.output"
+				name: "keyword.operator.line-continuation.gnu.ditroff"
 				match: "^\\+"
 			}]
 		},{
 			# Unrecognised device control command
-			name: "meta.unknown-command.roff.output"
+			name: "meta.unknown-command.ditroff"
 			begin: "\\G(\\S+)"
 			end:   "(?=$|#)"
 			beginCaptures:
-				1: name: "keyword.device.control.roff.output"
+				1: name: "keyword.device.control.ditroff"
 		}]
 
 
 	# End-of-line: information only, no action
 	eol:
-		name: "meta.end-of-line.roff.output"
+		name: "meta.end-of-line.ditroff"
 		match: "(n)((?:\\s*\\d+){2})"
 		captures:
-			1: name: "entity.name.function.roff.output"
+			1: name: "entity.name.function.ditroff"
 			2: patterns: [include: "text.roff#number"]
 		
 	
 	# Change font
 	font:
-		name: "meta.change-font.roff.output"
+		name: "meta.change-font.ditroff"
 		match: "(f)\\s*(\\d+)"
 		captures:
-			1: name: "entity.name.function.roff.output"
-			2: name: "constant.numeric.integer.roff.output"
+			1: name: "entity.name.function.ditroff"
+			2: name: "constant.numeric.integer.ditroff"
 	
 	
 	# Drawing commands
 	graphics:
 		patterns: [{
 			# Coloured circle (GNU extension)
-			name: "meta.graphics.gnu.roff.output"
+			name: "meta.graphics.gnu.ditroff"
 			match: "^\\s*(D)\\s*(C)\\s*(\\d+)(?:\\s+(\\d+))?"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.subcommand.roff.output"
-				3: name: "constant.numeric.integer.roff.output"
-				4: name: "comment.dummy.argument.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.subcommand.ditroff"
+				3: name: "constant.numeric.integer.ditroff"
+				4: name: "comment.dummy.argument.ditroff"
 		},{
 			# Coloured ellipse (GNU extension)
-			name: "meta.graphics.gnu.roff.output"
+			name: "meta.graphics.gnu.ditroff"
 			match: "^\\s*(D)\\s*(E)((?:\\s*(\\d+)){1,2})"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.subcommand.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.subcommand.ditroff"
 				3: patterns: [include: "text.roff#number"]
 		},{
 			# Everything else
-			name: "meta.graphics.roff.output"
+			name: "meta.graphics.ditroff"
 			begin: "^\\s*(D)\\s*([lceafptP~])"
 			end:   "(?=$|#)"
 			patterns: [include: "text.roff#number"]
 			beginCaptures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.subcommand.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.subcommand.ditroff"
 		},{
 			# Unrecognised drawing command
-			name: "meta.graphics.unknown-command.roff.output"
+			name: "meta.graphics.unknown-command.ditroff"
 			begin: "^\\s*(D)\\s*([^\\s\\\\])"
 			end:   "(?=$|#)"
-			contentName: "variable.parameter.roff.output"
+			contentName: "variable.parameter.ditroff"
 			beginCaptures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "entity.name.custom.subcommand.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "entity.name.custom.subcommand.ditroff"
 		}]
 	
 	
 	# Move X units vertically or horizontally
 	move:
-		name: "meta.move.roff.output"
+		name: "meta.move.ditroff"
 		match: "([HhVv])\\s*(\\d+)"
 		captures:
-			1: name: "entity.name.function.roff.output"
-			2: name: "constant.numeric.integer.roff.output"
+			1: name: "entity.name.function.ditroff"
+			2: name: "constant.numeric.integer.ditroff"
 	
 	
 	# Move right by X units, then print Y character
 	movePrint:
-		name: "meta.move-and-print.roff.output"
+		name: "meta.move-and-print.ditroff"
 		match: "(\\d{2})(.)"
 		captures:
-			1: name: "entity.name.function.roff.output"
-			2: name: "constant.character.roff.output"
+			1: name: "entity.name.function.ditroff"
+			2: name: "constant.character.ditroff"
 	
 	
 	# Begin page X
 	page:
-		name: "meta.start-page.roff.output"
+		name: "meta.start-page.ditroff"
 		match: "(p)\\s*(\\d+)"
 		captures:
 			1: name: "keyword.control.page.output"
@@ -254,40 +254,40 @@ repository:
 		patterns: [{
 			
 			# Print character by index in current font
-			name: "meta.print-character.indexed.roff.output"
+			name: "meta.print-character.indexed.ditroff"
 			match: "(N)\\s*(\\d+)"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "constant.numeric.integer.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "constant.numeric.integer.ditroff"
 		},{
 			# Print literal characters
-			name: "meta.print-character.roff.output"
+			name: "meta.print-character.ditroff"
 			match: "(c)\\s*(\\S)|(C)\\s*(\\S+)"
 			captures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "constant.character.roff.output"
-				3: name: "entity.name.function.roff.output"
-				4: name: "string.unquoted.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "constant.character.ditroff"
+				3: name: "entity.name.function.ditroff"
+				4: name: "string.unquoted.ditroff"
 		},{
 			# Print sequence of named glyphs (GNU extension)
-			name: "meta.print-text.gnu.roff.output"
+			name: "meta.print-text.gnu.ditroff"
 			begin: "^\\s*(t)\\s*"
 			end:   "(?=$)|\\s+(\\d*)"
-			contentName: "string.quoted.double.roff.output"
+			contentName: "string.quoted.double.ditroff"
 			beginCaptures:
-				0: name: "entity.name.function.roff.output"
-				1: name: "punctuation.definition.entity.roff.output"
+				0: name: "entity.name.function.ditroff"
+				1: name: "punctuation.definition.entity.ditroff"
 			endCaptures:
-				1: name: "comment.dummy.argument.roff.output"
+				1: name: "comment.dummy.argument.ditroff"
 		},{
 			# Print text with track-kerning (GNU)
-			name: "meta.print-text.track-kerned.gnu.roff.output"
+			name: "meta.print-text.track-kerned.gnu.ditroff"
 			begin: "^\\s*(u)\\s*(\\d+)\\s*"
 			end:   "(?=\\s|$)"
-			contentName: "string.quoted.double.roff.output"
+			contentName: "string.quoted.double.ditroff"
 			beginCaptures:
-				1: name: "entity.name.function.roff.output"
-				2: name: "constant.numeric.integer.roff.output"
+				1: name: "entity.name.function.ditroff"
+				2: name: "constant.numeric.integer.ditroff"
 		}]
 
 
@@ -295,11 +295,11 @@ repository:
 	size:
 		match: "(s)\\s*(\\d+)"
 		captures:
-			1: name: "entity.name.function.roff.output"
-			2: name: "constant.numeric.integer.roff.output"
+			1: name: "entity.name.function.ditroff"
+			2: name: "constant.numeric.integer.ditroff"
 
 
 	# Paddable word-space: information only, no action
 	wordSpace:
-		name: "entity.name.function.roff.output"
+		name: "entity.name.function.ditroff"
 		match: "(?<=^|[\\s\\d])w"

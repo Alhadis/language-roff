@@ -17,6 +17,11 @@
 		commentStart: "/* "
 		commentEnd:   " */"
 
+".source.ditroff":
+	editor:
+		commentStart: "# "
+		tabLength: 8
+
 ".text.runoff":
 	editor:
 		commentStart: ".! "
