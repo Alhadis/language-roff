@@ -1,0 +1,29 @@
+"context-menu":
+	'atom-text-editor[data-grammar="text roff"], atom-text-editor[data-grammar="source pic"],
+	.tree-view .file > .manpage-icon[data-path], .tab > .manpage-icon[data-path],
+	.tree-view .file > [data-path$=".1"],        .tab > [data-path$=".1"],
+	.tree-view .file > [data-path$=".2"],        .tab > [data-path$=".2"],
+	.tree-view .file > [data-path$=".3"],        .tab > [data-path$=".3"],
+	.tree-view .file > [data-path$=".4"],        .tab > [data-path$=".4"],
+	.tree-view .file > [data-path$=".5"],        .tab > [data-path$=".5"],
+	.tree-view .file > [data-path$=".6"],        .tab > [data-path$=".6"],
+	.tree-view .file > [data-path$=".7"],        .tab > [data-path$=".7"],
+	.tree-view .file > [data-path$=".8"],        .tab > [data-path$=".8"],
+	.tree-view .file > [data-path$=".9"],        .tab > [data-path$=".9"],
+	.tree-view .file > [data-path$=".chem"],     .tab > [data-path$=".chem"],
+	.tree-view .file > [data-path$=".man"],      .tab > [data-path$=".man"],
+	.tree-view .file > [data-path$=".mdoc"],     .tab > [data-path$=".mdoc"],
+	.tree-view .file > [data-path$=".me"],       .tab > [data-path$=".me"],
+	.tree-view .file > [data-path$=".ms"],       .tab > [data-path$=".ms"],
+	.tree-view .file > [data-path$=".n"],        .tab > [data-path$=".n"],
+	.tree-view .file > [data-path$=".pic"],      .tab > [data-path$=".pic"],
+	.tree-view .file > [data-path$=".roff"],     .tab > [data-path$=".roff"],
+	.tree-view .file > [data-path$=".tr"],       .tab > [data-path$=".tr"]': [
+		label: "Save as\u2026",
+		submenu: [
+			{label: "TeX DVI",    command: "language-roff:save-as-dvi"},
+			{label: "HTML",       command: "language-roff:save-as-html"},
+			{label: "PDF",        command: "language-roff:save-as-pdf"},
+			{label: "PostScript", command: "language-roff:save-as-ps"}
+		]
+	]
