@@ -21,9 +21,14 @@
 	.tree-view .file > [data-path$=".tr"],       .tab > [data-path$=".tr"]': [
 		label: "Save as\u2026",
 		submenu: [
-			{label: "TeX DVI",    command: "language-roff:save-as-dvi"},
-			{label: "HTML",       command: "language-roff:save-as-html"},
-			{label: "PDF",        command: "language-roff:save-as-pdf"},
-			{label: "PostScript", command: "language-roff:save-as-ps"}
+			{label: "HTML",                  command: "language-roff:save-as-html"},
+			{label: "PDF",                   command: "language-roff:save-as-pdf"},
+			{label: "PDF, Landscape",        command: "language-roff:save-as-pdf-landscape"},
+			{label: "PostScript",            command: "language-roff:save-as-ps"},
+			{label: "PostScript, Landscape", command: "language-roff:save-as-ps-landscape"},
+			{label: "TeX DVI",               command: "language-roff:save-as-dvi"},
+			{label: "TeX DVI, Landscape",    command: "language-roff:save-as-dvi-landscape"},
+			{label: "Plain text, ASCII",     command: "language-roff:save-as-ascii"},
+			{label: "Plain text, UTF-8",     command: "language-roff:save-as-utf8"}
 		]
 	]

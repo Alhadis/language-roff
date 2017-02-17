@@ -18,22 +18,23 @@ class LanguageRoff{
 			"language-roff:outdent": () => this.outdent()
 		}));
 		
-		selector += ", atom-text-editor[data-grammar='source pic']";
-		this.disposables.add(atom.commands.add(selector, {
-			"language-roff:save-as-dvi":  () => this.saveEditor("dvi"),
-			"language-roff:save-as-html": () => this.saveEditor("html"),
-			"language-roff:save-as-pdf":  () => this.saveEditor("pdf"),
-			"language-roff:save-as-ps":   () => this.saveEditor("ps")
-		}));
+		selector
+			+= ", atom-text-editor[data-grammar='source pic']"
+			+ ".tree-view .file > .manpage-icon[data-path], .tab > .manpage-icon[data-path]"
+			+ ("1 2 3 4 5 6 7 8 9 chem man mdoc me ms n pic roff tr".split(/\s/)
+				.map(ext => `, .tree-view .file > [data-path$=".${ext}"], .tab > [data-path$=".${ext}"]`)
+				.join("\n"));
 		
-		selector = ".tree-view .file > .manpage-icon[data-path], .tab > .manpage-icon[data-path]";
-		for(const ext of "1 2 3 4 5 6 7 8 9 chem man mdoc me ms n pic roff tr".split(/\s/))
-			selector += `, .tree-view .file > [data-path$=".${ext}"], .tab > [data-path$=".${ext}"]`;
 		this.disposables.add(atom.commands.add(selector, {
-			"language-roff:save-as-dvi":  ev => this.saveEntry(ev, "dvi"),
-			"language-roff:save-as-html": ev => this.saveEntry(ev, "html"),
-			"language-roff:save-as-pdf":  ev => this.saveEntry(ev, "pdf"),
-			"language-roff:save-as-ps":   ev => this.saveEntry(ev, "ps")
+			"language-roff:save-as-dvi":            ev => this.save(ev, "dvi"),
+			"language-roff:save-as-html":           ev => this.save(ev, "html"),
+			"language-roff:save-as-pdf":            ev => this.save(ev, "pdf"),
+			"language-roff:save-as-ps":             ev => this.save(ev, "ps"),
+			"language-roff:save-as-ascii":          ev => this.save(ev, "ascii"),
+			"language-roff:save-as-utf8":           ev => this.save(ev, "utf8"),
+			"language-roff:save-as-dvi-landscape":  ev => this.save(ev, "dvi",  ["-P-l"]),
+			"language-roff:save-as-pdf-landscape":  ev => this.save(ev, "pdf",  ["-P-l"]),
+			"language-roff:save-as-ps-landscape":   ev => this.save(ev, "ps",   ["-P-l"]),
 		}));
 	}
 	
@@ -116,26 +117,33 @@ class LanguageRoff{
 	}
 	
 	
-	saveEditor(format, editor = null){
-		editor = editor || atom.workspace.getActiveTextEditor();
-		if(!editor) return;
+	save(event, format, extraArgs = []){
+		let inputPath, editor = null;
 		
-		const path = editor.getPath();
-		const target = this.getSaveLocation(path, format);
+		if(event.target.matches("atom-text-editor, atom-text-editor *")){
+			editor = atom.workspace.getActiveTextEditor();
+			inputPath = editor.getPath();
+		}
+		else inputPath = event.target.dataset.path;
+		
+		let ext = format;
+		if(format === "utf8" || format === "ascii"){
+			extraArgs.push("-P-biuc");
+			ext = "txt";
+		}
+		
+		const target = this.getSaveLocation(inputPath, ext);
 		if(!target) return;
 		
-		return path && !editor.isModified()
-			? Groff.processFile(path, target, format)
-			: Groff.processData(editor.getText(), target, format);
-	}
-	
-	
-	saveEntry(event, format){
-		if(!(event.target && event.target.dataset)) return;
-		const {path} = event.target.dataset;
-		const target = this.getSaveLocation(path, format);
-		if(!target) return;
-		Groff.processFile(path, target, format);
+		const args = {format, extraArgs, inputPath, outputPath: target};
+		if(editor && !(inputPath && !editor.isModified() && fs.existsSync(inputPath)))
+			args.inputData = editor.getText();
+		
+		return Groff.process(args).then(result => {
+			const text = "Saved to `" + result.outputPath + "`";
+			const note = atom.notifications.addSuccess(text, {dismissable: true});
+			setTimeout(() => note.dismiss(), 2000);
+		});
 	}
 	
 	
