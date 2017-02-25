@@ -22,7 +22,7 @@ fileTypes: [
 	"nroff",
 	"roff", "rof",
 	"t",
-	"tmac", "tmac-u",
+	"tmac", "tmac-u", "tmac.in",
 	"tr",
 	"troff"
 ]
