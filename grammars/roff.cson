@@ -239,10 +239,10 @@ repository:
 			# Generic requests without formatting
 			name: "meta.function.request.$2.roff"
 			begin: "(?x) ^([.'])[ \t]*
-				(ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|cu|da|di|dt|ec|em|eo
-				|ev|ex|fc|fi|fl|fp|ft|hc|hw|hy|in|it|lc|lg|lf|ll|ls|lt|mc
-				|mk|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd|rm
-				|rn|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)
+				(ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|da|di|dt|ec|em|eo|ev
+				|ex|fc|fi|fl|fp|ft|hc|hw|hy|in|it|lc|lg|lf|ll|ls|lt|mc|mk
+				|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd|rm|rn
+				|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)
 				(?=\\s|\\d+\\s*$|\\\\[\"#])"
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
@@ -554,9 +554,9 @@ repository:
 	underlines:
 		patterns: [{
 			
-			# .ul 0: Empty request/noop
-			name: "meta.request.ul.roff"
-			match: "^([.'])[ \t]*(ul)\\s*(0+)(?:(?!\\\\\")[\\D])*(?=\\s|$)(.*)$"
+			# .ul/.cu 0: Empty request/noop
+			name: "meta.request.$2.roff"
+			match: "^([.'])[ \t]*(ul|cu)\\s*(0+)(?:(?!\\\\\")[\\D])*(?=\\s|$)(.*)$"
 			captures:
 				1: {name: "punctuation.definition.function.request.roff"}
 				2: {name: "entity.function.name.roff"}
@@ -566,8 +566,8 @@ repository:
 		}, {
 			
 			# Underline following line
-			name: "meta.request.ul.roff"
-			begin: "^([.'])[ \t]*(ul)(.*?)$\\n"
+			name: "meta.request.$2.roff"
+			begin: "^([.'])[ \t]*(ul|cu)(.*?)$\\n"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
 				1: {name: "punctuation.definition.function.request.roff"}
