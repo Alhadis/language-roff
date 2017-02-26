@@ -4,6 +4,18 @@ Change Log
 This project adheres to [Semantic Versioning](http://semver.org).
 
 
+[Unpublished][Staged]
+------------------------------------------------------------------------
+* __Added:__ Commands for converting Roff to other document formats
+* __Added:__ Highlighting for intermediate output and font descriptions
+* __Added:__ Intelligent indentation of control lines
+* __Added:__ Various obscure extensions to supported filetypes
+* __Fixed:__ Bugs with matching certain Vim/Emacs modelines
+* __Fixed:__ RUNOFF literal blocks not terminated at `.end lit`
+* __Fixed:__ Underline missing after `.cu` requests
+* __Fixed:__ Various bugs with highlighting escapes and Pic commands
+
+
 [v1.2.1]
 ------------------------------------------------------------------------
 **August 1st, 2016**  
@@ -58,6 +70,7 @@ Initial release. Adds syntax highlighting and language support for Roff.
 
 
 [Referenced links]:_____________________________________________________
+[Staged]: https://github.com/Alhadis/language-roff/compare/v1.2.1...HEAD
 [v1.2.1]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.1
 [v1.2.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.0
 [v1.1.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.1.0
