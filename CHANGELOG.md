@@ -4,6 +4,11 @@ Change Log
 This project adheres to [Semantic Versioning](http://semver.org).
 
 
+[Staged]
+------------------------------------------------------------------------
+* __Fixed:__ Documents mangled when rendering preprocessed Pic output
+
+
 [v1.2.2]
 ------------------------------------------------------------------------
 **February 26th, 2017**  
