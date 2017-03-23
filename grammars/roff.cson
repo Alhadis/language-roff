@@ -56,6 +56,7 @@ firstLineMatch: """(?x)
 		(?=\\s|:|$)
 	)
 """
+limitLineLength: no
 patterns: [{ include: "#main" }]
 
 
