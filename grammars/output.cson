@@ -153,7 +153,7 @@ repository:
 			},{
 				# Set character height or slant
 				name: "meta.set-character-property.ditroff"
-				match: "\\G([HS]\\S*)(?:\\s+(\\d+))?\\s*?(?=$|#)"
+				match: "\\G([HS]\\S*)(?:\\s+(-?\\d+))?\\s*?(?=$|#)"
 				captures:
 					1: name: "keyword.device.control.ditroff"
 					2: name: "constant.numeric.ditroff"
@@ -229,7 +229,7 @@ repository:
 	# Move X units vertically or horizontally
 	move:
 		name: "meta.move.ditroff"
-		match: "([HhVv])\\s*(\\d+)"
+		match: "([HhVv])\\s*(-?\\d+)"
 		captures:
 			1: name: "entity.name.function.ditroff"
 			2: name: "constant.numeric.integer.ditroff"
@@ -259,7 +259,7 @@ repository:
 			
 			# Print character by index in current font
 			name: "meta.print-character.indexed.ditroff"
-			match: "(N)\\s*(\\d+)"
+			match: "(N)\\s*(-?\\d+)"
 			captures:
 				1: name: "entity.name.function.ditroff"
 				2: name: "constant.numeric.integer.ditroff"
@@ -286,7 +286,7 @@ repository:
 		},{
 			# Print text with track-kerning (GNU)
 			name: "meta.print-text.track-kerned.gnu.ditroff"
-			begin: "^\\s*(u)\\s*(\\d+)\\s*"
+			begin: "^\\s*(u)\\s*(-?\\d+)\\s*"
 			end:   "(?=\\s|$)"
 			contentName: "string.quoted.double.ditroff"
 			beginCaptures:
