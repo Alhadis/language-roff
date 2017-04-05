@@ -6,7 +6,14 @@
 		"mandoc", "mdoc", "Ditroff", "Eqn", "Pic", "Chem", "DFORMAT", "Grap", "Refer", "Tbl", "IDEAL", "grn", "Plan9"],
 	"repository": "https://github.com/Alhadis/language-roff",
 	"license": "ISC",
-	"engines": {
-		"atom": "*"
+	"engines": {"atom": "*"},
+	"configSchema": {
+		"blankLineReplacement": {
+			"type": "string",
+			"title": "Blank-line replacement",
+			"description": "Specify the string which replaces empty lines when running the `fix-blank-lines` command.",
+			"default": ".",
+			"order": 1
+		}
 	}
 }

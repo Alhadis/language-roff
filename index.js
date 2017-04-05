@@ -14,8 +14,9 @@ class LanguageRoff{
 		// Register commands with Atom
 		let selector = "atom-text-editor[data-grammar='text roff']";
 		this.disposables.add(atom.commands.add(selector, {
-			"language-roff:indent":  () => this.indent(),
-			"language-roff:outdent": () => this.outdent()
+			"language-roff:indent":          () => this.indent(),
+			"language-roff:outdent":         () => this.outdent(),
+			"language-roff:fix-blank-lines": () => this.fixBlankLines(),
 		}));
 		
 		selector
@@ -113,6 +114,30 @@ class LanguageRoff{
 						ed.setTextInBufferRange(range, first.replace(untabBefore, ""));
 				}
 			}
+		});
+	}
+	
+	
+	/**
+	 * Replace blank Roff lines with empty requests.
+	 *
+	 * @example "\n\n" => "\n.\n"
+	 * @private
+	 */
+	fixBlankLines(){
+		const ed = atom.workspace.getActiveTextEditor();
+		
+		ed.transact(100, () => {
+			const settingName = "language-roff.blankLineReplacement";
+			const replacement = atom.config.get(settingName) || ".";
+			
+			ed.scan(/^[ \t]*$/gm, match => {
+				const {range, replace} = match;
+				const {scopes} = ed.scopeDescriptorForBufferPosition(range.start);
+				if(-1 === scopes.indexOf("comment.block.ignored-input.roff")
+				&& -1 === scopes.indexOf("string.unquoted.roff"))
+					replace(replacement);
+			});
 		});
 	}
 	

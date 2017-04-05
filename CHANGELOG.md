@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 [Staged]
 ------------------------------------------------------------------------
+* __Added:__ Editor command to replace blank lines in Roff documents
 * __Fixed:__ Documents mangled when rendering preprocessed Pic output
 
 
