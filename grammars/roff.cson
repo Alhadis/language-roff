@@ -268,8 +268,8 @@ repository:
 				4: {name: "constant.language.predefined.register.gnu.roff"}
 				5: {name: "invalid.illegal.readonly.register.roff"}
 				6: {name: "invalid.illegal.readonly.register.gnu.roff"}
-				7: {name: "variable.parameter.roff"}
-				8: {patterns: [include: "#param-group"]}
+				7: {name: "variable.parameter.roff", patterns: [include: "#escapes"]}
+				8: {patterns: [{include: "#arithmetic"}, {include: "#param-group"}]}
 		},{
 			
 			# String definition
@@ -318,7 +318,7 @@ repository:
 					|
 					
 					# GNU extensions
-					([cdfmrs])       # 5: constant.language.builtin-comparison.$5.gnu.roff
+					([cdFmrS])       # 5: constant.language.builtin-comparison.$5.gnu.roff
 					
 					# Name being validated
 					[ \t]*
@@ -471,9 +471,19 @@ repository:
 					3: {name: "punctuation.arithmetic.end.roff"}
 			}
 			{include: "#number"}
+			{match: "<\\?",        name: "keyword.operator.minimum.gnu.roff"}
+			{match: ">\\?",        name: "keyword.operator.maximum.gnu.roff"}
 			{match: "[-/+*%]",     name: "keyword.operator.arithmetic.roff"}
 			{match: ":|&|[<=>]=?", name: "keyword.operator.logical.roff"}
 			{match: "\\|",         name: "keyword.operator.absolute.roff"}
+			{
+				# Change default scaling indicator (GNU)
+				name: "meta.scaling-indicator.gnu.roff"
+				match: "(?<=^|\\()([cfimnPpsuvz])(;)"
+				captures:
+					1: name: "keyword.other.unit.roff"
+					2: name: "punctuation.separator.semicolon.roff"
+			}
 		]
 	
 	
