@@ -2540,6 +2540,60 @@ repository:
 				
 				{include: "#params"}
 			]
+		},{
+			# Perl (GNU)
+			begin: "^([.'])[ \t]*(Perl)[ \t]+(begin|start)(?=\\s|\\\\[\"#])(.*)$"
+			end:   "^([.'])[ \t]*(Perl)[ \t]+(end|stop)(?=\\s|\\\\[\"#])"
+			contentName: "source.embedded.perl.gnu.roff"
+			patterns: [include: "source.perl"]
+			beginCaptures:
+				0: name: "meta.function.begin.perl.macro.gnu.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.embedding-control.roff"
+				4: patterns: [include: "#escapes"]
+			endCaptures:
+				0: name: "meta.function.end.perl.macro.gnu.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.embedding-control.roff"
+		},{
+			# LilyPond (GNU)
+			begin: "^([.'])[ \t]*(lilypond)[ \t]+(begin|start)(?=\\s|\\\\[\"#])(.*)$"
+			end:   "^([.'])[ \t]*(lilypond)[ \t]+(end|stop)(?=\\s|\\\\[\"#])"
+			contentName: "source.embedded.lilypond.gnu.roff"
+			beginCaptures:
+				0: name: "meta.function.begin.lilypond.macro.gnu.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.embedding-control.roff"
+				4: patterns: [include: "#escapes"]
+			endCaptures:
+				0: name: "meta.function.end.lilypond.macro.gnu.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.embedding-control.roff"
+			patterns: [
+				{include: "source.AtLilyPond"}
+				{include: "source.lilypond"}
+			]
+		},{
+			# Pinyin (GNU)
+			begin: "^([.'])[ \t]*(pinyin)[ \t]+(begin|start)(?=\\s|\\\\[\"#])(.*)$"
+			end:   "^([.'])[ \t]*(pinyin)[ \t]+(end|stop)(?=\\s|\\\\[\"#])"
+			contentName: "meta.pinyin.gnu.roff"
+			patterns: [include: "#main"]
+			beginCaptures:
+				0: name: "meta.function.begin.pinyin.macro.gnu.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.embedding-control.roff"
+				4: patterns: [include: "#escapes"]
+			endCaptures:
+				0: name: "meta.function.end.pinyin.macro.gnu.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "constant.language.embedding-control.roff"
 		}
 		{include: "source.pic#tags"}
 		{include: "source.ideal#tags"}]

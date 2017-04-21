@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 [Staged]
 ------------------------------------------------------------------------
 * __Added:__ Editor command to replace blank lines in Roff documents
+* __Added:__ Highlighting for `gperl`, `glilypond`, and `gpinyin` macros
 * __Fixed:__ Documents mangled when rendering preprocessed Pic output
 
 
