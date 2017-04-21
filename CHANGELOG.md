@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Highlighting for `gperl`, `glilypond`, and `gpinyin` macros
 * __Fixed:__ Documents mangled when rendering preprocessed Pic output
 * __Fixed:__ Escape sequences not highlighted in register definitions
+* __Fixed:__ User-defined character names not highlighted by `\(xx`
 * __Improved:__ Highlighting of arithmetic and comparison operators
 
 

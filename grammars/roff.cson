@@ -978,16 +978,11 @@ repository:
 			
 				# \(aa - Character named "aa"
 				name: "constant.character.escape.function.named-char.roff"
-				match: "(?x)
-					((\\\\)(\\())
-					(em|hy|bu|sq|ru|14|12|34|fi|fl|ff|Fi|Fl|de|dg|fm|ct|rg|co|pl|mi|eq|sc|aa|ga|ul|sl|ts|sr|rn|ap
-					|ua|da|mu|di|cu|ca|sb|sp|ib|ip|if|pd|gr|no|is|pt|es|mo|br|dd|rh|lh|bs|or|ci|lt|lb|rt|rb|lk|rk
-					|bv|lf|rf|lc|rc|[>=<|!]=|->|<-|[+]-|\\*[A-IK-UW-Z*a-ik-uw-z])"
+				match: "(\\\\)(\\()(\\S{2})"
 				captures:
-					1: {name: "entity.name.roff"}
+					1: {name: "punctuation.definition.brace.roff"}
 					2: {name: "punctuation.definition.escape.roff"}
-					3: {name: "punctuation.definition.brace.roff"}
-					4: {name: "variable.parameter.roff"}
+					3: {name: "variable.parameter.roff"}
 			},{
 				
 				# \[aa] - Character named "aa" (GNU)
