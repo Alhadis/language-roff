@@ -189,7 +189,7 @@ repository:
 				0: name: "punctuation.definition.escape.runoff"
 		},{
 			
-			# \  Lowecase next character
+			# \  Lowercase next character
 			# \\ Lowercase next word
 			name: "constant.character.escape.lowercase.runoff"
 			match: "\\\\{1,2}"

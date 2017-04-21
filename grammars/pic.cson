@@ -425,7 +425,7 @@ repository:
 
 
 	
-	# A line of Pic source embeded inside DFORMAT, Grap, etc. Obviously not used by Pic itself.
+	# A line of Pic source embedded inside DFORMAT, Grap, etc. Obviously not used by Pic itself.
 	"pic-line":
 		begin: "^(pic)\\b"
 		end:   "$"

@@ -2705,7 +2705,7 @@ repository:
 			
 			# %KEY Value
 			name: "meta.structure.dictionary.refer.roff"
-			contentName: "meta.structure.dictionary.value.refer.rofff"
+			contentName: "meta.structure.dictionary.value.refer.roff"
 			begin: "^([.'])?\\s*(%)([A-Z])(?=\\s)"
 			end:   "(?<!\\\\)$"
 			patterns: [{

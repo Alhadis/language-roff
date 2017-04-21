@@ -1,4 +1,4 @@
-# IDEAL picture preprocesor
+# IDEAL picture preprocessor
 scopeName: "source.ideal"
 patterns: [
 	{include: "#external"}
