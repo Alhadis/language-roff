@@ -88,6 +88,16 @@
 		description: "Extended information about an option"
 		descriptionMoreURL: "http://liw.fi/manpages/"
 	
+	sh:
+		prefix: "sh"
+		body: """.
+			.\\\\" ${2:--------------------------------------------------------------------}
+			.SH "${1:SECTION HEADING}"
+			.\\\\" ${2:--------------------------------------------------------------------}
+			.$3"""
+		leftLabel: "man"
+		description: "Bordered section heading"
+	
 	
 	# Code snippets for manpages
 	".code":
