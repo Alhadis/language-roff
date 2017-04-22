@@ -125,19 +125,42 @@ class LanguageRoff{
 	 * @private
 	 */
 	fixBlankLines(){
-		const ed = atom.workspace.getActiveTextEditor();
+		const settingName = "language-roff.blankLineReplacement";
+		const replacement = atom.config.get(settingName) || ".";
 		
-		ed.transact(100, () => {
-			const settingName = "language-roff.blankLineReplacement";
-			const replacement = atom.config.get(settingName) || ".";
-			
-			ed.scan(/^[ \t]*$/gm, match => {
-				const {range, replace} = match;
-				const {scopes} = ed.scopeDescriptorForBufferPosition(range.start);
-				if(-1 === scopes.indexOf("comment.block.ignored-input.roff")
-				&& -1 === scopes.indexOf("string.unquoted.roff"))
-					replace(replacement);
-			});
+		this.replace(/^[ \t]*$/gm, match => {
+			const {range, replace} = match;
+			const {scopes} = ed.scopeDescriptorForBufferPosition(range.start);
+			if(-1 === scopes.indexOf("comment.block.ignored-input.roff")
+			&& -1 === scopes.indexOf("meta.function.definition.request.de.roff")
+			&& -1 === scopes.indexOf("meta.function.definition.request.am.roff")
+			&& -1 === scopes.indexOf("string.unquoted.roff"))
+				replace(replacement);
+		});
+	}
+	
+	
+	/**
+	 * Perform a search-and-replace on an editor's selections.
+	 *
+	 * If nothing's selected, the entire buffer is targeted.
+	 *
+	 * @param {RegExp} pattern
+	 * @param {Function} iterator
+	 * @param {TextEditor} [editor=null]
+	 * @private
+	 */
+	replace(pattern, iterator, editor = null){
+		editor = editor || atom.workspace.getActiveTextEditor();
+		if(!editor) return;
+		
+		editor.transact(100, () => {
+			editor.getSelectedText()
+				? editor.getSelections().forEach(selection => {
+					const range = selection.getBufferRange();
+					editor.scanInBufferRange(pattern, range, iterator);
+				})
+				: editor.scan(pattern, iterator);
 		});
 	}
 	
