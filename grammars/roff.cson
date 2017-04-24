@@ -1314,7 +1314,8 @@ repository:
 				beginCaptures:
 					0: patterns: [include: "#main"]
 				patterns: [include: "source.css"]
-			}]
+			
+			}, include: "#main"]
 		},{
 			
 			# Unparsed macros: passing callable macros as arguments won't invoke them
