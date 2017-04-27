@@ -589,7 +589,7 @@ repository:
 			
 			# Underline following line
 			name: "meta.request.$2.roff"
-			begin: "^([.'])[ \t]*(ul|cu)(.*?)$\\n"
+			begin: "^([.'])[ \t]*(ul|cu)(?=\\s|$|\\\\)(.*?)$\\n"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
 				1: {name: "punctuation.definition.function.request.roff"}
