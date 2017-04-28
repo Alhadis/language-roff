@@ -21,7 +21,7 @@ class LanguageRoff{
 		
 		selector
 			+= ", atom-text-editor[data-grammar='source pic']"
-			+ ".tree-view .file > .manpage-icon[data-path], .tab > .manpage-icon[data-path]"
+			+ ", .tree-view .file > .manpage-icon[data-path], .tab > .manpage-icon[data-path]"
 			+ ("1 2 3 4 5 6 7 8 9 chem man mdoc me ms n pic roff tr".split(/\s/)
 				.map(ext => `, .tree-view .file > [data-path$=".${ext}"], .tab > [data-path$=".${ext}"]`)
 				.join("\n"));
