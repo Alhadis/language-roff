@@ -1063,12 +1063,14 @@ repository:
 			}, {
 				
 				# Font: Italics (typically rendered by nroff as underlined text)
-				begin: "((\\\\)f[I2])"
+				begin: "((\\\\)f(?:[I2]|(\\()CI|(\\[)\\s*(?:[I2]|CI)\\s*(\\])))"
 				end: "(?=\\\\f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
 				beginCaptures:
 					0: {name: "constant.character.escape.font.roff"}
 					1: {name: "entity.name.roff"}
 					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.section.begin.bracket.square.roff"}
+					4: {name: "punctuation.section.end.bracket.square.roff"}
 				patterns: [
 					{include: "$self"}
 					{include: "#italic-word"}
@@ -1076,12 +1078,15 @@ repository:
 			},{
 				
 				# Font: Bold
-				begin: "((\\\\)f[B3])"
+				begin: "((\\\\)f(?:[B3]|(\\()CB|(\\[)\\s*(?:[B3]|CB)\\s*(\\])))"
 				end: "(?=\\\\f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
 				beginCaptures:
 					0: {name: "constant.character.escape.font.roff"}
 					1: {name: "entity.name.roff"}
 					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.definition.brace.roff"}
+					4: {name: "punctuation.section.begin.bracket.square.roff"}
+					5: {name: "punctuation.section.end.bracket.square.roff"}
 				patterns: [
 					{include: "$self"}
 					{include: "#bold-word"}
@@ -1089,16 +1094,34 @@ repository:
 			},{
 				
 				# Font: Bold and italic
-				begin: "((\\\\)f(?:4|(\\()BI))"
+				begin: "((\\\\)f(?:4|(\\()BI|(\\[)\\s*BI\\s*(\\])))"
 				end: "(?=\\\\f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
 				beginCaptures:
 					0: {name: "constant.character.escape.font.roff"}
 					1: {name: "entity.name.roff"}
 					2: {name: "punctuation.definition.escape.roff"}
 					3: {name: "punctuation.definition.brace.roff"}
+					4: {name: "punctuation.section.begin.bracket.square.roff"}
+					5: {name: "punctuation.section.end.bracket.square.roff"}
 				patterns: [
 					{include: "$self"}
 					{include: "#bold-italic-word"}
+				]
+			},{
+				
+				# Font: Constant-width/monospaced
+				begin: "((\\\\)f(?:(\\()C[WR]|(\\[)\\s*C[WR]\\s*(\\])))"
+				end: "(?=\\\\f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
+				beginCaptures:
+					0: {name: "constant.character.escape.font.roff"}
+					1: {name: "entity.name.roff"}
+					2: {name: "punctuation.definition.escape.roff"}
+					3: {name: "punctuation.definition.brace.roff"}
+					4: {name: "punctuation.section.begin.bracket.square.roff"}
+					5: {name: "punctuation.section.end.bracket.square.roff"}
+				patterns: [
+					{include: "$self"}
+					{include: "#monospace-word"}
 				]
 			},{
 				

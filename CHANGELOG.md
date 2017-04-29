@@ -6,9 +6,9 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 [Staged]
 ------------------------------------------------------------------------
-* __Added:__ Bold-italic highlighting for `\f(BI` sequences
 * __Added:__ Editor command to replace blank lines in Roff documents
 * __Added:__ Highlighting for `gperl`, `glilypond`, and `gpinyin` macros
+* __Added:__ Missing highlighting for numerous `\f` sequences
 * __Added:__ Snippet for inserting a bordered section heading
 * __Fixed:__ Conversion commands not working for opened `.pic` files
 * __Fixed:__ Documents mangled when rendering preprocessed Pic output
