@@ -1,13 +1,13 @@
 name: "Roff"
 scopeName: "text.roff"
 fileTypes: [
-	"1", "1b", "1c", "1has", "1in", "1m", "1s", "1t", "1x",
+	"1", "1b", "1c", "1has", "1in", "1m", "1s", "1t", "1x", "1.in",
 	"2",
 	"3", "3avl", "3bsm", "3c", "3in", "3m", "3qt", "3x",
 	"4",
 	"5",
 	"6",
-	"7", "7d", "7fs", "7i", "7ipp", "7m", "7p",
+	"7", "7d", "7fs", "7i", "7ipp", "7m", "7p", "7.in",
 	"8",
 	"9", "9e", "9f", "9p", "9s",
 	"groff",
@@ -18,11 +18,12 @@ fileTypes: [
 	"mmn", "mmt",
 	"ms",
 	"mom",
-	"n",
+	"n", "nr",
 	"nroff",
 	"roff", "rof",
 	"t",
 	"tmac", "tmac-u", "tmac.in",
+	"toc.entries",
 	"tr",
 	"troff"
 ]
@@ -39,6 +40,10 @@ firstLineMatch: """(?x)
 	
 	# “Aliased” manual page
 	^\\.so[ \t]+man(\\w+)/.+\\.\\1(?=\\s|$)
+	|
+	
+	# DWB copyright banner
+	^'''\\t\\\\"\\x20
 	|
 	
 	# Modeline
