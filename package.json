@@ -5,8 +5,12 @@
 	"keywords": ["Roff", "Groff", "Troff", "Nroff", "Typesetting", "RUNOFF", "DSR", "BSD", "Unix Manual Page", "Manpage", "man",
 		"mandoc", "mdoc", "Ronn", "Ditroff", "Eqn", "Pic", "Chem", "DFORMAT", "Grap", "Refer", "Tbl", "IDEAL", "grn", "Plan9"],
 	"repository": "https://github.com/Alhadis/language-roff",
+	"author": "John Gardner <gardnerjohng@gmail.com>",
 	"license": "ISC",
 	"engines": {"atom": "*"},
+	"dependencies": {
+		"urw-core35-fonts": "*"
+	},
 	"configSchema": {
 		"blankLineReplacement": {
 			"type": "string",
