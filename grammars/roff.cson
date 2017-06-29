@@ -21,7 +21,6 @@ fileTypes: [
 	"n", "nr",
 	"nroff",
 	"roff", "rof",
-	"t",
 	"tmac", "tmac-u", "tmac.in",
 	"toc.entries",
 	"tr",
