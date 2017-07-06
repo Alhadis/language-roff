@@ -548,7 +548,7 @@ repository:
 			
 			# Terminator specified
 			contentName: "comment.block.ignored-input.with-terminator.roff"
-			begin: "^([.'])[ \t]*(ig)[ \t]+(?!\\\\[\"#])((\"[^\"]+\")|\\S+?(?=\\s|\\\\[\"#]))(.*)$"
+			begin: "^([.'])[ \t]*(ig)[ \t]+(?!\\\\[\"#]|\\\\+\\$\\d+)((\"[^\"]+\")|\\S+?(?=\\s|\\\\[\"#]))(.*)$"
 			end:   "^([.'])[ \t]*(\\3)(?=\\s|$|\\\\)"
 			patterns: [include: "#register-expansion"]
 			beginCaptures:
