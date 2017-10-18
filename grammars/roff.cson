@@ -1343,6 +1343,19 @@ repository:
 					0: patterns: [include: "#main"]
 				patterns: [include: "source.css"]
 			
+			},{
+				
+				# Shell
+				name: "meta.shell-snippet.mdoc.roff"
+				begin: "^(?:\\S*.*?\\s+)?(?i:Bash|(?:Bourne[\\s-]?)?Shell(?:[\\s-]?Script)?):\\s*$\\n?"
+				end:   "^(?!\\t|\\s*$)"
+				beginCaptures:
+					0: patterns: [include: "#main"]
+				patterns: [{
+					match: ".+"
+					captures:
+						0: patterns: [include: "source.shell"]
+				}]
 			}, include: "#main"]
 		},{
 			
