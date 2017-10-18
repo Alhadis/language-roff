@@ -508,7 +508,7 @@ repository:
 		patterns: [{
 			
 			# No terminator specified
-			name: "meta.function.definition.request.$2.roff"
+			name: "meta.macro.definition.$2.roff"
 			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s+(\\S+?)?\\s*(\\\\[\"#].*)?$"
 			end:   "^(?:[ \t]*\\x5C{2})?\\.[ \t]*\\."
 			beginCaptures:
@@ -524,7 +524,7 @@ repository:
 		},{
 			
 			# Terminator included
-			name: "meta.function.definition.request.with-terminator.$2.roff"
+			name: "meta.macro.definition.with-terminator.$2.roff"
 			begin: "^([.'])[ \t]*((dei?1?)|(ami?1?))\\s+(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\[\"#]))?(.*)$"
 			end:   "^(\\.)[ \t]*((\\6)(?=$|\\s|\\\\(?:$|\")))"
 			beginCaptures:
