@@ -297,7 +297,10 @@ repository:
 				3: name: "variable.parameter.roff"
 				4: name: "entity.name.roff", patterns: [include: "#escapes"]
 			contentName: "string.unquoted.roff"
-			patterns: [include: "#escapes"]
+			patterns: [
+				{include: "#escapes-clipped"}
+				{include: "#escapes"}
+			]
 		},{
 			
 			# Three-part title
@@ -756,17 +759,10 @@ repository:
 			match: "^(\\.|'+)[ \t]*$"
 			captures:
 				1: {name: "punctuation.definition.comment.roff"}
-		},{
-			
-			# Concealed newline
-			name: "constant.character.escape.newline.roff"
-			begin: "(\\\\)$\\n?"
-			end:   "^(?:[.'])?"
-			beginCaptures:
-				1: name: "punctuation.definition.escape.roff"
 		}
 		
 		# Basic sequences
+		{include: "#continuous-newline"}
 		{include: "#register-expansion"}
 		{match: "(\\\\)\\1", name: "constant.character.escape.backslash.roff",   captures: 1: name: "punctuation.definition.escape.roff"}
 		{match: "(\\\\)t",   name: "constant.character.escape.tab.roff",         captures: 1: name: "punctuation.definition.escape.roff"}
@@ -968,6 +964,64 @@ repository:
 				1: {name: "punctuation.section.end.bracket.square.roff"}
 		}]
 	
+	
+	# Escaped line-break
+	"continuous-newline":
+		begin: "(\\\\)?(\\\\)$\\n?"
+		end:   "^(?:[.'])?"
+		beginCaptures:
+			0: name: "constant.character.escape.newline.roff"
+			1: name: "punctuation.definition.concealed.escape.backslash.roff"
+			2: name: "punctuation.definition.escape.roff"
+	
+	
+	# Font escapes which terminate at EOL
+	"escapes-clipped":
+		patterns: [{
+			# Italic
+			begin: "\\\\f(?:[I2]|\\(CI|\\[\\s*(?:[I2]|CI)\\s*\\])"
+			end: "$|(?=\\\\f[\\[A-Za-z0-9])"
+			beginCaptures:
+				0: patterns: [include: "#escapes"]
+			patterns: [
+				{include: "#escaped-newline"}
+				{include: "$self"}
+				{include: "#italic-word"}
+			]
+		},{
+			# Bold
+			begin: "\\\\f(?:[B3]|\\(CB|\\[\\s*(?:[B3]|CB)\\s*\\])"
+			end: "$|(?=\\\\f[\\[A-Za-z0-9])"
+			beginCaptures:
+				0: patterns: [include: "#escapes"]
+			patterns: [
+				{include: "#escaped-newline"}
+				{include: "$self"}
+				{include: "#bold-word"}
+			]
+		},{
+			# Bold and italic
+			begin: "\\\\f(?:4|\\(BI|\\[\\s*BI\\s*\\])"
+			end: "$|(?=\\\\f[\\[A-Za-z0-9])"
+			beginCaptures:
+				0: patterns: [include: "#escapes"]
+			patterns: [
+				{include: "#escaped-newline"}
+				{include: "$self"}
+				{include: "#bold-italic-word"}
+			]
+		},{
+			# Constant-width/monospaced
+			begin: "\\\\f(?:\\(C[WR]|\\[\\s*C[WR]\\s*\\])"
+			end: "$|(?=\\\\f[\\[A-Za-z0-9])"
+			beginCaptures:
+				0: patterns: [include: "#escapes"]
+			patterns: [
+				{include: "#escaped-newline"}
+				{include: "$self"}
+				{include: "#monospace-word"}
+			]
+		}]
 	
 	
 	# Every other escape sequence
