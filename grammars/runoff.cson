@@ -85,7 +85,7 @@ repository:
 			begin: "!"
 			end:   "$"
 			beginCaptures:
-				0: "punctuation.definition.comment.runoff"
+				0: name: "punctuation.definition.comment.runoff"
 		},{
 			
 			# .if/.endif: Control flow
