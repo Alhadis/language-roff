@@ -9,9 +9,13 @@ module.exports = {
 		const packageFiles = [
 			"./lib/conversion.js",
 			"./lib/editing.js",
+			"./lib/previewing.js",
 		];
-		for(const file of packageFiles)
-			disposables.add(...require(file)());
+		// Don't block main thread while activating.
+		return Promise.resolve().then(() => {
+			for(const file of packageFiles)
+				disposables.add(...require(file)());
+		});
 	},
 	
 	deactivate(){

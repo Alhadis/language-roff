@@ -9,7 +9,8 @@
 	"license": "ISC",
 	"engines": {"atom": "*"},
 	"dependencies": {
-		"urw-core35-fonts": "*"
+		"urw-core35-fonts": "*",
+		"roff": "*"
 	},
 	"configSchema": {
 		"blankLineReplacement": {

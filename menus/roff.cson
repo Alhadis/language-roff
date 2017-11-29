@@ -1,3 +1,14 @@
+menu: [
+	label: "Packages"
+	submenu: [
+		label: "Roff"
+		submenu: [
+			{label: "Open manual page",      command: "language-roff:open-manpage"}
+			{label: "Search manual pages",   command: "language-roff:search-manpages"}
+			{label: "Clear cached data",     command: "language-roff:clear-cached-data"}
+		]
+	]
+]
 "context-menu":
 	'atom-text-editor[data-grammar="text roff"], atom-text-editor[data-grammar="source pic"],
 	.tree-view .file > .manpage-icon[data-path], .tab > .manpage-icon[data-path],

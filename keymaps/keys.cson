@@ -1,3 +1,11 @@
 "atom-text-editor[data-grammar='text roff']":
 	"tab":       "language-roff:indent"
 	"shift-tab": "language-roff:outdent"
+
+".platform-darwin":
+	"cmd-m":     "language-roff:open-manpage"
+	"alt-k":     "language-roff:search-manpages"
+
+".platform-win32, .platform-linux":
+	"ctrl-m":    "language-roff:open-manpage"
+	"alt-k":     "language-roff:search-manpages"
