@@ -42,7 +42,7 @@ firstLineMatch: """(?x)
 	|
 	
 	# DWB copyright banner
-	^'+\\t\\\\"\\x20
+	(?:^|\\n)(?:'+\\t?|\\.\\t)\\\\"\\s
 	|
 	
 	# Modeline
