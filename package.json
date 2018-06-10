@@ -10,7 +10,7 @@
 	"engines": {
 		"atom":     ">=1.19.0",
 		"node":     ">=7.6.0",
-		"electron": ">=1.6.0
+		"electron": ">=1.6.0"
 	},
 	"dependencies": {
 		"urw-core35-fonts": "*",
