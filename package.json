@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"urw-core35-fonts": "*",
+		"prompt-view": "*",
 		"roff": "*"
 	},
 	"configSchema": {
