@@ -13,7 +13,7 @@
 		"electron": ">=1.6.0"
 	},
 	"dependencies": {
-		"urw-core35-fonts": "*",
+		"urw-core35-fonts": "^1.1.0",
 		"prompt-view": "*",
 		"roff": "*"
 	},
