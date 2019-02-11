@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Fixed:__ User-defined character names not highlighted by `\(xx`
 * __Fixed:__ Macros starting with `.[` always assumed to be `refer(!)`
 * __Fixed:__ Macros starting with `cu-` mistaken for `.cu` requests
+* __Fixed:__ Snippets not working when hitting tab key
 * __Improved:__ Highlighting of arithmetic and comparison operators
 * __Removed:__ `.t` from associated file extensions
 
