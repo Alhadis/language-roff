@@ -1,4 +1,49 @@
+@import "syntax-variables";
+
 // Fix that sodding highlighting in error notifications
 atom-notifications atom-notification.error pre > code{
 	background: inherit;
+}
+
+// Tab-icons for ManpageViews
+.icon-manpage{
+	body:not(.file-icons-coloured):not(.file-icons-colourless) &::before{
+		font-family: "Octicons Regular";
+		font-size: 16px;
+		top: 1px;
+		content: "\f007";
+	}
+	
+	body.file-icons-coloured   &::before,
+	body.file-icons-colourless &::before{
+		content: "\e936";
+		font-family: file-icons;
+		font-size: 15px;
+		top: 3px;
+	}
+	
+	body.file-icons-coloured &::before{
+		color: #66783e;
+	}
+}
+
+.troff-view-pages{
+	padding: 1em;
+}
+.troff-view-page{
+	margin-bottom: 1em;
+}
+
+.troff-tty{
+	background: @syntax-background-color;
+	color: @syntax-text-color;
+	
+	white-space: pre;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	top:    0;
+	left:   0;
+	right:  0;
+	bottom: 0;
 }
