@@ -34,16 +34,20 @@ atom-notifications atom-notification.error pre > code{
 	margin-bottom: 1em;
 }
 
-.troff-tty{
+.manpage-view{
 	background: @syntax-background-color;
 	color: @syntax-text-color;
 	
-	white-space: pre;
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: absolute;
+	padding: .5em 1em;
 	top:    0;
 	left:   0;
 	right:  0;
 	bottom: 0;
 }
+	.manpage-view > pre{
+		margin: 0;
+		padding: 0;
+	}

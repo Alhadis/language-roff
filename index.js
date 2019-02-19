@@ -23,5 +23,13 @@ module.exports = {
 			disposables.dispose();
 			disposables = null;
 		}
-	}
+	},
+	
+	createManpageView(state){
+		const fs = require("fs");
+		if(state.editorId || fs.existsSync(state.filePath) && fs.lstatSync(state.filePath).isFile()){
+			const ManpageView = require("./lib/views/manpage-view.js");
+			return new ManpageView(state);
+		}
+	},
 };

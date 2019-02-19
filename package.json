@@ -17,6 +17,9 @@
 		"prompt-view": "*",
 		"roff": "*"
 	},
+	"deserializers": {
+		"ManpageView": "createManpageView"
+	},
 	"configSchema": {
 		"blankLineReplacement": {
 			"type": "string",
