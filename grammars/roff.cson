@@ -171,14 +171,14 @@ repository:
 			
 			# GNU extensions
 			name: "meta.function.request.$2.gnu.roff"
-			begin: "(?x) ^([.'])[ \t]*
+			begin: """(?x) ^([.'])[ \t]*
 				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
 				|cp|devicem|device|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
 				|mso|nop|nroff|opena|open|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|sty|substring|tkf|tm1|tmc|trf
 				|trin|trnt|troff|unformat|vpt|warnscale|warn|writec|writem|write)
-				(?=\\s|\\\\[\"#])"
+				(?=\\s|\\\\[\"#])"""
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -256,12 +256,12 @@ repository:
 		},{
 			# Generic requests without formatting
 			name: "meta.function.request.$2.roff"
-			begin: "(?x) ^([.'])[ \t]*
+			begin: """(?x) ^([.'])[ \t]*
 				(ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|da|di|dt|ec|em|eo|ev
 				|ex|fc|fi|fl|fp|ft|hc|hw|hy|in|it|lc|lg|lf|ll|ls|lt|mc|mk
 				|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd|rm|rn
 				|rr|rs|rt|so|sp|ss|sv|sy|ta|tc|ti|tm|tr|uf|vs|wh)
-				(?=\\s|\\d+\\s*$|\\\\[\"#])"
+				(?=\\s|\\d+\\s*$|\\\\[\"#])"""
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.request.roff"}
@@ -1580,10 +1580,10 @@ repository:
 	ms:
 		patterns: [{
 			name: "meta.function.${2:/downcase}.ms.macro.roff"
-			begin: "(?x) ^([.'])[ \t]*
+			begin: """(?x) ^([.'])[ \t]*
 				(1C|2C|AB|AE|AI|AU|B1|B2|BT|BX|DA|DE|DS|EN|EQ|FE|FS|IP|KE|KF|KS|LG
 				|LP|MC|ND|NH|NL|P1|PE|PP|PS|PT|PX|QP|RP|SH|SM|TA|TC|TE|TL|TS|XA|XE
-				|XP|XS)(?=\\s)"
+				|XP|XS)(?=\\s)"""
 			end: "(?<!\\\\)(?=\n)|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1676,14 +1676,14 @@ repository:
 	mm:
 		patterns: [{
 			name: "meta.function.${2:/downcase}.mm.macro.roff"
-			begin: "(?x) ^([.'])[ \t]*
+			begin: """(?x) ^([.'])[ \t]*
 				(1C|2C|AE|AF|AL|APP|APPSK|AS|AST|AT|AU|AV|AVL|B1|B2|BE|BL|BS|BVL
 				|COVER|COVEND|DE|DF|DL|DS|EC|EF|EH|EN|EOP|EPIC|EQ|EX|FC|FD|FE|FG
 				|FS|GETHN|GETPN|GETR|GETST|H|HC|HM|HU|HX|HY|HZ|IA|IE|INITI|INITR
 				|IND|INDP|ISODATE|LB|LC|LE|LI|LT|LO|MC|ML|MT|MOVE|MULB|MULN|MULE
 				|nP|NCOL|NS|ND|OF|OH|OP|PGFORM|PGNH|PIC|PE|PF|PH|PS|PX?|RD|RF|RL
 				|RP|RS|S|SA|SETR|SG|SK|SM|SP|TA?B|TC|TE|TL|TM|TP|TS|TX|TY|VERBON
-				|VERBOFF|VL|VM|WA|WE|WC|\\)E)(?=\\s)"
+				|VERBOFF|VL|VM|WA|WE|WC|\\)E)(?=\\s)"""
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1698,10 +1698,10 @@ repository:
 			
 			# Assorted macros without special highlighting or pattern-matching
 			name: "meta.function.${3:/downcase}.me.macro.roff"
-			begin: "(?x) ^([.'])[ \t]*
+			begin: """(?x) ^([.'])[ \t]*
 				((?:[()][cdfqxz]|\\+\\+|\\+c)|
 				(1c|2c|EN|EQ|GE|GS|PE|PS|TE|TH|TS|ba|bc|bu|bx|hx
-				|hl|ip|lp|np|pd|pp|r|re|sk|sm|sz|tp|uh|xp)(?=\\s))"
+				|hl|ip|lp|np|pd|pp|r|re|sk|sm|sz|tp|uh|xp)(?=\\s))"""
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}
@@ -1800,9 +1800,9 @@ repository:
 		patterns: [{
 			
 			name: "meta.function.${2:/downcase}.www.macro.roff"
-			begin: "(?x) ^([.'])[ \t]*
+			begin: """(?x) ^([.'])[ \t]*
 				(ALN|BCL|BGIMG|DC|DLE|DLS|HEAD|HR|HTM?L|HX|JOBNAME
-				|LI|LINKSTYLE|LK|LNE|LNS|MPIMG|NHR|P?IMG|TAG)(?=\\s)"
+				|LI|LINKSTYLE|LK|LNE|LNS|MPIMG|NHR|P?IMG|TAG)(?=\\s)"""
 			end: "(?<!\\\\)$|(?=\\\\\")"
 			beginCaptures:
 				1: {name: "punctuation.definition.macro.roff"}

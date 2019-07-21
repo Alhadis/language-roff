@@ -111,12 +111,12 @@ repository:
 					5: name: "keyword.other.unit.ditroff.desc"
 			}]
 		},{
-			begin: "(?x)^\\s*
+			begin: """(?x)^\\s*
 				(biggestfont|broken|checksum|designsize|encoding|family|fonts|hor|image_generator
 				|internalname|name|orientation|paper(?:length|width)|pass_filenames|postpro|prepro
 				|print|res|sizescale|slant|spacewidth|spare\\d|special|styles|tcommand|unicode
 				|unitwidth|unscaled_charwidths|use_charnames_in_special|vert|X11|(?:lbp|pcl)[a-z]+)
-				(?=\\s)"
+				(?=\\s)"""
 			end: "(?=$|#)"
 			beginCaptures:
 				1: name: "entity.type.var.ditroff.desc"

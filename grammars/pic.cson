@@ -267,10 +267,10 @@ repository:
 	# Global variables
 	globals:
 		name: "support.variable.global.pic"
-		match: "(?x)\\b
+		match: """(?x)\\b
 			(arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid
 			|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
-			|moveht|movewid|scale|textht|textwid)\\b"
+			|moveht|movewid|scale|textht|textwid)\\b"""
 
 
 	# Graphs
