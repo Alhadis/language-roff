@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Highlighting for shell source embedded with `mdoc`'s `.Bd`
 * __Added:__ Missing highlighting for numerous `\f` sequences
 * __Added:__ Snippet for inserting a bordered section heading
+* __Added:__ Support for sequences escaped by Groff's `\E`
 * __Added:__ Vastly improved highlighting for `eqn` markup
 * __Fixed:__ Conversion commands not working for opened `.pic` files
 * __Fixed:__ Documents mangled when rendering preprocessed Pic output
