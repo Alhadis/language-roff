@@ -2765,28 +2765,82 @@ repository:
 				|delta|epsilon|eta|gamma|iota|kappa|lambda|mu|nu|omega|omicron|phi|pi|psi
 				|rho|sigma|tau|theta|upsilon|xi|zeta)\\b"""
 		},{
+			# Math functions
+			name: "constant.language.math-function.eqn.roff"
+			match: "\\b(and|arc|cos|cosh|det|exp|for|if|Im|lim|ln|log|max|min|Re|sin|sinh|tan|tanh)\\b"
+		},{
 			# Math symbols
 			name: "constant.character.math-symbol.eqn.roff"
-			match: """(?x)\\b
-				(sum|int|prod|union|inter|inf|partial|half|prime|approx|nothing|cdot
-				|times|del|grad|[><=!]=|\\+-|->|<-|<<|>>|\\.{3}|,\\.,)\\b"""
+			match: """(?x)
+				(?:[><=!]=|\\+-|->|<-|<<|>>|\\.{3}|,\\.+,|[-+=](?!\\d)|[*/<>])
+				|\\b(?:approx|cdot|ceiling|del|grad|half|inf|inter|int|floor
+				|nothing|partial|prime|prod|sum|times|union)\\b"""
+		},{
+			# Braced text
+			begin: "{"
+			end:   "}|(?=\\.EN)"
+			beginCaptures: 0: name: "punctuation.section.bracket.curly.begin.eqn.roff"
+			endCaptures:   0: name: "punctuation.section.bracket.curly.end.eqn.roff"
+			patterns: [include: "#eqn"]
 		},{
 			# Punctuation
-			name: "punctuation.definition.eqn.roff"
-			match: "[~,^{}]"
+			match: "(~|\\^)|(,)"
+			captures:
+				1: name: "keyword.operator.spacing.eqn.roff"
+				2: name: "punctuation.separator.delimiter.comma.eqn.roff"
+		},{
+			# Definition
+			begin: "\\b([nts]?define)\\s*(\\S+)\\s*(\\S)"
+			end:   "((?:(?!\\3).)*+)(\\3)|(?=\\.EN)"
+			beginCaptures:
+				1: name: "storage.type.function.definition.eqn.roff"
+				2: name: "entity.name.function.eqn.roff"
+				3: name: "punctuation.section.definition.begin.eqn.roff"
+			endCaptures:
+				1: patterns: [include: "#eqn"]
+				2: name: "punctuation.section.definition.end.eqn.roff"
+			patterns: [
+				match: "(\\{)([^}]*)(\\})"
+				captures:
+					1: name: "punctuation.section.bracket.curly.begin.eqn.roff"
+					2: patterns: [{include: "#eqn"}, {include: "#main"}]
+					3: name: "punctuation.section.bracket.curly.end.eqn.roff"
+				{include: "#eqn"}
+				{include: "#main"}
+			]
+		},{
+			# GNU Eqn: Conditional
+			begin: "\\b(ifdef)\\s*(\\S+)\\s*(\\S)"
+			end:   "((?:(?!\\3).)*+)(\\3)|(?=\\.EN)"
+			beginCaptures:
+				1: name: "keyword.control.flow.if-defined.eqn.roff"
+				2: name: "entity.name.function.eqn.roff"
+				3: name: "punctuation.section.definition.begin.eqn.roff"
+			endCaptures:
+				1: patterns: [include: "#eqn"]
+				2: name: "punctuation.section.definition.end.eqn.roff"
+			patterns: [
+				match: "(\\{)([^}]*)(\\})"
+				captures:
+					1: name: "punctuation.section.bracket.curly.begin.eqn.roff"
+					2: patterns: [{include: "#eqn"}, {include: "#main"}]
+					3: name: "punctuation.section.bracket.curly.end.eqn.roff"
+				{include: "#eqn"}
+				{include: "#main"}
+			]
 		},{
 			# Eqn keywords
 			name: "keyword.language.eqn.roff"
 			match: """(?x)\\b
-				(above|back|bar|bold|ccol|col|cpile|define|delim|dot|dotdot|down|dyad|fat|font|from
-				|fwd|gfont|gsize|hat|italic|lcol|left|lineup|lpile|mark|matrix|ndefine|over|pile
-				|rcol|right|roman|rpile|size|sqrt|sub|sup|tdefine|tilde|to|under|up|vec)\\b"""
+				(above|back|bar|bold|ccol|col|cpile|delim|dot|dotdot|down|dyad|fat|font|from
+				|fwd|gfont|gsize|hat|italic|lcol|left|lineup|lpile|mark|matrix|over|pile
+				|rcol|right|roman|rpile|size|sqrt|sub|sup|tilde|to|under|up|vec)\\b"""
 		},{
 			# GNU Eqn: Keywords
 			name: "keyword.language.eqn.gnu.roff"
 			match: """(?x)\\b
 				(accent|big|chartype|smallover|type|vcenter|uaccent|split|nosplit
-				|opprime|special|sdefine|include|ifdef|undef|g[rb]font|space)\\b"""
+				|opprime|special|include|ifdef|undef|g[rb]font|space)\\b"""
 		},{
 			
 			# GNU Eqn: Character names
@@ -2807,8 +2861,20 @@ repository:
 			captures:
 				1: name: "storage.type.var.eqn.roff"
 				2: name: "variable.other.mathml.eqn.roff"
-		
-		}, include: "#string"]
+		},{
+			# Algebraic bareword string
+			name: "string.unquoted.parameter.eqn.roff"
+			match: "(?![\\d\\\\\"])[^-,!.{}\\[\\]*/^+<=>~\\s\"]+"
+		},{
+			# Boolean keywords
+			match: "(?<=delim)\\s*(?:(on)|(off))\\b"
+			captures:
+				1: name: "constant.language.boolean.logical.true.eqn.roff"
+				2: name: "constant.language.boolean.logical.false.eqn.roff"
+		}
+		{include: "#escapes"}
+		{include: "#number"}
+		{include: "#string"}]
 
 
 	# Table preprocessor
