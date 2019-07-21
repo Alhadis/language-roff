@@ -10,6 +10,7 @@ fileTypes: [
 	"7", "7d", "7fs", "7i", "7ipp", "7m", "7p", "7.in",
 	"8",
 	"9", "9e", "9f", "9p", "9s",
+	"eqnrc",
 	"groff",
 	"man",
 	"mandoc",
@@ -24,7 +25,8 @@ fileTypes: [
 	"tmac", "tmac-u", "tmac.in",
 	"toc.entries",
 	"tr",
-	"troff"
+	"troff",
+	"troffrc", "troffrc-end"
 ]
 firstLineMatch: """(?x)
 
