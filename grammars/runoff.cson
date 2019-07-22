@@ -102,7 +102,7 @@ repository:
 			
 			# .literal: Monospaced text (DIGITAL Standard Runoff)
 			contentName: "markup.raw.runoff"
-			begin: "(?i)((\\.)LITERAL\\s*)(?:$|\\n)"
+			begin: "(?i)((\\.)LITERAL\\s*)(?:$|\\R)"
 			end:   "(?i)((\\.)END\\s+LITERAL)\\b"
 			beginCaptures:
 				0: name: "keyword.function.name.runoff"
@@ -116,7 +116,7 @@ repository:
 			
 			# .LIT: Literal/monospaced text
 			contentName: "markup.raw.runoff"
-			begin: "(?i)((\\.)LIT)\\s*(?:$|\\n)"
+			begin: "(?i)((\\.)LIT)\\s*(?:$|\\R)"
 			end: "(?i)^(?=\\.(?:EL|END\\s+LIT)(?:$|[\\s;!]))"
 			beginCaptures:
 				0: name: "keyword.function.name.runoff"
@@ -162,7 +162,7 @@ repository:
 			{include: "#special-characters"}
 			{match: "\\.", name: "punctuation.delimiter.period.full-stop.runoff"}
 			{match: "\\,", name: "punctuation.separator.comma.runoff"}
-			{match: "\\d+(?=$|\\n|,|\\.(?!\\d))", name: "constant.numeric.runoff"}
+			{match: "\\d+(?=$|\\R|,|\\.(?!\\d))", name: "constant.numeric.runoff"}
 		]
 
 

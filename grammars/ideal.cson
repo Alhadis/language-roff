@@ -12,7 +12,7 @@ repository:
 		patterns: [include: "source.pic#tags", {
 			
 			# Roff lines
-			begin: "^(?=[.'][ \t]*(?:\\w|\\\\))"
+			begin: "^(?=[.'][ \\t]*(?:\\w|\\\\))"
 			end:   "(?<!\\\\)$|(\\\\\".*)$"
 			patterns: [include: "text.roff"]
 			endCaptures:
@@ -21,8 +21,8 @@ repository:
 	
 	# Tags used for embedding IDEAL source
 	tags:
-		begin: "^([.'])[ \t]*(IS)\\b\\s*(\\\\[\"#].*$)?"
-		end:   "^([.'])[ \t]*(IE)\\b"
+		begin: "^([.'])[ \\t]*(IS)\\b\\s*(\\\\[\"#].*$)?"
+		end:   "^([.'])[ \\t]*(IE)\\b"
 		contentName: "source.embedded.ideal"
 		patterns: [include: "$self"]
 		beginCaptures:
@@ -54,7 +54,7 @@ repository:
 	
 	# Box: fundamental building block of the IDEAL language
 	box:
-		begin: "(\\w+)[ \t]*(\\{)"
+		begin: "(\\w+)[ \\t]*(\\{)"
 		end:   "\\}"
 		beginCaptures:
 			0: name: "meta.box.definition.ideal"

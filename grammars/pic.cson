@@ -46,7 +46,7 @@ repository:
 	# Instance backreferences: "1st, last, 2nd last, 8th", etc
 	backref:
 		name: "variable.language.backreference.pic"
-		match: "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \t]+last)?)\\b"
+		match: "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \\t]+last)?)\\b"
 		captures: 0: name: "entity.name.pic"
 
 
@@ -98,7 +98,7 @@ repository:
 			
 			# Bond
 			name: "keyword.function.bond.pic.chem"
-			match: "\\b((?:(?:double|triple|front|back)[ \t]+)?\\bbond)\\b"
+			match: "\\b((?:(?:double|triple|front|back)[ \\t]+)?\\bbond)\\b"
 			captures:
 				0: name: "support.function.pic.chem"
 				1: name: "entity.name.function.pic.chem"
@@ -106,7 +106,7 @@ repository:
 			
 			# Rings
 			name: "keyword.function.ring.pic.chem"
-			match: "(?:\\baromatic[ \t]+)?\\b(?:benzene|(?:flat)?ring\\d*)"
+			match: "(?:\\baromatic[ \\t]+)?\\b(?:benzene|(?:flat)?ring\\d*)"
 			captures:
 				0: name: "entity.name.function.pic.chem"
 		},{
@@ -118,7 +118,7 @@ repository:
 			
 			# Set size
 			name: "keyword.function.set-size.pic.chem"
-			match: "\\b(size)\\b[ \t]*(\\d+)"
+			match: "\\b(size)\\b[ \\t]*(\\d+)"
 			captures:
 				1: name: "entity.name.function.pic.chem"
 				2: name: "constant.numeric.parameter.pic.chem"
@@ -196,12 +196,12 @@ repository:
 			
 			# Record
 			name: "meta.record.dformat.pic"
-			begin: "^\\S.*$\\n?"
+			begin: "^\\S.*$\\R?"
 			end:   "^(?=\\S)"
 			beginCaptures:
 				0: name: "markup.bold.heading.dformat.pic"
 			patterns: [
-				match: "^([ \t]+[^:\\s]+:)?(?:(?<=:)|[ \t]+)(\\S+)\\s+(.*)$"
+				match: "^([ \\t]+[^:\\s]+:)?(?:(?<=:)|[ \\t]+)(\\S+)\\s+(.*)$"
 				captures:
 					0: name: "markup.list.unnumbered.dformat.pic"
 					1: patterns: [include: "#main"]
@@ -234,7 +234,7 @@ repository:
 
 	# Unexpected Roff lines caught inside Pic
 	"embedded-roff":
-		begin: "^(?=[.'][ \t]*(?:\\w|\\\\))"
+		begin: "^(?=[.'][ \\t]*(?:\\w|\\\\))"
 		end:   "(?<!\\\\)$|(\\\\\".*)$"
 		patterns: [include: "text.roff"]
 		endCaptures:
@@ -244,7 +244,7 @@ repository:
 	# Concealed newline
 	"escaped-newline":
 		name: "constant.character.escape.newline.pic"
-		begin: "\\\\$\\n?"
+		begin: "\\\\$\\R?"
 		end:   "^(?:[.'])?"
 		beginCaptures:
 			0: name: "punctuation.definition.escape.pic"
@@ -379,7 +379,7 @@ repository:
 		},{
 			
 			# Pass-through macro terminator
-			begin: '(until)[ \t]+((")([^"]+)("))\\s*$\\n?'
+			begin: '(until)[ \\t]+((")([^"]+)("))\\s*$\\R?'
 			end:   "^[ ]*(\\4)\\b"
 			patterns: [include: "$self"]
 			beginCaptures:
@@ -472,7 +472,7 @@ repository:
 			
 			# .PS <file: Load a PIC file at current position
 			name: "invalid.deprecated.function.picture.macro.roff"
-			match: "^([.'])[ \t]*(PS)[ \t]*(<)(.*)(?=$|\\\\\")"
+			match: "^([.'])[ \\t]*(PS)[ \\t]*(<)(.*)(?=$|\\\\\")"
 			captures:
 				1: {name: "punctuation.definition.macro.roff"}
 				2: {name: "entity.function.name.roff"}
@@ -481,8 +481,8 @@ repository:
 		},{
 			
 			# .PS/.PE: Pic
-			begin: "^([.'])[ \t]*(PS)\\b([\\d \t]*(?:#.*)?)?(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \t]*(P[EF])\\b"
+			begin: "^([.'])[ \\t]*(PS)\\b([\\d \\t]*(?:#.*)?)?(\\\\[#\"].*)?$"
+			end:   "^([.'])[ \\t]*(P[EF])\\b"
 			contentName: "source.embedded.pic"
 			patterns: [include: "$self"]
 			beginCaptures:
@@ -498,8 +498,8 @@ repository:
 		},{
 			
 			# .cstart/.cend: Chem
-			begin: "^([.'])[ \t]*(cstart)\\b\\s*(\\S.*)?"
-			end:   "^([.'])[ \t]*(cend)\\b"
+			begin: "^([.'])[ \\t]*(cstart)\\b\\s*(\\S.*)?"
+			end:   "^([.'])[ \\t]*(cend)\\b"
 			contentName: "source.embedded.chem.pic"
 			patterns: [include: "#chem"]
 			beginCaptures:
@@ -514,8 +514,8 @@ repository:
 		},{
 			
 			# .begin dformat: DFORMAT delimiters
-			begin: "^([.'])[ \t]*(begin[ \t]+dformat)\\b"
-			end:   "^([.'])[ \t]*(end)\\b"
+			begin: "^([.'])[ \\t]*(begin[ \\t]+dformat)\\b"
+			end:   "^([.'])[ \\t]*(end)\\b"
 			contentName: "source.embedded.dformat.pic"
 			patterns: [include: "#dformat"]
 			beginCaptures:
@@ -529,8 +529,8 @@ repository:
 		},{
 			
 			# .G1/.G2: Grap
-			begin: "^([.'])[ \t]*(G1)\\b(\\s*\\d+)?(\\s*\\\\\".*$)?"
-			end:   "^([.'])[ \t]*(G2)\\b"
+			begin: "^([.'])[ \\t]*(G1)\\b(\\s*\\d+)?(\\s*\\\\\".*$)?"
+			end:   "^([.'])[ \\t]*(G2)\\b"
 			contentName: "source.embedded.grap.pic"
 			patterns: [include: "#grap"]
 			beginCaptures:
