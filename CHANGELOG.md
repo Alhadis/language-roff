@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Missing highlighting for numerous `\f` sequences
 * __Added:__ Snippet for inserting a bordered section heading
 * __Added:__ Support for sequences escaped by Groff's `\E`
-* __Added:__ Vastly improved highlighting for `eqn` markup
+* __Added:__ Vastly improved highlighting for `eqn` and `grn` markup
 * __Fixed:__ Conversion commands not working for opened `.pic` files
 * __Fixed:__ Documents mangled when rendering preprocessed Pic output
 * __Fixed:__ Escape sequences not highlighted in register definitions

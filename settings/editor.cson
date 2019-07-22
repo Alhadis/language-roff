@@ -22,6 +22,11 @@
 		commentStart: "# "
 		tabLength: 8
 
+".source.gremlin":
+	editor:
+		commentStart: ""
+		preferredLineLength: 127
+
 ".text.runoff":
 	editor:
 		commentStart: ".! "
