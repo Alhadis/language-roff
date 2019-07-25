@@ -150,6 +150,17 @@ repository:
 		{include: "#number"}]
 	
 	
+	# Variant of “#param-group” used inside \[long-names]
+	"long-params":
+		patterns: [
+			{include: "#escapes"}
+			{include: "#string"}
+			{include: "#number"}
+			{include: "#arithmetic"}
+			{match: "[^\\\\\\s\\]]+", name: "variable.parameter.roff"}
+		]
+	
+	
 	# Group of strings delimited with an arbitrary character
 	"3-part-title":
 		name: "string.3-part.other.roff"
@@ -877,7 +888,7 @@ repository:
 			begin: "((?:((\\\\)E)|(\\\\))[Mm](\\[))"
 			end: "(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
-			patterns: [include: "#params"]
+			patterns: [include: "#long-params"]
 			beginCaptures:
 				1: name: "entity.name.roff"
 				2: name: "constant.character.escape.current-escape-char.gnu.roff"
@@ -910,7 +921,7 @@ repository:
 			begin: "((?:((\\\\)E)|(\\\\))s([-+])?(\\[))"
 			end: "(\\])|(?<!\\\\)(?=$)"
 			contentName: "variable.parameter.roff"
-			patterns: [include: "#params"]
+			patterns: [include: "#long-params"]
 			beginCaptures:
 				1: name: "entity.name.roff"
 				2: name: "constant.character.escape.current-escape-char.gnu.roff"
@@ -1265,7 +1276,7 @@ repository:
 			begin: "(?:((\\\\)E)|(\\\\))(\\[)"
 			end: "(\\S*?)(\\])|(?<!\\\\)(?=$)"
 			patterns: [
-				{include: "#params"}
+				{include: "#long-params"}
 				{match: '(?:[^\\s\\]\\\\]|\\\\(?!E?["#]).)+', name: "variable.parameter.roff"}
 			]
 			beginCaptures:
@@ -1274,7 +1285,7 @@ repository:
 				3: name: "punctuation.definition.escape.roff"
 				4: name: "punctuation.section.begin.bracket.square.roff"
 			endCaptures:
-				1: patterns: [include: "#params"]
+				1: patterns: [include: "#long-params"]
 				2: name: "punctuation.section.end.bracket.square.roff"
 		},{
 			
