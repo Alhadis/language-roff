@@ -1,0 +1,119 @@
+[[
+[".", "text.roff", "markup.heading.title.function.man.macro.roff", "meta.function.man.macro.roff", "punctuation.definition.macro.roff"],
+["TH", "text.roff", "markup.heading.title.function.man.macro.roff", "meta.function.man.macro.roff", "entity.name.function.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+["\\\"", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+[" EDGE-CASE ISSUE:", "text.roff", "comment.line.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["RB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
+["RRRRRRR\" \"BBBBBB\"RRRR", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["UUUUUU \"UUU\"UU UUUU", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+["\\\"", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+[" This works, though:", "text.roff", "comment.line.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["RB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
+["RRRRRRR\" \"BBBBBB\" RRRR", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["RRRRRR \"BBB\"RR BBBB", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["RB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
+["RRRRRRR\" BBB \"\" BB", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["aa", "text.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"],
+["BB RRRR\" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+[" \"BB", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["aa", "text.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"],
+["BB B", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["aa", "text.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"],
+["B", "text.roff"]
+],[
+["UUUUUU \" \"UUU ", "text.roff"]
+],[
+["UU", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["RB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
+["RRRRRRR\"BBB", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["B", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
+["B", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["B", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["\" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+[" RRRRR \"BBBBB BBBB", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["UUU", "text.roff"]
+],[
+["\" UUUU \"UUU", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["UUUUUUUUUU UUU ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.misc.roff", "punctuation.definition.escape.roff"],
+["U", "text.roff", "constant.character.escape.misc.roff"]
+],[
+["U", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["RB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
+["RRRRRRR\" BBB \"RRRRR RRRR\" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+[" \"BBBB BBB", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["BBBBBB \" \"RRR ", "text.roff"]
+],[
+["UU", "text.roff"]
+]]

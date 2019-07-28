@@ -1,0 +1,915 @@
+[[
+["\\", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+[".$", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "variable.parameter.other.roff"],
+["]", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["   ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+[".$", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "variable.parameter.other.roff"],
+["]", "text.roff", "constant.character.escape.function.expand-register.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+[".$", "text.roff", "constant.character.escape.function.expand-register.roff", "constant.language.predefined.register.readonly.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+[".$", "text.roff", "constant.character.escape.function.expand-register.roff", "constant.language.predefined.register.readonly.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["$", "text.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["n", "text.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["$", "text.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["*", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["xy", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "function-call.arguments.roff", "variable.parameter.other.roff"],
+[" z", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "function-call.arguments.roff"],
+["]", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+[" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["*", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["xy", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "function-call.arguments.roff", "variable.parameter.other.roff"],
+[" z", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "function-call.arguments.roff"],
+["]", "text.roff", "constant.character.escape.function.interpolate-string.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["*", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xy", "text.roff", "constant.character.escape.function.interpolate-string.roff", "variable.parameter.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["*", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xy", "text.roff", "constant.character.escape.function.interpolate-string.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["*", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.interpolate-string.roff", "variable.parameter.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["*", "text.roff", "constant.character.escape.function.interpolate-string.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.interpolate-string.roff", "variable.parameter.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["m", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["x", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "variable.parameter.roff", "variable.parameter.roff"],
+["]", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["m", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["x", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "variable.parameter.roff", "variable.parameter.roff"],
+["]", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["m", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xx", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "variable.parameter.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["m", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xx", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["m", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "variable.parameter.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["m", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.set-colour.gnu.roff", "variable.parameter.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["+1", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "variable.parameter.roff", "constant.numeric.roff"],
+["]", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["   ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["+1", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "variable.parameter.roff", "constant.numeric.roff"],
+["]", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff"],
+["+", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "keyword.operator.arithmetic.roff"],
+["[", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["1", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "variable.parameter.roff", "constant.numeric.roff"],
+["]", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["   ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff"],
+["+", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "keyword.operator.arithmetic.roff"],
+["[", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["1", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "variable.parameter.roff", "constant.numeric.roff"],
+["]", "text.roff", "constant.character.escape.function.point-size.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["s", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["1", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["1", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.internal.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["O", "text.roff", "constant.character.escape.internal.gnu.roff", "entity.name.roff"],
+["2", "text.roff", "constant.character.escape.internal.gnu.roff", "entity.name.roff", "constant.numeric.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.internal.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.internal.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["O", "text.roff", "constant.character.escape.internal.gnu.roff", "entity.name.roff"],
+["2", "text.roff", "constant.character.escape.internal.gnu.roff", "entity.name.roff", "constant.numeric.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["O", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff"],
+["5", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff", "constant.numeric.roff"],
+["[", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["xyz", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "string.unquoted.filename.roff"],
+["]", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+[" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["O", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff"],
+["5", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff", "constant.numeric.roff"],
+["[", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["xyz", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "string.unquoted.filename.roff"],
+["]", "text.roff", "constant.character.escape.internal.stderr-write-file.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["V", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["x", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "variable.parameter.other.roff"],
+["]", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["V", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["x", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "variable.parameter.other.roff"],
+["]", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["V", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xx", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "variable.parameter.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["V", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xx", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["V", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "variable.parameter.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["V", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.interpolate-variable.gnu.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "punctuation.definition.escape.roff"],
+["?", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "punctuation.definition.script.roff"],
+["xx", "text.roff", "string.interpolated.roff"],
+["\\", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "punctuation.definition.escape.roff"],
+["?", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "punctuation.definition.script.roff"],
+["   ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["?", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "punctuation.definition.script.roff"],
+["xx", "text.roff", "string.interpolated.roff"],
+["\\", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "punctuation.definition.escape.roff"],
+["?", "text.roff", "constant.character.escape.embed-diversion.start.gnu.roff", "punctuation.definition.script.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "punctuation.definition.escape.roff"],
+["$*", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["$*", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "punctuation.definition.escape.roff"],
+["$@", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["$@", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "punctuation.definition.escape.roff"],
+["$^", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["$^", "text.roff", "constant.character.escape.function.concatenated-arguments.gnu.roff", "variable.language.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["$", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["32", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "variable.parameter.roff", "variable.parameter.other.roff"],
+["]", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["   ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["$", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["32", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "variable.parameter.roff", "variable.parameter.other.roff"],
+["]", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["$", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "variable.parameter.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["$", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.interpolate-argument.gnu.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.interpolate-argument.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["$1", "text.roff", "constant.character.escape.function.interpolate-argument.roff", "entity.name.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.interpolate-argument.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.interpolate-argument.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["$2", "text.roff", "constant.character.escape.function.interpolate-argument.roff", "entity.name.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "punctuation.definition.escape.roff"],
+["[", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "punctuation.section.begin.bracket.square.roff"],
+["aa", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "variable.parameter.roff"],
+["]", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["[", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "punctuation.section.begin.bracket.square.roff"],
+["aa", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "variable.parameter.roff"],
+["]", "text.roff", "constant.character.escape.function.named-char.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.named-char.roff", "punctuation.definition.brace.roff"],
+["(", "text.roff", "constant.character.escape.function.named-char.roff", "punctuation.definition.escape.roff"],
+["aa", "text.roff", "constant.character.escape.function.named-char.roff", "variable.parameter.roff"],
+["     ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.named-char.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.named-char.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["(", "text.roff", "constant.character.escape.function.named-char.roff", "punctuation.definition.escape.roff"],
+["aa", "text.roff", "constant.character.escape.function.named-char.roff", "variable.parameter.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.current-escape-char.roff", "punctuation.definition.escape.roff"],
+["e", "text.roff", "constant.character.escape.current-escape-char.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.current-escape-char.roff", "punctuation.definition.escape.roff"],
+["Ee", "text.roff", "constant.character.escape.current-escape-char.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.acute-accent.roff", "punctuation.definition.escape.roff"],
+["´", "text.roff", "constant.character.escape.acute-accent.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.acute-accent.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.acute-accent.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["´", "text.roff", "constant.character.escape.acute-accent.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.grave-accent.roff", "punctuation.definition.escape.roff"],
+["`", "text.roff", "constant.character.escape.grave-accent.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.grave-accent.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.grave-accent.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["`", "text.roff", "constant.character.escape.grave-accent.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.minus.roff", "punctuation.definition.escape.roff"],
+["-", "text.roff", "constant.character.escape.minus.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.minus.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.minus.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["-", "text.roff", "constant.character.escape.minus.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.space.digit-width.roff", "punctuation.definition.escape.roff"],
+["0", "text.roff", "constant.character.escape.space.digit-width.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.space.digit-width.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.space.digit-width.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["0", "text.roff", "constant.character.escape.space.digit-width.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.space.one-sixth-em.roff", "punctuation.definition.escape.roff"],
+["|", "text.roff", "constant.character.escape.space.one-sixth-em.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.space.one-sixth-em.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.space.one-sixth-em.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["|", "text.roff", "constant.character.escape.space.one-sixth-em.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.space.one-twelfth-em.roff", "punctuation.definition.escape.roff"],
+["^", "text.roff", "constant.character.escape.space.one-twelfth-em.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.space.one-twelfth-em.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.space.one-twelfth-em.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["^", "text.roff", "constant.character.escape.space.one-twelfth-em.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.zero-width-marker.roff", "punctuation.definition.escape.roff"],
+["&", "text.roff", "constant.character.escape.zero-width-marker.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.zero-width-marker.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.zero-width-marker.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["&", "text.roff", "constant.character.escape.zero-width-marker.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.hyphenation-char.roff", "punctuation.definition.escape.roff"],
+["%", "text.roff", "constant.character.escape.hyphenation-char.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.hyphenation-char.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.hyphenation-char.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["%", "text.roff", "constant.character.escape.hyphenation-char.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.connect.roff", "punctuation.definition.escape.roff"],
+["c", "text.roff", "constant.character.escape.connect.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.connect.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.connect.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["c", "text.roff", "constant.character.escape.connect.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.downwards.roff", "punctuation.definition.escape.roff"],
+["d", "text.roff", "constant.character.escape.downwards.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.downwards.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.downwards.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["d", "text.roff", "constant.character.escape.downwards.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.spread-line.roff", "punctuation.definition.escape.roff"],
+["p", "text.roff", "constant.character.escape.spread-line.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.spread-line.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.spread-line.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["p", "text.roff", "constant.character.escape.spread-line.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.reverse.roff", "punctuation.definition.escape.roff"],
+["r", "text.roff", "constant.character.escape.reverse.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.reverse.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.reverse.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["r", "text.roff", "constant.character.escape.reverse.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.upwards.roff", "punctuation.definition.escape.roff"],
+["u", "text.roff", "constant.character.escape.upwards.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.upwards.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.upwards.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["u", "text.roff", "constant.character.escape.upwards.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["b", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["b", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["C", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["C", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["D", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["D", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["h", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["h", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["H", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["H", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["S", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["S", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["l", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["l", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["L", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["L", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["o", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["o", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["v", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["v", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["w", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["w", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["X", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["X", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["N", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["N", "text.roff", "constant.character.escape.function.roff", "entity.name.function.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["x", "text.roff", "constant.character.escape.function.roff", "string.other.roff"],
+["'", "text.roff", "constant.character.escape.function.roff", "string.other.roff", "punctuation.definition.end.roff"]
+],[
+[" ", "text.roff"],
+["\\", "text.roff", "meta.throughput.roff", "constant.character.escape.transparent-line.roff", "punctuation.definition.escape.roff"],
+["!", "text.roff", "meta.throughput.roff", "constant.character.escape.transparent-line.roff"],
+["xyz", "text.roff", "meta.throughput.roff"]
+],[
+["\\", "text.roff", "meta.throughput.roff", "constant.character.escape.transparent-line.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "meta.throughput.roff", "constant.character.escape.transparent-line.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["!", "text.roff", "meta.throughput.roff", "constant.character.escape.transparent-line.roff"],
+["xyz", "text.roff", "meta.throughput.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["f", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["CW", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+[" ", "text.roff"],
+["xyz", "text.roff", "markup.raw.monospaced.roff"],
+[" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["f", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["CW", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+[" ", "text.roff"],
+["xyz", "text.roff", "markup.raw.monospaced.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["f", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["BI", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+[" ", "text.roff"],
+["xyz", "text.roff", "markup.bold.italic.roff"],
+[" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["f", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["BI", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+[" ", "text.roff"],
+["xyz", "text.roff", "markup.bold.italic.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fB", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["   ", "text.roff"],
+["xyz", "text.roff", "markup.bold.roff"],
+[" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["fB", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["   ", "text.roff"],
+["xyz", "text.roff", "markup.bold.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fI", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["   ", "text.roff"],
+["xyz", "text.roff", "markup.italic.roff"],
+[" ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["fI", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["   ", "text.roff"],
+["xyz", "text.roff", "markup.italic.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fR", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["   xyz ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["fR", "text.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["   xyz", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.font.gnu.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["f", "text.roff", "constant.character.escape.function.font.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.font.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["xyz", "text.roff", "constant.character.escape.function.font.gnu.roff", "variable.parameter.roff"],
+["]", "text.roff", "constant.character.escape.function.font.gnu.roff", "punctuation.section.end.bracket.square.roff"],
+["   ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.font.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.font.gnu.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["f", "text.roff", "constant.character.escape.function.font.gnu.roff", "entity.name.roff"],
+["[", "text.roff", "constant.character.escape.function.font.gnu.roff", "entity.name.roff", "punctuation.section.begin.bracket.square.roff"],
+["xyz", "text.roff", "constant.character.escape.function.font.gnu.roff", "variable.parameter.roff"],
+["]", "text.roff", "constant.character.escape.function.font.gnu.roff", "punctuation.section.end.bracket.square.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["f", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["XX", "text.roff", "constant.character.escape.function.font.roff", "variable.parameter.roff"],
+["     ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["f", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["XX", "text.roff", "constant.character.escape.function.font.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["f", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff"],
+["X", "text.roff", "constant.character.escape.function.font.roff", "variable.parameter.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["f", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff"],
+["X", "text.roff", "constant.character.escape.function.font.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["f", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff"],
+["5", "text.roff", "constant.character.escape.function.font.roff", "variable.parameter.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["f", "text.roff", "constant.character.escape.function.font.roff", "entity.name.roff"],
+["5", "text.roff", "constant.character.escape.function.font.roff", "variable.parameter.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["g", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.format-register.roff", "variable.parameter.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["g", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff"],
+["x", "text.roff", "constant.character.escape.function.format-register.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["g", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xx", "text.roff", "constant.character.escape.function.format-register.roff", "variable.parameter.roff"],
+["     ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["g", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.format-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["xx", "text.roff", "constant.character.escape.function.format-register.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.mark-input.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["k", "text.roff", "constant.character.escape.function.mark-input.roff", "entity.name.roff"],
+["X", "text.roff", "constant.character.escape.function.mark-input.roff", "variable.parameter.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.mark-input.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.mark-input.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["k", "text.roff", "constant.character.escape.function.mark-input.roff", "entity.name.roff"],
+["X", "text.roff", "constant.character.escape.function.mark-input.roff", "variable.parameter.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["3", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["3", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["s+", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["3", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"],
+["      ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s+", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["3", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"],
+["     ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["s+", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s+", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["s-", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"],
+["    ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["s-", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff"],
+["(", "text.roff", "constant.character.escape.function.point-size.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["32", "text.roff", "constant.character.escape.function.point-size.roff", "variable.parameter.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.function.zero-width-print.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["z", "text.roff", "constant.character.escape.function.zero-width-print.roff", "entity.name.roff"],
+["C", "text.roff", "constant.character.escape.function.zero-width-print.roff", "variable.parameter.roff"],
+["       ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.function.zero-width-print.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.function.zero-width-print.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["z", "text.roff", "constant.character.escape.function.zero-width-print.roff", "entity.name.roff"],
+["C", "text.roff", "constant.character.escape.function.zero-width-print.roff", "variable.parameter.roff"]
+],[
+["", "text.roff"]
+],[
+["'", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+["\\E\"", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"]
+],[
+["'", "text.roff", "comment.line.number-sign.gnu.roff", "punctuation.definition.comment.roff"],
+["\\E#", "text.roff", "comment.line.number-sign.gnu.roff", "punctuation.definition.comment.roff"]
+],[
+[".", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+["\\E\"", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"]
+],[
+[".", "text.roff", "comment.line.number-sign.gnu.roff", "punctuation.definition.comment.roff"],
+["\\E#", "text.roff", "comment.line.number-sign.gnu.roff", "punctuation.definition.comment.roff"]
+],[
+["", "text.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.backslash.roff", "punctuation.definition.escape.roff"],
+["\\", "text.roff", "constant.character.escape.backslash.roff"],
+["        ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.backslash.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.backslash.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["\\", "text.roff", "constant.character.escape.backslash.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.tab.roff", "punctuation.definition.escape.roff"],
+["t", "text.roff", "constant.character.escape.tab.roff"],
+["        ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.tab.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.tab.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["t", "text.roff", "constant.character.escape.tab.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.leader-char.roff", "punctuation.definition.escape.roff"],
+["a", "text.roff", "constant.character.escape.leader-char.roff"],
+["        ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.leader-char.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.leader-char.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["a", "text.roff", "constant.character.escape.leader-char.roff"]
+],[
+["\\", "text.roff", "constant.character.escape.dot.roff", "punctuation.definition.escape.roff"],
+[".", "text.roff", "constant.character.escape.dot.roff"],
+["        ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.dot.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "constant.character.escape.dot.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+[".", "text.roff", "constant.character.escape.dot.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.request.ds.roff", "punctuation.definition.request.roff"],
+["ds", "text.roff", "meta.function.request.ds.roff", "storage.type.var.roff"],
+[" ", "text.roff", "meta.function.request.ds.roff"],
+["1", "text.roff", "meta.function.request.ds.roff", "variable.parameter.roff", "entity.name.roff"],
+[" ", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff"],
+["\\", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["fI", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["aaa", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "markup.italic.roff"]
+],[
+["xyz", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.request.ds.roff", "punctuation.definition.request.roff"],
+["ds", "text.roff", "meta.function.request.ds.roff", "storage.type.var.roff"],
+[" ", "text.roff", "meta.function.request.ds.roff"],
+["2", "text.roff", "meta.function.request.ds.roff", "variable.parameter.roff", "entity.name.roff"],
+[" ", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff"],
+["\\", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["fB", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["aaa", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "markup.bold.roff"]
+],[
+["xyz", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.request.ds.roff", "punctuation.definition.request.roff"],
+["ds", "text.roff", "meta.function.request.ds.roff", "storage.type.var.roff"],
+[" ", "text.roff", "meta.function.request.ds.roff"],
+["3", "text.roff", "meta.function.request.ds.roff", "variable.parameter.roff", "entity.name.roff"],
+[" ", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff"],
+["\\", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff", "punctuation.definition.escape.roff"],
+["E", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff", "constant.character.escape.current-escape-char.gnu.roff"],
+["f", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["(", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["BI", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["aaa", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff", "markup.bold.italic.roff"]
+],[
+["ll", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.Em.parsed.macro.mdoc.roff", "punctuation.definition.macro.roff"],
+["Em", "text.roff", "meta.function.Em.parsed.macro.mdoc.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.Em.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff"],
+["III", "text.roff", "meta.function.Em.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff", "markup.italic.roff"],
+["\\E\"", "text.roff", "meta.function.Em.parsed.macro.mdoc.roff", "comment.line.roff", "punctuation.definition.comment.roff"]
+],[
+["III", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.Sy.parsed.macro.mdoc.roff", "punctuation.definition.macro.roff"],
+["Sy", "text.roff", "meta.function.Sy.parsed.macro.mdoc.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.Sy.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff"],
+["BBB", "text.roff", "meta.function.Sy.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff", "markup.bold.roff"],
+["\\E\"", "text.roff", "meta.function.Sy.parsed.macro.mdoc.roff", "comment.line.roff", "punctuation.definition.comment.roff"]
+],[
+["BBB", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.Li.parsed.macro.mdoc.roff", "punctuation.definition.macro.roff"],
+["Li", "text.roff", "meta.function.Li.parsed.macro.mdoc.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.Li.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff"],
+["CCC", "text.roff", "meta.function.Li.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff", "markup.raw.monospaced.roff"],
+["\\E\"", "text.roff", "meta.function.Li.parsed.macro.mdoc.roff", "comment.line.roff", "punctuation.definition.comment.roff"]
+],[
+["CCC", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "punctuation.definition.macro.roff"],
+["Lk", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff"],
+["https://a.com", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff", "markup.underline.link.hyperlink.mdoc.roff", "markup.underline.link.https.hyperlink"],
+["\\E\"", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "comment.line.roff", "punctuation.definition.comment.roff"]
+]]

@@ -17,6 +17,10 @@
 		"prompt-view": "*",
 		"roff": "*"
 	},
+	"atomTestRunner": "atom-mocha",
+	"devDependencies": {
+		"atom-mocha": "^2.2.1"
+	},
 	"deserializers": {
 		"ManpageView": "createManpageView"
 	},

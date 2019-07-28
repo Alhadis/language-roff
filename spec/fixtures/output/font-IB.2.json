@@ -1,0 +1,176 @@
+[[
+[".", "text.roff", "markup.heading.title.function.man.macro.roff", "meta.function.man.macro.roff", "punctuation.definition.macro.roff"],
+["TH", "text.roff", "markup.heading.title.function.man.macro.roff", "meta.function.man.macro.roff", "entity.name.function.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+["\\\"", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+[" EDGE-CASE ISSUE:", "text.roff", "comment.line.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["IB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["IIIIIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.begin.roff"],
+["BBBBBB", "text.roff", "markup.bold.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.end.roff"],
+["IIII\\", "text.roff", "markup.italic.roff"],
+["", "text.roff"]
+],[
+["UUUUUU \"UUU\"UU UUUU", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+["\\\"", "text.roff", "comment.line.roff", "punctuation.definition.comment.roff"],
+[" This works, though:", "text.roff", "comment.line.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["IB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["IIIIIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.begin.roff"],
+["BBBBBB", "text.roff", "markup.bold.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["IIII", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["IIIIII", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.begin.roff"],
+["BBB", "text.roff", "markup.bold.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.end.roff"],
+["II ", "text.roff", "markup.italic.roff"],
+["BBBB", "text.roff", "markup.bold.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["IB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["IIIIIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["BBB", "text.roff", "markup.bold.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["BB", "text.roff", "markup.bold.roff"],
+["\\", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["aa", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"],
+["BB", "text.roff", "markup.bold.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["IIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+[" ", "text.roff", "constant.character.escape.newline.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.begin.roff"],
+["BB", "text.roff", "markup.bold.roff"],
+["\\", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["aa", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"],
+["BB B", "text.roff", "markup.bold.roff"],
+["\\", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["aa", "text.roff", "markup.bold.roff", "constant.character.escape.function.expand-register.roff", "variable.parameter.roff"],
+["B", "text.roff", "markup.bold.roff"]
+],[
+["UUUUUU \" \"UUU ", "text.roff"]
+],[
+["UU", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["IB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["IIIIIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+["BBB", "text.roff", "markup.bold.roff"],
+["\\", "text.roff", "markup.bold.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["B", "text.roff", "markup.bold.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
+["B", "text.roff", "markup.bold.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["B", "text.roff", "markup.bold.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["\"", "text.roff", "markup.bold.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"],
+["", "text.roff", "markup.italic.roff"]
+],[
+[" ", "text.roff", "markup.italic.roff"],
+["IIIII", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.begin.roff"],
+["BBBBB BBB", "text.roff", "markup.bold.roff"],
+["B", "text.roff", "markup.bold.roff"]
+],[
+["", "text.roff"]
+],[
+["UUU", "text.roff"]
+],[
+["\" UUUU \"UUU", "text.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["UUUUUUUUUU UUU ", "text.roff"],
+["\\", "text.roff", "constant.character.escape.misc.roff", "punctuation.definition.escape.roff"],
+["U", "text.roff", "constant.character.escape.misc.roff"]
+],[
+["U", "text.roff"]
+],[
+["", "text.roff"]
+],[
+[".", "text.roff", "meta.function.man.macro.roff", "punctuation.definition.function.macro.roff"],
+["IB", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["IIIIIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["BBB", "text.roff", "markup.bold.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["IIIII IIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+[" ", "text.roff", "constant.character.escape.newline.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.begin.roff"],
+["BBBB BBB", "text.roff", "markup.bold.roff"],
+["\\", "text.roff", "markup.bold.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["BBBBBB ", "text.roff", "markup.bold.roff"],
+["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["III", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"]
+],[
+["UU", "text.roff"]
+]]
