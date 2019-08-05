@@ -1347,7 +1347,7 @@ repository:
 				
 			# Font: Italics (typically rendered by nroff as underlined text)
 			begin: "((?:((\\\\)E)|(\\\\))f(?:[I2]|(\\()CI|(\\[)\\s*(?:[I2]|CI)\\s*(\\])))"
-			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
+			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=[.']\\s*(?:(?:SH|SS|P|[HILPT]P|di)\\b)|\\.)"
 			beginCaptures:
 				0: name: "constant.character.escape.font.roff"
 				1: name: "entity.name.roff"
@@ -1364,7 +1364,7 @@ repository:
 			
 			# Font: Bold
 			begin: "((?:((\\\\)E)|(\\\\))f(?:[B3]|(\\()CB|(\\[)\\s*(?:[B3]|CB)\\s*(\\])))"
-			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
+			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=[.']\\s*(?:(?:SH|SS|P|[HILPT]P|di)\\b)|\\.)"
 			beginCaptures:
 				0: name: "constant.character.escape.font.roff"
 				1: name: "entity.name.roff"
@@ -1382,7 +1382,7 @@ repository:
 			
 			# Font: Bold and italic
 			begin: "((?:((\\\\)E)|(\\\\))f(?:4|(\\()BI|(\\[)\\s*BI\\s*(\\])))"
-			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
+			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=[.']\\s*(?:(?:SH|SS|P|[HILPT]P|di)\\b)|\\.)"
 			beginCaptures:
 				0: name: "constant.character.escape.font.roff"
 				1: name: "entity.name.roff"
@@ -1400,7 +1400,7 @@ repository:
 			
 			# Font: Constant-width/monospaced
 			begin: "((?:((\\\\)E)|(\\\\))f(?:(\\()C[WR]|(\\[)\\s*C[WR]\\s*(\\])))"
-			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=\\.(?:SH|SS|P|[HILPT]P)\\b)"
+			end: "(?=\\\\E?f[\\[A-Za-z0-9])|^(?=[.']\\s*(?:(?:SH|SS|P|[HILPT]P|di)\\b)|\\.)"
 			beginCaptures:
 				0: name: "constant.character.escape.font.roff"
 				1: name: "entity.name.roff"
