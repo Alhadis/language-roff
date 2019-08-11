@@ -610,7 +610,7 @@ repository:
 			# Underline following line
 			name: "meta.request.$2.roff"
 			begin: "^([.'])[ \\t]*(ul|cu)(?=\\s|$|\\\\)(.*?)$\\R?"
-			end:   "(?<!\\\\)$"
+			end:   "(?!\\G)(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.function.request.roff"
 				2: name: "entity.function.name.roff"
@@ -618,14 +618,15 @@ repository:
 			patterns: [{
 				
 				# Ignore control-lines
-				begin: "^(?=[.']|\\\\E?!)(.*)$\\R?"
-				end:   "^"
+				begin: "(?:^|\\G)(?=[.']|\\\\E?!)(.*)$\\R?"
+				end:   "(?!\\G)^"
 				beginCaptures:
 					1: patterns: [include: "$self"]
 			}, {
-				name: "markup.underline.roff"
-				begin: "^(?![.'])"
-				end:   "(?<!\\\\)$"
+				name: "string.other.link.roff"
+				contentName: "markup.underline.roff"
+				begin: "(?:^|\\G)(?![.'])"
+				end:   "(?!\\G)(?<!\\\\)$"
 			}]
 		}]
 	
@@ -1768,8 +1769,8 @@ repository:
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			endCaptures:
-				0: name: "markup.underline.link.hyperlink.mdoc.roff"
-				1: patterns: [include: "#escapes"]
+				0: name: "string.other.link.roff"
+				1: name: "markup.underline.link.hyperlink.mdoc.roff", patterns: [include: "#escapes"]
 		},{
 			# Embedded macro name inside argument list
 			name: "meta.function.$1.callable.macro.mdoc.roff"
@@ -2829,6 +2830,7 @@ repository:
 		patterns: [{
 			
 			# Unquoted string
+			name: "string.other.link.roff"
 			contentName: "markup.underline.roff"
 			begin: "\\G[ \\t]*(?!\")(?=(?:[^\\s\\\\]|\\\\(?!E?\").)+)"
 			end:   "(?<![^\\\\]\\\\|^\\\\)(?=\\s|$)|(?=\\\\E?\")"
@@ -2842,7 +2844,7 @@ repository:
 			endCaptures:   0: name: "punctuation.definition.string.end.roff"
 		},{
 			# Quoted string
-			name: "string.quoted.double.roff"
+			name: "string.other.link.roff"
 			contentName: "markup.underline.roff"
 			begin: '\\G[ \\t]*(")'
 			end:   '((?:"")*)"(?!")|(?<!\\\\)$|(?=\\\\E?\")'
@@ -3290,7 +3292,7 @@ repository:
 				{include: "#escapes"}
 				
 				# Add underlines to filenames for themes supporting them
-				name: "string.unquoted.filename.refer.roff"
+				name: "string.other.link.filename.refer.roff"
 				match: "((?:[^\\\\\\s]|\\\\(?!E?\").)+)"
 				captures:
 					0: name: "markup.link.underline.refer.roff"

@@ -910,6 +910,6 @@
 [".", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "punctuation.definition.macro.roff"],
 ["Lk", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "entity.function.name.roff"],
 [" ", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff"],
-["https://a.com", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff", "markup.underline.link.hyperlink.mdoc.roff", "markup.underline.link.https.hyperlink"],
+["https://a.com", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "meta.function..callable.macro.mdoc.roff", "string.other.link.roff", "markup.underline.link.hyperlink.mdoc.roff", "markup.underline.link.https.hyperlink"],
 ["\\E\"", "text.roff", "meta.function.Lk.parsed.macro.mdoc.roff", "comment.line.roff", "punctuation.definition.comment.roff"]
 ]]
