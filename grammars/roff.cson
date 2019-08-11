@@ -1764,8 +1764,8 @@ repository:
 			
 			# .Lk/.Mt: Hyperlink or mailto
 			name: "meta.function.$1.callable.macro.mdoc.roff"
-			begin: "(?<=Lk|Mt)\\G|(?<=\\s)(Lk|Mt)(?=\\s)"
-			end:   "$|(?=\\\\E?\")|(\\S+?)(?=$|\\s|\\\\E?\")"
+			begin: "(?<=Lk|Mt)\\G|(?<=\\s)(Lk|Mt)(?=\\s|$)\\s*"
+			end:   '$|(?=\\\\E?")|(\\S+?)(?=$|\\s|\\\\E?")'
 			beginCaptures:
 				1: name: "entity.function.name.roff"
 			endCaptures:
@@ -1907,7 +1907,7 @@ repository:
 			
 			# Underlined text
 			name: "meta.function.ul.ms.macro.roff"
-			begin: "^([.'])[ \\t]*(UL)(?=\\s)"
+			begin: "^([.'])[ \\t]*(UL)(?=\\s|$)\\s*"
 			end: "(?<!\\\\)$|(?=\\\\E?\")"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.roff"
@@ -2002,7 +2002,7 @@ repository:
 		},{
 			
 			# .u: Underline
-			begin: "^([.'])[ \\t]*(u)(?=\\s)"
+			begin: "^([.'])[ \\t]*(u)(?=\\s|$)\\s*"
 			end: "(?<![^\\\\]\\\\|^\\\\)(?=$|\\R)|(?=\\\\E?\")"
 			contentName: "function-call.arguments.roff"
 			beginCaptures:
