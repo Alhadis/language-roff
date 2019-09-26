@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 [Staged]
 ------------------------------------------------------------------------
+* __Added:__ Automatic suppression of closing quotes and parentheses
 * __Added:__ Editor command to replace blank lines in Roff documents
 * __Added:__ Highlighting for `gperl`, `glilypond`, and `gpinyin` macros
 * __Added:__ Highlighting for shell source embedded with `mdoc`'s `.Bd`

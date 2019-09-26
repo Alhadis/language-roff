@@ -1,6 +1,8 @@
 "atom-text-editor[data-grammar='text roff']":
 	"tab":       "language-roff:indent"
 	"shift-tab": "language-roff:outdent"
+	"(":         "language-roff:open-bracket"
+	"'":         "language-roff:single-quote"
 
 ".platform-darwin,
  .platform-darwin atom-text-editor[class]":
