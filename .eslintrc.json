@@ -1,0 +1,6 @@
+{
+	"extends": "@alhadis/eslint-config/atom",
+	"rules": {
+		"require-atomic-updates": 0
+	}
+}

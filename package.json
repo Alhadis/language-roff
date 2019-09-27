@@ -7,19 +7,21 @@
 	"repository": "https://github.com/Alhadis/language-roff",
 	"author": "John Gardner <gardnerjohng@gmail.com>",
 	"license": "ISC",
-	"engines": {
-		"atom":     ">=1.19.0",
-		"node":     ">=7.6.0",
-		"electron": ">=1.6.0"
+	"engines": {"atom": ">=1.35.0"},
+	"atomTestRunner": "atom-mocha",
+	"scripts": {
+		"lint": "npx eslint .",
+		"test": "atom -t spec"
 	},
 	"dependencies": {
 		"urw-core35-fonts": "^1.1.0",
 		"prompt-view": "*",
 		"roff": "*"
 	},
-	"atomTestRunner": "atom-mocha",
 	"devDependencies": {
-		"atom-mocha": "^2.2.1"
+		"@alhadis/eslint-config": "^1.2.0",
+		"atom-mocha": "^2.2.1",
+		"eslint":     "^6.4.0"
 	},
 	"deserializers": {
 		"ManpageView": "createManpageView"
