@@ -8,9 +8,7 @@
 ".platform-darwin,
  .platform-darwin atom-text-editor[class]":
 	"cmd-m":     "language-roff:open-manpage"
-	"alt-k":     "language-roff:search-manpages"
 
 ".platform-win32, .platform-win32 atom-text-editor[class],
  .platform-linux, .platform-linux atom-text-editor[class]":
 	"ctrl-m":    "language-roff:open-manpage"
-	"alt-k":     "language-roff:search-manpages"

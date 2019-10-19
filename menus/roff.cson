@@ -4,7 +4,6 @@ menu: [
 		label: "Roff"
 		submenu: [
 			{label: "Open manual page",      command: "language-roff:open-manpage"}
-			{label: "Search manual pages",   command: "language-roff:search-manpages"}
 			{label: "Clear cached data",     command: "language-roff:clear-cached-data"}
 		]
 	]
