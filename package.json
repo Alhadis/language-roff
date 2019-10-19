@@ -33,6 +33,13 @@
 			"description": "Specify the string which replaces empty lines when running the `fix-blank-lines` command.",
 			"default": ".",
 			"order": 1
+		},
+		"linkManPageReferences": {
+			"type": "boolean",
+			"title": "Link man-page references",
+			"description": "Make references to `man(1)` pages clickable inside comments and markup.",
+			"default": true,
+			"order": 2
 		}
 	}
 }

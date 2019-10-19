@@ -59,3 +59,13 @@ atom-notifications atom-notification.error pre > code{
 		color: @syntax-text-color;
 	}
 }
+
+// Hyperlinked man-page references
+body:not(.disable-manref-links) .syntax--manref{
+	color: @syntax-color-keyword;
+	cursor: pointer;
+	font-weight: bold;
+	&:hover{
+		text-decoration: underline;
+	}
+}
