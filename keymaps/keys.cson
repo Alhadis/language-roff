@@ -12,3 +12,10 @@
 ".platform-win32, .platform-win32 atom-text-editor[class],
  .platform-linux, .platform-linux atom-text-editor[class]":
 	"ctrl-m":    "language-roff:open-manpage"
+
+".platform-darwin .manpage-view":
+	"cmd-a":     "language-roff:select-all"
+
+".platform-win32 .manpage-view,
+ .platform-linux .manpage-view":
+	 "ctrl-a":   "language-roff:select-all"
