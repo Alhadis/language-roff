@@ -9,6 +9,7 @@ module.exports = {
 		const packageFiles = [
 			"./lib/conversion.js",
 			"./lib/editing.js",
+			"./lib/hyperlinks.js",
 			"./lib/previewing.js",
 		];
 		// Don't block main thread while activating.
