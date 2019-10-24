@@ -26,11 +26,11 @@ module.exports = {
 		}
 	},
 	
-	createManpageView(state){
+	createTroffView(state){
 		const fs = require("fs");
 		if(state.editorId || fs.existsSync(state.filePath) && fs.lstatSync(state.filePath).isFile()){
-			const ManpageView = require("./lib/views/manpage-view.js");
-			return new ManpageView(state);
+			const TroffView = require("./lib/views/troff-view.js");
+			return new TroffView(state);
 		}
 	},
 };

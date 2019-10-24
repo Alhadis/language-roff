@@ -24,7 +24,7 @@
 		"eslint":     "^6.4.0"
 	},
 	"deserializers": {
-		"ManpageView": "createManpageView"
+		"TroffView": "createTroffView"
 	},
 	"configSchema": {
 		"blankLineReplacement": {

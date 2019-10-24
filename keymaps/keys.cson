@@ -13,9 +13,9 @@
  .platform-linux, .platform-linux atom-text-editor[class]":
 	"ctrl-m":    "language-roff:open-manpage"
 
-".platform-darwin .manpage-view":
+".platform-darwin .troff-view":
 	"cmd-a":     "language-roff:select-all"
 
-".platform-win32 .manpage-view,
- .platform-linux .manpage-view":
+".platform-win32 .troff-view,
+ .platform-linux .troff-view":
 	 "ctrl-a":   "language-roff:select-all"

@@ -9,7 +9,7 @@ menu: [
 	]
 ]
 "context-menu":
-	".manpage-view": [
+	".troff-view": [
 		{label: "Edit Source",               command: "language-roff:edit-source"}
 		{label: "Save as HTML\u2026",        command: "language-roff:save-as-html"}
 		{label: "Save as Plain Text\u2026",  command: "language-roff:save-as-utf8"}
