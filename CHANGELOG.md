@@ -4,8 +4,9 @@ Change Log
 This project adheres to [Semantic Versioning](http://semver.org).
 
 
-[Staged]
+[v1.3.0]
 ------------------------------------------------------------------------
+**December 31st, 2019**  
 * __Added:__ Automatic expansion of `{` into `\{\ … .\}` in conditionals
 * __Added:__ Automatic suppression of closing quotes and parentheses
 * __Added:__ Editor command to replace blank lines in Roff documents
@@ -95,7 +96,8 @@ Initial release. Adds syntax highlighting and language support for Roff.
 
 
 [Referenced links]:_____________________________________________________
-[Staged]: https://github.com/Alhadis/language-roff/compare/v1.2.2...HEAD
+[Staged]: https://github.com/Alhadis/language-roff/compare/v1.3.0...HEAD
+[v1.3.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.3.0
 [v1.2.2]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.2
 [v1.2.1]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.1
 [v1.2.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.0
