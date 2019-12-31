@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Editor command to replace blank lines in Roff documents
 * __Added:__ Highlighting for `gperl`, `glilypond`, and `gpinyin` macros
 * __Added:__ Highlighting for shell source embedded with `mdoc`'s `.Bd`
+* __Added:__ Man-page previewer and clickable page hyperlinks
 * __Added:__ Missing highlighting for numerous `\f` sequences
 * __Added:__ Snippet for inserting a bordered section heading
 * __Added:__ Support for sequences escaped by Groff's `\E`

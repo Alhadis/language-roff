@@ -14,9 +14,8 @@
 		"test": "atom -t spec"
 	},
 	"dependencies": {
-		"urw-core35-fonts": "^1.1.0",
-		"prompt-view": "*",
-		"roff": "*"
+		"prompt-view": "^1.0.0",
+		"roff": "^0.2.0"
 	},
 	"devDependencies": {
 		"@alhadis/eslint-config": "^1.2.0",
