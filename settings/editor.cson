@@ -1,6 +1,7 @@
 ".text.roff":
 	editor:
 		commentStart: ".\\\" "
+		softWrap: true
 
 ".text.roff .refer":
 	editor:
@@ -30,3 +31,4 @@
 ".text.runoff":
 	editor:
 		commentStart: ".! "
+		softWrap: true

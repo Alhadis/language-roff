@@ -4,6 +4,11 @@ Change Log
 This project adheres to [Semantic Versioning](http://semver.org).
 
 
+[Staged]
+------------------------------------------------------------------------
+* __Changed:__ Enabled soft-wrapping in Roff documents by default
+
+
 [v1.3.0]
 ------------------------------------------------------------------------
 **December 31st, 2019**  
