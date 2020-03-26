@@ -1665,6 +1665,34 @@ repository:
 			}, include: "#main"]
 		},{
 			
+			# Document title
+			name: "markup.heading.title.function.mdoc.macro.roff"
+			begin: "^([.'])\\s*(Dt)(?=\\s)"
+			end:   "(?<!\\\\)$"
+			beginCaptures:
+				0: name: "meta.function.$2.unparsed.macro.mdoc.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.name.function.roff"
+			patterns: [
+				{include: "#mdoc-delimiters"}
+				{include: "#mdoc-args"}
+			]
+		},{
+			
+			# Section heading
+			name: "markup.heading.section.function.mdoc.macro.roff"
+			begin: "^([.'])\\s*(Sh)(?=\\s)"
+			end:   "(?<!\\\\)$"
+			beginCaptures:
+				0: name: "meta.function.$2.parsed.macro.mdoc.roff"
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.name.function.roff"
+			patterns: [
+				{include: "#mdoc-callables"}
+				{include: "#mdoc-args"}
+			]
+		},{
+			
 			# Unparsed macros: passing callable macros as arguments won't invoke them
 			name: "meta.function.$2.unparsed.macro.mdoc.roff"
 			begin: "^([.'])\\s*(%[ABCDIJNOPQRTUV]|B[dfklt]|br|D[bdt]|E[dfklx]|F[do]|Hf|In|L[bp]|Nd|Os|Pp|R[esv]|Sm|sp|Ud)(?=\\s)"

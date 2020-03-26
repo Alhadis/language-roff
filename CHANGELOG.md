@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 
 [Staged]
 ------------------------------------------------------------------------
+* __Changed:__ `Dt` and `Sh` macros now highlighted like `TH` and `SH`
 * __Changed:__ Enabled soft-wrapping in Roff documents by default
 
 
