@@ -187,8 +187,9 @@ repository:
 				|cp|devicem|device|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
 				|mso|nop|nroff|opena|open|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
-				|rnn|schar|shc|shift|sizes|special|spreadwarn|sty|substring|tkf|tm1|tmc|trf
-				|trin|trnt|troff|unformat|vpt|warnscale|warn|writec|writem|write)
+				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
+				|substring|tkf|tm1|tmc|trf|trin|trnt|troff|unformat|vpt|warnscale|warn
+				|writec|writem|write)
 				(?=\\s|\\\\E?["#])"""
 			end: "(?<!\\\\)(?=\\R|$)|(?=\\\\E?\")"
 			beginCaptures:
