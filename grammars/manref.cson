@@ -3,7 +3,7 @@ scopeName: "hidden.manref"
 injectionSelector: "text, comment, docstring, string.quoted.docstring, source.changelogs"
 patterns: [{
 	name: "manref"
-	match: "([^\\s()<>/\"'`{}!:&*#?\\\\]+)((\\()([0-9])(?!\\.|(?<=0)(?:[Xx][0-9A-Fa-f]+|[OoBb][0-9]+))([^()\\s]*)(\\)))"
+	match: "([^\\s()<>/\"'`{}!&*#?\\\\]+)((\\()([0-9])(?!\\.|(?<=0)(?:[Xx][0-9A-Fa-f]+|[OoBb][0-9]+))([^()\\s]*)(\\)))"
 	captures:
 		1: name: "manref.subject"
 		2: name: "manref.section"
