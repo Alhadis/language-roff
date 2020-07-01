@@ -1519,6 +1519,7 @@ repository:
 		patterns: [
 			{include: "#man"}
 			{include: "#mdoc"}
+			{include: "#mono"}
 			{include: "#ms"}
 			{include: "#mm"}
 			{include: "#me"}
@@ -1847,6 +1848,38 @@ repository:
 			{include: "#mdoc-args"}
 			{include: "#generic-parameter"}
 		]
+
+
+	# Macros I wrote while sleep-deprived
+	mono:
+		patterns: [{
+			# Hyperlink: .[ Text ]( https://destination/ )
+			name: "markup.link.inline.function.mono.macro.roff"
+			begin: """(?x) ^([.'])[ \\t]*
+				(\\[) \\s+ ((?:[^\\\\\\s]|\\\\.)++) \\s+ (\\])
+				(?: ((\\() \\s+ (?:((?:[^\\\\\\s]|\\\\.)++)\\s+)? (\\)))
+				|   ((\\[) \\s+ (?:((?:[^\\\\\\s]|\\\\.)++)\\s+)? (\\]))
+				)?
+				(?:\\s+([(\\[.,:|;)\\]?!]))?
+				[ \\t]*(?=$|\\\\["\\#])
+			"""
+			end: "(?<!\\\\)(?=\\R|$)|(?=\\\\E?\")"
+			beginCaptures:
+				1:  name: "punctuation.definition.macro.roff"
+				2:  name: "punctuation.definition.square.bracket.begin.roff"
+				3:  name: "entity.name.link-text.roff"
+				4:  name: "punctuation.definition.square.bracket.end.roff"
+				5:  name: "meta.link-text.roff"
+				6:  name: "punctuation.definition.round.bracket.begin.roff"
+				7:  name: "string.other.link.destination.roff", patterns: [include: "text.hyperlink"]
+				8:  name: "punctuation.definition.round.bracket.end.roff"
+				9:  name: "meta.link-destination.roff"
+				10: name: "punctuation.definition.square.bracket.begin.roff"
+				11: name: "constant.other.reference.link.roff"
+				12: name: "punctuation.definition.square.bracket.end.roff"
+				13: name: "punctuation.terminator.mono.macro.roff"
+			patterns: [include: "#params"]
+		}]
 
 	
 	# Manuscript macros
