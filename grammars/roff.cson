@@ -565,8 +565,8 @@ repository:
 			
 			# Terminator specified
 			contentName: "comment.block.ignored-input.with-terminator.roff"
-			begin: '^([.\'])[ \\t]*(ig)[ \\t]+(?!\\\\E?["#]|\\\\+\\$\\d+)(("[^"]+")|\\S+?(?=\\s|\\\\E?["#]))(.*)$'
-			end:   "^([.'])[ \\t]*(\\3)(?=\\s|$|\\\\)"
+			begin: '^(?!.*?\\\\*})([.\'])[ \\t]*(ig)[ \\t]+(?!\\\\E?["#]|\\\\+\\$\\d+)(("[^"]+")|\\S+?(?=\\s|\\\\E?["#]))(.*)$'
+			end:   "^([.'])[ \\t]*(\\3)(?=\\s|$|\\\\)|^(?=[.']?[ \\t]*\\\\*})"
 			patterns: [include: "#register-expansion"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
@@ -581,8 +581,8 @@ repository:
 			
 			# No terminator given
 			contentName: "comment.block.ignored-input.roff"
-			begin: "^([.'])[ \\t]*(ig)(?=\\s|\\\\E?[\"#])(.*)$"
-			end:   "^([.'])[ \\t]*\\.(?=\\s|\\\\E?[\"#])"
+			begin: "^(?!.*?\\\\*})([.'])[ \\t]*(ig)(?=\\s|\\\\E?[\"#])(.*)$"
+			end:   "^([.'])[ \\t]*\\.(?=\\s|\\\\E?[\"#])|^(?=[.']?[ \\t]*\\\\*})"
 			patterns: [include: "#register-expansion"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
