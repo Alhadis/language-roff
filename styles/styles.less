@@ -63,9 +63,16 @@ atom-notifications atom-notification.error pre > code{
 }
 
 .theme-seti-syntax{
-	.syntax--meta.syntax--link-text.syntax--roff >
-	.syntax--string.syntax--other.syntax--link{
-		color: #a074c4;
+	.syntax--entity.syntax--name.syntax--link-text.syntax--roff{
+		&, & > .syntax--punctuation.syntax--link-text{
+			color: #a074c4;
+		}
+	}
+	.syntax--meta.syntax--link-destination.syntax--roff{
+		& > .syntax--punctuation.syntax--definition.syntax--string.syntax--begin,
+		& > .syntax--punctuation.syntax--definition.syntax--string.syntax--end{
+			color: #519aba;
+		}
 	}
 }
 
