@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 [Staged]
 ------------------------------------------------------------------------
 * __Added:__ `mdoc.template` and `man.template` as recognised Roff files
+* __Added:__ Support for `.ditroff` files containing intermediate output
 * __Added:__ Highlighting for new `.stringdown` and `.stringup` requests
 * __Added:__ Highlighting for device control functions
 * __Changed:__ `Dt` and `Sh` macros now highlighted like `TH` and `SH`

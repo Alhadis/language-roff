@@ -1,6 +1,7 @@
 name: "Roff (Intermediate Output)"
 scopeName: "source.ditroff"
-firstLineMatch: "^x\\s*T\\s+(dvi|html|lbp|lj4|ps|post|pdf|ascii|cp1047|latin1|utf8|X75|X75-12|X100|X100-12)(?=\\s|$)"
+fileTypes: ["ditroff"]
+firstLineMatch: "^x\\s*T\\s+(cat|dvi|html|lbp|lj4|ps|post|pdf|ascii|cp1047|latin1|utf8?|X75|X75-12|X100|X100-12)(?=\\s|$)"
 patterns: [include: "#main"]
 
 repository:
