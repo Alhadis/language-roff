@@ -89,3 +89,31 @@ body:not(.disable-manref-links) .syntax--manref{
 		text-decoration: underline;
 	}
 }
+
+// ASCII control characters
+.syntax--punctuation.syntax--ctrl-char.syntax--roff,
+.syntax--punctuation.syntax--whitespace.syntax--form-feed.syntax--roff{
+	opacity: 0.5;
+	width: 2ch;
+	display: inline-block;
+	position: relative;
+	color: transparent;
+	
+	&::after{
+		color: #00c;
+		position: absolute;
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+	
+	// Placeholders
+	&.syntax--start-of-text             { &::after{ content: "^B";  }}
+	&.syntax--end-of-text               { &::after{ content: "^C";  }}
+	&.syntax--end-of-transmission       { &::after{ content: "^D";  }}
+	&.syntax--enquiry                   { &::after{ content: "^E";  }}
+	&.syntax--acknowledge               { &::after{ content: "^F";  }}
+	&.syntax--alarm                     { &::after{ content: "\\a"; }}
+	&.syntax--form-feed                 { &::after{ content: "\\f"; }}
+	&.syntax--delete                    { &::after{ content: "^?";  }}
+}

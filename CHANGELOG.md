@@ -8,11 +8,13 @@ This project adheres to [Semantic Versioning](http://semver.org).
 ------------------------------------------------------------------------
 * __Added:__ `mdoc.template` and `man.template` as recognised Roff files
 * __Added:__ Support for `.ditroff` files containing intermediate output
+* __Added:__ Highlighting of certain [C0 control codes][] in identifiers
 * __Added:__ Highlighting for new `.stringdown` and `.stringup` requests
 * __Added:__ Highlighting for device control functions
 * __Changed:__ `Dt` and `Sh` macros now highlighted like `TH` and `SH`
 * __Changed:__ Enabled soft-wrapping in Roff documents by default
 * __Fixed:__ Incorrect highlighting of man page links containing colons
+* __Fixed:__ Missing highlighting of escape sequences in some contexts
 
 
 [v1.3.0]
@@ -107,6 +109,7 @@ Initial release. Adds syntax highlighting and language support for Roff.
 
 
 [Referenced links]:_____________________________________________________
+[C0 control codes]: http://en.wikipedia.org/wiki/C0_and_C1_control_codes
 [Staged]: https://github.com/Alhadis/language-roff/compare/v1.3.0...HEAD
 [v1.3.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.3.0
 [v1.2.2]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.2
