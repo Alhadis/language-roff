@@ -1,0 +1,110 @@
+x T s
+x res 1 2 3
+x init
+x font 1 s
+x font 2 s path/to/filename 1
+x pause
+x stop
+x trailer
+x Height 1
+x Height -23 3.1
+x Slant 1
+x X Anchor 1,2 foo
+x X Anchor foo
+x X BleedAt 1 2 3 4
+x X CropAt 1 2 3 4
+x X HorScale 23
+x X LC_CTYPE en_US.UTF-8
+x X Link 1,2,3,4 id
+x X Link id
+x X Link
+x X PaperSize 595000 842000 1
+x X PS command % It's real, baby
+x X PSSetup command
+x X SetColor 12.0 3 rgb
+x X SupplyFont font file
+x X Sync
+x X Track 1
+x X TrimAt 1 2 3 4
+x X ULink 1,2,3,4 http://URL
+x X ULink https://URL
+x X ULink
+x X any
+x any
+
+x X PDFMark: Bookmark 0 Text
+x X PDFMark: Author Gunnar Ritter
+x X PDFMark: Keywords Heirloom Documentation Tools, troff
+x X PDFMark: Title Heirloom Documentation Tools: Quickstart Guide
+x X PS: [ {Catalog} << /ViewerPreferences << /DisplayDocTitle true >> >> /PUT pdfmark
+
+x X ps: file /path/to/file.ps
+x X ps: mdef 1 = (Insert code here.)
+x X ps: def    = (Insert code here.)
+x X ps: import file 1 2 3 4 5 6
+
+x X papersize=A1
+x X pdf: pdfpic /path/to/picture.pdf -L 3 4 5
+x X pdf: xrev
+x X pdf: markstart /ANN definition
+x X pdf: markend
+x X pdf: marksuspend
+x X pdf: markrestart
+x X pdf: transition SLIDE Blinds 1.645 H O 50 42.1 true
+x X tty: sgr 1
+
+x X html:<a name="#foo">Foo</a>
+x X html</p>: <bgsound> …could
+x X html<?p>: <blink>   …you
+x X math<?p>: <marquee> …not
+
+# Plan 9 troff2html(1)
+x X html manref start foo (1)
+x X html manref start foo  1
+x X html manref       foo  1
+x X html manref end   foo (1)
+x X html manref end   foo  1
+
+# NFI what these are:
+x X index:3
+x X assertion:[  ]
+x X assertion:[x ]
+x X assertion:[y ]
+
+# Or these, really:
+x X devtag:.auto-image
+x X devtag:.br
+x X devtag:.ce 0
+x X devtag:.col
+x X devtag:.eo.h
+x X devtag:.eo.tl
+x X devtag:.eol
+x X devtag:.fi
+x X devtag:.in 
+x X devtag:.ll 
+x X devtag:.po 
+x X devtag:.sp
+x X devtag:.ta 
+x X devtag:.tab-te
+x X devtag:.tab-ts
+x X devtag:.ti
+x X devtag:.tl
+x X devtag:eol.ce
+x X devtag:tab
+x X devtag:tab 
+x X devtag:tab0
+x X devtag:.fi 1
+x X devtag:.rj 0
+x X devtag:.in 0
+x X devtag:.ll 1560
+x X devtag:.po 0
+x X devtag:.ta L 120  L 240
++ L 360 L 480  L 600  L 720  L 840
++ L 960 L 1080 L 1200 L 1320 L 1440 L 1560
+
+# I've yet to start this project, lol:
+x X infer: start code js
+tfunction
+tfoo(bar){
+t}
+x X infer: end code

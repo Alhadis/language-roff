@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 ------------------------------------------------------------------------
 * __Added:__ `mdoc.template` and `man.template` as recognised Roff files
 * __Added:__ Highlighting for new `.stringdown` and `.stringup` requests
+* __Added:__ Highlighting for device control functions
 * __Changed:__ `Dt` and `Sh` macros now highlighted like `TH` and `SH`
 * __Changed:__ Enabled soft-wrapping in Roff documents by default
 * __Fixed:__ Incorrect highlighting of man page links containing colons

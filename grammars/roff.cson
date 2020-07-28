@@ -64,6 +64,9 @@ firstLineMatch: """(?x)
 """
 limitLineLength: no
 patterns: [include: "#main"]
+injections:
+	"L:(text.roff - (source.embedded | text.embedded))":
+		patterns: [include: "#escapes-copymode"]
 
 
 repository:
@@ -1305,6 +1308,27 @@ repository:
 			captures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "punctuation.section.conditional.end.roff"
+		},{
+			
+			# Device control function
+			name: "meta.device-control.roff"
+			begin: "((?:((\\\\)E)|(\\\\))X)(.)"
+			end:   "(.*?)(?:(\\5)|(?<!\\\\)(?=$))"
+			beginCaptures:
+				1: name: "entity.name.function.roff"
+				2: name: "constant.character.escape.current-escape-char.gnu.roff"
+				3: name: "punctuation.definition.escape.roff"
+				4: name: "punctuation.definition.escape.roff"
+				5: name: "punctuation.section.embedded.begin.roff"
+			endCaptures:
+				1: name: "source.embedded.ditroff", patterns: [include: "source.ditroff#xCommands"]
+				2: name: "punctuation.section.embedded.end.roff"
+			patterns: [{
+				name: "source.embedded.ditroff"
+				match: ".+"
+				captures:
+					0: patterns: [include: "source.ditroff#xCommands"]
+			}, include: "#escapes"]
 		},{
 				
 			# Parametric/function-like escape sequences

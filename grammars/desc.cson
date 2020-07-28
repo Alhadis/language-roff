@@ -97,19 +97,7 @@ repository:
 			end:   "(?=$|#)"
 			beginCaptures:
 				1: name: "entity.type.var.ditroff.desc"
-			patterns: [{
-				name: "support.constant.papersize.ditroff.desc"
-				match: "(?i)(?:[A-D][0-7]|DL|letter|legal|tabloid|ledger|statement|executive|com10|monarch)(?=$|[\\s#])"
-			},{
-				name: "meta.custom-papersize.ditroff.desc"
-				match: "(?<=\\s)([\\d.]+)([icpP])(,)([\\d.]+)([icpP])(?=\\s|$)"
-				captures:
-					1: name: "constant.numeric.ditroff.desc"
-					2: name: "keyword.other.unit.ditroff.desc"
-					3: name: "punctuation.delimiter.comma.ditroff.desc"
-					4: name: "constant.numeric.ditroff.desc"
-					5: name: "keyword.other.unit.ditroff.desc"
-			}]
+			patterns: [include: "#paperSizes"]
 		},{
 			begin: """(?x)^\\s*
 				(biggestfont|broken|checksum|designsize|encoding|family|fonts|hor|image_generator
@@ -198,4 +186,20 @@ repository:
 				1: name: "entity.name.var.ditroff.desc"
 				2: name: "entity.name.var.ditroff.desc"
 				3: name: "constant.numeric.integer.ditroff.desc"
+		}]
+
+
+	paperSizes:
+		patterns: [{
+			name: "support.constant.papersize.ditroff.desc"
+			match: "(?i)(?:[A-D][0-7]|DL|letter|legal|tabloid|ledger|statement|executive|com10|monarch)(?=$|[\\s#])"
+		},{
+			name: "meta.custom-papersize.ditroff.desc"
+			match: "(?<=\\s)([\\d.]+)([icpP])(,)([\\d.]+)([icpP])(?=\\s|$)"
+			captures:
+				1: name: "constant.numeric.ditroff.desc"
+				2: name: "keyword.other.unit.ditroff.desc"
+				3: name: "punctuation.delimiter.comma.ditroff.desc"
+				4: name: "constant.numeric.ditroff.desc"
+				5: name: "keyword.other.unit.ditroff.desc"
 		}]
