@@ -29,18 +29,18 @@ repository:
 			name: "meta.colour-mode.default.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(d)"
 			captures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.function.ditroff"
-				3: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.function.ditroff"
+				3: name: "keyword.operator.subcommand.ditroff"
 				4: name: "constant.language.colour-scheme.ditroff"
 		},{
 			# RGB
 			name: "meta.colour-mode.rgb.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(r)((?:\\s*\\d+){3})"
 			captures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.function.ditroff"
-				3: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.function.ditroff"
+				3: name: "keyword.operator.subcommand.ditroff"
 				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		},{
@@ -48,9 +48,9 @@ repository:
 			name: "meta.colour-mode.cmyk.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(k)((?:\\s*\\d+){4})"
 			captures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.function.ditroff"
-				3: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.function.ditroff"
+				3: name: "keyword.operator.subcommand.ditroff"
 				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		},{
@@ -58,9 +58,9 @@ repository:
 			name: "meta.colour-mode.cmy.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(c)((?:\\s*\\d+){3})"
 			captures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.function.ditroff"
-				3: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.function.ditroff"
+				3: name: "keyword.operator.subcommand.ditroff"
 				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		},{
@@ -68,9 +68,9 @@ repository:
 			name: "meta.colour-mode.grey.gnu.ditroff"
 			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(g)\\s*(\\d+)"
 			captures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.function.ditroff"
-				3: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.function.ditroff"
+				3: name: "keyword.operator.subcommand.ditroff"
 				4: name: "constant.language.colour-scheme.ditroff"
 				5: patterns: [include: "text.roff#number"]
 		}]
@@ -100,7 +100,7 @@ repository:
 			end:   "(?=^(?!\\+))(?!\\G)"
 			beginCaptures:
 				0: name: "meta.device-control.lhs.ditroff"
-				1: name: "keyword.operator.other.ditroff"
+				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.device.control.ditroff"
 			patterns: [include: "#xCommands"]
 		},{
@@ -110,7 +110,7 @@ repository:
 			end:   "(?=$|#)"
 			beginCaptures:
 				0: name: "meta.device-control.lhs.ditroff"
-				1: name: "keyword.operator.other.ditroff"
+				1: name: "keyword.operator.function.ditroff"
 			patterns: [{
 				# Niladic commands
 				name: "keyword.device.control.ditroff"
@@ -168,7 +168,7 @@ repository:
 				match: "\\G([HS]\\S*)\\s+(?:(-23)\\s+(-?[\\d.]+)|(-?\\d+))?\\s*?(?=$|#)"
 				captures:
 					1: name: "keyword.device.control.ditroff"
-					2: name: "constant.numeric.ignored.ditroff"
+					2: name: "comment.dummy.argument.ditroff"
 					3: name: "constant.numeric.float.ditroff"
 					4: name: "constant.numeric.integer.ditroff"
 			},{
@@ -187,7 +187,7 @@ repository:
 		name: "meta.end-of-line.ditroff"
 		match: "(n)((?:\\s*\\d+){2})"
 		captures:
-			1: name: "entity.name.function.ditroff"
+			1: name: "keyword.operator.function.ditroff"
 			2: patterns: [include: "text.roff#number"]
 		
 	
@@ -196,7 +196,7 @@ repository:
 		name: "meta.change-font.ditroff"
 		match: "(f)\\s*(\\d+)"
 		captures:
-			1: name: "entity.name.function.ditroff"
+			1: name: "keyword.operator.function.ditroff"
 			2: name: "constant.numeric.integer.ditroff"
 	
 	
@@ -207,8 +207,8 @@ repository:
 			name: "meta.graphics.gnu.ditroff"
 			match: "^\\s*(D)\\s*(C)\\s*(\\d+)(?:\\s+(\\d+))?"
 			captures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.subcommand.ditrof"
 				3: name: "constant.numeric.integer.ditroff"
 				4: name: "comment.dummy.argument.ditroff"
 		},{
@@ -216,8 +216,8 @@ repository:
 			name: "meta.graphics.gnu.ditroff"
 			match: "^\\s*(D)\\s*(E)((?:\\s*(\\d+)){1,2})"
 			captures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.subcommand.ditroff"
 				3: patterns: [include: "text.roff#number"]
 		},{
 			# Everything else
@@ -226,8 +226,8 @@ repository:
 			end:   "(?=$|#)"
 			patterns: [include: "text.roff#number"]
 			beginCaptures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.subcommand.ditroff"
 		},{
 			# Unrecognised drawing command
 			name: "meta.graphics.unknown-command.ditroff"
@@ -235,8 +235,8 @@ repository:
 			end:   "(?=$|#)"
 			contentName: "variable.parameter.ditroff"
 			beginCaptures:
-				1: name: "entity.name.function.ditroff"
-				2: name: "entity.name.custom.subcommand.ditroff"
+				1: name: "keyword.operator.function.ditroff"
+				2: name: "keyword.operator.subcommand.ditroff"
 		}]
 	
 	
@@ -245,7 +245,7 @@ repository:
 		name: "meta.move.ditroff"
 		match: "([HhVv])\\s*(-?\\d+)"
 		captures:
-			1: name: "entity.name.function.ditroff"
+			1: name: "keyword.operator.function.ditroff"
 			2: name: "constant.numeric.integer.ditroff"
 	
 	
@@ -254,7 +254,7 @@ repository:
 		name: "meta.move-and-print.ditroff"
 		match: "(\\d{2})(.)"
 		captures:
-			1: name: "entity.name.function.ditroff"
+			1: name: "keyword.operator.function.ditroff"
 			2: name: "constant.character.ditroff"
 	
 	
@@ -263,8 +263,8 @@ repository:
 		name: "meta.start-page.ditroff"
 		match: "(p)\\s*(\\d+)"
 		captures:
-			1: name: "keyword.control.page.output"
-			2: name: "constant.numeric.integer.output"
+			1: name: "keyword.control.page.ditroff"
+			2: name: "constant.numeric.integer.ditroff"
 	
 	
 	# Print ASCII character/s
@@ -275,17 +275,17 @@ repository:
 			name: "meta.print-character.indexed.ditroff"
 			match: "(N)\\s*(-?\\d+)"
 			captures:
-				1: name: "entity.name.function.ditroff"
+				1: name: "keyword.operator.function.ditroff"
 				2: name: "constant.numeric.integer.ditroff"
 		},{
 			# Print literal characters
 			name: "meta.print-character.ditroff"
 			match: "(c)(?:\\s*(\\S)|(\\s))|(CPS|C)\\s*(\\S+)"
 			captures:
-				1: name: "entity.name.function.ditroff"
+				1: name: "keyword.operator.function.ditroff"
 				2: name: "constant.character.ditroff"
 				3: name: "constant.character.whitespace.ditroff"
-				4: name: "entity.name.function.ditroff"
+				4: name: "keyword.operator.function.ditroff"
 				5: name: "string.unquoted.ditroff"
 		},{
 			# Print sequence of named glyphs (GNU extension)
@@ -294,7 +294,7 @@ repository:
 			end:   "(?=$)|\\s+(\\d*)"
 			contentName: "string.quoted.double.ditroff"
 			beginCaptures:
-				0: name: "entity.name.function.ditroff"
+				0: name: "keyword.operator.function.ditroff"
 				1: name: "punctuation.definition.entity.ditroff"
 			endCaptures:
 				1: name: "comment.dummy.argument.ditroff"
@@ -305,7 +305,7 @@ repository:
 			end:   "(?=\\s|$)"
 			contentName: "string.quoted.double.ditroff"
 			beginCaptures:
-				1: name: "entity.name.function.ditroff"
+				1: name: "keyword.operator.function.ditroff"
 				2: name: "constant.numeric.integer.ditroff"
 		}]
 
@@ -314,15 +314,15 @@ repository:
 	size:
 		match: "(s)\\s*(?:(-23)\\s+(-?[\\d.]+)|(-?\\d+))"
 		captures:
-			1: name: "entity.name.function.ditroff"
-			2: name: "constant.numeric.ignored.ditroff"
+			1: name: "keyword.operator.function.ditroff"
+			2: name: "comment.dummy.argument.ditroff"
 			3: name: "constant.numeric.float.ditroff"
 			4: name: "constant.numeric.integer.ditroff"
 
 
 	# Paddable word-space: information only, no action
 	wordSpace:
-		name: "entity.name.function.word-space.ditroff"
+		name: "keyword.operator.function.word-space.ditroff"
 		match: "(?<=^|[\\s\\d])w"
 
 
