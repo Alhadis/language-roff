@@ -373,7 +373,7 @@ repository:
 				
 				(?:
 					# One-character built-in comparison name
-					([notev])        # 4: constant.language.builtin-comparison.$4.roff
+					([notevh])       # 4: constant.language.builtin-comparison.$4.roff
 					
 					|
 					
