@@ -2,6 +2,8 @@ name: "Roff (Device Description)"
 scopeName: "source.ditroff.desc"
 fileTypes: [
 	"DESC"
+	"DESC.big"
+	"DESC.small"
 	"DESC.in"
 	"DESC.proto"
 	"DESC.8400"
@@ -17,7 +19,22 @@ fileTypes: [
 	"devpdf/Foundry"
 ]
 firstLineMatch: "# This file has been generated with GNU afmtodit"
-patterns: [include: "#main"]
+patterns: [{
+	# Modified pattern-set for obvious device-description files
+	begin: "(?=^\\s*(?:fonts|res|hor|vert|unitwidth|biggestfont)(?:\\s|$))"
+	end:   "(?=A)B"
+	patterns: [{
+		name:  "meta.charset.ditroff.desc"
+		begin: "^(charset)\\s*$"
+		end:   "(?=A)B"
+		beginCaptures:
+			1: name: "keyword.control.section.ditroff.desc"
+		patterns: [
+			{include: "#comment"}
+			{match: "\\S+", name: "entity.name.glyph.ditroff.desc"}
+		]
+	}, include: "#main"]
+}, include: "#main"]
 
 repository:
 	main:
@@ -46,7 +63,7 @@ repository:
 				(?:\\s+(?!--)(\\S+))?            # Entity name
 				"""
 			captures:
-				1: name: "entity.type.var.ditroff.desc"
+				1: name: "entity.name.glyph.ditroff.desc"
 				2: name: "punctuation.definition.unnamed.glyph.ditroff.desc"
 				3: patterns: [
 					{match: "-?\\d+", name: "constant.numeric.integer.ditroff.desc"}
@@ -80,16 +97,19 @@ repository:
 		patterns: [{
 			name: "meta.$1-list.ditroff.desc"
 			begin: "^\\s*(ligatures|sizes)(?=\\s)"
-			end:   "(?=$|#)"
+			end:   "(?<=\\s)0(?=\\s*$)|(?=^(?!\\s*$)(?!\\s*[\\d#]))"
 			beginCaptures:
 				1: name: "entity.type.var.ditroff.desc"
+			endCaptures:
+				0: name: "punctuation.terminator.statement.ditroff.desc"
 			patterns: [
 				name: "constant.numeric.range.ditroff.desc"
 				match: "\\d+(-)\\d+"
 				captures: 1: name: "punctuation.separator.range.dash.ditroff.desc"
 				
-				{name: "variable.parameter.ditroff.desc", match: "\\S{2,}"},
-				{name: "punctuation.terminator.statement.ditroff.desc", match: "(?<=\\s)0(?=\\s*$)"}
+				{include: "#comment"}
+				{name: "constant.numeric.integer.desc", match: "\\d+"}
+				{name: "variable.parameter.ditroff.desc", match: "\\S{2,}"}
 			]
 		},{
 			name: "meta.papersize.ditroff.desc"
@@ -100,10 +120,11 @@ repository:
 			patterns: [include: "#paperSizes"]
 		},{
 			begin: """(?x)^\\s*
-				(biggestfont|broken|checksum|designsize|encoding|family|fonts|hor|image_generator
-				|internalname|name|orientation|paper(?:length|width)|pass_filenames|postpro|prepro
-				|print|res|sizescale|slant|spacewidth|spare\\d|special|styles|tcommand|unicode
-				|unitwidth|unscaled_charwidths|use_charnames_in_special|vert|X11|(?:lbp|pcl)[a-z]+)
+				(afmfonts|allpunct|anysize|biggestfont|broken|checksum|designsize|encoding|family
+				|fonts|hor|image_generator|internalname|lc_ctype|name|orientation|paper(?:length|width)
+				|pass_filenames|postpro|prepro|print|res|sizescale|slant|spacewidth|spare\\d|special
+				|styles|tcommand|unicode|unitwidth|unscaled_charwidths|use_charnames_in_special|vert
+				|X11|(?:lbp|pcl)[a-z]+)
 				(?=\\s)"""
 			end: "(?=$|#)"
 			beginCaptures:
