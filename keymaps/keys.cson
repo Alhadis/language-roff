@@ -5,6 +5,13 @@
 	"(":         "language-roff:round-bracket"
 	"'":         "language-roff:single-quote"
 
+".platform-darwin atom-text-editor[data-grammar='text roff']":
+	"cmd-e":     "language-roff:eval-selection"
+
+".platform-win32 atom-text-editor[data-grammar='text roff'],
+ .platform-linux atom-text-editor[data-grammar='text roff']":
+	"ctrl-e":    "language-roff:eval-selection"
+
 ".platform-darwin,
  .platform-darwin atom-text-editor[class]":
 	"cmd-m":     "language-roff:open-manpage"

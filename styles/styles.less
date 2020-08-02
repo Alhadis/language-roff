@@ -1,8 +1,20 @@
 @import "syntax-variables";
 
 // Fix that sodding highlighting in error notifications
-atom-notifications atom-notification.error pre > code{
-	background: inherit;
+atom-notifications{
+	atom-notification.error pre > code{
+		background: inherit;
+	}
+	
+	.tty-output{
+		background:  none;
+		font-size:   var(--editor-font-size);
+		font-family: var(--editor-font-family);
+		line-height: var(--editor-line-height);
+		white-space: pre;
+		user-select: all;
+		overflow:    auto;
+	}
 }
 
 // Tab-icons for ManpageViews
