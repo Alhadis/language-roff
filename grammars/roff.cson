@@ -68,7 +68,7 @@ injections:
 	"L:text.roff":
 		patterns: [include: "#c0"]
 	
-	"L:(text.roff - (source.embedded | text.embedded))":
+	"L:meta.device-control.roff":
 		patterns: [include: "#escapes-copymode"]
 
 
