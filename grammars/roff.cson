@@ -69,7 +69,10 @@ injections:
 		patterns: [include: "#c0"]
 	
 	"L:meta.device-control.roff":
-		patterns: [include: "#escapes-copymode"]
+		patterns: [
+			{match: "[.']"}
+			{include: "#escapes-copymode"}
+		]
 
 
 repository:
