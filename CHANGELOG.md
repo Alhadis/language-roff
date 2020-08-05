@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Support for `.ditroff` files containing intermediate output
 * __Added:__ Highlighting of certain [C0 control codes][] in identifiers
 * __Added:__ Highlighting for new `.stringdown` and `.stringup` requests
+* __Added:__ Highlighting for Heirloom's `\U`, `\T`, and `\W` extensions
 * __Added:__ Highlighting for device control functions
 * __Changed:__ `Dt` and `Sh` macros now highlighted like `TH` and `SH`
 * __Changed:__ Enabled soft-wrapping in Roff documents by default

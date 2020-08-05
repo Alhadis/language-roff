@@ -1554,6 +1554,37 @@ repository:
 				5: name: "variable.parameter.roff", patterns: [include: "#c0"]
 		},{
 			
+			# \U'XX' - Print character with Unicode codepoint "XX" (Heirloom)
+			name: "constant.character.escape.function.unicode-codepoint.heirloom.roff"
+			match: "(?:((\\\\)E)|(\\\\))U([^0-9A-Fa-f ])([0-9A-Fa-f]+)(\\4)"
+			captures:
+				1: name: "constant.character.escape.current-escape-char.gnu.roff"
+				2: name: "punctuation.definition.escape.roff"
+				3: name: "punctuation.definition.escape.roff"
+				4: name: "punctuation.definition.string.begin.roff", patterns: [include: "#c0"]
+				5: name: "constant.numeric.integer.int.hexadecimal.roff"
+				6: name: "punctuation.definition.string.end.roff", patterns: [include: "#c0"]
+		},{
+			
+			# \T'anchor'text\T, \W'url'text'\W - Anchor/web link (Heirloom)
+			name: "markup.link.inline.escape.heirloom.roff"
+			match: "((?:((\\\\)E)|(\\\\))(T|W))((.)((?:(?!\\7).)++)(\\7))(.+?)((?:((\\\\)E)|(\\\\))\\5)"
+			captures:
+				1:  name: "constant.character.escape.function.roff"
+				2:  name: "constant.character.escape.current-escape-char.gnu.roff"
+				3:  name: "punctuation.definition.escape.roff"
+				4:  name: "punctuation.definition.escape.roff"
+				6:  name: "meta.link-destination.anchor.roff"
+				7:  name: "punctuation.definition.string.begin.roff", patterns: [include: "#c0"]
+				8:  name: "string.other.link.destination.roff",       patterns: [include: "#escapes"]
+				9:  name: "punctuation.definition.string.end.roff",   patterns: [include: "#c0"]
+				10: name: "entity.name.link-text.unquoted.roff",      patterns: [include: "#escapes"]
+				11: name: "constant.character.escape.function.roff"
+				12: name: "constant.character.escape.current-escape-char.gnu.roff"
+				13: name: "punctuation.definition.escape.roff"
+				14: name: "punctuation.definition.escape.roff"
+		},{
+			
 			# \Z - Any character not listed above
 			name: "constant.character.escape.misc.roff"
 			match: "(?:((\\\\)E)|(\\\\))\\S"
