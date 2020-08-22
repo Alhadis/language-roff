@@ -1953,49 +1953,15 @@ repository:
 					\\s+ (\\])
 					(?= \\(\\) | <>)
 				)
-				
-				# Destination
-				(
-					# .[ Text ] is another way to write .[ Text ][]
-					(?=\\s)
-					|
-					# Shorthand for links with identical text/URL parameters
-					(?:(\\(\\)) | (\\[\\]) | (<>))
-					(?=\\s|$)
-					|
-					# 6-argument form to customise rendering of non-interactive links
-					(?:
-						# .[ Details ]( “ (visit ” http://url “ for more information” )
-						(\\() \\s+
-						(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(?:(")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(\\))
-						|
-						# …[ Term ][ “ (q.v. ” term-id “, section 3.2)” ]
-						(\\[) \\s+
-						(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(?:(")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(\\])
-						|
-						# …[ “send an e-mail” ]< “ to ” email@address.com “” >
-						(<) \\s+
-						(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(?:(")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
-						(>)
-					)
-					|
-					# Normal form
-					(?: (\\() \\s+ (?: (")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(") | ((?:[^\\\\\\s]|\\\\.)++)) \\s+ (\\)) # .[ Text ]( http://url.com )
-					|   (\\[) \\s+ (?: (")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(") | ((?:[^\\\\\\s]|\\\\.)++)) \\s+ (\\]) # .[ Text ][ anchor-id ]
-					|     (<) \\s+ (?: (")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(") | ((?:[^\\\\\\s]|\\\\.)++)) \\s+ (>)   # .[ Text ]< email@address >
-					)
+				(?=
+					(?: \\( \\)
+					|   \\[ \\]
+					|     < >
+					|   \\( \\s .*? \\s \\)
+					|   \\[ \\s .*? \\s \\]
+					|     < \\s .*? \\s >
+					)? (?:\\s|$|\\\\E?[\"\\#])
 				)
-				
-				(?:\\s+([(\\[`"'.,:<|>;)\\]?!]))?
-				(?=\\s*(?:$|\\\\[^\\#]))
 			"""
 			end: "(?<!\\\\)(?=\\R|$)|(?=\\\\E?\")"
 			beginCaptures:
@@ -2014,60 +1980,105 @@ repository:
 				13: name: "punctuation.definition.string.end.roff"
 				14: patterns: [include: "#mono-link-destination"]
 				15: name: "punctuation.definition.square.bracket.end.roff"
-				16: name: "meta.link-destination.roff"
-				17: name: "punctuation.definition.round.bracket.empty.roff"
-				18: name: "punctuation.definition.square.bracket.empty.roff"
-				19: name: "punctuation.definition.angle.bracket.empty.roff"
-				20: name: "punctuation.definition.round.bracket.begin.roff"
-				21: name: "string.quoted.double.link-prefix.roff", patterns: [include: "#string"]
-				22: name: "string.unquoted.link-prefix.roff",      patterns: [include: "#string"]
-				23: name: "punctuation.definition.string.begin.roff"
-				24: patterns: [include: "#mono-link-destination"]
-				25: name: "punctuation.definition.string.end.roff"
-				26: patterns: [include: "#mono-link-destination"]
-				27: name: "string.quoted.double.link-affix.roff", patterns: [include: "#string"]
-				28: name: "string.unquoted.link-affix.roff",      patterns: [include: "#string"]
-				29: name: "punctuation.definition.round.bracket.end.roff"
-				30: name: "punctuation.definition.square.bracket.begin.roff"
-				31: name: "string.quoted.double.link-prefix.roff", patterns: [include: "#string"]
-				32: name: "string.unquoted.link-prefix.roff",      patterns: [include: "#string"]
-				33: name: "punctuation.definition.string.begin.roff"
-				34: patterns: [include: "#mono-link-destination"]
-				35: name: "punctuation.definition.string.end.roff"
-				36: patterns: [include: "#mono-link-destination"]
-				37: name: "string.quoted.double.link-affix.roff", patterns: [include: "#string"]
-				38: name: "string.unquoted.link-affix.roff",      patterns: [include: "#string"]
-				39: name: "punctuation.definition.square.bracket.end.roff"
-				40: name: "punctuation.definition.angle.bracket.begin.roff"
-				41: name: "string.quoted.double.link-prefix.roff", patterns: [include: "#string"]
-				42: name: "string.unquoted.link-prefix.roff",      patterns: [include: "#string"]
-				43: name: "punctuation.definition.string.begin.roff"
-				44: patterns: [include: "#mono-link-destination"]
-				45: name: "punctuation.definition.string.end.roff"
-				46: patterns: [include: "#mono-link-destination"]
-				47: name: "string.quoted.double.link-affix.roff", patterns: [include: "#string"]
-				48: name: "string.unquoted.link-affix.roff",      patterns: [include: "#string"]
-				49: name: "punctuation.definition.square.bracket.end.roff"
-				50: name: "punctuation.definition.round.bracket.begin.roff"
-				51: name: "punctuation.definition.string.begin.roff"
-				52: patterns: [include: "#mono-link-destination"]
-				53: name: "punctuation.definition.string.end.roff"
-				54: patterns: [include: "#mono-link-destination"]
-				55: name: "punctuation.definition.round.bracket.end.roff"
-				56: name: "punctuation.definition.square.bracket.begin.roff"
-				57: name: "punctuation.definition.string.begin.roff"
-				58: patterns: [include: "#mono-link-destination"]
-				59: name: "punctuation.definition.string.end.roff"
-				60: patterns: [include: "#mono-link-destination"]
-				61: name: "punctuation.definition.square.bracket.end.roff"
-				62: name: "punctuation.definition.angle.bracket.begin.roff"
-				63: name: "punctuation.definition.string.begin.roff"
-				64: patterns: [include: "#mono-link-destination"]
-				65: name: "punctuation.definition.string.end.roff"
-				66: patterns: [include: "#mono-link-destination"]
-				67: name: "punctuation.definition.angle.bracket.end.roff"
-				68: name: "punctuation.terminator.mono.macro.roff"
-			patterns: [include: "#params"]
+			patterns: [{
+				match: """(?x) \\G
+					# Destination
+					(
+						# .[ Text ] is another way to write .[ Text ][]
+						(?=\\s)
+						|
+						# Shorthand for links with identical text/URL parameters
+						(?:(\\(\\)) | (\\[\\]) | (<>))
+						(?=\\s|$)
+						|
+						# 6-argument form to customise rendering of non-interactive links
+						(?:
+							# .[ Details ]( “ (visit ” http://url “ for more information” )
+							(\\() \\s+
+							(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(?:(")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(\\))
+							|
+							# …[ Term ][ “ (q.v. ” term-id “, section 3.2)” ]
+							(\\[) \\s+
+							(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(?:(")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(\\])
+							|
+							# …[ “send an e-mail” ]< “ to ” email@address.com “” >
+							(<) \\s+
+							(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(?:(")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(?:("  (?:[^\\\\"]|\\\\[^"\\#]|"")*+  ")|((?:[^\\\\\\s]|\\\\.)++)) \\s+
+							(>)
+						)
+						|
+						# Normal form
+						(?: (\\() \\s+ (?: (")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(") | ((?:[^\\\\\\s]|\\\\.)++)) \\s+ (\\)) # .[ Text ]( http://url.com )
+						|   (\\[) \\s+ (?: (")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(") | ((?:[^\\\\\\s]|\\\\.)++)) \\s+ (\\]) # .[ Text ][ anchor-id ]
+						|     (<) \\s+ (?: (")((?:[^\\\\"]|\\\\[^"\\#]|"")*+)(") | ((?:[^\\\\\\s]|\\\\.)++)) \\s+ (>)   # .[ Text ]< email@address >
+						)
+					)
+					(?:\\s+([(\\[`"'.,:<|>;)\\]?!]))?
+					(?=\\s*(?:$|\\\\[^\\#]))
+				"""
+				captures:
+					1:  name: "meta.link-destination.roff"
+					2:  name: "punctuation.definition.round.bracket.empty.roff"
+					3:  name: "punctuation.definition.square.bracket.empty.roff"
+					4:  name: "punctuation.definition.angle.bracket.empty.roff"
+					5:  name: "punctuation.definition.round.bracket.begin.roff"
+					6:  name: "string.quoted.double.link-prefix.roff", patterns: [include: "#string"]
+					7:  name: "string.unquoted.link-prefix.roff",      patterns: [include: "#string"]
+					8:  name: "punctuation.definition.string.begin.roff"
+					9:  patterns: [include: "#mono-link-destination"]
+					10: name: "punctuation.definition.string.end.roff"
+					11: patterns: [include: "#mono-link-destination"]
+					12: name: "string.quoted.double.link-affix.roff", patterns: [include: "#string"]
+					13: name: "string.unquoted.link-affix.roff",      patterns: [include: "#string"]
+					14: name: "punctuation.definition.round.bracket.end.roff"
+					15: name: "punctuation.definition.square.bracket.begin.roff"
+					16: name: "string.quoted.double.link-prefix.roff", patterns: [include: "#string"]
+					17: name: "string.unquoted.link-prefix.roff",      patterns: [include: "#string"]
+					18: name: "punctuation.definition.string.begin.roff"
+					19: patterns: [include: "#mono-link-destination"]
+					20: name: "punctuation.definition.string.end.roff"
+					21: patterns: [include: "#mono-link-destination"]
+					22: name: "string.quoted.double.link-affix.roff", patterns: [include: "#string"]
+					23: name: "string.unquoted.link-affix.roff",      patterns: [include: "#string"]
+					24: name: "punctuation.definition.square.bracket.end.roff"
+					25: name: "punctuation.definition.angle.bracket.begin.roff"
+					26: name: "string.quoted.double.link-prefix.roff", patterns: [include: "#string"]
+					27: name: "string.unquoted.link-prefix.roff",      patterns: [include: "#string"]
+					28: name: "punctuation.definition.string.begin.roff"
+					29: patterns: [include: "#mono-link-destination"]
+					30: name: "punctuation.definition.string.end.roff"
+					31: patterns: [include: "#mono-link-destination"]
+					32: name: "string.quoted.double.link-affix.roff", patterns: [include: "#string"]
+					33: name: "string.unquoted.link-affix.roff",      patterns: [include: "#string"]
+					34: name: "punctuation.definition.square.bracket.end.roff"
+					35: name: "punctuation.definition.round.bracket.begin.roff"
+					36: name: "punctuation.definition.string.begin.roff"
+					37: patterns: [include: "#mono-link-destination"]
+					38: name: "punctuation.definition.string.end.roff"
+					39: patterns: [include: "#mono-link-destination"]
+					40: name: "punctuation.definition.round.bracket.end.roff"
+					41: name: "punctuation.definition.square.bracket.begin.roff"
+					42: name: "punctuation.definition.string.begin.roff"
+					43: patterns: [include: "#mono-link-destination"]
+					44: name: "punctuation.definition.string.end.roff"
+					45: patterns: [include: "#mono-link-destination"]
+					46: name: "punctuation.definition.square.bracket.end.roff"
+					47: name: "punctuation.definition.angle.bracket.begin.roff"
+					48: name: "punctuation.definition.string.begin.roff"
+					49: patterns: [include: "#mono-link-destination"]
+					50: name: "punctuation.definition.string.end.roff"
+					51: patterns: [include: "#mono-link-destination"]
+					52: name: "punctuation.definition.angle.bracket.end.roff"
+					53: name: "punctuation.terminator.mono.macro.roff"
+			}, include: "#params"]
 		}]
 
 
