@@ -68,7 +68,8 @@ injections:
 	"L:text.roff":
 		patterns: [include: "#c0"]
 	
-	"L:meta.device-control.roff":
+	"L:meta.device-control.roff,
+	 L:meta.function.request.transparent-output & source.embedded.ditroff":
 		patterns: [
 			{match: "[.']"}
 			{include: "#escapes-copymode"}
@@ -215,7 +216,7 @@ repository:
 				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
 				|cp|devicem|device|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
-				|mso|nop|nroff|opena|open|output|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
+				|mso|nop|nroff|opena|open|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
 				|substring|tkf|tm1|tmc|trf|trin|trnt|troff|unformat|vpt|warnscale|warn
 				|writec|writem|write)
@@ -274,6 +275,23 @@ repository:
 				captures: 1: name: "punctuation.definition.colour.roff"
 				
 			}, include: "#params"]
+		},{
+			
+			# .output: Write directly to intermediate output (GNU)
+			name: "meta.function.request.transparent-output.gnu.roff"
+			begin: "^([.'])[ \\t]*(output)(?=\\s|\\\\E?[\"#])"
+			end:   '(.*)(?<!\\\\)(?=$)|(?=\\\\E?")|(?=^(?!\\G))'
+			beginCaptures:
+				1: name: "punctuation.definition.request.roff"
+				2: name: "entity.function.name.roff"
+			endCaptures:
+				0: name: "source.embedded.ditroff"
+				1: patterns: [include: "source.ditroff"]
+			contentName: "source.embedded.ditroff"
+			patterns: [
+				{include: "#continuous-newline"}
+				{include: "source.ditroff"}
+			]
 		},{
 			
 			# Requests for controlling program flow (GNU)
