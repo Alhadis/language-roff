@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Highlighting for device control functions
 * __Changed:__ `Dt` and `Sh` macros now highlighted like `TH` and `SH`
 * __Changed:__ Enabled soft-wrapping in Roff documents by default
+* __Fixed:__ `ditroff(7)` commands only tokenised at the start of a line
 * __Fixed:__ Incorrect highlighting of man page links containing colons
 * __Fixed:__ Missing highlighting of escape sequences in some contexts
 

@@ -27,7 +27,7 @@ repository:
 		patterns: [{
 			# Restore default
 			name: "meta.colour-mode.default.gnu.ditroff"
-			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(d)"
+			match: "(?:(m)|(D)\\s*(F))\\s*(d)"
 			captures:
 				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.operator.function.ditroff"
@@ -36,7 +36,7 @@ repository:
 		},{
 			# RGB
 			name: "meta.colour-mode.rgb.gnu.ditroff"
-			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(r)((?:\\s*\\d+){3})"
+			match: "(?:(m)|(D)\\s*(F))\\s*(r)((?:\\s*\\d+){3})"
 			captures:
 				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.operator.function.ditroff"
@@ -46,7 +46,7 @@ repository:
 		},{
 			# CMYK
 			name: "meta.colour-mode.cmyk.gnu.ditroff"
-			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(k)((?:\\s*\\d+){4})"
+			match: "(?:(m)|(D)\\s*(F))\\s*(k)((?:\\s*\\d+){4})"
 			captures:
 				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.operator.function.ditroff"
@@ -56,7 +56,7 @@ repository:
 		},{
 			# CMY
 			name: "meta.colour-mode.cmy.gnu.ditroff"
-			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(c)((?:\\s*\\d+){3})"
+			match: "(?:(m)|(D)\\s*(F))\\s*(c)((?:\\s*\\d+){3})"
 			captures:
 				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.operator.function.ditroff"
@@ -66,7 +66,7 @@ repository:
 		},{
 			# Greyscale
 			name: "meta.colour-mode.grey.gnu.ditroff"
-			match: "(?:(m)|^\\s*(D)\\s*(F))\\s*(g)\\s*(\\d+)"
+			match: "(?:(m)|(D)\\s*(F))\\s*(g)\\s*(\\d+)"
 			captures:
 				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.operator.function.ditroff"
@@ -205,7 +205,7 @@ repository:
 		patterns: [{
 			# Coloured circle (GNU extension)
 			name: "meta.graphics.gnu.ditroff"
-			match: "^\\s*(D)\\s*(C)\\s*(\\d+)(?:\\s+(\\d+))?"
+			match: "(D)\\s*(C)\\s*(\\d+)(?:\\s+(\\d+))?"
 			captures:
 				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.operator.subcommand.ditrof"
@@ -214,7 +214,7 @@ repository:
 		},{
 			# Coloured ellipse (GNU extension)
 			name: "meta.graphics.gnu.ditroff"
-			match: "^\\s*(D)\\s*(E)((?:\\s*(\\d+)){1,2})"
+			match: "(D)\\s*(E)((?:\\s*(\\d+)){1,2})"
 			captures:
 				1: name: "keyword.operator.function.ditroff"
 				2: name: "keyword.operator.subcommand.ditroff"
@@ -222,7 +222,7 @@ repository:
 		},{
 			# Everything else
 			name: "meta.graphics.ditroff"
-			begin: "^\\s*(D)\\s*([lceafptPR~])"
+			begin: "(D)\\s*([lceafptPR~])"
 			end:   "(?=$|#)"
 			patterns: [include: "text.roff#number"]
 			beginCaptures:
@@ -231,7 +231,7 @@ repository:
 		},{
 			# Unrecognised drawing command
 			name: "meta.graphics.unknown-command.ditroff"
-			begin: "^\\s*(D)\\s*([^\\s\\\\])"
+			begin: "(D)\\s*([^\\s\\\\])"
 			end:   "(?=$|#)"
 			contentName: "variable.parameter.ditroff"
 			beginCaptures:
@@ -290,7 +290,7 @@ repository:
 		},{
 			# Print sequence of named glyphs (GNU extension)
 			name: "meta.print-text.gnu.ditroff"
-			begin: "^\\s*(t)\\s*"
+			begin: "(t)\\s*"
 			end:   "(?=$)|\\s+(\\d*)"
 			contentName: "string.quoted.double.ditroff"
 			beginCaptures:
@@ -301,7 +301,7 @@ repository:
 		},{
 			# Print text with track-kerning (GNU)
 			name: "meta.print-text.track-kerned.gnu.ditroff"
-			begin: "^\\s*(u)\\s*(-?\\d+)\\s*"
+			begin: "(u)\\s*(-?\\d+)\\s*"
 			end:   "(?=\\s|$)"
 			contentName: "string.quoted.double.ditroff"
 			beginCaptures:
