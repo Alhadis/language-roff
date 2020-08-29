@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 ------------------------------------------------------------------------
 * __Added:__ Editor command for evaluating selection with `groff -Tutf8`
 * __Added:__ `mdoc.template` and `man.template` as recognised Roff files
+* __Added:__ Recognition of `.\"`, `.Dt/.Dd` and `$Mdocdate$` in headers
 * __Added:__ Support for `.ditroff` files containing intermediate output
 * __Added:__ Highlighting of certain [C0 control codes][] in identifiers
 * __Added:__ Highlighting for new `.stringdown` and `.stringup` requests

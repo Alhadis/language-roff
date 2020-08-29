@@ -30,8 +30,16 @@ fileTypes: [
 ]
 firstLineMatch: """(?x)
 
-	# Manual page with .TH macro on first line
-	^\\.TH[ \\t]+(?:\\S+)
+	# .\" Non-empty comment
+	(?:^|\\R)\\.\\\\"[ \\t]\\S
+	|
+
+	# Manual page with .TH, .Dd or .Dt macro on first line
+	^\\.(?:TH|Dd|Dt)[ \\t]+\\S
+	|
+	
+	# $Mdocdate$ keyword in comment or .Dd macro
+	(?:^|\\s)"?\\$Mdocdate(?::.*?)?\\$
 	|
 	
 	# Preprocessor line
