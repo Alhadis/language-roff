@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Fixed:__ `ditroff(7)` commands only tokenised at the start of a line
 * __Fixed:__ Incorrect highlighting of man page links containing colons
 * __Fixed:__ Missing highlighting of escape sequences in some contexts
+* __Improved:__ Highlighting of `.Dd` macros and `$Mdocdate$` constructs
 
 
 [v1.3.0]

@@ -1790,6 +1790,21 @@ repository:
 			]
 		},{
 			
+			# Document date
+			name: "meta.function.document-date.unparsed.mdoc.macro.roff"
+			begin: "^([.'])\\s*(Dd)(?:[ \\t]+|(?=$))"
+			end:   "(?<!\\\\)$"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+			contentName: "string.unquoted.other.roff"
+			patterns: [
+				{include: "#mdoc-date-auto"}
+				{include: "#mdoc-date-manual"}
+				{include: "#mdoc-args"}
+			]
+		},{
+			
 			# Section heading
 			name: "markup.heading.section.function.mdoc.macro.roff"
 			begin: "^([.'])\\s*(Sh)(?=\\s)"
@@ -1928,13 +1943,6 @@ repository:
 			{include: "#escapes"}
 			{include: "#string"}
 			{
-				# Document revision date
-				name: "string.quoted.other.date.roff"
-				begin: "\\$(?=Mdocdate)"
-				end:   "\\$"
-				beginCaptures: 0: name: "punctuation.section.begin.date.roff"
-				endCaptures:   0: name: "punctuation.section.end.date.roff"
-			},{
 				# "Delimiters" (in mdoc's terms)
 				name: "punctuation.delimiter.mdoc.macro.roff"
 				match: "(?<=\\s)[(\\[.,:|;)\\]?!](?=\\s|$)"
@@ -1948,6 +1956,40 @@ repository:
 					|width|words|offset(?:\\s+(?:left|center|indent|indent-two|right))?)(?=\\s)"""
 				captures: 1: name: "punctuation.definition.dash.roff"
 			}]
+
+
+	# Automatic revision date: $Mdocdate$ $Mdocdate:…$
+	"mdoc-date-auto":
+		name:  "meta.document-date.automatic.roff"
+		begin: "(?:\\G|^)((\\$)Mdocdate)(?=[:$]|$)"
+		end:   "\\s*((\\$))|(?=$)"
+		beginCaptures:
+			1: name: "keyword.rcs-like.section.begin.roff"
+			2: name: "punctuation.section.begin.roff"
+		endCaptures:
+			1: name: "keyword.rcs-like.section.end.roff"
+			2: name: "punctuation.section.end.roff"
+		patterns: [{
+			contentName: "constant.other.date.roff"
+			begin: "\\G(:)\\s*"
+			end:   "\\s*(?=\\$|(?<!\\\\)$)"
+			beginCaptures:
+				1: name: "punctuation.separator.key-value.roff"
+			patterns: [
+				{include: "#mdoc-date-manual"}
+				{include: "#mdoc-args"}
+			]
+		}]
+
+
+	# Hardcoded document date: Month DD, YYYY
+	"mdoc-date-manual":
+		name: "meta.document-date.hardcoded.roff"
+		match: "(?:\\G|^)([A-Za-z]+\\s+\\d{1,2}(,)?\\s+\\d{4})\\b"
+		captures:
+			1: name: "constant.other.date.roff"
+			2: name: "punctuation.separator.comma.roff"
+
 
 
 	# Arguments passed to "unparsed" mdoc macros
