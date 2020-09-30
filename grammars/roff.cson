@@ -303,7 +303,7 @@ repository:
 		},{
 			
 			# Requests for controlling program flow (GNU)
-			begin: "^([.'])[ \\t]*(break|continue|return|while)(?=\\s)"
+			begin: "^([.'])[ \\t]*(break|continue|return)(?=\\s)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\E?\")"
 			patterns: [include: "#param-group"]
 			beginCaptures:
@@ -396,9 +396,9 @@ repository:
 			
 			# Conditional: If
 			begin: """(?x)^
-				([.'])   [ \\t]*     # 1: punctuation.definition.request.roff
-				(ie|if)  [ \\t]*     # 2: keyword.control.roff
-				(!)?                 # 3: keyword.operator.logical
+				([.'])         [ \\t]*  # 1: punctuation.definition.request.roff
+				(ie|if|while)  [ \\t]*  # 2: keyword.control.roff
+				(!)?                    # 3: keyword.operator.logical
 				
 				(?:
 					# One-character built-in comparison name
