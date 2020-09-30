@@ -2591,7 +2591,7 @@ repository:
 			
 			# .MT/.ME: Hyperlink (GNU extension)
 			name: "meta.function.mailto.hyperlink.man.macro.gnu.roff"
-			begin: "^([.'])[ \\t]*(MT)(?=\\s|\\\\E?[\"#])"
+			begin: "^([.'])[ \\t]*(MT)(?=\\s|\\\\E?[\"#])\\s*"
 			end:   "^([.'])[ \\t]*(ME)(?=\\s|\\\\E?[\"#])(.*)\\s*(\\\\E?[\"#].*)?$"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.gnu.roff"
@@ -2606,7 +2606,7 @@ repository:
 			
 			# .UR/.UE: URL (GNU extension)
 			name: "meta.function.hyperlink.man.macro.gnu.roff"
-			begin: "^([.'])[ \\t]*(UR)(?=\\s|\\\\E?[\"#])"
+			begin: "^([.'])[ \\t]*(UR)(?=\\s|\\\\E?[\"#])\\s*"
 			end:   "^([.'])[ \\t]*(UE)(?=\\s|\\\\E?[\"#])(.*)\\s*(\\\\E?[\"#].*)?$"
 			beginCaptures:
 				1: name: "punctuation.definition.macro.gnu.roff"
