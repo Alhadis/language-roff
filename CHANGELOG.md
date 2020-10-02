@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Changed:__ `.while` requests now highlighted the same as `.if`/`.ie`
 * __Fixed:__ `ditroff(7)` commands only tokenised at the start of a line
 * __Fixed:__ Incorrect highlighting of man page links containing colons
+* __Fixed:__ Conditional requests not highlighting the commands they run
 * __Fixed:__ Missing highlighting of escape sequences in some contexts
 * __Improved:__ Highlighting of `.Dd` macros and `$Mdocdate$` constructs
 
