@@ -4,8 +4,9 @@ Change Log
 This project adheres to [Semantic Versioning](http://semver.org).
 
 
-[Staged]
+[v1.3.1]
 ------------------------------------------------------------------------
+**October 16th, 2020**  
 * __Added:__ Editor command for evaluating selection with `groff -Tutf8`
 * __Added:__ `mdoc.template` and `man.template` as recognised Roff files
 * __Added:__ Recognition of `.\"`, `.Dt/.Dd` and `$Mdocdate$` in headers
@@ -116,7 +117,8 @@ Initial release. Adds syntax highlighting and language support for Roff.
 
 [Referenced links]:_____________________________________________________
 [C0 control codes]: http://en.wikipedia.org/wiki/C0_and_C1_control_codes
-[Staged]: https://github.com/Alhadis/language-roff/compare/v1.3.0...HEAD
+[Staged]: https://github.com/Alhadis/language-roff/compare/v1.3.1...HEAD
+[v1.3.1]: https://github.com/Alhadis/language-roff/releases/tag/v1.3.1
 [v1.3.0]: https://github.com/Alhadis/language-roff/releases/tag/v1.3.0
 [v1.2.2]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.2
 [v1.2.1]: https://github.com/Alhadis/language-roff/releases/tag/v1.2.1
