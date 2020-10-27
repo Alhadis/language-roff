@@ -4,6 +4,11 @@ Change Log
 This project adheres to [Semantic Versioning](http://semver.org).
 
 
+[Staged]
+------------------------------------------------------------------------
+* __Fixed:__ Conditional requests not highlighting the commands they run
+
+
 [v1.3.1]
 ------------------------------------------------------------------------
 **October 16th, 2020**  
