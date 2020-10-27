@@ -154,6 +154,7 @@ repository:
 	"string-escapes":
 		patterns: [
 			{match: '""', name: "constant.character.escape.quote.double.roff"}
+			{include: "#escapes-clipped"}
 			{include: "#escapes"}
 		]
 	
