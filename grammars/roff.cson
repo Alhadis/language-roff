@@ -126,10 +126,19 @@ repository:
 	# Numeric literal
 	number:
 		name: "constant.numeric.roff"
-		match: "(?!\\d+(?:/|[cfimnPpsuvz]\\w))(\\|)?(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([cfimnPpsuvz])?"
+		match: "(?!\\d+(?:/|[CDMPTcimnpstuvz]\\w))(\\|)?(?:(?<!\\w)[-+])?(?:\\d+(?:\\.\\d*)?|\\.\\d+|(?<=[-+])\\.)([CDMPTcimnpstuvz])?"
 		captures:
 			1: name: "keyword.operator.absolute.roff"
-			2: name: "keyword.other.unit.roff"
+			2: patterns: [include: "#units"]
+	
+	
+	# Units of measurement
+	units:
+		patterns: [
+			{match: "[Pcimnpuv]", name: "keyword.other.unit.roff"}
+			{match: "z",          name: "keyword.other.unit.gnu.roff"}
+			{match: "[CDMTst]",   name: "keyword.other.unit.heirloom.roff"}
+		]
 	
 	
 	# "Double-quoted string"
@@ -203,18 +212,30 @@ repository:
 		]
 	
 	
+	# Pair of strings separated by an arbitrary delimiter
+	"2-part-string":
+		name: "string.quoted.other.arbitrary-delimiter.2-part.roff"
+		match: "\\G(.)((?:(?!\\1).)*)(\\1)((?:(?!\\1).)*)(\\1)"
+		captures:
+			1: name: "punctuation.definition.string.begin.roff",  patterns: [include: "#c0"]
+			2: name: "meta.segment.1.left.roff",                  patterns: [include: "#escapes"]
+			3: name: "punctuation.definition.string.middle.roff", patterns: [include: "#c0"]
+			4: name: "meta.segment.2.right.roff",                 patterns: [include: "#escapes"]
+			5: name: "punctuation.definition.string.end.roff",    patterns: [include: "#c0"]
+	
+	
 	# Group of strings delimited with an arbitrary character
 	"3-part-title":
-		name: "string.3-part.other.roff"
+		name: "string.quoted.other.arbitrary-delimiter.3-part.roff"
 		match: '\\G[ \\t]*(.)((?:(?!\\1).)*)(\\1)((?:(?!\\1).)*)(\\1)((?:(?!\\1).)*)(\\1)'
 		captures:
-			1: name: "punctuation.definition.string.begin.roff", patterns: [include: "#c0"]
-			2: name: "entity.string.left.roff",                  patterns: [include: "#escapes"]
-			3: name: "punctuation.definition.string.begin.roff", patterns: [include: "#c0"]
-			4: name: "entity.string.centre.roff",                patterns: [include: "#escapes"]
-			5: name: "punctuation.definition.string.end.roff",   patterns: [include: "#c0"]
-			6: name: "entity.string.right.roff",                 patterns: [include: "#escapes"]
-			7: name: "punctuation.definition.string.end.roff",   patterns: [include: "#c0"]
+			1: name: "punctuation.definition.string.outer.begin.roff", patterns: [include: "#c0"]
+			2: name: "meta.segment.1.left.roff",                       patterns: [include: "#escapes"]
+			3: name: "punctuation.definition.string.inner.begin.roff", patterns: [include: "#c0"]
+			4: name: "meta.segment.2.centre.roff",                     patterns: [include: "#escapes"]
+			5: name: "punctuation.definition.string.inner.end.roff",   patterns: [include: "#c0"]
+			6: name: "meta.segment.3.right.roff",                      patterns: [include: "#escapes"]
+			7: name: "punctuation.definition.string.outer.end.roff",   patterns: [include: "#c0"]
 	
 	
 	
@@ -228,7 +249,7 @@ repository:
 				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
 				|cp|devicem|device|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
-				|mso|nop|nroff|opena|open|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
+				|mso|nroff|opena|open|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
 				|substring|tkf|tm1|tmc|trf|trin|trnt|troff|unformat|vpt|warnscale|warn
 				|writec|writem|write)
@@ -341,25 +362,94 @@ repository:
 				2: name: "entity.function.name.roff"
 			patterns: [include: "#param-group"]
 			
+		},{
+			# Requests that execute other requests
+			name:  "meta.function.request.$2.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*((el|ie|if|while)|(nop))(?=$|[\\s\\(\"'\\\\!\\x02-\\a\\x7F])"
+			end:   "(?<!\\\\)$"
+			beginCaptures:
+				1: name: "punctuation.definition.request.roff"
+				3: name: "keyword.control.flow.roff"
+				4: name: "entity.function.name.gnu.roff"
+			patterns: [{
+				# Condition
+				name:  "meta.condition.roff"
+				begin: "(?<=ie|if|while)\\G[ \\t]*(?>(!)[ \\t]*)?"
+				end:   "(?!\\G)"
+				beginCaptures:
+					1: name: "keyword.operator.logical.not.roff"
+				patterns: [{
+					# One-character built-in comparison name
+					name: "constant.language.builtin-comparison.$1.roff"
+					match: "\\G([notevh])"
+				},{
+					# GNU extensions to validate an identifier
+					match: "\\G([cdFmrS])[ \\t]*((?:[^ \\t\\\\]|\\\\(?!E?[\"#]).)+)"
+					captures:
+						1: name: "constant.language.builtin-comparison.$1.gnu.roff"
+						2: name: "entity.name.roff", patterns: [include: "#escapes"]
+				},{
+					# Arithmetic
+					name:  "meta.equation.roff"
+					begin: "\\G(?=\\|?[\\(\\d\\\\])"
+					end:   "(?<=\\))[CDMPTcimnpstuvz]?(?!\\s*[-+*&:^?=/|\\d<>\\(\\)])|(?=[.']|\\\\{)|(?<!\\\\)$"
+					endCaptures: 0: patterns: [include: "#units"]
+					patterns: [include: "#arithmetic"]
+				},{
+					# String/variable comparison
+					name:  "meta.string-comparison.roff"
+					begin: "\\G(?=([^\\d\\s\\\\]).*?\\1.*?\\1)"
+					end:   "(?!\\G)"
+					patterns: [include: "#2-part-string"]
+				},{
+					match: "\\\\+(?=$)"
+					captures:
+						0: patterns: [include: "#continuous-newline"]
+				}, include: "#escapes"]
+			},{
+				# Action
+				begin: "(?=[.'])"
+				end:   "(?!\\G)"
+				patterns: [
+					# Clamp requests that have a chance of spillage
+					match: "\\G([.'][ \\t]*(?:ig|ul|(?:de|am)i?1?)(?=$|\\s).*)"
+					captures:
+						1: patterns: [include: "#requests"]
+					{match: "\\\\+$", captures: 0: patterns: [include: "#continuous-newline"]}
+					{include: "#requests"}
+					{include: "#macros"}
+					{include: "$self"}
+				]
+			},{
+				match: "\\\\+$"
+				captures:
+					0: patterns: [include: "#continuous-newline"]
+			}, include: "$self"]
 		}
-		{ include: "#conditionals" }
 		{ include: "#definition"   }
 		{ include: "#ignore"       }
 		{ include: "#underlines"   }
 		{
 			# Register assignment
 			name: "meta.function.request.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(nr)[ \\t]*(?:(%|ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr)|(c\\.)|(\\${2}|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz])|(\\.[CgmMOPUxyY])|(\\S+))?[ \\t]*(.*)$"
+			begin: "(?:^|\\G)([.'])[ \\t]*(nr)[ \\t]*(\\S*)[ \\t]*(.*)$"
 			end: "(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "storage.type.var.roff"
-				3: name: "constant.language.predefined.register.roff"
-				4: name: "constant.language.predefined.register.gnu.roff"
-				5: name: "invalid.illegal.readonly.register.roff"
-				6: name: "invalid.illegal.readonly.register.gnu.roff"
-				7: name: "variable.parameter.roff", patterns: [include: "#escapes"]
-				8: patterns: [{include: "#arithmetic"}, {include: "#param-group"}]
+				3: patterns: [
+					{match: "%|ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr|c\\.",   name: "support.variable.predefined.register.roff"}
+					{match: "\\$\\$|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz]", name: "invalid.illegal.readonly.register.roff"}
+					{match: "\\.[CgmMOPUxyY]",                           name: "invalid.illegal.readonly.register.gnu.roff"}
+					name: "entity.name.register.roff"
+					match: ".+"
+					captures:
+						0: patterns: [include: "#escapes"]
+				]
+				4: patterns: [
+					{include: "#arithmetic"}
+					{include: "#param-group"}
+				]
 		},{
 			
 			# String definition
@@ -394,167 +484,6 @@ repository:
 	
 	
 	
-	# Conditional input
-	conditionals:
-		patterns: [{
-			
-			# Conditional: If
-			begin: """(?x)(?:^|\\G)
-				([.'])         [ \\t]*  # 1: punctuation.definition.request.roff
-				(ie|if|while)  [ \\t]*  # 2: keyword.control.roff
-				(!)?                    # 3: keyword.operator.logical
-				
-				(?:
-					# One-character built-in comparison name
-					([notevh])       # 4: constant.language.builtin-comparison.$4.roff
-					
-					|
-					
-					# GNU extensions
-					([cdFmrS])       # 5: constant.language.builtin-comparison.$5.gnu.roff
-					
-					# Name being validated
-					[ \\t]*
-					((?:[^ \\t\\\\]|\\\\(?!E?["#]).)+) # 6: Include “#escapes”
-					
-					|
-					
-					# Arithmetic
-					(                # 7: meta.equation.roff
-						
-						# Starts with a bracket
-						(\\()        # 8:  punctuation.definition.begin.roff
-						(.*?)        # 9:  Include “#arithmetic”
-						(\\))        # 10: punctuation.definition.end.roff
-						
-						# Anything else affixed to it
-						(            # 11: Include “#arithmetic”
-							(?:
-								[^\\s\\(] | # Operators/numbers
-								\\(.*?\\)   # More brackets
-							)*
-						)
-						
-						|
-						
-						# Doesn’t start with a bracket
-						(?:
-							# Starts with a long-form string/register
-							(\\|?\\\\+E?[n*]\\(\\S{2}) # 12: Include “#escapes”
-							|
-							# Starts with a digit or backslash
-							(?=\\d|\\\\)
-						)
-						([^\\s\\(]*) # 13: Sandwiched mathematical junk
-						
-						(?: # Possible embedded brackets
-							(\\()    # 14: punctuation.definition.begin.roff
-							(.*?)    # 15: Include “#arithmetic”
-							(\\))    # 16: punctuation.definition.end.roff
-						)?
-						(?: # Possible trailing digits/operators
-							[^\\s\\(]*?
-							\\d+
-						)?
-						
-						# Ends with a...
-						(?<=
-							# Digit
-							\\d |
-							
-							# Unit suffix
-							(?<=[\\d.])
-							[A-Za-z] |
-							
-							# Closing bracket
-							[\\)\\]] |
-							
-							# String/register: Long-form
-							\\\\  [n*] \\( \\S{2} |
-							\\\\E [n*] \\( \\S{2} |
-							
-							# String/register: Short-form
-							\\\\  [n*] \\S |
-							\\\\E [n*] \\S
-						)
-					)
-					
-					|
-					
-					# String/variable comparison
-					([^\\d\\s\\\\])  # 17: punctuation.definition.string.begin.roff
-					(                # 18: variable.parameter.operand.left.roff
-						(.*?)        # 19: Include “#escapes”
-					)
-					(\\17)           # 20: punctuation.definition.string.roff
-					(                # 21: variable.parameter.operand.right.roff
-						(.*?)        # 22: Include “#escapes”
-					)
-					(\\17)           # 23: punctuation.definition.string.end.roff
-					
-					|
-					
-					# Anything not recognised
-					(\\S)            # 24: meta.operand.single.roff
-				)?
-				
-				(.*)                 # 25: Include “#conditional-innards”
-			"""
-			end: "$"
-			beginCaptures:
-				0:  name: "meta.function.request.$2.roff"
-				1:  name: "punctuation.definition.request.roff"
-				2:  name: "keyword.control.roff"
-				3:  name: "keyword.operator.logical"
-				4:  name: "constant.language.builtin-comparison.$4.roff"
-				5:  name: "constant.language.builtin-comparison.$5.gnu.roff"
-				6:  patterns: [include: "#escapes"]
-				7:  name: "meta.equation.roff"
-				8:  name: "punctuation.definition.begin.roff"
-				9:  patterns: [include: "#arithmetic"]
-				10: name: "punctuation.definition.end.roff"
-				11: patterns: [include: "#arithmetic"]
-				12: patterns: [include: "#escapes"]
-				13: patterns: [include: "#arithmetic"]
-				14: name: "punctuation.definition.begin.roff"
-				15: patterns: [include: "#arithmetic"]
-				16: name: "punctuation.definition.end.roff"
-				17: name: "punctuation.definition.string.begin.roff", patterns: [include: "#escapes"]
-				18: name: "variable.parameter.operand.left.roff"
-				19: patterns: [include: "#escapes"]
-				20: name: "punctuation.definition.string.roff"
-				21: name: "variable.parameter.operand.right.roff"
-				22: patterns: [include: "#escapes"]
-				23: name: "punctuation.definition.string.end.roff", patterns: [include: "#escapes"]
-				24: name: "meta.operand.single.roff"
-				25: patterns: [include: "#conditional-innards"]
-		},{
-			
-			# Conditional: Else
-			begin: "(?:^|\\G)([.'])[ \\t]*(el)\\s*(.*)"
-			end:   "$"
-			beginCaptures:
-				0: name: "meta.function.request.$2.roff"
-				1: name: "punctuation.definition.request.roff"
-				2: name: "keyword.control.roff"
-				3: patterns: [include: "#conditional-innards"]
-		}]
-	
-	"conditional-innards":
-		patterns: [{
-			begin: "(?:\\G|^)\\s*(\\\\E?\\{(?:\\\\E?(?=\\R|$))?)?\\s*(.*)"
-			end:   "$"
-			beginCaptures:
-				1: name: "punctuation.section.conditional.begin.roff"
-				2: patterns: [
-					{include: "#requests"}
-					{include: "#macros"}
-					{include: "$self"}
-				]
-		}, include: "$self"]
-	
-	
-	
 	# Basic arithmetic sequences
 	arithmetic:
 		patterns: [
@@ -576,9 +505,9 @@ repository:
 			{
 				# Change default scaling indicator (GNU)
 				name: "meta.scaling-indicator.gnu.roff"
-				match: "(?:\\G|(?<=^|\\())([cfimnPpsuvz])(;)"
+				match: "(?:\\G|(?<=^|\\())([CDMPTcimnpstuvz])(;)"
 				captures:
-					1: name: "keyword.other.unit.roff"
+					1: patterns: [include: "#units"]
 					2: name: "punctuation.separator.semicolon.roff"
 			}
 		]
@@ -897,14 +826,6 @@ repository:
 				1: name: "constant.character.escape.current-escape-char.gnu.roff"
 				2: name: "punctuation.definition.escape.roff"
 				3: name: "punctuation.definition.escape.roff"
-		},{
-			
-			# \*[name].macro - Adhoc matching to improve tbl's "\*[3trans]" hack (GNU)
-			begin: "(?:^|\\G)(\\\\\\*\\[[^\\]]+\\])\\s*(\\.\\w+.*)"
-			end: "$"
-			beginCaptures:
-				1: patterns: [include: "#escapes"]
-				2: patterns: [include: "#conditional-innards"]
 		},{
 			
 			# \*[xx args…] - Interpolate string "xx" with optional arguments (GNU)
@@ -1357,19 +1278,19 @@ repository:
 		},{
 			
 			# Conditional input: Begin
-			name: "meta.function.begin.roff"
 			match: "(?:(?:^|\\G)(\\.|'+)[ \\t]*)?(\\\\\\{(?:\\\\(?=\\R|$))?)"
 			captures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "punctuation.section.conditional.begin.roff"
+				2: name: "constant.character.escape.conditional.block.roff"
+				3: name: "punctuation.section.conditional.begin.roff"
 		},{
 			
 			# Conditional input: End
-			name: "meta.function.end.roff"
-			match: "(?:(?:^|\\G)(\\.|'+)[ \\t]*)?(\\\\\\}(?:\\\\(?=\\R|$))?)"
+			match: "(?:(?:^|\\G)(\\.|'+)[ \\t]*)?((\\\\\\}(?:\\\\(?=\\R|$))?))"
 			captures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "punctuation.section.conditional.end.roff"
+				2: name: "constant.character.escape.conditional.block.roff"
+				3: name: "punctuation.section.conditional.end.roff"
 		},{
 			
 			# Device control function
