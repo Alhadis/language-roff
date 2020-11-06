@@ -520,15 +520,13 @@ repository:
 			
 			# No terminator specified
 			name: "meta.macro.definition.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*((dei?1?)|(ami?1?))\\s+(\\S+?)?\\s*(\\\\E?[\"#].*)?$"
+			begin: "(?:^|\\G)([.'])[ \\t]*((?:de|am)i?1?)\\s+(\\S+?)?\\s*(\\\\E?[\"#].*)?$"
 			end:   "^(?:[ \\t]*\\x5C{2})?\\.[ \\t]*\\."
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				3: name: "storage.type.function.roff"
-				4: name: "entity.name.function.roff"
-				5: name: "variable.parameter.roff", patterns: [include: "#escapes"]
-				6: patterns: [include: "#escapes"]
-				7: patterns: [include: "#param-group"]
+				2: name: "storage.type.function.roff"
+				3: name: "entity.name.function.roff", patterns: [include: "#escapes"]
+				4: patterns: [include: "#escapes"]
 			endCaptures:
 				0: name: "punctuation.definition.request.roff"
 			patterns: [include: "$self"]
@@ -536,15 +534,14 @@ repository:
 			
 			# Terminator included
 			name: "meta.macro.definition.with-terminator.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*((dei?1?)|(ami?1?))\\s+(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\E?[\"#]))?(.*)$"
-			end:   "^(\\.)[ \\t]*((\\6)(?=$|\\s|\\\\(?:$|\")))"
+			begin: "(?:^|\\G)([.'])[ \\t]*((?:de|am)i?1?)\\s+(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\E?[\"#]))?(.*)$"
+			end:   "^(\\.)[ \\t]*((\\4)(?=$|\\s|\\\\(?:$|\")))"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				3: name: "storage.type.function.roff"
-				4: name: "entity.name.function.roff"
-				5: name: "variable.parameter.roff",         patterns: [include: "#escapes"]
-				6: name: "keyword.control.terminator.roff", patterns: [include: "#string"]
-				7: patterns: [include: "#param-group"]
+				2: name: "storage.type.function.roff"
+				3: name: "entity.name.function.roff",       patterns: [include: "#escapes"]
+				4: name: "keyword.control.terminator.roff", patterns: [include: "#string"]
+				5: patterns: [include: "#param-group"]
 			endCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "keyword.control.terminator.roff"
