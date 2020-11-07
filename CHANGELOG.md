@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 [Staged]
 ------------------------------------------------------------------------
 * __Fixed:__ Conditional requests not highlighting the commands they run
+* __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom 
 
 
 [v1.3.1]
