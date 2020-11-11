@@ -1,6 +1,12 @@
 name: "Pic"
 scopeName: "source.pic"
-fileTypes: ["chem", "pic"]
+fileTypes: [
+	"chem"
+	"dformat"
+	"grap.defines"
+	"grap.tex.defines"
+	"pic"
+]
 firstLineMatch: "^#[!/].*\\bpic2plot\\b"
 patterns: [
 	{include: "#binary"}
