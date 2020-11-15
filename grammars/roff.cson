@@ -25,7 +25,7 @@ fileTypes: [
 	"tmac", "tmac-u", "tmac.in"
 	"toc.entries"
 	"tr"
-	"troff"
+	"troff", "troff.ad"
 	"troffrc", "troffrc-end"
 ]
 firstLineMatch: """(?x)
@@ -51,8 +51,10 @@ firstLineMatch: """(?x)
 	^\\.so[ \\t]+man(\\w+)/.+\\.\\1(?=\\s|$)
 	|
 	
-	# DWB copyright banner
-	(?:^|(?!R)\\R)(?:'+\\t?|\\.\\t)\\\\"\\s
+	# DWB headers
+	^ (?:'+\\t?|\\.\\t)\\\\"\\s
+	| \\A'\\\\"\\#ident\\t"@\\(\\#\\).*?:(?:eqn|mm|[nt]?roff|pic|tbl)\\.[a-z]+\\t\\d+\\.\\d+"$
+	| \\A\\.sp\\s\\d+[icPmnpuv]\\n\\.PS$
 	|
 	
 	# Modeline
