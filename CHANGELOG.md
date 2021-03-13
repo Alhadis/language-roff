@@ -7,7 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org).
 [Staged]
 ------------------------------------------------------------------------
 * __Fixed:__ Conditional requests not highlighting the commands they run
-* __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom 
+* __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom
+* __Fixed:__ Various [inaccuracies][1] related to Roff modeline matching
+
+[1]: https://github.com/github/linguist/pull/5271
 
 
 [v1.3.1]
