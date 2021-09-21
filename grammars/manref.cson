@@ -1,6 +1,6 @@
 # Injected links to man(1) pages
 scopeName: "hidden.manref"
-injectionSelector: "text, comment, docstring, string.quoted.docstring, source.changelogs"
+injectionSelector: "text - (text.info | text.texinfo), comment, docstring, string.quoted.docstring, source.changelogs"
 patterns: [{
 	name: "manref"
 	match: """(?xi)
