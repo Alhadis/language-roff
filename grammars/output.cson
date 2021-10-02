@@ -459,6 +459,29 @@ repository:
 				1: name: "keyword.device.control.subcommand.gnu.ditroff"
 				2: name: "punctuation.separator.key-value.colon.ditroff"
 			patterns: [{
+				# OSC 8 hyperlinks
+				name:  "meta.osc8-link.ditroff"
+				begin: "\\G\\s*(link)(?=\\s|$)"
+				end:   "(?=^(?!\\+))"
+				beginCaptures:
+					1: name: "storage.type.link.ditroff"
+				patterns: [{
+					# URI
+					name: "meta.link-destination.ditroff"
+					match: "\\G\\s*(\\S+)"
+					captures:
+						1: name: "string.other.link.ditroff"
+				},{
+					# `key=value` pairs left to the device's interpretation
+					name:  "meta.link-parameter.ditroff"
+					begin: "(?!\\G)([^\\s=]+)(=)"
+					end:   "(?=\\s|$)"
+					beginCaptures:
+						1: name: "entity.other.attribute-name.ditroff"
+						2: name: "punctuation.separator.key-value.ditroff"
+					contentName: "string.unquoted.ditroff"
+				}]
+			},{
 				match: "\\G\\s*(sgr)\\b(?:\\s+([-+]?[\\d.0]+))?"
 				captures:
 					1: name: "keyword.control.directive.gnu.ditroff"
