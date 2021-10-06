@@ -113,7 +113,8 @@ body:not(.disable-manref-links) .syntax--manref{
 	color: transparent;
 	
 	&::after{
-		color: #00c;
+		& when(lightness(@syntax-background-color) <  50%){ color: #4271fb; }
+		& when(lightness(@syntax-background-color) >= 50%){ color: #00c; }
 		position: absolute;
 		left: 0;
 		width: 100%;

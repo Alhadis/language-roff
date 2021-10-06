@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Fixed:__ Conditional requests not highlighting the commands they run
 * __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom
 * __Fixed:__ Various [inaccuracies][1] related to Roff modeline matching
+* __Improved:__ Colour of ASCII control characters in dark themes
 
 [1]: https://github.com/github/linguist/pull/5271
 [OSC 8]: https://lists.gnu.org/archive/html/groff/2021-10/msg00000.html
