@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 ------------------------------------------------------------------------
 * __Added:__ Highlighting for [OSC 8] terminal hyperlink device controls
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
+* __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests
 * __Fixed:__ Conditional requests not highlighting the commands they run
 * __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom
 * __Fixed:__ Various [inaccuracies][1] related to Roff modeline matching
