@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests
 * __Fixed:__ Conditional requests not highlighting the commands they run
 * __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom
+* __Fixed:__ refer(1)-like markup inside macro definitions now truncated
 * __Fixed:__ Various [inaccuracies][1] related to Roff modeline matching
 * __Improved:__ Colour of ASCII control characters in dark themes
 
