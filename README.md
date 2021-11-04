@@ -5,7 +5,7 @@ Support for Unix manual pages (Troff/Groff) in Atom, as well as the entire Roff 
 
 ![What? Nobody writes this by hand anymore?](https://raw.githubusercontent.com/Alhadis/language-roff/02696cdbcca95d7d478ccf703bc22fbe27da48c7/figure-1.png)
 
-See [**roff**(7)](http://linux.die.net/man/7/roff) or [*"History of UNIX Manpages"*](http://manpages.bsd.lv/history.html) for a comprehensive rundown of the language's history.
+See [**roff**(7)](https://man7.org/linux/man-pages/man7/roff.7.html) or [*"History of UNIX Manpages"*](http://manpages.bsd.lv/history.html) for a comprehensive rundown of the language's history.
 
 
 Coverage
@@ -17,14 +17,14 @@ Coverage
 
 
 [Referenced links]:_____________________________________________________________________
-[`man`]:       http://linux.die.net/man/7/groff_man
-[`mdoc`]:      http://mdocml.bsd.lv/man/mdoc.7.html
-[`me`]:        https://docs.freebsd.org/44doc/usd/20.meref/paper.pdf
-[`ms`]:        http://linux.die.net/man/7/groff_ms
-[`mm`]:        http://linux.die.net/man/7/groff_mm
+[`man`]:       https://man7.org/linux/man-pages/man7/groff_man.7.html
+[`mdoc`]:      https://man.openbsd.org/mdoc.7
+[`me`]:        https://man7.org/linux/man-pages/man7/groff_me.7.html
+[`ms`]:        https://man7.org/linux/man-pages/man7/groff_ms.7.html
+[`mm`]:        https://man7.org/linux/man-pages/man7/groff_mm.7.html
 [`mom`]:       http://www.schaffter.ca/mom/
-[`www`]:       http://linux.die.net/man/7/groff_www
-[`chem`]:      http://manpages.ubuntu.com/manpages/wily/man1/chem.1.html
+[`www`]:       https://man7.org/linux/man-pages/man7/groff_www.7.html
+[`chem`]:      https://man7.org/linux/man-pages/man1/chem.1.html
 [`dformat`]:   https://rbn.im/bell-labs/cm.bell-labs.com/cm/cs/cstr/142.ps.gz
 [`eqn`]:       https://en.wikipedia.org/wiki/Eqn
 [`grap`]:      https://rbn.im/bell-labs/cm.bell-labs.com/cm/cs/cstr/114.ps.gz
