@@ -251,7 +251,7 @@ repository:
 			name: "meta.function.request.$2.gnu.roff"
 			begin: """(?x) (?:^|\\G)([.'])[ \\t]*
 				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
-				|cp|devicem|device|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
+				|cp|devicem|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
 				|mso|nroff|opena|open|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
@@ -312,6 +312,15 @@ repository:
 				captures: 1: name: "punctuation.definition.colour.roff"
 				
 			}, include: "#params"]
+		},{
+			
+			# .device: Embed device control function (GNU)
+			name: "meta.function.request.device-control.gnu.roff"
+			match: "(?:^|\\G)([.'])[ \\t]*(device)(?:[ \\t]+(.+?))?(?=\\s*(?:\\\\E?\"|$))"
+			captures:
+				1: name: "punctuation.definition.request.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "source.embedded.ditroff", patterns: [include: "source.ditroff#xCommands"]
 		},{
 			
 			# .output: Write directly to intermediate output (GNU)

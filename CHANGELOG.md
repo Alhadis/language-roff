@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 [Staged]
 ------------------------------------------------------------------------
 * __Added:__ Highlighting for [OSC 8] terminal hyperlink device controls
+* __Changed:__ `.device` requests now highlight device control functions
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
 * __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests
 * __Fixed:__ Conditional requests not highlighting the commands they run
