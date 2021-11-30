@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 ------------------------------------------------------------------------
 * __Added:__ Highlighting for [OSC 8] terminal hyperlink device controls
 * __Added:__ Highlighting for [dpic] and [Pikchr] language extensions
+* __Added:__ Embedded shell highlighting to `.pi`, `.pso`, and `.sy`
 * __Changed:__ `.device` requests now highlight device control functions
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
 * __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests

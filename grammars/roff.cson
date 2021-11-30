@@ -81,6 +81,9 @@ patterns: [include: "#main"]
 injections:
 	"L:text.roff":
 		patterns: [include: "#c0"]
+
+	"L:meta.function.request.external-command.*.roff source.embedded.shell":
+		patterns: [include: "#escapes"]
 	
 	"L:meta.device-control.roff,
 	 L:meta.function.request.transparent-output & source.embedded.ditroff":
@@ -253,7 +256,7 @@ repository:
 				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
 				|cp|devicem|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
-				|mso|nroff|opena|open|pev|pnr|psbb|pso|ptr|pvs|rchar|rfschar|rj
+				|mso|nroff|opena|open|pev|pnr|psbb|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
 				|substring|tkf|tm1|tmc|trf|trin|trnt|troff|unformat|vpt|warnscale|warn
 				|writec|writem|write)
@@ -338,6 +341,27 @@ repository:
 				{include: "#continuous-newline"}
 				{include: "source.ditroff"}
 			]
+		},{
+			
+			# Requests that execute external commands
+			name:  "meta.function.request.external-command.$2.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(pi|pso|sy)(?=\\s)"
+			end:   '(?<!\\\\)(?=$)|(?=\\\\E?["#])'
+			beginCaptures:
+				1: name: "punctuation.definition.request.roff"
+				2: name: "entity.function.name.roff"
+			patterns: [include: "#escapes", {
+				match: '(?:^|\\G).+?(?=\\\\*$|\\\\+E?(?:$|["#]))'
+				captures: 0: patterns: [{
+					name: "source.embedded.shell"
+					begin: "\\G|^"
+					end:   "$"
+					patterns: [
+						{include: "#escapes"}
+						{include: "source.shell"}
+					]
+				}]
+			}]
 		},{
 			
 			# Requests for controlling program flow (GNU)
