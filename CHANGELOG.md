@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Changed:__ `.device` requests now highlight device control functions
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
 * __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests
+* __Fixed:__ Inconsistent command highlighting in `.do` requests
 * __Fixed:__ Conditional requests not highlighting the commands they run
 * __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom
 * __Fixed:__ refer(1)-like markup inside macro definitions now truncated

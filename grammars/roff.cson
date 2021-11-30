@@ -251,10 +251,10 @@ repository:
 		patterns:[{
 			
 			# GNU extensions
-			name: "meta.function.request.$2.gnu.roff"
-			begin: """(?x) (?:^|\\G)([.'])[ \\t]*
+			name: "meta.function.request.$3.gnu.roff"
+			begin: """(?x) (?:^|\\G)([.'])[ \\t]* (?:(do)[ \\t]+)?
 				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
-				|cp|devicem|do|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
+				|cp|devicem|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
 				|mso|nroff|opena|open|pev|pnr|psbb|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
@@ -265,17 +265,19 @@ repository:
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
+				3: name: "entity.function.name.roff"
 			patterns: [include: "#param-group"]
 		},{
 			
 			# .class: Assign a name to a range of characters (GNU)
 			name: "meta.function.request.assign-class.gnu.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(class)[ \\t]+(\\S+)"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(class)[ \\t]+(\\S+)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\E?\")"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
-				3: name: "variable.parameter.roff", patterns: [include: "#escapes"]
+				3: name: "entity.function.name.roff"
+				4: name: "variable.parameter.roff", patterns: [include: "#escapes"]
 			patterns: [{
 				name: "string.unquoted.character-range.roff"
 				match: "([^\\s\\\\]+)(-)([^\\s\\\\]+)"
@@ -287,26 +289,28 @@ repository:
 		},{
 			
 			# .char: Define character or glyph (GNU)
-			name: "meta.function.request.$2.gnu.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(char)[ \\t]*(\\S+)?[ \\t]*(.*)(?=$|\\\\E?[\"#])"
+			name: "meta.function.request.$3.gnu.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(char)[ \\t]*(\\S+)?[ \\t]*(.*)(?=$|\\\\E?[\"#])"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\E?[\"#])"
 			patterns: [include: "$self"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "storage.type.var.roff"
-				3: name: "variable.parameter.roff", patterns: [include: "#escapes"]
-				4: patterns: [include: "#param-group"]
+				2: name: "entity.function.name.roff"
+				3: name: "storage.type.var.roff"
+				4: name: "variable.parameter.roff", patterns: [include: "#escapes"]
+				5: patterns: [include: "#param-group"]
 		},{
 			
 			# .defcolor: Define colour (GNU)
 			name: "meta.function.request.define-colour.gnu.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(defcolor)(?=\\s)[ \\t]*((?:[^\\s\\\\]|\\\\(?!E?[\"#]).)*)[ \\t]*(rgb|cmyk?|gr[ae]y)?"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(defcolor)(?=\\s)[ \\t]*((?:[^\\s\\\\]|\\\\(?!E?[\"#]).)*)[ \\t]*(rgb|cmyk?|gr[ae]y)?"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\E?[\"#])"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "storage.type.var.roff"
-				3: name: "string.other.colour-name.roff", patterns: [include: "#escapes"]
-				4: name: "constant.language.colour-scheme.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "storage.type.var.roff"
+				4: name: "string.other.colour-name.roff", patterns: [include: "#escapes"]
+				5: name: "constant.language.colour-scheme.roff"
 			patterns: [{
 				
 				# Hexadecimal colour
@@ -319,20 +323,22 @@ repository:
 			
 			# .device: Embed device control function (GNU)
 			name: "meta.function.request.device-control.gnu.roff"
-			match: "(?:^|\\G)([.'])[ \\t]*(device)(?:[ \\t]+(.+?))?(?=\\s*(?:\\\\E?\"|$))"
+			match: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(device)(?:[ \\t]+(.+?))?(?=\\s*(?:\\\\E?\"|$))"
 			captures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
-				3: name: "source.embedded.ditroff", patterns: [include: "source.ditroff#xCommands"]
+				3: name: "entity.function.name.roff"
+				4: name: "source.embedded.ditroff", patterns: [include: "source.ditroff#xCommands"]
 		},{
 			
 			# .output: Write directly to intermediate output (GNU)
 			name: "meta.function.request.transparent-output.gnu.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(output)(?=\\s|\\\\E?[\"#])"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(output)(?=\\s|\\\\E?[\"#])"
 			end:   '(.*)(?<!\\\\)(?=$)|(?=\\\\E?")|(?=^(?!\\G))'
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
+				3: name: "entity.function.name.roff"
 			endCaptures:
 				0: name: "source.embedded.ditroff"
 				1: patterns: [include: "source.ditroff"]
@@ -344,12 +350,13 @@ repository:
 		},{
 			
 			# Requests that execute external commands
-			name:  "meta.function.request.external-command.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(pi|pso|sy)(?=\\s)"
+			name:  "meta.function.request.external-command.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(pi|pso|sy)(?=\\s)"
 			end:   '(?<!\\\\)(?=$)|(?=\\\\E?["#])'
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
+				3: name: "entity.function.name.roff"
 			patterns: [include: "#escapes", {
 				match: '(?:^|\\G).+?(?=\\\\*$|\\\\+E?(?:$|["#]))'
 				captures: 0: patterns: [{
@@ -365,29 +372,31 @@ repository:
 		},{
 			
 			# Requests for controlling program flow (GNU)
-			begin: "(?:^|\\G)([.'])[ \\t]*(break|continue|return)(?=\\s)"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(break|continue|return)(?=\\s)"
 			end:   "(?<!\\\\)(?=$)|(?=\\\\E?\")"
 			patterns: [include: "#param-group"]
 			beginCaptures:
 				0: name: "meta.function.request.control.gnu.roff"
 				1: name: "punctuation.definition.request.roff"
-				2: name: "keyword.control.roff"
+				2: name: "entity.function.name.roff"
+				3: name: "keyword.control.roff"
 		},{
 			
 			# .tm/.ab: Print remainder of line to STDERR
-			name: "meta.function.request.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(ab|tm)(?=\\s|\\\\E?[\"#])"
+			name: "meta.function.request.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(ab|tm)(?=\\s|\\\\E?[\"#])"
 			end:   "(?<!\\\\)(?=(?!R)\\R|$)|(?=\\\\E?\")"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
+				3: name: "entity.function.name.roff"
 			patterns: [include: "#escapes-copymode"]
 			contentName: "string.unquoted.roff"
 			
 		},{
 			# Generic requests without formatting
-			name: "meta.function.request.$2.roff"
-			begin: """(?x) (?:^|\\G)([.'])[ \\t]*
+			name: "meta.function.request.$3.roff"
+			begin: """(?x) (?:^|\\G)([.'])[ \\t]* (?:(do)[ \\t]+)?
 				(ab|ad|af|bd|bp|br|c2|cc|ce|cf|ch|cs|da|di|dt|ec|em|eo|ev
 				|ex|fc|fi|fl|fp|ft|hc|hw|hy|in|it|lc|lg|lf|ll|ls|lt|mc|mk
 				|na|ne|nf|nh|nm|nn|ns|nx|os|pc|pi|pl|pm|pn|po|ps|rd|rm|rn
@@ -397,17 +406,19 @@ repository:
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
+				3: name: "entity.function.name.roff"
 			patterns: [include: "#param-group"]
 			
 		},{
 			# Requests that execute other requests
-			name:  "meta.function.request.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*((el|ie|if|while)|(nop))(?=$|[\\s\\(\"'\\\\!\\x02-\\a\\x7F])"
+			name:  "meta.function.request.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?((el|ie|if|while)|(nop))(?=$|[\\s\\(\"'\\\\!\\x02-\\a\\x7F])"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				3: name: "keyword.control.flow.roff"
-				4: name: "entity.function.name.gnu.roff"
+				2: name: "entity.function.name.roff"
+				4: name: "keyword.control.flow.roff"
+				5: name: "entity.function.name.gnu.roff"
 			patterns: [{
 				# Condition
 				name:  "meta.condition.roff"
@@ -449,7 +460,7 @@ repository:
 				end:   "(?!\\G)"
 				patterns: [
 					# Clamp requests that have a chance of spillage
-					match: "\\G([.'][ \\t]*(?:ig|ul|(?:de|am)i?1?)(?=$|\\s).*)"
+					match: "\\G([.'][ \\t]*(?:do[ \\t]+)?(?:ig|ul|(?:de|am)i?1?)(?=$|\\s).*)"
 					captures:
 						1: patterns: [include: "#requests"]
 					{match: "\\\\+$", captures: 0: patterns: [include: "#continuous-newline"]}
@@ -468,13 +479,14 @@ repository:
 		{ include: "#underlines"   }
 		{
 			# Register assignment
-			name: "meta.function.request.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(nr)[ \\t]*(\\S*)[ \\t]*(.*)$"
+			name: "meta.function.request.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(nr)[ \\t]*(\\S*)[ \\t]*(.*)$"
 			end: "(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "storage.type.var.roff"
-				3: patterns: [
+				2: name: "entity.function.name.roff"
+				3: name: "storage.type.var.roff"
+				4: patterns: [
 					{match: "%|ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr|c\\.",   name: "support.variable.predefined.register.roff"}
 					{match: "\\$\\$|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz]", name: "invalid.illegal.readonly.register.roff"}
 					{match: "\\.[CgmMOPUxyY]",                           name: "invalid.illegal.readonly.register.gnu.roff"}
@@ -483,21 +495,22 @@ repository:
 					captures:
 						0: patterns: [include: "#escapes"]
 				]
-				4: patterns: [
+				5: patterns: [
 					{include: "#arithmetic"}
 					{include: "#param-group"}
 				]
 		},{
 			
 			# String definition
-			name: "meta.function.request.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*([ad]s1?)[ \\t]+(((?:[^\\s\\\\]|\\\\(?!E?\").)+))?"
+			name: "meta.function.request.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?([ad]s1?)[ \\t]+(((?:[^\\s\\\\]|\\\\(?!E?\").)+))?"
 			end:   "(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "storage.type.var.roff"
-				3: name: "variable.parameter.roff", patterns: [include: "#c0"]
-				4: name: "entity.name.roff",        patterns: [include: "#escapes"]
+				2: name: "entity.function.name.roff"
+				3: name: "storage.type.var.roff"
+				4: name: "variable.parameter.roff", patterns: [include: "#c0"]
+				5: name: "entity.name.roff",        patterns: [include: "#escapes"]
 			contentName: "string.unquoted.roff"
 			patterns: [
 				{include: "#escapes-clipped"}
@@ -506,12 +519,13 @@ repository:
 		},{
 			
 			# Three-part title
-			name: "meta.function.request.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(tl)(?=\\s)"
+			name: "meta.function.request.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(tl)(?=\\s)"
 			end:   "(?<!\\\\)$|(?=\\\\E?\")"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
+				3: name: "entity.function.name.roff"
 			contentName: "function-call.arguments.roff"
 			patterns: [
 				{include: "#3-part-title"}
@@ -556,29 +570,31 @@ repository:
 		patterns: [{
 			
 			# No terminator specified
-			name: "meta.macro.definition.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*((?:de|am)i?1?)\\s+(\\S+?)?\\s*(\\\\E?[\"#].*)?$"
+			name: "meta.macro.definition.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?((?:de|am)i?1?)\\s+(\\S+?)?\\s*(\\\\E?[\"#].*)?$"
 			end:   "^(?:[ \\t]*\\x5C{2})?\\.[ \\t]*\\."
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "storage.type.function.roff"
-				3: name: "entity.name.function.roff", patterns: [include: "#escapes"]
-				4: patterns: [include: "#escapes"]
+				2: name: "entity.function.name.roff"
+				3: name: "storage.type.function.roff"
+				4: name: "entity.name.function.roff", patterns: [include: "#escapes"]
+				5: patterns: [include: "#escapes"]
 			endCaptures:
 				0: name: "punctuation.definition.request.roff"
 			patterns: [include: "$self"]
 		},{
 			
 			# Terminator included
-			name: "meta.macro.definition.with-terminator.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*((?:de|am)i?1?)\\s+(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\E?[\"#]))?(.*)$"
-			end:   "^(\\.)[ \\t]*((\\4)(?=$|\\s|\\\\(?:$|\")))"
+			name: "meta.macro.definition.with-terminator.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?((?:de|am)i?1?)\\s+(\\S+)\\s*(\"[^\"]+\"?|\\S+?(?=\\s|\\\\E?[\"#]))?(.*)$"
+			end:   "^(\\.)[ \\t]*((\\5)(?=$|\\s|\\\\(?:$|\")))"
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
-				2: name: "storage.type.function.roff"
-				3: name: "entity.name.function.roff",       patterns: [include: "#escapes"]
-				4: name: "keyword.control.terminator.roff", patterns: [include: "#string"]
-				5: patterns: [include: "#param-group"]
+				2: name: "entity.function.name.roff"
+				3: name: "storage.type.function.roff"
+				4: name: "entity.name.function.roff",       patterns: [include: "#escapes"]
+				5: name: "keyword.control.terminator.roff", patterns: [include: "#string"]
+				6: patterns: [include: "#param-group"]
 			endCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "keyword.control.terminator.roff"
@@ -593,15 +609,16 @@ repository:
 			
 			# Terminator specified
 			contentName: "comment.block.ignored-input.with-terminator.roff"
-			begin: '(?:^|\\G)(?!.*?\\\\*})([.\'])[ \\t]*(ig)[ \\t]+(?!\\\\E?["#]|\\\\+\\$\\d+)(("[^"]+")|\\S+?(?=\\s|\\\\E?["#]))(.*)$'
-			end:   "^([.'])[ \\t]*(\\3)(?=\\s|$|\\\\)|^(?=[.']?[ \\t]*\\\\*})"
+			begin: '(?:^|\\G)(?!.*?\\\\*})([.\'])[ \\t]*(?:(do)[ \\t]+)?(ig)[ \\t]+(?!\\\\E?["#]|\\\\+\\$\\d+)(("[^"]+")|\\S+?(?=\\s|\\\\E?["#]))(.*)$'
+			end:   "^([.'])[ \\t]*(\\4)(?=\\s|$|\\\\)|^(?=[.']?[ \\t]*\\\\*})"
 			patterns: [include: "#register-expansion"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
-				3: name: "keyword.control.terminator.roff", patterns: [include: "#escapes"]
-				4: patterns: [include: "#string"]
-				5: patterns: [include: "#params"]
+				3: name: "entity.function.name.roff"
+				4: name: "keyword.control.terminator.roff", patterns: [include: "#escapes"]
+				5: patterns: [include: "#string"]
+				6: patterns: [include: "#params"]
 			endCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "keyword.control.terminator.roff", patterns: [include: "#string"]
@@ -609,13 +626,14 @@ repository:
 			
 			# No terminator given
 			contentName: "comment.block.ignored-input.roff"
-			begin: "(?:^|\\G)(?!.*?\\\\*})([.'])[ \\t]*(ig)(?=\\s|\\\\E?[\"#])(.*)$"
+			begin: "(?:^|\\G)(?!.*?\\\\*})([.'])[ \\t]*(?:(do)[ \\t]+)?(ig)(?=\\s|\\\\E?[\"#])(.*)$"
 			end:   "^([.'])[ \\t]*\\.(?=\\s|\\\\E?[\"#])|^(?=[.']?[ \\t]*\\\\*})"
 			patterns: [include: "#register-expansion"]
 			beginCaptures:
 				1: name: "punctuation.definition.request.roff"
 				2: name: "entity.function.name.roff"
-				3: patterns: [include: "#params"]
+				3: name: "entity.function.name.roff"
+				4: patterns: [include: "#params"]
 			endCaptures:
 				0: name: "punctuation.definition.request.roff"
 		}]
@@ -626,24 +644,26 @@ repository:
 		patterns: [{
 			
 			# .ul/.cu 0: Empty request/noop
-			name: "meta.request.$2.roff"
-			match: "(?:^|\\G)([.'])[ \\t]*(ul|cu)\\s*(0+)(?:(?!\\\\E?\")\\D)*(?=\\s|$)(.*)$"
+			name: "meta.request.$3.roff"
+			match: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(ul|cu)\\s*(0+)(?:(?!\\\\E?\")\\D)*(?=\\s|$)(.*)$"
 			captures:
 				1: name: "punctuation.definition.function.request.roff"
 				2: name: "entity.function.name.roff"
-				3: name: "constant.numeric.roff"
-				4: patterns: [include: "#params"]
+				3: name: "entity.function.name.roff"
+				4: name: "constant.numeric.roff"
+				5: patterns: [include: "#params"]
 			
 		}, {
 			
 			# Underline following line
-			name: "meta.request.$2.roff"
-			begin: "(?:^|\\G)([.'])[ \\t]*(ul|cu)(?=\\s|$|\\\\)(.*?)$(?!R)\\R?"
+			name: "meta.request.$3.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(ul|cu)(?=\\s|$|\\\\)(.*?)$(?!R)\\R?"
 			end:   "(?!\\G)(?<!\\\\)$"
 			beginCaptures:
 				1: name: "punctuation.definition.function.request.roff"
 				2: name: "entity.function.name.roff"
-				3: patterns: [include: "#params"]
+				3: name: "entity.function.name.roff"
+				4: patterns: [include: "#params"]
 			patterns: [{
 				
 				# Ignore control-lines

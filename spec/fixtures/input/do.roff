@@ -1,0 +1,35 @@
+.do aln      ABC XYZ
+.do asciify  XYZ
+.do class    XYZ
+.do char     XYZ xyz
+.do defcolor Octarine greenish-purple
+.do device   ps: exec 3 4 add ==
+.do output   t String
+.do pi       cat | tr a-z A-Z > /tmp/output-\n($$.txt
+.do pso      /bin/date -R && echo "Executed successfully"
+.do sy       curl -q "https://git.io/XYZ" | xc -j 'recent-posts/pages[0]'
+.do break
+.do tm       Debugging feedback, etc
+.do ll       3m
+.do if \n(.g \fIgee\fP-roff
+.do ie t     \fItee\fP-roff
+.do el       \fIenn\fP-roff
+.do nr       XY 55
+.do ds       XY xy
+.do tl       'One'Two'Three'
+.do de1      FN
+..
+.do de       FN >>
+.>>
+.do ig       >>
+.>>
+.do ig
+	(?:(do)[ \\t]+)?
+	2: name: "entity.function.name.roff"
+..
+.do cu 0
+#definition
+#ignore
+#underlines
+.do cu 1
+Underlined
