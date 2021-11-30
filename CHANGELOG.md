@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 [Staged]
 ------------------------------------------------------------------------
 * __Added:__ Highlighting for [OSC 8] terminal hyperlink device controls
+* __Added:__ Highlighting for [dpic] and [Pikchr] language extensions
 * __Changed:__ `.device` requests now highlight device control functions
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
 * __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests
@@ -15,9 +16,12 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Fixed:__ refer(1)-like markup inside macro definitions now truncated
 * __Fixed:__ Various [inaccuracies][1] related to Roff modeline matching
 * __Improved:__ Colour of ASCII control characters in dark themes
+* __Improved:__ Accuracy and granularity of Pic highlighting
 
 [1]: https://github.com/github/linguist/pull/5271
+[dpic]: https://gitlab.com/aplevich/dpic
 [OSC 8]: https://lists.gnu.org/archive/html/groff/2021-10/msg00000.html
+[pikchr]: https://pikchr.org/home/doc/trunk/doc/differences.md
 
 
 [v1.3.1]

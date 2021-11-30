@@ -1,0 +1,25 @@
+.PS
+# Draw a demonstration up left arrow with grid box overlay
+define gridarrow
+{
+	move right 0.1
+	[
+		{arrow up left $1;}
+		box wid 0.5 ht 0.5 dotted with .nw at last arrow .end;
+		for i = 2 to ($1 / 0.5) do
+		{
+			box wid 0.5 ht 0.5 dotted with .sw at last box .se;
+		}
+		move down from last arrow .center;
+		[
+			sprintf("\fBarrow up left %g\fP", $1)
+		]
+]
+	move right 0.1 from last [] .e;
+}
+gridarrow(0.5);
+gridarrow(1);
+gridarrow(1.5);
+gridarrow(2);
+undef gridarrow
+.PE

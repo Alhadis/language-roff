@@ -2,12 +2,24 @@ name: "Pic"
 scopeName: "source.pic"
 fileTypes: [
 	"chem"
+	"chem.macros"
 	"dformat"
+	"eth.p"
+	"lsd.p"
+	"morphine.p"
 	"grap.defines"
 	"grap.tex.defines"
 	"pic"
+	"pikchr"
 ]
-firstLineMatch: "^#[!/].*\\bpic2plot\\b"
+injectionSelector: "source.embedded.pikchr"
+firstLineMatch: """(?x)
+	# Hashbang
+	^\\#!.*?[/\\s](?i:pic2plot|pikchr|[dg]?pic)(?:$|\\s)
+	|
+	# File beginning with chem(1) or DFORMAT markup
+	^\\.(?:cstart|begin[ \\t]+dformat)(?:$|\\s)
+"""
 patterns: [
 	{include: "#binary"}
 	{include: "#tags"}
@@ -23,7 +35,9 @@ repository:
 	main:
 		patterns: [
 			{include: "#comment"}
+			{include: "#shell-command"}
 			{include: "#keywords"}
+			{include: "#positions"}
 			{include: "#backref"}
 			{include: "#macros"}
 			{include: "#string"}
@@ -43,23 +57,83 @@ repository:
 
 	# Attributes
 	attributes:
-		name: "variable.other.property.$1.pic"
-		match: """(?x)\\b
-			(cw|dashed|diameter|diam|dotted|down|height|ht|invisible
-			|invis|left|radius|rad|right|same|up|width|wid)\\b"""
+		patterns: [{
+			# “same as …” construct (Pikchr extension)
+			name: "entity.other.attribute-name.same-as.pikchr.pic"
+			match: "\\bsame\\s+as\\b"
+		},{
+			# Standard attributes
+			name: "entity.other.attribute-name.$1.pic"
+			match: "(?x)\\b
+				(chop|cw|dashed|diameter|diam|dotted|down|height|ht|invisible
+				|invis|left|radius|rad|right|same|up|width|wid)\\b"
+		},{
+			# Colours (GNU/Pikchr extension)
+			name:  "entity.other.attribute-name.$1.pic"
+			begin: "\\b(colou?r(?:ed)?|outlined?|shaded|fill)\\b[ \\t]*(?=\\w)"
+			end:   "(?=\\S)|(?<=\\S)"
+			applyEndPatternLast: yes
+			patterns: [{
+				# C-style hexadecimal literal: 0xBBFFDD (Pikchr extension)
+				name: "constant.numeric.hexadecimal.hex.pikchr.pic"
+				match: "\\G0[Xx][0-9A-Fa-f]{6}"
+			},{
+				# CSS not-a-colour keyword
+				name: "support.constant.no-colour.pikchr.pic"
+				match: "(?i)\\G(None|Off)\\b"
+			},{
+				# CSS colour names (Pikchr extension)
+				name: "support.constant.colour.pikchr.pic"
+				match: "(?xi)\\G
+					(AliceBlue|AntiqueWhite|Aquamarine|Aqua|Azure|Beige|Bisque|Black|BlanchedAlmond|BlueViolet|Blue|Brown|BurlyWood|CadetBlue
+					|Chartreuse|Chocolate|Coral|CornflowerBlue|Cornsilk|Crimson|Cyan|DarkBlue|DarkCyan|DarkGoldenrod|DarkGreen|DarkGr[ae]y
+					|DarkKhaki|DarkMagenta|DarkOliveGreen|DarkOrange|DarkOrchid|DarkRed|DarkSalmon|DarkSeaGreen|DarkSlateBlue|DarkSlateGr[ae]y
+					|DarkTurquoise|DarkViolet|DeepPink|DeepSkyBlue|DimGr[ae]y|DodgerBlue|Firebrick|FloralWhite|ForestGreen|Fuchsia|Gainsboro
+					|GhostWhite|Goldenrod|Gold|Gr[ae]y|GreenYellow|Green|Honeydew|HotPink|IndianRed|Indigo|Ivory|Khaki|LavenderBlush|Lavender
+					|LawnGreen|LemonChiffon|LightBlue|LightCoral|LightCyan|LightGoldenrodYellow|LightGr[ae]y|LightGreen|LightPink|LightSalmon
+					|LightSeaGreen|LightSkyBlue|LightSlateGr[ae]y|LightSteelBlue|LightYellow|LimeGreen|Lime|Linen|Magenta|Maroon|MediumAquamarine
+					|MediumBlue|MediumOrchid|MediumPurple|MediumSeaGreen|MediumSlateBlue|MediumSpringGreen|MediumTurquoise|MediumVioletRed
+					|MidnightBlue|MintCream|MistyRose|Moccasin|NavajoWhite|Navy|OldLace|OliveDrab|Olive|OrangeRed|Orange|Orchid
+					|PaleGoldenrod|PaleGreen|PaleTurquoise|PaleVioletRed|PapayaWhip|PeachPuff|Peru|Pink|Plum|PowderBlue|Purple|RebeccaPurple
+					|Red|RosyBrown|RoyalBlue|SaddleBrown|Salmon|SandyBrown|SeaGreen|Seashell|Sienna|Silver|SkyBlue|SlateBlue|SlateGr[ae]y|Snow
+					|SpringGreen|SteelBlue|Tan|Teal|Thistle|Tomato|Turquoise|Violet|Wheat|WhiteSmoke|White|YellowGreen|Yellow)\\b"
+			}]
+		},{
+			# Pikchr extensions
+			name: "entity.other.attribute-name.$1.pikchr.pic"
+			match: "\\b(aligned|big|bold|fit|italic|small|(?:thickness|color|fill)(?!\\s*(?:[-:+/*%=!<>]?=|<|>))|thick|thin)\\b"
+		},{
+			# Dpic implements an attribute for scaling objects using multipliers: `box scaled 1.5`
+			name:  "entity.other.attribute-name.$1.dpic.pic"
+			match: "\\b(scaled)\\b"
+		}]
 
 
 	# Instance backreferences: "1st, last, 2nd last, 8th", etc
 	backref:
-		name: "variable.language.backreference.pic"
-		match: "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \\t]+last)?)\\b"
-		captures: 0: name: "entity.name.pic"
+		patterns: [{
+			name: "variable.language.backreference.pic"
+			match: "\\b(last|(?:\\d*1[1-3]th|\\d*0th|(?:(?!11st)\\d)*1st|\\d*2nd|(?:(?!13rd)\\d*)3rd|\\d*[4-9]th)(?:[ \\t]+last)?)\\b"
+		},{
+			# Computed backreference: '…'th
+			name: "meta.backreference.computed.pic"
+			match: "((')([^']*)('))(th)"
+			captures:
+				1: name: "string.quoted.single.pic"
+				2: name: "punctuation.definition.string.begin.pic"
+				3: name: "meta.expression.pic", patterns: [include: "#main"]
+				4: name: "punctuation.definition.string.end.pic"
+				5: name: "constant.language.ordinal-suffix.pic"
+		},{
+			name: "variable.language.backreference.pikchr.pic"
+			match: "\\b(first|previous)\\b"
+		}]
 
 
 	# Lookahead to avoid highlighting binary .PIC files
 	binary:
 		name: "raw.binary.data"
-		begin: "^(?=.*[\\x00-\\x06\\x{FFFD}])"
+		begin: "^(?=.*(?![\\x02-\\x07\\f\\x7F])[\\x00-\\x06\\x{FFFD}])"
 		end: "(?=A)B"
 
 
@@ -76,7 +150,11 @@ repository:
 			# Round brackets/Parentheses
 			begin: "\\("
 			end:   "(?=\\))|^(?=\\.P[EF]\\b)"
-			patterns: [include: "#main"]
+			patterns: [{
+				# Pikchr uses parentheticals for distinguishing globals from attributes
+				name: "variable.language.global.pikchr.pic"
+				match: "\\b(?:color|fill|thickness)\\b"
+			}, include: "#main"]
 			beginCaptures:
 				0: name: "punctuation.definition.bracket.round.pic"
 		},{
@@ -103,30 +181,29 @@ repository:
 		patterns: [include: "#label", {
 			
 			# Bond
-			name: "keyword.function.bond.pic.chem"
-			match: "\\b((?:(?:double|triple|front|back)[ \\t]+)?\\bbond)\\b"
+			match: "\\b(?:(?:(double|triple|front|back)[ \\t]+)?\\b(bond))\\b"
 			captures:
-				0: name: "support.function.pic.chem"
-				1: name: "entity.name.function.pic.chem"
+				1: name: "storage.modifier.$1.pic.chem"
+				2: name: "storage.type.bond.pic.chem"
 		},{
 			
 			# Rings
-			name: "keyword.function.ring.pic.chem"
-			match: "(?:\\baromatic[ \\t]+)?\\b(?:benzene|(?:flat)?ring\\d*)"
+			match: "(?:\\b(aromatic)[ \\t]+)?\\b(benzene|(?:flat)?ring\\d*)"
 			captures:
-				0: name: "entity.name.function.pic.chem"
+				1: name: "storage.modifier.aromatic.pic.chem"
+				2: name: "storage.type.ring.pic.chem"
 		},{
 			
 			# Directional modifier
-			name: "keyword.operator.direction.pic.chem"
+			name: "storage.modifier.direction.pic.chem"
 			match: "\\b(pointing)\\b"
 		},{
 			
 			# Set size
-			name: "keyword.function.set-size.pic.chem"
+			name: "meta.set-size.pic.chem"
 			match: "\\b(size)\\b[ \\t]*(\\d+)"
 			captures:
-				1: name: "entity.name.function.pic.chem"
+				1: name: "entity.other.attribute-name.size.pic.chem"
 				2: name: "constant.numeric.parameter.pic.chem"
 		},{
 			
@@ -173,11 +250,28 @@ repository:
 
 	# Comment lines
 	comment:
-		name: "comment.line.pic"
-		begin: "#"
-		end:   "$"
-		beginCaptures:
-			0: name: "punctuation.definition.comment.pic"
+		patterns: [{
+			# Traditional comment beginning with an octothorpe
+			name:  "comment.line.number-sign.pic"
+			begin: "#"
+			end:   "$"
+			beginCaptures:
+				0: name: "punctuation.definition.comment.pic"
+		},{
+			# C++-style comment (Pikchr extension)
+			name:  "comment.line.double-slash.non-standard.pikchr.pic"
+			begin: "//"
+			end:   "$"
+			beginCaptures:
+				0: name: "punctuation.definition.comment.pic"
+		},{
+			# C-style comment block (Pikchr extension)
+			name:  "comment.block.non-standard.pikchr.pic"
+			begin: "/\\*"
+			end:   "\\*/|^(?=\\.P[EF]\\b|^[.']\\s*cend\\b)"
+			beginCaptures: 0: name: "punctuation.definition.comment.begin.pic"
+			endCaptures:   0: name: "punctuation.definition.comment.end.pic"
+		}]
 	
 	
 	# DFORMAT preprocessor
@@ -188,7 +282,7 @@ repository:
 			name: "meta.format.dformat.pic"
 			begin: "^style\\b"
 			end:   "$"
-			beginCaptures: 0: name: "keyword.function.pic"
+			beginCaptures: 0: name: "entity.other.attribute-name.style.dformat.pic"
 			patterns: [ include: "#boolean", {
 				
 				# Recognised values
@@ -259,24 +353,48 @@ repository:
 	# Function call
 	"function-call":
 		contentName: "meta.function-call.pic"
-		begin: "\\b(?!\\d)(\\w+)(\\()"
-		end:   "\\)"
-		patterns: [include: "#main"]
+		begin: "\\b(?!\\d)(\\w+)(?=\\()"
+		end:   "(?!\\G)"
 		beginCaptures:
-			0: name: "support.function.pic"
-			1: name: "entity.name.function.pic"
-			2: name: "punctuation.definition.arguments.begin.pic"
-		endCaptures:
-			0: name: "punctuation.definition.arguments.end.pic"
+			1: patterns: [include: "#function-name"]
+		patterns: [{
+			# Arguments list
+			name:  "meta.arguments.pic"
+			begin: "\\G\\("
+			end:   "\\)"
+			patterns: [include: "#main"]
+			beginCaptures: 0: name: "punctuation.definition.arguments.begin.pic"
+			endCaptures:   0: name: "punctuation.definition.arguments.end.pic"
+		}]
+	
+	
+	# Function name
+	"function-name":
+		patterns: [{
+			# Built-in functions
+			name: "support.function.$1.pic"
+			match: "(?:\\G|^)(atan2|cos|exp|int|log|max|min|s?rand|sin|sqrt|sprintf)$"
+		},{
+			# User-defined function
+			name: "entity.name.function.user-defined.pic"
+			match: "(?:\\G|^)\\S+"
+		}]
 
 
 	# Global variables
 	globals:
-		name: "support.variable.global.pic"
-		match: """(?x)\\b
-			(arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid
-			|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
-			|moveht|movewid|scale|textht|textwid)\\b"""
+		patterns: [{
+			# Standard globals
+			name: "variable.language.global.pic"
+			match: """(?x)\\b
+				(arcrad|arrowhead|arrowht|arrowwid|boxht|boxwid|circlerad|dashwid
+				|ellipseht|ellipsewid|fillval|lineht|linewid|maxpsht|maxpswid
+				|moveht|movewid|scale|textht|textwid)\\b"""
+		},{
+			# Pikchr extensions
+			name: "variable.language.global.pikchr.pic"
+			match: "\\b((?:left|right|top|bottom)?margin|charht|charwid|color|fill|fontscale|thickness)\\b"
+		}]
 
 
 	# Graphs
@@ -353,7 +471,15 @@ repository:
 			match: "\\b(for|do|if|then(?=\\s*\\{)|else)\\b"
 		},{
 			name: "keyword.operator.$1.pic"
-			match: "\\b(and|at|by|copy|from|reset|sh|then|thru|to|with|of\\s+the\\s+way\\s+between)\\b"
+			match: "\\b(and|at|by|copy|from|reset|sh|then|thru|to|with|of(?:\\s+the\\s+way\\s+between)?)\\b"
+		},{
+			# Dpic extensions
+			name: "keyword.operator.$1.dpic.pic"
+			match: "\\b(continue|exec)\\b"
+		},{
+			# Pikchr extensions
+			name: "keyword.operator.$1.pikchr.pic"
+			match: "\\b(above|below|close|go|heading|until\\s+even\\s+with|vertex\\s+of)\\b"
 		}]
 
 
@@ -400,34 +526,93 @@ repository:
 
 	# Generic variable
 	name:
-		name: "variable.other.pic"
-		match: "(?!\\d)\\w+"
+		patterns: [{
+			# $1, $2 … $𝑁
+			name: "variable.positional.other.pic"
+			match: "(\\$)(?!0)\\d+\\b"
+			captures:
+				1: name: "punctuation.definition.variable.pic"
+		},{
+			# Pikchr allows variables to begin with `@` or `$`
+			name: "variable.other.user-defined.non-standard.pikchr.pic"
+			match: "([$@])\\w+"
+			captures:
+				1: name: "punctuation.definition.variable.pikchr.pic"
+		},{
+			# Anything else
+			name: "variable.other.user-defined.pic"
+			match: "(?!\\d)\\w+\\b"
+		}]
 
 
 	# Numeric literal
 	number:
 		name: "constant.numeric.pic"
-		match: "(?:(?<!\\d)[-+])?(?:\\d+(?:\\.\\d+)?|\\.\\d+|\\.(?=[Ee]))(?:[Ee][-+]?\\d+)?"
+		match: "(?:(?<!\\d)-)?(?:\\d+(?:\\.(?:\\d+|(?=[Ee][-+]?\\d)))?)(?:[Ee][-+]?\\d+)?(?:(%)|(cm|in|mm|pc|pt|px)\\b)?"
+		captures:
+			1: name: "constant.other.unit.percentage.pikchr.pic"
+			2: name: "constant.other.unit.$2.pikchr.pic"
 
 
 	# Mathematical symbols
 	operators:
 		patterns: [
 			{match: "<->|<-|->",  name: "keyword.operator.arrow.pic"}
-			
-			match: "[=><]=?|!=|&&|\\|\\|"
-			name: "keyword.operator.comparison.pic"
-			
+			{match: "←|→|↔",      name: "keyword.operator.arrow.unicode.pikchr.pic"}
+			{match: "&&|\\|{2}",  name: "keyword.operator.logical.boolean.pic"}
+			{match: "[<>]=?",     name: "keyword.operator.comparison.relational.numeric.pic"}
+			{match: "[!=]=",      name: "keyword.operator.comparison.relational.boolean.pic"}
+			{match: "[-+*/]=",    name: "keyword.operator.assignment.compound.pic"}
 			{match: ":?=",        name: "keyword.operator.assignment.pic"}
 			{match: "[-/+*%^]",   name: "keyword.operator.arithmetic.pic"}
+			{match: "!",          name: "keyword.operator.logical.not.negation.pic"}
+			
+			# Arrows encoded as named HTML entities (Pikchr extension)
+			name: "keyword.operator.arrow.html-entity.pikchr.pic"
+			match: "&(?:(?:left|right|leftright)arrow|[lr]arr);"
+			captures:
+				0: patterns: [include: "text.html.basic#character-reference"]
 		]
+
+
+	# Different ways of specifying Cartesian coordinates
+	positions:
+		patterns: [{
+			# Dot syntax: X.nw, Y.se, Z.right
+			name: "entity.other.attribute-name.corner.pic"
+			match: "(?<=\\.)(?:bottom|bot|center|end|left|right|start|top|[ns][ew]|[bcelnrstw])\\b"
+		},{
+			# Pseudo-variable syntax
+			name: "variable.language.placement.pic"
+			match: """(?x) \\b
+				( (?:bottom|center|east|end|north|south|start|top|west|Here)
+				| (?:lower|upper) \\s+ (?:left|right)
+				| (?:left|right) (?=\\s+ of \\b)
+				) \\b
+			"""
+		},{
+			# Explicit coordinates: <X,Y>
+			name: "meta.position.pic"
+			match: "(?<balance><([^<>]++|\\g<balance>)*+>){0}\\g<balance>"
+			captures: 0: patterns: [
+				{match: "<", name: "punctuation.definition.position.bracket.angle.begin.pic"}
+				{match: ">", name: "punctuation.definition.position.bracket.angle.end.pic"}
+				{match: ",", name: "punctuation.separator.coordinates.comma.pic"}
+				{include: "#main"}
+			]
+		}]
 
 
 	# Primitives
 	primitives:
-		name: "keyword.function.pic"
-		match: "\\b(box|line|arrow|circle|ellipse|arc|move|spline|print|command|plot)\\b"
-		captures: 0: name: "entity.function.name.pic"
+		patterns: [{
+			name: "storage.type.primitive.$1.pic"
+			match: "\\b(box|line|arrow|circle|ellipse|arc|move|spline|print|command|plot)\\b"
+		},{
+			# New object types (Pikchr extensions)
+			name: "storage.type.primitive.$1.pikchr.pic"
+			match: "\\b(oval|cylinder|file|dot|text)\\b"
+		}]
 
 
 	
@@ -453,6 +638,50 @@ repository:
 		]
 
 
+	# Embedded shell command
+	"shell-command":
+		name:  "meta.shell-command.pic"
+		begin: "\\b(sh)\\b[ \\t]*"
+		end:   "(?!\\G)"
+		beginCaptures:
+			1: name: "keyword.operator.$1.pic"
+		patterns: [{
+			# { … }
+			applyEndPatternLast: yes
+			begin: "\\G{"
+			end:   "}"
+			beginCaptures: 0: name: "punctuation.section.embedded.balanced-text.brace.begin.pic"
+			endCaptures:   0: name: "punctuation.section.embedded.balanced-text.brace.end.pic"
+			contentName: "source.embedded.shell"
+			patterns: [
+				{include: "#shell-braces"}
+				{include: "source.shell"}
+			]
+		},{
+			# X … X
+			begin: "\\G(.)"
+			end:   "\\1"
+			beginCaptures: 0: name: "punctuation.section.embedded.balanced-text.arbitrary-delimiter.begin.pic"
+			endCaptures:   0: name: "punctuation.section.embedded.balanced-text.arbitrary-delimiter.end.pic"
+			contentName: "source.embedded.shell"
+			patterns: [include: "source.shell"]
+		}]
+
+
+	# Balanced curly brackets inside “sh { true && { … }; }”
+	"shell-braces":
+		name:  "meta.scope.group.shell"
+		begin: "{"
+		end:   "}"
+		beginCaptures: 0: name: "punctuation.definition.group.shell.begin.shell"
+		endCaptures:   0: name: "punctuation.definition.group.shell.end.shell"
+		patterns: [
+			{include: "#shell-braces"}
+			{include: "source.shell"}
+		]
+		
+
+
 	# "Double-quoted string"
 	string:
 		name: "string.quoted.double.pic"
@@ -460,6 +689,11 @@ repository:
 		end:   '"'
 		beginCaptures: 0: name: "punctuation.definition.string.begin.pic"
 		endCaptures:   0: name: "punctuation.definition.string.end.pic"
+		patterns: [include: "#string-escapes"]
+
+
+	# Escape sequences inside "double-quoted" strings
+	"string-escapes":
 		patterns: [{
 			name: "constant.character.escape.pic"
 			match: '(\\\\)[\\\\"]'

@@ -1,0 +1,118 @@
+// Pikchr extensions
+/* https://pikchr.org/home/doc/trunk/doc/differences.md */
+
+# 1. Unicode arrows
+<-  ← &larr; &leftarrow;
+->  → &rarr; &rightarrow;
+<-> ↔ &leftrightarrow;
+
+# 2. New object types
+oval
+cylinder
+file
+dot
+
+# 3. Units other than inches
+1.5in; 1.5
+2.3cm
+230mm
+13pc
+24pt
+48px
+
+# 4. Chamfered corners
+box radius 15px
+arrow radius 10px
+
+# 5. Colours
+box color blue
+box fill  lightgray
+box color white fill blue
+
+# 6. Border thickness
+box thickness 1.5
+box thin
+box thick
+box thick thick
+
+# 7. Text modifiers
+box "Emboldened" bold
+box "Italicised" italic
+box "Bigger"     big
+box "Smaller"    small
+line above aligned
+
+# 8. Auto-fitting
+box "Text" "labels" fit
+
+# 9. Percentile property values
+box "default" italic "box" italic
+move; box "width 150%" width 150%
+move; box "wid   75%"  wid   75%
+
+# 10. Chop semantics
+arrow <-> from A to B chop "from A to B chop" aligned above
+
+# 11. `same as …` construct
+file same as last box
+
+# 12. Line paths
+go 1cm heading 45.0
+go 1cm 90.0
+go right until even with 100%
+close
+
+# 13. Positions
+1cm above    previous.n
+1cm below    previous.s
+1cm left  of previous.nw
+1cm right of previous.se
+1cm heading 45.0 from box.s
+2nd vertex of first line
+cylinder "B" at 5cm heading 125 from A
+
+# 14. Prior objects
+last; previous
+
+# 15. C/C++ comments
+#  Traditional comment
+// C++-style comment
+/* C comment */
+
+/* <<<<<<<<<<<<<<
+<<<<*/ box /*>>>>
+>>>>>>>>>>>>>>>>> */
+
+# 16. Variables beginning with `$` or `@`
+$argc
+@argv
+
+# 17. Assignment operators
+x  = 1.5
+x += 1.5
+x -= 1.5
+x *= 1.5
+x /= 1.5
+x := 1.5
+1/3 <Here, last ellipse>
+circlerad *= 0.75
+
+!not && || == != >= <= < >
+
+
+
+arrow     right 200% "Markdown" "Source"
+box       rad   10px "Markdown" "Formatter" "(markdown.c)" fit
+arrow     right 200% "HTML+SVG" "Output"
+arrow <-> down  70% from last box.s
+arrow ↔   down  70% from last box.s
+box same "Pikchr" "Formatter" "(pikchr.c)" fit
+
+line from 1cm right of previous.se to 3cm right of previous.ne \
+	"aligned" above aligned
+
+
+
+
+
+text "Foo"
