@@ -1,0 +1,216 @@
+[[
+[".", "source.pic", "meta.function.begin.picture.section.macro.roff", "punctuation.definition.macro.roff"],
+["PS", "source.pic", "meta.function.begin.picture.section.macro.roff", "entity.function.name.roff"]
+],[
+["#", "source.pic", "source.embedded.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" Draw a demonstration up left arrow with grid box overlay", "source.pic", "source.embedded.pic", "comment.line.number-sign.pic"]
+],[
+["define", "source.pic", "source.embedded.pic", "meta.function.define.pic", "storage.type.function.pic"],
+[" ", "source.pic", "source.embedded.pic", "meta.function.define.pic"],
+["gridarrow", "source.pic", "source.embedded.pic", "meta.function.define.pic", "entity.name.function.pic"]
+],[
+["{", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.curly.pic"]
+],[
+["\t", "source.pic", "source.embedded.pic"],
+["move", "source.pic", "source.embedded.pic", "storage.type.primitive.move.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["right", "source.pic", "source.embedded.pic", "entity.other.attribute-name.right.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["0.1", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["\t", "source.pic", "source.embedded.pic"],
+["[", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.square.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["{", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.curly.pic"],
+["arrow", "source.pic", "source.embedded.pic", "storage.type.primitive.arrow.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["up", "source.pic", "source.embedded.pic", "entity.other.attribute-name.up.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["left", "source.pic", "source.embedded.pic", "entity.other.attribute-name.left.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["$", "source.pic", "source.embedded.pic", "variable.other.positional.pic", "punctuation.definition.variable"],
+["1", "source.pic", "source.embedded.pic", "variable.other.positional.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"],
+["}", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.curly.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["box", "source.pic", "source.embedded.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["wid", "source.pic", "source.embedded.pic", "entity.other.attribute-name.wid.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["0.5", "source.pic", "source.embedded.pic", "constant.numeric.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["ht", "source.pic", "source.embedded.pic", "entity.other.attribute-name.ht.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["0.5", "source.pic", "source.embedded.pic", "constant.numeric.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["dotted", "source.pic", "source.embedded.pic", "entity.other.attribute-name.dotted.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["with", "source.pic", "source.embedded.pic", "keyword.operator.with.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+[".", "source.pic", "source.embedded.pic", "punctuation.delimiter.period.full-stop.pic"],
+["nw", "source.pic", "source.embedded.pic", "entity.other.attribute-name.corner.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["at", "source.pic", "source.embedded.pic", "keyword.operator.at.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["last", "source.pic", "source.embedded.pic", "variable.language.backreference.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["arrow", "source.pic", "source.embedded.pic", "storage.type.primitive.arrow.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+[".", "source.pic", "source.embedded.pic", "punctuation.delimiter.period.full-stop.pic"],
+["end", "source.pic", "source.embedded.pic", "entity.other.attribute-name.corner.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["for", "source.pic", "source.embedded.pic", "keyword.control.for.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["i", "source.pic", "source.embedded.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["=", "source.pic", "source.embedded.pic", "keyword.operator.assignment.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["2", "source.pic", "source.embedded.pic", "constant.numeric.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["to", "source.pic", "source.embedded.pic", "keyword.operator.to.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["(", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.round.pic"],
+["$", "source.pic", "source.embedded.pic", "variable.other.positional.pic", "punctuation.definition.variable"],
+["1", "source.pic", "source.embedded.pic", "variable.other.positional.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["/", "source.pic", "source.embedded.pic", "keyword.operator.arithmetic.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["0.5", "source.pic", "source.embedded.pic", "constant.numeric.pic"],
+[")", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.round.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["do", "source.pic", "source.embedded.pic", "keyword.control.do.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["{", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.curly.pic"]
+],[
+["\t\t\t", "source.pic", "source.embedded.pic"],
+["box", "source.pic", "source.embedded.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["wid", "source.pic", "source.embedded.pic", "entity.other.attribute-name.wid.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["0.5", "source.pic", "source.embedded.pic", "constant.numeric.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["ht", "source.pic", "source.embedded.pic", "entity.other.attribute-name.ht.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["0.5", "source.pic", "source.embedded.pic", "constant.numeric.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["dotted", "source.pic", "source.embedded.pic", "entity.other.attribute-name.dotted.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["with", "source.pic", "source.embedded.pic", "keyword.operator.with.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+[".", "source.pic", "source.embedded.pic", "punctuation.delimiter.period.full-stop.pic"],
+["sw", "source.pic", "source.embedded.pic", "entity.other.attribute-name.corner.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["at", "source.pic", "source.embedded.pic", "keyword.operator.at.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["last", "source.pic", "source.embedded.pic", "variable.language.backreference.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["box", "source.pic", "source.embedded.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+[".", "source.pic", "source.embedded.pic", "punctuation.delimiter.period.full-stop.pic"],
+["se", "source.pic", "source.embedded.pic", "entity.other.attribute-name.corner.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["}", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.curly.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["move", "source.pic", "source.embedded.pic", "storage.type.primitive.move.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["down", "source.pic", "source.embedded.pic", "entity.other.attribute-name.down.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["from", "source.pic", "source.embedded.pic", "keyword.operator.from.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["last", "source.pic", "source.embedded.pic", "variable.language.backreference.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["arrow", "source.pic", "source.embedded.pic", "storage.type.primitive.arrow.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+[".", "source.pic", "source.embedded.pic", "punctuation.delimiter.period.full-stop.pic"],
+["center", "source.pic", "source.embedded.pic", "entity.other.attribute-name.corner.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["[", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.square.pic"]
+],[
+["\t\t\t", "source.pic", "source.embedded.pic"],
+["sprintf", "source.pic", "source.embedded.pic", "support.function.sprintf.pic"],
+["(", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.begin.pic"],
+["\"", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["\\", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fB", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "constant.character.escape.font.roff", "entity.name.roff"],
+["arrow", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "markup.bold.roff"],
+[" ", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic"],
+["up", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "markup.bold.roff"],
+[" ", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic"],
+["left", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "markup.bold.roff"],
+[" ", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic"],
+["%g", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "markup.bold.roff"],
+["\\", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fP", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "constant.character.escape.font.roff", "entity.name.roff"],
+["\"", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[",", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.separator.comma.pic"],
+[" ", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic"],
+["$", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "variable.other.positional.pic", "punctuation.definition.variable"],
+["1", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "variable.other.positional.pic"],
+[")", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.end.pic"]
+],[
+["\t\t", "source.pic", "source.embedded.pic"],
+["]", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.square.pic"]
+],[
+["]", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.square.pic"]
+],[
+["\t", "source.pic", "source.embedded.pic"],
+["move", "source.pic", "source.embedded.pic", "storage.type.primitive.move.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["right", "source.pic", "source.embedded.pic", "entity.other.attribute-name.right.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["0.1", "source.pic", "source.embedded.pic", "constant.numeric.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["from", "source.pic", "source.embedded.pic", "keyword.operator.from.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["last", "source.pic", "source.embedded.pic", "variable.language.backreference.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["[", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.square.pic"],
+["]", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.square.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+[".", "source.pic", "source.embedded.pic", "punctuation.delimiter.period.full-stop.pic"],
+["e", "source.pic", "source.embedded.pic", "entity.other.attribute-name.corner.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["}", "source.pic", "source.embedded.pic", "punctuation.definition.bracket.curly.pic"]
+],[
+["gridarrow", "source.pic", "source.embedded.pic", "entity.name.function.user-defined.pic"],
+["(", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.begin.pic"],
+["0.5", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "constant.numeric.pic"],
+[")", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.end.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["gridarrow", "source.pic", "source.embedded.pic", "entity.name.function.user-defined.pic"],
+["(", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.begin.pic"],
+["1", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "constant.numeric.pic"],
+[")", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.end.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["gridarrow", "source.pic", "source.embedded.pic", "entity.name.function.user-defined.pic"],
+["(", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.begin.pic"],
+["1.5", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "constant.numeric.pic"],
+[")", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.end.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["gridarrow", "source.pic", "source.embedded.pic", "entity.name.function.user-defined.pic"],
+["(", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.begin.pic"],
+["2", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "constant.numeric.pic"],
+[")", "source.pic", "source.embedded.pic", "meta.function-call.pic", "meta.arguments.pic", "punctuation.definition.arguments.end.pic"],
+[";", "source.pic", "source.embedded.pic", "punctuation.terminator.statement.pic"]
+],[
+["undef", "source.pic", "source.embedded.pic", "meta.function.undef.pic", "storage.type.function.pic"],
+[" ", "source.pic", "source.embedded.pic", "meta.function.undef.pic"],
+["gridarrow", "source.pic", "source.embedded.pic", "meta.function.undef.pic", "entity.name.function.pic"]
+],[
+[".", "source.pic", "meta.function.end.picture.section.macro.roff", "punctuation.definition.macro.roff"],
+["PE", "source.pic", "meta.function.end.picture.section.macro.roff", "entity.name.function.roff"]
+]]

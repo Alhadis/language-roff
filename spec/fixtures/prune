@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+/**
+ * @fileoverview Deletes any token snapshot that doesn't have an equivalent
+ * fixture located under ../input/ (without the trailing `.json` suffix).
+ * Intended to keep subdirectory clean of junk after renaming fixture files.
+ */
+"use strict";
+
+const {existsSync, readdirSync, unlinkSync} = require("fs");
+const {resolve, join, relative} = require("path");
+
+const inputDir  = resolve(__dirname, "input");
+const outputDir = resolve(__dirname, "output");
+const pwd       = process.cwd();
+const format    = ["Pruning orphaned fixture: ", "\x1B[4m", null, "\x1B[24m"];
+
+if(!process.stdout.isTTY)
+	format[1] = format[format.length - 1] = "";
+
+const fixtures = readdirSync(outputDir).filter(name => name.toLowerCase().endsWith(".json"));
+for(const name of fixtures){
+	const inputFile = join(inputDir, name.replace(/\.json$/i, ""));
+	if(!existsSync(inputFile)){
+		const outputFile = resolve(join(outputDir, name));
+		format[2] = relative(pwd, outputFile).replace(/^(?!\.\/)/, "./");
+		process.stdout.write(format.join("") + "\n");
+		unlinkSync(outputFile);
+	}
+}

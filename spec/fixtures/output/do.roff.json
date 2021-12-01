@@ -1,0 +1,248 @@
+[[
+[".", "text.roff", "meta.function.request.aln.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.aln.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.aln.gnu.roff"],
+["aln", "text.roff", "meta.function.request.aln.gnu.roff", "entity.function.name.roff"],
+["      ", "text.roff", "meta.function.request.aln.gnu.roff", "function-call.arguments.roff"],
+["ABC", "text.roff", "meta.function.request.aln.gnu.roff", "function-call.arguments.roff", "variable.parameter.roff"],
+[" ", "text.roff", "meta.function.request.aln.gnu.roff", "function-call.arguments.roff"],
+["XYZ", "text.roff", "meta.function.request.aln.gnu.roff", "function-call.arguments.roff", "variable.parameter.roff"]
+],[
+[".", "text.roff", "meta.function.request.asciify.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.asciify.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.asciify.gnu.roff"],
+["asciify", "text.roff", "meta.function.request.asciify.gnu.roff", "entity.function.name.roff"],
+["  ", "text.roff", "meta.function.request.asciify.gnu.roff", "function-call.arguments.roff"],
+["XYZ", "text.roff", "meta.function.request.asciify.gnu.roff", "function-call.arguments.roff", "variable.parameter.roff"]
+],[
+[".", "text.roff", "meta.function.request.assign-class.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.assign-class.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.assign-class.gnu.roff"],
+["class", "text.roff", "meta.function.request.assign-class.gnu.roff", "entity.function.name.roff"],
+["    ", "text.roff", "meta.function.request.assign-class.gnu.roff"],
+["XYZ", "text.roff", "meta.function.request.assign-class.gnu.roff", "variable.parameter.roff"]
+],[
+[".", "text.roff", "meta.function.request.char.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.char.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.char.gnu.roff"],
+["char", "text.roff", "meta.function.request.char.gnu.roff", "storage.type.var.roff"],
+["     ", "text.roff", "meta.function.request.char.gnu.roff"],
+["XYZ", "text.roff", "meta.function.request.char.gnu.roff", "variable.parameter.roff"],
+[" ", "text.roff", "meta.function.request.char.gnu.roff"],
+["xyz", "text.roff", "meta.function.request.char.gnu.roff", "function-call.arguments.roff", "variable.parameter.roff"]
+],[
+[".", "text.roff", "meta.function.request.define-colour.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.define-colour.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.define-colour.gnu.roff"],
+["defcolor", "text.roff", "meta.function.request.define-colour.gnu.roff", "storage.type.var.roff"],
+[" ", "text.roff", "meta.function.request.define-colour.gnu.roff"],
+["Octarine", "text.roff", "meta.function.request.define-colour.gnu.roff", "string.other.colour-name.roff"],
+[" ", "text.roff", "meta.function.request.define-colour.gnu.roff"],
+["greenish-purple", "text.roff", "meta.function.request.define-colour.gnu.roff", "variable.parameter.roff"]
+],[
+[".", "text.roff", "meta.function.request.device-control.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.device-control.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.device-control.gnu.roff"],
+["device", "text.roff", "meta.function.request.device-control.gnu.roff", "entity.function.name.roff"],
+["   ", "text.roff", "meta.function.request.device-control.gnu.roff"],
+["ps", "text.roff", "meta.function.request.device-control.gnu.roff", "source.embedded.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
+[":", "text.roff", "meta.function.request.device-control.gnu.roff", "source.embedded.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "text.roff", "meta.function.request.device-control.gnu.roff", "source.embedded.ditroff"],
+["exec", "text.roff", "meta.function.request.device-control.gnu.roff", "source.embedded.ditroff", "keyword.control.directive.gnu.ditroff"],
+[" ", "text.roff", "meta.function.request.device-control.gnu.roff", "source.embedded.ditroff"],
+["3 4 add ==", "text.roff", "meta.function.request.device-control.gnu.roff", "source.embedded.ditroff", "source.embedded.postscript"]
+],[
+[".", "text.roff", "meta.function.request.transparent-output.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.transparent-output.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.transparent-output.gnu.roff"],
+["output", "text.roff", "meta.function.request.transparent-output.gnu.roff", "entity.function.name.roff"],
+["   ", "text.roff", "meta.function.request.transparent-output.gnu.roff", "source.embedded.ditroff"],
+["t", "text.roff", "meta.function.request.transparent-output.gnu.roff", "source.embedded.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+[" ", "text.roff", "meta.function.request.transparent-output.gnu.roff", "source.embedded.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff"],
+["String", "text.roff", "meta.function.request.transparent-output.gnu.roff", "source.embedded.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"]
+],[
+[".", "text.roff", "meta.function.request.external-command.pi.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.external-command.pi.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.external-command.pi.roff"],
+["pi", "text.roff", "meta.function.request.external-command.pi.roff", "entity.function.name.roff"],
+["       cat | tr a-z A-Z > /tmp/output-", "text.roff", "meta.function.request.external-command.pi.roff", "source.embedded.shell"],
+["\\", "text.roff", "meta.function.request.external-command.pi.roff", "source.embedded.shell", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "meta.function.request.external-command.pi.roff", "source.embedded.shell", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "meta.function.request.external-command.pi.roff", "source.embedded.shell", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+["$$", "text.roff", "meta.function.request.external-command.pi.roff", "source.embedded.shell", "constant.character.escape.function.expand-register.roff", "constant.language.predefined.register.readonly.roff"],
+[".txt", "text.roff", "meta.function.request.external-command.pi.roff", "source.embedded.shell"]
+],[
+[".", "text.roff", "meta.function.request.external-command.pso.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.external-command.pso.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.external-command.pso.roff"],
+["pso", "text.roff", "meta.function.request.external-command.pso.roff", "entity.function.name.roff"],
+["      /bin/date -R && echo \"Executed successfully\"", "text.roff", "meta.function.request.external-command.pso.roff", "source.embedded.shell"]
+],[
+[".", "text.roff", "meta.function.request.external-command.sy.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.external-command.sy.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.external-command.sy.roff"],
+["sy", "text.roff", "meta.function.request.external-command.sy.roff", "entity.function.name.roff"],
+["       curl -q \"", "text.roff", "meta.function.request.external-command.sy.roff", "source.embedded.shell"],
+["https://git.io/XYZ", "text.roff", "meta.function.request.external-command.sy.roff", "source.embedded.shell", "markup.underline.link.https.hyperlink"],
+["\" | xc -j 'recent-posts/pages[0]'", "text.roff", "meta.function.request.external-command.sy.roff", "source.embedded.shell"]
+],[
+[".", "text.roff", "meta.function.request.control.gnu.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.control.gnu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.control.gnu.roff"],
+["break", "text.roff", "meta.function.request.control.gnu.roff", "keyword.control.roff"]
+],[
+[".", "text.roff", "meta.function.request.tm.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.tm.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.tm.roff"],
+["tm", "text.roff", "meta.function.request.tm.roff", "entity.function.name.roff"],
+["       Debugging feedback, etc", "text.roff", "meta.function.request.tm.roff", "string.unquoted.roff"]
+],[
+[".", "text.roff", "meta.function.request.ll.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.ll.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.ll.roff"],
+["ll", "text.roff", "meta.function.request.ll.roff", "entity.function.name.roff"],
+["       ", "text.roff", "meta.function.request.ll.roff", "function-call.arguments.roff"],
+["3", "text.roff", "meta.function.request.ll.roff", "function-call.arguments.roff", "constant.numeric.roff"],
+["m", "text.roff", "meta.function.request.ll.roff", "function-call.arguments.roff", "constant.numeric.roff", "keyword.other.unit.roff"]
+],[
+[".", "text.roff", "meta.function.request.if.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.if.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.if.roff"],
+["if", "text.roff", "meta.function.request.if.roff", "keyword.control.flow.roff"],
+[" ", "text.roff", "meta.function.request.if.roff", "meta.condition.roff"],
+["\\", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["n", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff"],
+["(", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.function.expand-register.roff", "entity.name.roff", "punctuation.definition.brace.roff"],
+[".g", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.function.expand-register.roff", "constant.language.predefined.register.readonly.gnu.roff"],
+[" ", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff"],
+["\\", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fI", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["gee", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "markup.italic.roff"],
+["\\", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fP", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["-", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff", "keyword.operator.arithmetic.roff"],
+["roff", "text.roff", "meta.function.request.if.roff", "meta.condition.roff", "meta.equation.roff"]
+],[
+[".", "text.roff", "meta.function.request.ie.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.ie.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.ie.roff"],
+["ie", "text.roff", "meta.function.request.ie.roff", "keyword.control.flow.roff"],
+[" ", "text.roff", "meta.function.request.ie.roff", "meta.condition.roff"],
+["t", "text.roff", "meta.function.request.ie.roff", "meta.condition.roff", "constant.language.builtin-comparison.t.roff"],
+["     ", "text.roff", "meta.function.request.ie.roff"],
+["\\", "text.roff", "meta.function.request.ie.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fI", "text.roff", "meta.function.request.ie.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["tee", "text.roff", "meta.function.request.ie.roff", "markup.italic.roff"],
+["\\", "text.roff", "meta.function.request.ie.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fP", "text.roff", "meta.function.request.ie.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["-roff", "text.roff", "meta.function.request.ie.roff"]
+],[
+[".", "text.roff", "meta.function.request.el.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.el.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.el.roff"],
+["el", "text.roff", "meta.function.request.el.roff", "keyword.control.flow.roff"],
+["       ", "text.roff", "meta.function.request.el.roff"],
+["\\", "text.roff", "meta.function.request.el.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fI", "text.roff", "meta.function.request.el.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["enn", "text.roff", "meta.function.request.el.roff", "markup.italic.roff"],
+["\\", "text.roff", "meta.function.request.el.roff", "constant.character.escape.font.roff", "entity.name.roff", "punctuation.definition.escape.roff"],
+["fP", "text.roff", "meta.function.request.el.roff", "constant.character.escape.font.roff", "entity.name.roff"],
+["-roff", "text.roff", "meta.function.request.el.roff"]
+],[
+[".", "text.roff", "meta.function.request.nr.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.nr.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.nr.roff"],
+["nr", "text.roff", "meta.function.request.nr.roff", "storage.type.var.roff"],
+["       ", "text.roff", "meta.function.request.nr.roff"],
+["XY", "text.roff", "meta.function.request.nr.roff", "entity.name.register.roff"],
+[" ", "text.roff", "meta.function.request.nr.roff"],
+["55", "text.roff", "meta.function.request.nr.roff", "constant.numeric.roff"]
+],[
+[".", "text.roff", "meta.function.request.ds.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.ds.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.ds.roff"],
+["ds", "text.roff", "meta.function.request.ds.roff", "storage.type.var.roff"],
+["       ", "text.roff", "meta.function.request.ds.roff"],
+["XY", "text.roff", "meta.function.request.ds.roff", "variable.parameter.roff"],
+[" xy", "text.roff", "meta.function.request.ds.roff", "string.unquoted.roff"]
+],[
+[".", "text.roff", "meta.function.request.tl.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.function.request.tl.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.function.request.tl.roff"],
+["tl", "text.roff", "meta.function.request.tl.roff", "entity.function.name.roff"],
+["       ", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff"],
+["'", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff", "punctuation.definition.string.outer.begin.roff"],
+["One", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff", "meta.segment.1.left.roff"],
+["'", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff", "punctuation.definition.string.inner.begin.roff"],
+["Two", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff", "meta.segment.2.centre.roff"],
+["'", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff", "punctuation.definition.string.inner.end.roff"],
+["Three", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff", "meta.segment.3.right.roff"],
+["'", "text.roff", "meta.function.request.tl.roff", "function-call.arguments.roff", "string.quoted.other.arbitrary-delimiter.3-part.roff", "punctuation.definition.string.outer.end.roff"]
+],[
+[".", "text.roff", "meta.macro.definition.de1.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.macro.definition.de1.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.macro.definition.de1.roff"],
+["de1", "text.roff", "meta.macro.definition.de1.roff", "storage.type.function.roff"],
+["      ", "text.roff", "meta.macro.definition.de1.roff"],
+["FN", "text.roff", "meta.macro.definition.de1.roff", "entity.name.function.roff"],
+["", "text.roff", "meta.macro.definition.de1.roff"]
+],[
+["..", "text.roff", "meta.macro.definition.de1.roff", "punctuation.definition.request.roff"]
+],[
+[".", "text.roff", "meta.macro.definition.with-terminator.de.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "meta.macro.definition.with-terminator.de.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.macro.definition.with-terminator.de.roff"],
+["de", "text.roff", "meta.macro.definition.with-terminator.de.roff", "storage.type.function.roff"],
+["       ", "text.roff", "meta.macro.definition.with-terminator.de.roff"],
+["FN", "text.roff", "meta.macro.definition.with-terminator.de.roff", "entity.name.function.roff"],
+[" ", "text.roff", "meta.macro.definition.with-terminator.de.roff"],
+[">>", "text.roff", "meta.macro.definition.with-terminator.de.roff", "keyword.control.terminator.roff"]
+],[
+[".", "text.roff", "meta.macro.definition.with-terminator.de.roff", "punctuation.definition.request.roff"],
+[">>", "text.roff", "meta.macro.definition.with-terminator.de.roff", "keyword.control.terminator.roff"]
+],[
+[".", "text.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "entity.function.name.roff"],
+[" ", "text.roff"],
+["ig", "text.roff", "entity.function.name.roff"],
+["       ", "text.roff"],
+[">>", "text.roff", "keyword.control.terminator.roff"]
+],[
+[".", "text.roff", "punctuation.definition.request.roff"],
+[">>", "text.roff", "keyword.control.terminator.roff"]
+],[
+[".", "text.roff", "punctuation.definition.request.roff"],
+["do", "text.roff", "entity.function.name.roff"],
+[" ", "text.roff"],
+["ig", "text.roff", "entity.function.name.roff"]
+],[
+["\t(?:(do)[ \\\\t]+)?", "text.roff", "comment.block.ignored-input.roff"]
+],[
+["\t2: name: \"entity.function.name.roff\"", "text.roff", "comment.block.ignored-input.roff"]
+],[
+["..", "text.roff", "punctuation.definition.request.roff"]
+],[
+[".", "text.roff", "meta.request.cu.roff", "punctuation.definition.function.request.roff"],
+["do", "text.roff", "meta.request.cu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.request.cu.roff"],
+["cu", "text.roff", "meta.request.cu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.request.cu.roff"],
+["0", "text.roff", "meta.request.cu.roff", "constant.numeric.roff"],
+["", "text.roff", "meta.request.cu.roff"]
+],[
+["#definition", "text.roff"]
+],[
+["#ignore", "text.roff"]
+],[
+["#underlines", "text.roff"]
+],[
+[".", "text.roff", "meta.request.cu.roff", "punctuation.definition.function.request.roff"],
+["do", "text.roff", "meta.request.cu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.request.cu.roff"],
+["cu", "text.roff", "meta.request.cu.roff", "entity.function.name.roff"],
+[" ", "text.roff", "meta.request.cu.roff"],
+["1", "text.roff", "meta.request.cu.roff", "constant.numeric.roff"],
+["", "text.roff", "meta.request.cu.roff", "string.other.link.roff", "markup.underline.roff"]
+],[
+["Underlined", "text.roff", "meta.request.cu.roff", "string.other.link.roff", "markup.underline.roff"]
+]]

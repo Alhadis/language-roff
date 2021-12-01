@@ -11,7 +11,8 @@
 	"atomTestRunner": "atom-mocha",
 	"scripts": {
 		"lint": "npx eslint .",
-		"test": "atom -t spec"
+		"test": "atom -t spec",
+		"update-fixtures": "cd spec/fixtures && node update input/* && mv input/*.json output && node prune"
 	},
 	"dependencies": {
 		"prompt-view": "^1.0.0",
@@ -20,7 +21,9 @@
 	"devDependencies": {
 		"@alhadis/eslint-config": "^1.2.0",
 		"atom-mocha": "^2.2.1",
-		"eslint":     "^6.4.0"
+		"eslint":     "^6.4.0",
+		"first-mate": "^7.4.3",
+		"language-hyperlink": "atom/language-hyperlink"
 	},
 	"deserializers": {
 		"TroffView": "createTroffView"

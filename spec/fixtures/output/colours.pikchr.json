@@ -1,0 +1,1351 @@
+[[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF0F8FF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["AliceBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFAEBD7", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["AntiqueWhite", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00FFFF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Aqua", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x7FFFD4", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Aquamarine", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF0FFFF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Azure", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF5F5DC", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Beige", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFE4C4", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Bisque", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x000000", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Black", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFEBCD", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["BlanchedAlmond", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x0000FF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Blue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x8A2BE2", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["BlueViolet", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xA52A2A", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Brown", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xDEB887", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["BurlyWood", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x5F9EA0", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["CadetBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x7FFF00", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Chartreuse", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xD2691E", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Chocolate", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF7F50", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Coral", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x6495ED", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["CornflowerBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFF8DC", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Cornsilk", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xDC143C", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Crimson", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00FFFF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Cyan", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00008B", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x008B8B", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkCyan", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xB8860B", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkGoldenrod", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xA9A9A9", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkGray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x006400", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xA9A9A9", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkGrey", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xBDB76B", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkKhaki", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x8B008B", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkMagenta", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x556B2F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkOliveGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF8C00", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkOrange", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x9932CC", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkOrchid", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x8B0000", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkRed", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xE9967A", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkSalmon", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x8FBC8F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkSeaGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x483D8B", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkSlateBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x2F4F4F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkSlateGray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x2F4F4F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkSlateGrey", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00CED1", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkTurquoise", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x9400D3", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DarkViolet", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF1493", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DeepPink", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00BFFF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DeepSkyBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x696969", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DimGray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x696969", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DimGrey", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x1E90FF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["DodgerBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xB22222", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Firebrick", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFFAF0", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["FloralWhite", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x228B22", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["ForestGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF00FF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Fuchsia", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xDCDCDC", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Gainsboro", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF8F8FF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["GhostWhite", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFD700", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Gold", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xDAA520", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Goldenrod", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x808080", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Gray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x008000", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Green", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xADFF2F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["GreenYellow", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x808080", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Grey", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF0FFF0", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Honeydew", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF69B4", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["HotPink", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xCD5C5C", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["IndianRed", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x4B0082", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Indigo", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFFFF0", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Ivory", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF0E68C", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Khaki", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xE6E6FA", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Lavender", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFF0F5", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LavenderBlush", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x7CFC00", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LawnGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFFACD", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LemonChiffon", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xADD8E6", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF08080", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightCoral", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xE0FFFF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightCyan", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFAFAD2", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightGoldenrodYellow", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xD3D3D3", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightGray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x90EE90", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xD3D3D3", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightGrey", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFB6C1", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightPink", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFA07A", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightSalmon", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x20B2AA", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightSeaGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x87CEFA", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightSkyBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x778899", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightSlateGray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x778899", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightSlateGrey", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xB0C4DE", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightSteelBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFFFE0", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LightYellow", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00FF00", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Lime", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x32CD32", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["LimeGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFAF0E6", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Linen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF00FF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Magenta", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x800000", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Maroon", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x66CDAA", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumAquamarine", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x0000CD", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xBA55D3", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumOrchid", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x9370DB", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumPurple", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x3CB371", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumSeaGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x7B68EE", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumSlateBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00FA9A", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumSpringGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x48D1CC", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumTurquoise", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xC71585", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MediumVioletRed", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x191970", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MidnightBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF5FFFA", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MintCream", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFE4E1", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["MistyRose", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFE4B5", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Moccasin", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFDEAD", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["NavajoWhite", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x000080", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Navy", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["-1", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+["       ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["None", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.no-colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["-1", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+["       ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Off", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.no-colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFDF5E6", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["OldLace", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x808000", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Olive", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x6B8E23", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["OliveDrab", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFA500", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Orange", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF4500", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["OrangeRed", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xDA70D6", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Orchid", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xEEE8AA", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["PaleGoldenrod", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x98FB98", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["PaleGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xAFEEEE", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["PaleTurquoise", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xDB7093", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["PaleVioletRed", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFEFD5", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["PapayaWhip", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFDAB9", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["PeachPuff", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xCD853F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Peru", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFC0CB", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Pink", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xDDA0DD", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Plum", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xB0E0E6", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["PowderBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x800080", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Purple", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x663399", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["RebeccaPurple", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF0000", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Red", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xBC8F8F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["RosyBrown", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x4169E1", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["RoyalBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x8B4513", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SaddleBrown", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFA8072", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Salmon", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF4A460", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SandyBrown", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x2E8B57", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SeaGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFF5EE", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Seashell", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xA0522D", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Sienna", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xC0C0C0", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Silver", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x87CEEB", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SkyBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x6A5ACD", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SlateBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x708090", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SlateGray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x708090", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SlateGrey", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFFAFA", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Snow", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x00FF7F", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SpringGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x4682B4", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["SteelBlue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xD2B48C", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Tan", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x008080", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Teal", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xD8BFD8", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Thistle", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFF6347", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Tomato", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x40E0D0", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Turquoise", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xEE82EE", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Violet", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF5DEB3", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Wheat", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFFFFF", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["White", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xF5F5F5", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["WhiteSmoke", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0xFFFF00", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["Yellow", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["circle", "source.pic", "storage.type.primitive.circle.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["0x9ACD32", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["YellowGreen", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+]]

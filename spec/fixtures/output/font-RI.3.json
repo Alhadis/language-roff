@@ -8,16 +8,23 @@
 ["RI", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
 [" ", "text.roff", "markup.plain.roff"],
 ["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
-["RRRRRRR\" IIIIII ", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["RRRRRRR", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["IIIIII", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"],
+["", "text.roff", "markup.plain.roff"]
 ],[
-["RRRRRR", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["RRRRRR", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["RRRRRR", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["RRRRRR", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["RRR III", "text.roff"]
+["RRR", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["III", "text.roff", "markup.plain.roff"]
 ],[
 ["", "text.roff"]
 ],[
@@ -25,14 +32,24 @@
 ["RI", "text.roff", "meta.function.man.macro.roff", "entity.name.function.roff"],
 [" ", "text.roff", "markup.plain.roff"],
 ["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
-["RRRRRRR\" \"IIIIII\" RRRRR  ", "text.roff"],
+["RRRRRRR", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.begin.roff"],
+["IIIIII", "text.roff", "markup.italic.roff"],
+["\"", "text.roff", "markup.italic.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["RRRRR", "text.roff", "markup.plain.roff"],
+["  ", "text.roff", "markup.plain.roff"],
 ["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["IIIIII", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["IIIIII", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["IIIIII", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["IIIIII", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["III RRR", "text.roff"]
+["III", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.plain.roff"],
+["RRR", "text.roff", "markup.plain.roff"]
 ]]

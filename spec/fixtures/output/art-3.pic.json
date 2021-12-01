@@ -1,0 +1,167 @@
+[[
+[".", "source.pic", "meta.function.begin.picture.section.macro.roff", "punctuation.definition.macro.roff"],
+["PS", "source.pic", "meta.function.begin.picture.section.macro.roff", "entity.function.name.roff"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.5", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.5", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1e0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1E0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1e+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1E+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1e-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1E-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1e0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1E0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1e+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1E+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1e-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1E-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.5e0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.5E0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.5e+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.5E+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.5e-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.5E-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.5e0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.5E0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.5e+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.5E+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.5e-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.5E-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.e0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.E0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.e+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.E+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.e-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+["  ", "source.pic", "source.embedded.pic"],
+["1.E-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.e0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.E0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.e+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.E+0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.e-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+["print", "source.pic", "source.embedded.pic", "storage.type.primitive.print.pic"],
+[" ", "source.pic", "source.embedded.pic"],
+["-1.E-0", "source.pic", "source.embedded.pic", "constant.numeric.pic"]
+],[
+[".", "source.pic", "meta.function.end.picture.section.macro.roff", "punctuation.definition.macro.roff"],
+["PE", "source.pic", "meta.function.end.picture.section.macro.roff", "entity.name.function.roff"]
+]]

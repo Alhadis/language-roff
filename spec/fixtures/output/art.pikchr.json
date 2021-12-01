@@ -1,0 +1,709 @@
+[[
+["//", "source.pic", "comment.line.double-slash.non-standard.pikchr.pic", "punctuation.definition.comment.pic"],
+[" Pikchr extensions", "source.pic", "comment.line.double-slash.non-standard.pikchr.pic"]
+],[
+["/*", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.begin.pic"],
+[" ", "source.pic", "comment.block.non-standard.pikchr.pic"],
+["https://pikchr.org/home/doc/trunk/doc/differences.md", "source.pic", "comment.block.non-standard.pikchr.pic", "markup.underline.link.https.hyperlink"],
+[" ", "source.pic", "comment.block.non-standard.pikchr.pic"],
+["*/", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.end.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 1. Unicode arrows", "source.pic", "comment.line.number-sign.pic"]
+],[
+["<-", "source.pic", "keyword.operator.arrow.pic"],
+["  ", "source.pic"],
+["←", "source.pic", "keyword.operator.arrow.unicode.pikchr.pic"],
+[" ", "source.pic"],
+["&larr;", "source.pic", "keyword.operator.arrow.html-entity.pikchr.pic"],
+[" ", "source.pic"],
+["&leftarrow;", "source.pic", "keyword.operator.arrow.html-entity.pikchr.pic"]
+],[
+["->", "source.pic", "keyword.operator.arrow.pic"],
+["  ", "source.pic"],
+["→", "source.pic", "keyword.operator.arrow.unicode.pikchr.pic"],
+[" ", "source.pic"],
+["&rarr;", "source.pic", "keyword.operator.arrow.html-entity.pikchr.pic"],
+[" ", "source.pic"],
+["&rightarrow;", "source.pic", "keyword.operator.arrow.html-entity.pikchr.pic"]
+],[
+["<", "source.pic", "meta.position.pic", "punctuation.definition.position.bracket.angle.begin.pic"],
+["->", "source.pic", "meta.position.pic", "keyword.operator.arrow.pic"],
+[" ", "source.pic"],
+["↔", "source.pic", "keyword.operator.arrow.unicode.pikchr.pic"],
+[" ", "source.pic"],
+["&leftrightarrow;", "source.pic", "keyword.operator.arrow.html-entity.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 2. New object types", "source.pic", "comment.line.number-sign.pic"]
+],[
+["oval", "source.pic", "storage.type.primitive.oval.pikchr.pic"]
+],[
+["cylinder", "source.pic", "storage.type.primitive.cylinder.pikchr.pic"]
+],[
+["file", "source.pic", "storage.type.primitive.file.pikchr.pic"]
+],[
+["dot", "source.pic", "storage.type.primitive.dot.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 3. Units other than inches", "source.pic", "comment.line.number-sign.pic"]
+],[
+["1.5", "source.pic", "constant.numeric.pic"],
+["in", "source.pic", "constant.numeric.pic", "constant.other.unit.in.pikchr.pic"],
+[";", "source.pic", "punctuation.terminator.statement.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["2.3", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"]
+],[
+["230", "source.pic", "constant.numeric.pic"],
+["mm", "source.pic", "constant.numeric.pic", "constant.other.unit.mm.pikchr.pic"]
+],[
+["13", "source.pic", "constant.numeric.pic"],
+["pc", "source.pic", "constant.numeric.pic", "constant.other.unit.pc.pikchr.pic"]
+],[
+["24", "source.pic", "constant.numeric.pic"],
+["pt", "source.pic", "constant.numeric.pic", "constant.other.unit.pt.pikchr.pic"]
+],[
+["48", "source.pic", "constant.numeric.pic"],
+["px", "source.pic", "constant.numeric.pic", "constant.other.unit.px.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 4. Chamfered corners", "source.pic", "comment.line.number-sign.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["radius", "source.pic", "entity.other.attribute-name.radius.pic"],
+[" ", "source.pic"],
+["15", "source.pic", "constant.numeric.pic"],
+["px", "source.pic", "constant.numeric.pic", "constant.other.unit.px.pikchr.pic"]
+],[
+["arrow", "source.pic", "storage.type.primitive.arrow.pic"],
+[" ", "source.pic"],
+["radius", "source.pic", "entity.other.attribute-name.radius.pic"],
+[" ", "source.pic"],
+["10", "source.pic", "constant.numeric.pic"],
+["px", "source.pic", "constant.numeric.pic", "constant.other.unit.px.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 5. Colours", "source.pic", "comment.line.number-sign.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["color ", "source.pic", "entity.other.attribute-name.color.pic"],
+["blue", "source.pic", "entity.other.attribute-name.color.pic", "support.constant.colour.pikchr.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["fill  ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["lightgray", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["color ", "source.pic", "entity.other.attribute-name.color.pic"],
+["white", "source.pic", "entity.other.attribute-name.color.pic", "support.constant.colour.pikchr.pic"],
+[" ", "source.pic"],
+["fill ", "source.pic", "entity.other.attribute-name.fill.pic"],
+["blue", "source.pic", "entity.other.attribute-name.fill.pic", "support.constant.colour.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 6. Border thickness", "source.pic", "comment.line.number-sign.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["thickness", "source.pic", "entity.other.attribute-name.thickness.pikchr.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["thin", "source.pic", "entity.other.attribute-name.thin.pikchr.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["thick", "source.pic", "entity.other.attribute-name.thick.pikchr.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["thick", "source.pic", "entity.other.attribute-name.thick.pikchr.pic"],
+[" ", "source.pic"],
+["thick", "source.pic", "entity.other.attribute-name.thick.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 7. Text modifiers", "source.pic", "comment.line.number-sign.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Emboldened", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["bold", "source.pic", "entity.other.attribute-name.bold.pikchr.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Italicised", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["italic", "source.pic", "entity.other.attribute-name.italic.pikchr.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Bigger", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+["     ", "source.pic"],
+["big", "source.pic", "entity.other.attribute-name.big.pikchr.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Smaller", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+["    ", "source.pic"],
+["small", "source.pic", "entity.other.attribute-name.small.pikchr.pic"]
+],[
+["line", "source.pic", "storage.type.primitive.line.pic"],
+[" ", "source.pic"],
+["above", "source.pic", "keyword.operator.above.pikchr.pic"],
+[" ", "source.pic"],
+["aligned", "source.pic", "entity.other.attribute-name.aligned.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 8. Auto-fitting", "source.pic", "comment.line.number-sign.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Text", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["labels", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fit", "source.pic", "entity.other.attribute-name.fit.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 9. Percentile property values", "source.pic", "comment.line.number-sign.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["default", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["italic", "source.pic", "entity.other.attribute-name.italic.pikchr.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["box", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["italic", "source.pic", "entity.other.attribute-name.italic.pikchr.pic"]
+],[
+["move", "source.pic", "storage.type.primitive.move.pic"],
+[";", "source.pic", "punctuation.terminator.statement.pic"],
+[" ", "source.pic"],
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["width 150%", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["width", "source.pic", "entity.other.attribute-name.width.pic"],
+[" ", "source.pic"],
+["150", "source.pic", "constant.numeric.pic"],
+["%", "source.pic", "constant.numeric.pic", "constant.other.unit.percentage.pikchr.pic"]
+],[
+["move", "source.pic", "storage.type.primitive.move.pic"],
+[";", "source.pic", "punctuation.terminator.statement.pic"],
+[" ", "source.pic"],
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["wid   75%", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+["  ", "source.pic"],
+["wid", "source.pic", "entity.other.attribute-name.wid.pic"],
+["   ", "source.pic"],
+["75", "source.pic", "constant.numeric.pic"],
+["%", "source.pic", "constant.numeric.pic", "constant.other.unit.percentage.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 10. Chop semantics", "source.pic", "comment.line.number-sign.pic"]
+],[
+["arrow", "source.pic", "storage.type.primitive.arrow.pic"],
+[" ", "source.pic"],
+["<", "source.pic", "meta.position.pic", "punctuation.definition.position.bracket.angle.begin.pic"],
+["->", "source.pic", "meta.position.pic", "keyword.operator.arrow.pic"],
+[" ", "source.pic"],
+["from", "source.pic", "keyword.operator.from.pic"],
+[" ", "source.pic"],
+["A", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+["to", "source.pic", "keyword.operator.to.pic"],
+[" ", "source.pic"],
+["B", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+["chop", "source.pic", "entity.other.attribute-name.chop.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["from A to B chop", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["aligned", "source.pic", "entity.other.attribute-name.aligned.pikchr.pic"],
+[" ", "source.pic"],
+["above", "source.pic", "keyword.operator.above.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 11. `same as …` construct", "source.pic", "comment.line.number-sign.pic"]
+],[
+["file", "source.pic", "storage.type.primitive.file.pikchr.pic"],
+[" ", "source.pic"],
+["same as", "source.pic", "entity.other.attribute-name.same-as.pikchr.pic"],
+[" ", "source.pic"],
+["last", "source.pic", "variable.language.backreference.pic"],
+[" ", "source.pic"],
+["box", "source.pic", "storage.type.primitive.box.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 12. Line paths", "source.pic", "comment.line.number-sign.pic"]
+],[
+["go", "source.pic", "keyword.operator.go.pikchr.pic"],
+[" ", "source.pic"],
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["heading", "source.pic", "keyword.operator.heading.pikchr.pic"],
+[" ", "source.pic"],
+["45.0", "source.pic", "constant.numeric.pic"]
+],[
+["go", "source.pic", "keyword.operator.go.pikchr.pic"],
+[" ", "source.pic"],
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["90.0", "source.pic", "constant.numeric.pic"]
+],[
+["go", "source.pic", "keyword.operator.go.pikchr.pic"],
+[" ", "source.pic"],
+["right", "source.pic", "entity.other.attribute-name.right.pic"],
+[" ", "source.pic"],
+["until even with", "source.pic", "keyword.operator.until even with.pikchr.pic"],
+[" ", "source.pic"],
+["100", "source.pic", "constant.numeric.pic"],
+["%", "source.pic", "constant.numeric.pic", "constant.other.unit.percentage.pikchr.pic"]
+],[
+["close", "source.pic", "keyword.operator.close.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 13. Positions", "source.pic", "comment.line.number-sign.pic"]
+],[
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["above", "source.pic", "keyword.operator.above.pikchr.pic"],
+["    ", "source.pic"],
+["previous", "source.pic", "variable.language.backreference.pikchr.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["n", "source.pic", "entity.other.attribute-name.corner.pic"]
+],[
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["below", "source.pic", "keyword.operator.below.pikchr.pic"],
+["    ", "source.pic"],
+["previous", "source.pic", "variable.language.backreference.pikchr.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["s", "source.pic", "entity.other.attribute-name.corner.pic"]
+],[
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["left", "source.pic", "variable.language.placement.pic"],
+["  ", "source.pic"],
+["of", "source.pic", "keyword.operator.of.pic"],
+[" ", "source.pic"],
+["previous", "source.pic", "variable.language.backreference.pikchr.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["nw", "source.pic", "entity.other.attribute-name.corner.pic"]
+],[
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["right", "source.pic", "variable.language.placement.pic"],
+[" ", "source.pic"],
+["of", "source.pic", "keyword.operator.of.pic"],
+[" ", "source.pic"],
+["previous", "source.pic", "variable.language.backreference.pikchr.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["se", "source.pic", "entity.other.attribute-name.corner.pic"]
+],[
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["heading", "source.pic", "keyword.operator.heading.pikchr.pic"],
+[" ", "source.pic"],
+["45.0", "source.pic", "constant.numeric.pic"],
+[" ", "source.pic"],
+["from", "source.pic", "keyword.operator.from.pic"],
+[" ", "source.pic"],
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["s", "source.pic", "entity.other.attribute-name.corner.pic"]
+],[
+["2nd", "source.pic", "variable.language.backreference.pic"],
+[" ", "source.pic"],
+["vertex of", "source.pic", "keyword.operator.vertex of.pikchr.pic"],
+[" ", "source.pic"],
+["first", "source.pic", "variable.language.backreference.pikchr.pic"],
+[" ", "source.pic"],
+["line", "source.pic", "storage.type.primitive.line.pic"]
+],[
+["cylinder", "source.pic", "storage.type.primitive.cylinder.pikchr.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["B", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["at", "source.pic", "keyword.operator.at.pic"],
+[" ", "source.pic"],
+["5", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["heading", "source.pic", "keyword.operator.heading.pikchr.pic"],
+[" ", "source.pic"],
+["125", "source.pic", "constant.numeric.pic"],
+[" ", "source.pic"],
+["from", "source.pic", "keyword.operator.from.pic"],
+[" ", "source.pic"],
+["A", "source.pic", "variable.other.user-defined.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 14. Prior objects", "source.pic", "comment.line.number-sign.pic"]
+],[
+["last", "source.pic", "variable.language.backreference.pic"],
+[";", "source.pic", "punctuation.terminator.statement.pic"],
+[" ", "source.pic"],
+["previous", "source.pic", "variable.language.backreference.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 15. C/C++ comments", "source.pic", "comment.line.number-sign.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+["  Traditional comment", "source.pic", "comment.line.number-sign.pic"]
+],[
+["//", "source.pic", "comment.line.double-slash.non-standard.pikchr.pic", "punctuation.definition.comment.pic"],
+[" C++-style comment", "source.pic", "comment.line.double-slash.non-standard.pikchr.pic"]
+],[
+["/*", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.begin.pic"],
+[" C comment ", "source.pic", "comment.block.non-standard.pikchr.pic"],
+["*/", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.end.pic"]
+],[
+["", "source.pic"]
+],[
+["/*", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.begin.pic"],
+[" <<<<<<<<<<<<<<", "source.pic", "comment.block.non-standard.pikchr.pic"]
+],[
+["<<<<", "source.pic", "comment.block.non-standard.pikchr.pic"],
+["*/", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.end.pic"],
+[" ", "source.pic"],
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["/*", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.begin.pic"],
+[">>>>", "source.pic", "comment.block.non-standard.pikchr.pic"]
+],[
+[">>>>>>>>>>>>>>>>> ", "source.pic", "comment.block.non-standard.pikchr.pic"],
+["*/", "source.pic", "comment.block.non-standard.pikchr.pic", "punctuation.definition.comment.end.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 16. Variables beginning with `$` or `@`", "source.pic", "comment.line.number-sign.pic"]
+],[
+["$", "source.pic", "variable.other.user-defined.non-standard.pikchr.pic", "punctuation.definition.variable.pikchr.pic"],
+["argc", "source.pic", "variable.other.user-defined.non-standard.pikchr.pic"]
+],[
+["@", "source.pic", "variable.other.user-defined.non-standard.pikchr.pic", "punctuation.definition.variable.pikchr.pic"],
+["argv", "source.pic", "variable.other.user-defined.non-standard.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["#", "source.pic", "comment.line.number-sign.pic", "punctuation.definition.comment.pic"],
+[" 17. Assignment operators", "source.pic", "comment.line.number-sign.pic"]
+],[
+["x", "source.pic", "variable.other.user-defined.pic"],
+["  ", "source.pic"],
+["=", "source.pic", "keyword.operator.assignment.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["x", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+["+=", "source.pic", "keyword.operator.assignment.compound.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["x", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+["-=", "source.pic", "keyword.operator.assignment.compound.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["x", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+["*=", "source.pic", "keyword.operator.assignment.compound.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["x", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+["/=", "source.pic", "keyword.operator.assignment.compound.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["x", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+[":=", "source.pic", "keyword.operator.assignment.pic"],
+[" ", "source.pic"],
+["1.5", "source.pic", "constant.numeric.pic"]
+],[
+["1", "source.pic", "constant.numeric.pic"],
+["/", "source.pic", "keyword.operator.arithmetic.pic"],
+["3", "source.pic", "constant.numeric.pic"],
+[" ", "source.pic"],
+["<", "source.pic", "meta.position.pic", "punctuation.definition.position.bracket.angle.begin.pic"],
+["Here", "source.pic", "meta.position.pic", "variable.language.placement.pic"],
+[",", "source.pic", "meta.position.pic", "punctuation.separator.coordinates.comma.pic"],
+[" ", "source.pic", "meta.position.pic"],
+["last", "source.pic", "meta.position.pic", "variable.language.backreference.pic"],
+[" ", "source.pic", "meta.position.pic"],
+["ellipse", "source.pic", "meta.position.pic", "storage.type.primitive.ellipse.pic"],
+[">", "source.pic", "meta.position.pic", "punctuation.definition.position.bracket.angle.end.pic"]
+],[
+["circlerad", "source.pic", "variable.language.global.pic"],
+[" ", "source.pic"],
+["*=", "source.pic", "keyword.operator.assignment.compound.pic"],
+[" ", "source.pic"],
+["0.75", "source.pic", "constant.numeric.pic"]
+],[
+["", "source.pic"]
+],[
+["!", "source.pic", "keyword.operator.logical.not.negation.pic"],
+["not", "source.pic", "variable.other.user-defined.pic"],
+[" ", "source.pic"],
+["&&", "source.pic", "keyword.operator.logical.boolean.pic"],
+[" ", "source.pic"],
+["||", "source.pic", "keyword.operator.logical.boolean.pic"],
+[" ", "source.pic"],
+["==", "source.pic", "keyword.operator.comparison.relational.boolean.pic"],
+[" ", "source.pic"],
+["!=", "source.pic", "keyword.operator.comparison.relational.boolean.pic"],
+[" ", "source.pic"],
+[">=", "source.pic", "keyword.operator.comparison.relational.numeric.pic"],
+[" ", "source.pic"],
+["<=", "source.pic", "keyword.operator.comparison.relational.numeric.pic"],
+[" ", "source.pic"],
+["<", "source.pic", "meta.position.pic", "punctuation.definition.position.bracket.angle.begin.pic"],
+[" ", "source.pic", "meta.position.pic"],
+[">", "source.pic", "meta.position.pic", "punctuation.definition.position.bracket.angle.end.pic"]
+],[
+["", "source.pic"]
+],[
+["", "source.pic"]
+],[
+["", "source.pic"]
+],[
+["arrow", "source.pic", "storage.type.primitive.arrow.pic"],
+["     ", "source.pic"],
+["right", "source.pic", "entity.other.attribute-name.right.pic"],
+[" ", "source.pic"],
+["200", "source.pic", "constant.numeric.pic"],
+["%", "source.pic", "constant.numeric.pic", "constant.other.unit.percentage.pikchr.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Markdown", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Source", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+["       ", "source.pic"],
+["rad", "source.pic", "entity.other.attribute-name.rad.pic"],
+["   ", "source.pic"],
+["10", "source.pic", "constant.numeric.pic"],
+["px", "source.pic", "constant.numeric.pic", "constant.other.unit.px.pikchr.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Markdown", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Formatter", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["(markdown.c)", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fit", "source.pic", "entity.other.attribute-name.fit.pikchr.pic"]
+],[
+["arrow", "source.pic", "storage.type.primitive.arrow.pic"],
+["     ", "source.pic"],
+["right", "source.pic", "entity.other.attribute-name.right.pic"],
+[" ", "source.pic"],
+["200", "source.pic", "constant.numeric.pic"],
+["%", "source.pic", "constant.numeric.pic", "constant.other.unit.percentage.pikchr.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["HTML+SVG", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Output", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"]
+],[
+["arrow", "source.pic", "storage.type.primitive.arrow.pic"],
+[" ", "source.pic"],
+["<", "source.pic", "meta.position.pic", "punctuation.definition.position.bracket.angle.begin.pic"],
+["->", "source.pic", "meta.position.pic", "keyword.operator.arrow.pic"],
+[" ", "source.pic"],
+["down", "source.pic", "entity.other.attribute-name.down.pic"],
+["  ", "source.pic"],
+["70", "source.pic", "constant.numeric.pic"],
+["%", "source.pic", "constant.numeric.pic", "constant.other.unit.percentage.pikchr.pic"],
+[" ", "source.pic"],
+["from", "source.pic", "keyword.operator.from.pic"],
+[" ", "source.pic"],
+["last", "source.pic", "variable.language.backreference.pic"],
+[" ", "source.pic"],
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["s", "source.pic", "entity.other.attribute-name.corner.pic"]
+],[
+["arrow", "source.pic", "storage.type.primitive.arrow.pic"],
+[" ", "source.pic"],
+["↔", "source.pic", "keyword.operator.arrow.unicode.pikchr.pic"],
+["   ", "source.pic"],
+["down", "source.pic", "entity.other.attribute-name.down.pic"],
+["  ", "source.pic"],
+["70", "source.pic", "constant.numeric.pic"],
+["%", "source.pic", "constant.numeric.pic", "constant.other.unit.percentage.pikchr.pic"],
+[" ", "source.pic"],
+["from", "source.pic", "keyword.operator.from.pic"],
+[" ", "source.pic"],
+["last", "source.pic", "variable.language.backreference.pic"],
+[" ", "source.pic"],
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["s", "source.pic", "entity.other.attribute-name.corner.pic"]
+],[
+["box", "source.pic", "storage.type.primitive.box.pic"],
+[" ", "source.pic"],
+["same", "source.pic", "entity.other.attribute-name.same.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Pikchr", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Formatter", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["(pikchr.c)", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["fit", "source.pic", "entity.other.attribute-name.fit.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["line", "source.pic", "storage.type.primitive.line.pic"],
+[" ", "source.pic"],
+["from", "source.pic", "keyword.operator.from.pic"],
+[" ", "source.pic"],
+["1", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["right", "source.pic", "variable.language.placement.pic"],
+[" ", "source.pic"],
+["of", "source.pic", "keyword.operator.of.pic"],
+[" ", "source.pic"],
+["previous", "source.pic", "variable.language.backreference.pikchr.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["se", "source.pic", "entity.other.attribute-name.corner.pic"],
+[" ", "source.pic"],
+["to", "source.pic", "keyword.operator.to.pic"],
+[" ", "source.pic"],
+["3", "source.pic", "constant.numeric.pic"],
+["cm", "source.pic", "constant.numeric.pic", "constant.other.unit.cm.pikchr.pic"],
+[" ", "source.pic"],
+["right", "source.pic", "variable.language.placement.pic"],
+[" ", "source.pic"],
+["of", "source.pic", "keyword.operator.of.pic"],
+[" ", "source.pic"],
+["previous", "source.pic", "variable.language.backreference.pikchr.pic"],
+[".", "source.pic", "punctuation.delimiter.period.full-stop.pic"],
+["ne", "source.pic", "entity.other.attribute-name.corner.pic"],
+[" ", "source.pic"],
+["\\", "source.pic", "constant.character.escape.newline.pic", "punctuation.definition.escape.pic"]
+],[
+["\t", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["aligned", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"],
+[" ", "source.pic"],
+["above", "source.pic", "keyword.operator.above.pikchr.pic"],
+[" ", "source.pic"],
+["aligned", "source.pic", "entity.other.attribute-name.aligned.pikchr.pic"]
+],[
+["", "source.pic"]
+],[
+["", "source.pic"]
+],[
+["", "source.pic"]
+],[
+["", "source.pic"]
+],[
+["", "source.pic"]
+],[
+["text", "source.pic", "storage.type.primitive.text.pikchr.pic"],
+[" ", "source.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.begin.pic"],
+["Foo", "source.pic", "string.quoted.double.pic"],
+["\"", "source.pic", "string.quoted.double.pic", "punctuation.definition.string.end.pic"]
+]]

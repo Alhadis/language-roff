@@ -11,33 +11,46 @@
 [" ", "text.roff", "markup.italic.roff"],
 ["IIIIII", "text.roff", "markup.italic.roff"],
 [" ", "text.roff", "markup.italic.roff"],
-["RRRR ", "text.roff"],
+["RRRR", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"],
+["", "text.roff", "markup.italic.roff"]
+],[
+[" ", "text.roff", "markup.italic.roff"],
+["IIIII", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["RRR", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["RRR", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"],
+["", "text.roff", "markup.italic.roff"]
+],[
+["    ", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"],
+["", "text.roff", "markup.italic.roff"]
+],[
+[" ", "text.roff", "markup.italic.roff"],
+["III", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["IIII", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+],[
+["II", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["RRR", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"],
+["", "text.roff", "markup.italic.roff"]
+],[
 ["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-[" IIIII RRR", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
-],[
-["RRR ", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
-],[
-["    ", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
-],[
-[" III", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
-],[
-["IIII", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
-],[
-["II RRR ", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
-],[
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
-],[
-["I", "text.roff"],
-["\\", "text.roff", "constant.character.escape.space.roff", "punctuation.definition.escape.roff"],
-[" ", "text.roff", "constant.character.escape.space.roff"],
-["II", "text.roff"]
+["I", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.space.roff", "punctuation.definition.escape.roff"],
+[" ", "text.roff", "markup.plain.roff", "constant.character.escape.space.roff"],
+["II", "text.roff", "markup.plain.roff"]
 ],[
 ["", "text.roff"]
 ],[
@@ -55,19 +68,30 @@
 ["\\", "text.roff", "markup.italic.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
 [" ", "text.roff", "markup.italic.roff"],
-["RRRR IIIIII RRRRR", "text.roff"],
-["\\", "text.roff", "punctuation.definition.concealed.escape.backslash.roff"],
-["\\", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
-["R", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
-["R", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
-["R", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"],
-["R\" IIIII RRRRRRRRR", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["RRRR", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["IIIIII", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["RRRRR", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "punctuation.definition.concealed.escape.backslash.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["R", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
+["R", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["R", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["R", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["IIIII", "text.roff", "markup.italic.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["RRRRRRRRR", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["\\", "text.roff", "punctuation.definition.concealed.escape.backslash.roff"],
-["\\", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
-["R", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
-["R", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
-["R", "text.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"],
-["RRR IIIIIIII", "text.roff"]
+["\\", "text.roff", "markup.plain.roff", "punctuation.definition.concealed.escape.backslash.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff", "punctuation.definition.escape.roff"],
+["R", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "entity.name.function.roff"],
+["R", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.begin.roff"],
+["R", "text.roff", "markup.plain.roff", "constant.character.escape.function.check-identifier.gnu.roff", "string.other.roff", "punctuation.definition.end.roff"],
+["RRR", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.italic.roff"],
+["IIIIIIII", "text.roff", "markup.italic.roff"]
 ]]

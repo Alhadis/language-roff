@@ -1,0 +1,147 @@
+[[
+["\\X'ps: e", "source.ditroff"],
+["x", "source.ditroff", "meta.device-control.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+["ec", "source.ditroff", "meta.device-control.ditroff", "meta.unknown-command.ditroff", "keyword.device.control.ditroff"],
+[" \\n(XY showpage'", "source.ditroff", "meta.device-control.ditroff", "meta.unknown-command.ditroff"]
+],[
+["\\X'h", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["ml:", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["<a name=\"", "source.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+["foo\">\\*(XY</a>'", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+["\\X'\\*(XY'", "source.ditroff"]
+],[
+["", "source.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["Foo", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["Bar", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["tty", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["sgr", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.control.directive.gnu.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["1", "source.ditroff", "meta.device-control.x-command.ditroff", "constant.numeric.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+[" Device name is \\*(.T", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["D", "source.ditroff", "meta.graphics.unknown-command.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.graphics.unknown-command.ditroff"],
+["F", "source.ditroff", "meta.graphics.unknown-command.ditroff", "keyword.operator.subcommand.ditroff"],
+[" g", "source.ditroff", "meta.graphics.unknown-command.ditroff", "variable.parameter.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["w", "source.ditroff", "keyword.operator.function.word-space.ditroff"],
+["0 0", "source.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["\\", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"]
+],[
+["Foo\\", "source.ditroff"]
+],[
+["Bar 0", "source.ditroff"]
+],[
+["", "source.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+[" Comment. \\", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+["Also ", "source.ditroff"],
+["c", "source.ditroff", "meta.print-character.ditroff", "keyword.operator.function.ditroff"],
+["o", "source.ditroff", "meta.print-character.ditroff", "constant.character.ditroff"],
+["mmen", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["ed.", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"]
+],[
+["Normal ", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["ext.", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"]
+],[
+["", "source.ditroff"]
+],[
+[".ds TM \\s'-0.5m'\\uTM\\d\\s'+0.5m'", "source.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+[" COPY MODE:", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+["     \\\\*(TM gets interpreted: \\*(TM", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+["     However, \\\\(tm does not: \\(tm", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+[".ou", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["put", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+[" \\ ", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+["Normal ", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["ext;", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["previous line ended ", "source.ditroff"],
+["w", "source.ditroff", "keyword.operator.function.word-space.ditroff"],
+["i", "source.ditroff"],
+["t", "source.ditroff", "meta.print-text.gnu.ditroff", "keyword.operator.function.ditroff", "punctuation.definition.entity.ditroff"],
+["h", "source.ditroff", "meta.print-text.gnu.ditroff", "string.quoted.double.ditroff"],
+[" ", "source.ditroff", "meta.print-text.gnu.ditroff"],
+["`\\e `.", "source.ditroff"]
+]]

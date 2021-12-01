@@ -11,16 +11,20 @@
 ["BBBBBBB", "text.roff", "markup.bold.roff"],
 ["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.end.roff"],
 [" ", "text.roff", "markup.bold.roff"],
-["RRRRRR ", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["RRRRRR", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.bold.roff"],
+["\\", "text.roff", "markup.bold.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"],
+["", "text.roff", "markup.bold.roff"]
 ],[
-["BBBBBB", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["BBBBBB", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["BBBBBB", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["BBBBBB", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["BBB RRR", "text.roff"]
+["BBB", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.bold.roff"],
+["RRR", "text.roff", "markup.bold.roff"]
 ],[
 ["", "text.roff"]
 ],[
@@ -32,14 +36,20 @@
 ["\"", "text.roff", "markup.bold.roff", "punctuation.definition.string.end.roff"],
 [" ", "text.roff", "markup.bold.roff"],
 ["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.begin.roff"],
-["RRRRRR\" BBBBB  ", "text.roff"],
+["RRRRRR", "text.roff", "markup.plain.roff"],
+["\"", "text.roff", "markup.plain.roff", "punctuation.definition.string.end.roff"],
+[" ", "text.roff", "markup.bold.roff"],
+["BBBBB", "text.roff", "markup.bold.roff"],
+["  ", "text.roff", "markup.bold.roff"],
 ["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["RRRRRR", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["RRRRRR", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["RRRRRR", "text.roff"],
-["\\", "text.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
+["RRRRRR", "text.roff", "markup.plain.roff"],
+["\\", "text.roff", "markup.plain.roff", "constant.character.escape.newline.roff", "punctuation.definition.escape.roff"]
 ],[
-["RRR BBB", "text.roff"]
+["RRR", "text.roff", "markup.plain.roff"],
+[" ", "text.roff", "markup.bold.roff"],
+["BBB", "text.roff", "markup.bold.roff"]
 ]]

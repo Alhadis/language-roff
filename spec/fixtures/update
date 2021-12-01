@@ -1,0 +1,93 @@
+#!/usr/bin/env node
+/**
+ * @fileoverview Tokenises each file named on the command-line and
+ * writes the tokenised lines to a JSON file in the same directory
+ * (with a `.json` suffix appended):
+ *
+ *    $ update ./foo.1 => ./foo.1.json
+ *    $ update ./input/* && mv input/*.json ./output
+ *
+ * However, the quickest (and recommended) way to regenerate every
+ * fixture is by running `npm run update-fixtures` instead.
+ */
+"use strict";
+
+const {readdirSync, readFileSync, realpathSync, writeFileSync} = require("fs");
+const {basename, extname, join, resolve} = require("path");
+const FirstMate = require("first-mate");
+
+const {GrammarRegistry} = FirstMate;
+const registry = new GrammarRegistry();
+loadGrammarDir(resolve(__dirname, "../../grammars"));
+loadGrammarDir(resolve(__dirname, "../../node_modules/language-hyperlink/grammars"));
+
+const argv = process.argv.slice(2);
+if(!argv.length){
+	console.error(`Usage: ${process.argv0} ...files`);
+	process.exit(1);
+}
+for(let path of argv){
+	path = realpathSync(path);
+	const grammar = getGrammarForFile(path);
+	if(!grammar){
+		console.warn(`No grammar found for ${path}`);
+		continue;
+	}
+	const input  = readFileSync(path, "utf8").trim();
+	const output = stringifyTokens(grammar.tokenizeLines(input));
+	writeFileSync(resolve(__dirname, path + ".json"), output, "utf8");
+}
+
+
+/**
+ * Return the first loaded {@link Grammar} that recognises a path/filename.
+ * @param {String} path
+ * @return {?Grammar}
+ * @internal
+ */
+function getGrammarForFile(path){
+	if(basename(path).startsWith("ditroff."))
+		return registry.grammarForScopeName("source.ditroff");
+	const ext = extname(path).toLowerCase().replace(/^\./, "");
+	for(const grammar of registry.grammars)
+		if(grammar.fileTypes.some(x => x === ext || x === "." + ext))
+			return grammar;
+	return null;
+}
+
+/**
+ * Load each JSON and CSON grammar within a directory.
+ * @param {String} path
+ * @return {void}
+ * @internal
+ */
+function loadGrammarDir(path){
+	for(const name of readdirSync(path))
+		/\.[jc]son$/i.test(name) && registry.loadGrammarSync(join(path, name));
+}
+
+/**
+ * Generate JSON source from an array of tokenised lines.
+ * @param {Array.<Token[]>} lines
+ * @return {String}
+ * @internal
+ */
+function stringifyTokens(lines){
+	let result = "";
+	let comma  = "";
+	for(let line of lines){
+		line = line.map(token => [token.value, ...token.scopes]);
+		result += comma + "[\n" + JSON.stringify(line, null, "\t")
+			.trim()
+			.replace(/^\[\s*(.+)\s*\]$/s, "$1")
+			.replace(/^\t+/gm, "")
+			.replace(/^\[\n/gm, "[")
+			.replace(/\n(\],?)$/gm, "$1")
+			.replace(/",\n/gm, '", ')
+			.trim() + "\n]";
+		comma = ",";
+	}
+	result = "[" + result.replace(/,\s*$/, "").trim() + "]";
+	JSON.parse(result); // Sanity check
+	return result;
+}
