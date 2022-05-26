@@ -1,0 +1,38 @@
+x T pdf
+x res 1 2 3
+x init
+
+# Heirloom Doctools
+x X PDFMark: Bookmark
++	0
++	Text
+x X PDFMark: Author
++	Gunnar
++	Ritter
+x X PDFMark: Keywords
++	Heirloom Documentation Tools,
++	troff
+x X PDFMark: Title
++	Heirloom Documentation Tools:
++	Quickstart Guide
+x X PS:
++ [
++	{Catalog}
++	<< /ViewerPreferences << /DisplayDocTitle true >> >>
++	/PUT
++ pdfmark
+
+
+# GNU Troff
+x X ps: file
++	/path/to/file.ps
+x X ps: mdef
++	1 =
++	(Insert code here.)
+x X ps: def
++	=
++	(Insert code here.)
+x X ps: import
++	./file.ps -L
++	1 2 3
++	4 5 6

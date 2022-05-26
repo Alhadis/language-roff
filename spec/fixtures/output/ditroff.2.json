@@ -447,9 +447,9 @@
 ["pdf", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.start.ditroff"],
-["mark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.start.ditroff", "keyword.control.directive.gnu.ditroff"],
-["start", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.start.ditroff", "keyword.control.directive.gnu.ditroff", "source.embedded.postscript"],
-[" /ANN definition", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.start.ditroff"]
+["markstart", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.start.ditroff", "keyword.control.directive.gnu.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.start.ditroff", "source.embedded.postscript"],
+["/ANN definition", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.start.ditroff", "source.embedded.postscript"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -458,8 +458,7 @@
 ["pdf", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.end.ditroff"],
-["mark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.end.ditroff", "keyword.control.directive.gnu.ditroff"],
-["end", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.end.ditroff", "keyword.control.directive.gnu.ditroff", "source.embedded.postscript"]
+["markend", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.end.ditroff", "keyword.control.directive.gnu.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -468,8 +467,7 @@
 ["pdf", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.suspend.ditroff"],
-["mark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.suspend.ditroff", "keyword.control.directive.gnu.ditroff"],
-["suspend", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.suspend.ditroff", "keyword.control.directive.gnu.ditroff", "source.embedded.postscript"]
+["marksuspend", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.suspend.ditroff", "keyword.control.directive.gnu.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -478,8 +476,7 @@
 ["pdf", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.restart.ditroff"],
-["mark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.restart.ditroff", "keyword.control.directive.gnu.ditroff"],
-["restart", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.restart.ditroff", "keyword.control.directive.gnu.ditroff", "source.embedded.postscript"]
+["markrestart", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.restart.ditroff", "keyword.control.directive.gnu.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -647,7 +644,8 @@
 ["assertion", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.separator.key-value.colon.ditroff"],
 ["[", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.section.bracket.square.begin.ditroff"],
-["  ]", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "string.raw.unquoted.heredoc.ditroff"]
+["  ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff"],
+["]", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.section.bracket.square.end.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -657,7 +655,8 @@
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.separator.key-value.colon.ditroff"],
 ["[", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.section.bracket.square.begin.ditroff"],
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "variable.parameter.assertion-type.x.ditroff"],
-[" ]", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "string.raw.unquoted.heredoc.ditroff"]
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff"],
+["]", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.section.bracket.square.end.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -667,7 +666,8 @@
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.separator.key-value.colon.ditroff"],
 ["[", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.section.bracket.square.begin.ditroff"],
 ["y", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "variable.parameter.assertion-type.y.ditroff"],
-[" ]", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "string.raw.unquoted.heredoc.ditroff"]
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff"],
+["]", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.assertion.ditroff", "punctuation.section.bracket.square.end.ditroff"]
 ],[
 ["", "source.ditroff"]
 ],[
@@ -680,7 +680,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".auto-image", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["auto-image", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -688,7 +689,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".br", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["br", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -696,7 +698,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".ce", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["ce", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["0", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
@@ -706,7 +709,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".col", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["col", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -714,7 +718,10 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".eo.h", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["eo", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["h", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -722,7 +729,10 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".eo.tl", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["eo", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["tl", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -730,7 +740,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".eol", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["eol", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -738,7 +749,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".fi", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["fi", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -746,7 +758,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".in", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["in", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
@@ -755,7 +768,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".ll", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["ll", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
@@ -764,7 +778,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".po", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["po", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
@@ -773,7 +788,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".sp", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["sp", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -781,7 +797,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".ta", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["ta", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
@@ -790,7 +807,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".tab-te", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["tab-te", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -798,7 +816,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".tab-ts", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["tab-ts", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -806,7 +825,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".ti", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["ti", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -814,7 +834,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".tl", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["tl", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -822,7 +843,9 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-["eol.ce", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+["eol", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["ce", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -830,7 +853,7 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-["tab", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+["tab", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -838,7 +861,7 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-["tab", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["tab", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
@@ -847,7 +870,7 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-["tab0", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"]
+["tab0", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"]
 ],[
 ["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
@@ -855,7 +878,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".fi", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["fi", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["1", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
@@ -865,7 +889,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".rj", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["rj", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["0", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
@@ -875,7 +900,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".in", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["in", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["0", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
@@ -885,7 +911,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".ll", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["ll", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["1560", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
@@ -895,7 +922,8 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".po", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["po", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["0", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
@@ -905,61 +933,62 @@
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
 ["devtag", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.device.control.subcommand.ditroff"],
 [":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "punctuation.separator.key-value.colon.ditroff"],
-[".ta", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+[".", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["ta", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["120", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 ["  ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["240", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
 ["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["360", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["480", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 ["  ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["600", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 ["  ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["720", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 ["  ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["840", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[
 ["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["960", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["1080", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["1200", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["1320", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["1440", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
-["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff", "punctuation.definition.tag.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "entity.name.tag.ditroff"],
 [" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff"],
 ["1560", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.devtag.ditroff", "constant.numeric.ditroff"]
 ],[

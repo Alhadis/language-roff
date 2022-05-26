@@ -1,0 +1,198 @@
+[[
+["x", "source.ditroff", "meta.device-control.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.ditroff", "meta.device-control.lhs.ditroff"],
+["T", "source.ditroff", "meta.device-control.ditroff", "meta.typesetter-device.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.ditroff", "meta.typesetter-device.ditroff"],
+["pdf", "source.ditroff", "meta.device-control.ditroff", "meta.typesetter-device.ditroff", "support.constant.device-name.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.ditroff", "meta.device-control.lhs.ditroff"],
+["res", "source.ditroff", "meta.device-control.ditroff", "meta.device-resolution.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.ditroff", "meta.device-resolution.ditroff"],
+["1", "source.ditroff", "meta.device-control.ditroff", "meta.device-resolution.ditroff", "constant.numeric.roff"],
+[" ", "source.ditroff", "meta.device-control.ditroff", "meta.device-resolution.ditroff"],
+["2", "source.ditroff", "meta.device-control.ditroff", "meta.device-resolution.ditroff", "constant.numeric.roff"],
+[" ", "source.ditroff", "meta.device-control.ditroff", "meta.device-resolution.ditroff"],
+["3", "source.ditroff", "meta.device-control.ditroff", "meta.device-resolution.ditroff", "constant.numeric.roff"]
+],[
+["x", "source.ditroff", "meta.device-control.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.ditroff", "meta.device-control.lhs.ditroff"],
+["init", "source.ditroff", "meta.device-control.ditroff", "keyword.device.control.ditroff"]
+],[
+["", "source.ditroff"]
+],[
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+[" Heirloom Doctools", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["PDFMark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "keyword.device.control.subcommand.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.bookmark.ditroff"],
+["Bookmark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.bookmark.ditroff", "storage.type.bookmark.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.bookmark.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.bookmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t0", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.bookmark.ditroff", "string.unquoted.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.bookmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\tText", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.bookmark.ditroff", "string.unquoted.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["PDFMark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "keyword.device.control.subcommand.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff"],
+["Author", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "entity.name.field.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\tGunnar", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\tRitter", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["PDFMark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "keyword.device.control.subcommand.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff"],
+["Keywords", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "entity.name.field.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\tHeirloom Documentation Tools,", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\ttroff", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["PDFMark", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "keyword.device.control.subcommand.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff"],
+["Title", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "entity.name.field.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\tHeirloom Documentation Tools:", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\tQuickstart Guide", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.pdfmark.ditroff", "meta.pdfmark.ditroff", "string.unquoted.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["PS", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.heirloom.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+[" [", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t{Catalog}", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t<< /ViewerPreferences << /DisplayDocTitle true >> >>", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t/PUT", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+[" pdfmark", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["", "source.ditroff"]
+],[
+["", "source.ditroff"]
+],[
+["#", "source.ditroff", "comment.line.number-sign.ditroff", "punctuation.definition.comment.ditroff"],
+[" GNU Troff", "source.ditroff", "comment.line.number-sign.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["ps", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["file", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.control.directive.gnu.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "string.other.link.filename.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t/path/to/file.ps", "source.ditroff", "meta.device-control.x-command.ditroff", "string.other.link.filename.ditroff"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["ps", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["mdef", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.control.directive.gnu.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t1 =", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t(Insert code here.)", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["ps", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["def", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.control.directive.gnu.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t=", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t(Insert code here.)", "source.ditroff", "meta.device-control.x-command.ditroff", "source.embedded.postscript"]
+],[
+["x", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.operator.function.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["X", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff", "keyword.device.control.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff", "meta.device-control.lhs.ditroff"],
+["ps", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.device.control.subcommand.gnu.ditroff"],
+[":", "source.ditroff", "meta.device-control.x-command.ditroff", "punctuation.separator.key-value.colon.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["import", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.control.directive.gnu.ditroff"],
+["", "source.ditroff", "meta.device-control.x-command.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["./file.ps", "source.ditroff", "meta.device-control.x-command.ditroff", "string.other.link.filename.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["-", "source.ditroff", "meta.device-control.x-command.ditroff", "constant.language.alignment-type.ditroff", "punctuation.definition.dash.ditroff"],
+["L", "source.ditroff", "meta.device-control.x-command.ditroff", "constant.language.alignment-type.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["1", "source.ditroff", "meta.device-control.x-command.ditroff", "string.other.link.filename.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["2", "source.ditroff", "meta.device-control.x-command.ditroff", "constant.numeric.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["3", "source.ditroff", "meta.device-control.x-command.ditroff", "constant.numeric.ditroff"]
+],[
+["+", "source.ditroff", "meta.device-control.x-command.ditroff", "keyword.operator.line-continuation.gnu.ditroff"],
+["\t", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["4", "source.ditroff", "meta.device-control.x-command.ditroff", "string.other.link.filename.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["5", "source.ditroff", "meta.device-control.x-command.ditroff", "constant.numeric.ditroff"],
+[" ", "source.ditroff", "meta.device-control.x-command.ditroff"],
+["6", "source.ditroff", "meta.device-control.x-command.ditroff", "constant.numeric.ditroff"]
+]]

@@ -365,16 +365,16 @@ repository:
 					2: name: "keyword.control.suppress-output.end.gnu.ditroff"
 			},{
 				# Execute PostScript file
-				begin: "\\G\\s*(file)\\s+"
-				end:   "(?=^(?!\\+))"
+				begin: "\\G\\s*(file)(?:\\s+|$)"
+				end:   "(?=^(?!\\+))(?!\\G)"
 				beginCaptures:
 					1: name: "keyword.control.directive.gnu.ditroff"
 				contentName: "string.other.link.filename.ditroff"
 				patterns: [include: "#continueLine"]
 			},{
 				# Import PostScript graphic
-				begin: "\\G\\s*(import)\\s+"
-				end:   "(?=^(?!\\+))"
+				begin: "\\G\\s*(import)(?:\\s+|$)"
+				end:   "(?=^(?!\\+))(?!\\G)"
 				beginCaptures:
 					1: name: "keyword.control.directive.gnu.ditroff"
 				patterns: [include: "#xImportParams"]
@@ -392,7 +392,7 @@ repository:
 				match: "\\G\\s*(xrev)\\b"
 			},{
 				# Import PDF graphic
-				begin: "\\G\\s*(pdfpic)\\s+"
+				begin: "\\G\\s*(pdfpic)(?:\\s+|$)"
 				end:   "(?=^(?!\\+))"
 				beginCaptures:
 					1: name: "keyword.control.directive.gnu.ditroff"
@@ -404,12 +404,13 @@ repository:
 				end:   "(?=^(?!\\+))"
 				beginCaptures:
 					1: name: "keyword.control.directive.gnu.ditroff"
-					2: name: "source.embedded.postscript"
-					3: patterns: [include: "source.postscript"]
+					3: name: "source.embedded.postscript"
+					4: patterns: [include: "source.postscript"]
+				patterns: [include: "#continueLine"]
 			},{
 				# PDF transition
 				name:  "meta.transition-settings.ditroff"
-				begin: "\\G\\s*(transition)\\s+"
+				begin: "\\G\\s*(transition)(?:\\s+|$)"
 				end:   "(?=^(?!\\+))"
 				beginCaptures:
 					1: name: "keyword.control.directive.gnu.ditroff"
@@ -436,20 +437,22 @@ repository:
 			patterns: [{
 				# Bookmark: [level=0] …name
 				name:  "meta.bookmark.ditroff"
-				begin: "\\G\\s*(Bookmark(?:Closed)?)(?:\\s+(\\d+))?\\s+"
+				begin: "\\G\\s*(Bookmark(?:Closed)?)(?:\\s+(\\d+))?(?:\\s+|$)"
 				end:   "(?=^(?!\\+))"
 				beginCaptures:
 					1: name: "storage.type.bookmark.ditroff"
 					2: name: "constant.numeric.integer.level.ditroff"
 				contentName: "string.unquoted.ditroff"
+				patterns: [include: "#continueLine"]
 			},{
 				# Anything else: [key] …value
 				name:  "meta.pdfmark.ditroff"
-				begin: "\\G\\s*(\\S+)\\s+"
+				begin: "\\G\\s*(\\S+)(?:\\s+|$)"
 				end:   "(?=^(?!\\+))"
 				contentName: "string.unquoted.ditroff"
 				beginCaptures:
 					1: name: "entity.name.field.ditroff"
+				patterns: [include: "#continueLine"]
 			}, include: "#continueLine"]
 		},{
 			# grotty(1) directives
@@ -495,7 +498,10 @@ repository:
 			beginCaptures:
 				1: name: "storage.type.paper-size.ditroff"
 				2: name: "punctuation.separator.key-value.equals-sign.ditroff"
-			patterns: [include: "source.ditroff.desc#paperSizes"]
+			patterns: [
+				{include: "source.ditroff.desc#paperSizes"}
+				{include: "#continueLine"}
+			]
 		},{
 			# Semantic tag information (devtags)
 			name:  "meta.devtag.ditroff"
@@ -511,7 +517,10 @@ repository:
 				name: "entity.name.tag.ditroff"
 				match: "\\.?[^\\s.]+(?:\\.[^\\s.]+)*+"
 				captures:
-					0: name: "punctuation.definition.tag.ditroff"
+					0: patterns: [
+						name: "punctuation.definition.tag.ditroff"
+						match: "\\."
+					]
 			}]
 		},{
 			# Semantic tag information (infer(1) directives)
@@ -565,7 +574,7 @@ repository:
 				2: name: "punctuation.separator.key-value.colon.ditroff"
 			patterns: [{
 				begin: "\\G\\s*(\\[)(x|y)?"
-				end:   "\\*(\\])|(?=^(?!\\+))"
+				end:   "\\s*(\\])|(?=^(?!\\+))"
 				beginCaptures:
 					1: name: "punctuation.section.bracket.square.begin.ditroff"
 					2: name: "variable.parameter.assertion-type.$2.ditroff"
@@ -671,11 +680,12 @@ repository:
 	xImportParams:
 		patterns: [{
 			# Filename + Alignment
-			match: "(?:\\G|^)(\\S+)(?:\\s+((-)[LCR]))?"
+			match: "(?:\\G|^(\\+[ \\t]+)?)(\\S+)(?:\\s+((-)[LCR]))?"
 			captures:
-				1: name: "string.other.link.filename.ditroff"
-				2: name: "constant.language.alignment-type.ditroff"
-				3: name: "punctuation.definition.dash.ditroff"
+				1: patterns: [include: "#continueLine"]
+				2: name: "string.other.link.filename.ditroff"
+				3: name: "constant.language.alignment-type.ditroff"
+				4: name: "punctuation.definition.dash.ditroff"
 		},{
 			name: "constant.numeric.ditroff"
 			match: "[-+]?(?:\\d*\\.\\d+|\\d+)"
