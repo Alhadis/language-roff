@@ -79,6 +79,7 @@ firstLineMatch: """(?x)
 limitLineLength: no
 patterns: [{
 	# Improve display of postprocessor input that's been misclassified as Roff
+	name:  "source.embedded.ditroff"
 	begin: "\\A(?=x\\s*T\\s+(?:[a-z][-a-zA-Z0-9]*)\\s*$)"
 	end:   "(?=A)B"
 	patterns: [include: "source.ditroff"]
