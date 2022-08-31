@@ -91,6 +91,20 @@ atom-notifications{
 		&.syntax--entity.syntax--glyph      { color: #a074c4; }
 		&.syntax--keyword.syntax--function  { color: #a074c4; }
 	}
+	.syntax--context{
+		&.syntax--string.syntax--other      { color: #9ac4d7; }
+		&.syntax--message.syntax--error     { color: #cc3e44; }
+		&.syntax--invalid{
+			&.syntax--broken,
+			&.syntax--unimplemented{
+				background: none;
+				color: #cc3e44;
+			}
+		}
+		&.syntax--sublimelinter.syntax--mark.syntax--warning{
+			color: #ffa657;
+		}
+	}
 	.syntax--variable.syntax--other.syntax--user-defined.syntax--pic{
 		color: #7494a3;
 	}

@@ -23,6 +23,10 @@
 		commentStart: "# "
 		tabLength: 8
 
+".source.context":
+	editor:
+		commentStart: "% "
+
 ".source.gremlin":
 	editor:
 		commentStart: ""

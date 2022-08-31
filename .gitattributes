@@ -1,1 +1,6 @@
 *.pikchr linguist-language=Pic
+
+# GitHub doesn't support these formats, so we abuse its language
+# classification system in the name of superior highlighting.
+*.ditroff linguist-language=Roff
+*.sqtroff linguist-language=Roff

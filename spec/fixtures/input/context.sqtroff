@@ -1,0 +1,104 @@
+X ps 300 1 1
+Y P default letter 2550 3300 0 0 0 0 2550 3300
+x a 20
+x b 10
+x bd 2 3
+x cs 10 20
+x Slant 45
+x Height 20
+
+N n l 3 1234
+= (This is a test.)
+n
+
+N n l 3 1134
+= (This )
+h 50
+f 10 TI
+= (is)
+h 50
+f 10 TR
+= ( a test.)
+n
+
+X impr 300 1 1
+Y P default letter 2550 3300 21 17 56 25 2400 3210
+P 1
+V 50
+O 289
+w 12
+L 1950
+I 0
+N b 1 6 1432
+f 10 TR
+k 0 1
+D w 0
+= (This is a sample line of text.)
+n
+N b 1 6 1308
+= (This is another sample line of text.)
+n
+N b 1 7 1230
+= (This is still another sample line of text.)
+n
+p 3300
+
+% Ordinary comment
+% D message
+% E Error message
+% I fp 2 HelveticaBold
+% T Trace line
+% W Warning message
+
+% Line drawing
+D a 2 1 2 0
+D b 100 100
+D c 500
+D e 500 700
+D f 99
+D l 100 500
+D t 7
+D w 128
+D ~ 0 0 100 100
+
+E cmd tr a-z A-Z
+E nl on
+E oc *
+E < /dev/null
+e Text passed directly to device
+
+f 12 Times New Roman
+h 140
+v -20
+I 4
+k 120 1
+L 77
+O 24
+
+N f j 8 480
+R h 10 ru
+R v 10 rn
+R t h 20
+R t v 10
+s -2
+V 15
+w 240
+= (O)
+z
+= (/)
+n
+
+
+z Invalid, unused arguments
+
+% A sentence logically can't be contained inside a bigger
+% sentence, so a nested line command doesn't make sense.
+N n l 2 840
+N n l 2 840
+n
+
+% An “n” without a corresponding “N” isn't valid either
+n
+
+% The following line isn't a valid Context command
+yeah nah garn m8

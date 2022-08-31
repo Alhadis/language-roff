@@ -83,6 +83,11 @@ patterns: [{
 	begin: "\\A(?=x\\s*T\\s+(?:[a-z][-a-zA-Z0-9]*)\\s*$)"
 	end:   "(?=A)B"
 	patterns: [include: "source.ditroff"]
+},{
+	name:  "source.embedded.context"
+	begin: "\\A(?=X\\s+(?:495|crt|hp|impr|ps)(?:\\s+\\d+){3}[ \\t]*$)"
+	end:   "(?=A)B"
+	patterns: [include: "source.context"]
 }, include: "#main"]
 injections:
 	"L:text.roff":
