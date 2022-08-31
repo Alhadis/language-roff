@@ -14,9 +14,9 @@ Coverage
 * Every preprocessor: [`chem`], [`dformat`], [`eqn`], [`grap`], [`ideal`], [`pic`], [`refer`], [`tbl`]
 * GNU Troff extensions
 * The ancient [RUNOFF] language, with support for [OpenVMS DSR]
+* Intermediate representations: [`ditroff`], SoftQuad Context
 
-
-[Referenced links]:_____________________________________________________________________
+<!-- Referenced Links ----------------------------------------------------------------->
 [`man`]:       https://man7.org/linux/man-pages/man7/groff_man.7.html
 [`mdoc`]:      https://man.openbsd.org/mdoc.7
 [`me`]:        https://man7.org/linux/man-pages/man7/groff_me.7.html
@@ -32,5 +32,6 @@ Coverage
 [`pic`]:       https://en.wikipedia.org/wiki/Pic_language
 [`refer`]:     https://en.wikipedia.org/wiki/Refer_(software)
 [`tbl`]:       https://en.wikipedia.org/wiki/Tbl
+[`ditroff`]:   https://man7.org/linux/man-pages/man7/ditroff.7.html
 [RUNOFF]:      https://github.com/bwarken/RUNOFF_historical/
 [OpenVMS DSR]: http://h20565.www2.hpe.com/hpsc/doc/public/display?docId=emr_na-c04623260
