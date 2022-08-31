@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Fixed:__ Parameter highlighting terminated at the letter `R` in Atom
 * __Fixed:__ refer(1)-like markup inside macro definitions now truncated
 * __Fixed:__ Various [inaccuracies][1] related to Roff modeline matching
+* __Improved:__ Handling of postprocessor input misclassified as Roff
 * __Improved:__ Colour of ASCII control characters in dark themes
 * __Improved:__ Accuracy and granularity of Pic highlighting
 
