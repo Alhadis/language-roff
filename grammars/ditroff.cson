@@ -425,6 +425,44 @@ repository:
 					{name: "support.constant.motion.ditroff",      match: "\\b(?:I|O)\\b"}
 					{name: "constant.numeric.ditroff",             match: "[-+]?[\\d.]+"}
 					{include: "#continueLine"}]
+			},{
+				# Assign name to PDF page
+				name:  "meta.page-name.ditroff"
+				begin: "\\G\\s*(pagename)(?:$|\\s+)[ \\t]*"
+				end:   "(?=^(?!\\+))"
+				beginCaptures:
+					1: name: "keyword.control.directive.gnu.ditroff"
+				patterns: [{
+					name: "entity.name.page.ditroff"
+					match: "\\G(\\S.*?)(?=[ \\t]*$)"
+				}, include: "#continueLine"]
+			},{
+				# Switch page to named destination
+				name:  "meta.switch-to-page.ditroff"
+				begin: "\\G\\s*(switchtopage)(?:\\s+(after|before))?(?=$|\\s)[ \\t]*"
+				end:   "(?=^(?!\\+))"
+				beginCaptures:
+					1: name: "keyword.control.directive.gnu.ditroff"
+					2: name: "support.constant.other.insertion-location.gnu.ditroff"
+				patterns: [{
+					name: "entity.name.page.ditroff"
+					match: "\\G(\\S.*?)(?=[ \\t]*$)"
+				}, include: "#continueLine"]
+			},{
+				# Draw background rectangle (gropdf(1) v1.23.0)
+				name:  "meta.background-rectangle.ditroff"
+				begin: "\\G\\s*(background)(?:\\s+|$)"
+				end:   "(?=^(?!\\+))"
+				beginCaptures:
+					1: name: "keyword.control.directive.gnu.ditroff"
+				patterns: [
+					match: "\\G\\s*(?:(off|footnote)|((?:page|fill|box)+))\\b"
+					captures:
+						1: name: "keyword.control.subcommand.$1.gnu.ditroff"
+						2: name: "support.constant.other.background-type.gnu.ditroff"
+					
+					{name: "constant.numeric.ditroff", match: "[-+]?[\\d.]+"}
+					{include: "#continueLine"}]
 			}, include: "#continueLine"]
 		},{
 			# PDFMark (Heirloom Doctools syntax)

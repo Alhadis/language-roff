@@ -722,7 +722,7 @@ repository:
 			
 			# .PS/.PE: Pic
 			begin: "^([.'])[ \\t]*(PS)\\b([\\d \\t]*(?:#.*)?)?(\\\\[#\"].*)?$"
-			end:   "^([.'])[ \\t]*(P[EF])\\b"
+			end:   "^([.'])[ \\t]*(P[EFY])\\b"
 			contentName: "source.embedded.pic"
 			patterns: [include: "$self"]
 			beginCaptures:

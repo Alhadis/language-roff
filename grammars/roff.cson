@@ -267,7 +267,7 @@ repository:
 				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
 				|cp|devicem|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
 				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
-				|mso|nroff|opena|open|pev|pnr|psbb|ptr|pvs|rchar|rfschar|rj
+				|mso|m?soquiet|nroff|opena|open|pev|pnr|psbb|ptr|pvs|rchar|rfschar|rj
 				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
 				|substring|tkf|tm1|tmc|trf|trin|trnt|troff|unformat|vpt|warnscale|warn
 				|writec|writem|write)
@@ -499,8 +499,8 @@ repository:
 				3: name: "storage.type.var.roff"
 				4: patterns: [
 					{match: "%|ct|dl|dn|dw|dy|ln|mo|nl|sb|st|yr|c\\.",   name: "support.variable.predefined.register.roff"}
-					{match: "\\$\\$|\\.[$aAbcdfFhHijklLnopRTstuvVwxyz]", name: "invalid.illegal.readonly.register.roff"}
-					{match: "\\.[CgmMOPUxyY]",                           name: "invalid.illegal.readonly.register.gnu.roff"}
+					{match: "\\$\\$|\\.[$AFHLRTVa-dfh-lnops-z]\\b",      name: "invalid.illegal.readonly.register.roff"}
+					{match: "\\.(?:cp|nm|[CgmMOPUxyY])\\b",              name: "invalid.illegal.readonly.register.gnu.roff"}
 					name: "entity.name.register.roff"
 					match: ".+"
 					captures:
@@ -2286,6 +2286,16 @@ repository:
 			patterns: [include: "#params"]
 		},{
 			
+			# GNU Troff extensions (v1.23.0+)
+			name: "meta.function.${2:/downcase}.me.macro.gnu.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(PF|ld)(?=\\s)"
+			end:   "(?<!\\\\)$|(?=\\\\E?\")"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.roff"
+				2: name: "entity.function.name.roff"
+			patterns: [include: "#params"]
+		},{
+			
 			# .(l: List
 			begin: "(?:^|\\G)([.'])[ \\t]*(\\(l)(?=\\s)"
 			end:   "^([.'])[ \\t]*(\\)l)(?=\\s)"
@@ -2596,6 +2606,26 @@ repository:
 				3: patterns: [include: "#param-group"]
 				4: patterns: [include: "#escapes"]
 			patterns: [include: "#underline-first"]
+		},{
+			
+			# .MR: Manpage reference (GNU/Plan9 extension)
+			name: "meta.function.cross-reference.man.macro.gnu.roff"
+			begin: "(?:^|\\G)([.'])[ \\t]*(MR)(?=\\s|\\\\E?[\"#])"
+			end:   "(?<!\\\\)(?=$)|(?=\\\\E?\")"
+			beginCaptures:
+				1: name: "punctuation.definition.macro.gnu.roff"
+				2: name: "entity.function.name.gnu.roff"
+			patterns: [{
+				match: """(?x)
+					\\G \\s+ ([^\\s\\\\]+)    # Page title
+					(?: \\s+ ([^\\s\\\\]+))?  # Manual section
+					(?: \\s+ ([^\\s\\\\]+))?  # Trailing text
+				"""
+				captures:
+					1: name: "variable.reference.page-title.roff"
+					2: name: "constant.numeric.manual-section.roff"
+					3: name: "string.unquoted.trailing-text.roff"
+			}, include: "#param-group"]
 		},{
 			
 			# .UR/.UE: URL (GNU extension)

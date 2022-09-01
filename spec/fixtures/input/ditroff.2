@@ -51,7 +51,12 @@ x X pdf: markend
 x X pdf: marksuspend
 x X pdf: markrestart
 x X pdf: transition SLIDE Blinds 1.645 H O 50 42.1 true
+x X pdf: background pagefillbox 0 0 100 100 1.5
+x X pdf: background off
+x X pdf: background footnote bottom
 x X tty: sgr 1
+x X pdf: pagename foo
+x X pdf: switchtopage after foo
 
 x X html:<a name="#foo">Foo</a>
 x X html</p>: <bgsound> …could

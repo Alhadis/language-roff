@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Support for SoftQuad Context (SQTroff intermediate output)
 * __Added:__ Highlighting for [OSC 8] terminal hyperlink device controls
 * __Added:__ Highlighting for [dpic] and [Pikchr] language extensions
+* __Added:__ Highlighting for new requests added in [Groff v1.23.0][2]
 * __Added:__ Embedded shell highlighting to `.pi`, `.pso`, and `.sy`
 * __Changed:__ `.device` requests now highlight device control functions
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
@@ -23,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Improved:__ Accuracy and granularity of Pic highlighting
 
 [1]: https://github.com/github/linguist/pull/5271
+[2]: http://git.savannah.gnu.org/cgit/groff.git/tree/NEWS?id=888464a#n10
 [dpic]: https://gitlab.com/aplevich/dpic
 [OSC 8]: https://lists.gnu.org/archive/html/groff/2021-10/msg00000.html
 [pikchr]: https://pikchr.org/home/doc/trunk/doc/differences.md
