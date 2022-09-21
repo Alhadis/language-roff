@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Added:__ Highlighting for new requests added in [Groff v1.23.0][2]
 * __Added:__ Embedded shell highlighting to `.pi`, `.pso`, and `.sy`
 * __Changed:__ `.device` requests now highlight device control functions
+* __Changed:__ Man page references now exclude leading `man:` prefixes
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
 * __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests
 * __Fixed:__ Inconsistent command highlighting in `.do` requests

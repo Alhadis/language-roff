@@ -5,7 +5,14 @@ patterns: [{
 	name: "manref"
 	match: """(?xi)
 		# Subject
-		([^\\s()<>/\"'`{}!&*\\#?\\\\]+)
+		((?:
+			[^:\\s()<>/\"'`{}!&*\\#?\\\\]
+			|
+			# Avoid matching scheme component of “man:man(1)” URLs
+			(?-i: (?<!man)
+			|     (?<=[-\\w]man)
+			) :
+		)+)
 		
 		# Section
 		((?i)
