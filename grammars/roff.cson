@@ -988,7 +988,7 @@ repository:
 			
 			# "Parametric" escape sequences supported in Groff (GNU)
 			name: "constant.character.escape.function.check-identifier.gnu.roff"
-			begin: "((?:((\\\\)E)|(\\\\))(?!s[-+]?\\(?\\d)[ABRsZ])((.))"
+			begin: "((?:((\\\\)E)|(\\\\))(?!s[-+]?\\(?[-+]?\\d)[ABRsZ])((.))"
 			end:   "(\\6)|(?<!\\\\)(?=$)"
 			contentName: "string.other.roff"
 			patterns: [include: "#escapes"]
@@ -1551,16 +1551,18 @@ repository:
 				5: name: "variable.parameter.roff", patterns: [include: "#c0"]
 		},{
 			
-			# \sN, \s±N - Point-size change function; also \s(NN, \s±(NN
+			# \sN, \s±N - Point-size change function; also \s(NN, \s±(NN, \s(±NN
 			name: "constant.character.escape.function.point-size.roff"
-			match: "((?:((\\\\)E)|(\\\\))s[-+]?(\\()?)(\\d+)"
+			match: "((?:((\\\\)E)|(\\\\))s([-+]?)(\\()?)((?<=s\\()[-+])?(\\d+)"
 			captures:
 				1: name: "entity.name.roff"
 				2: name: "constant.character.escape.current-escape-char.gnu.roff"
 				3: name: "punctuation.definition.escape.roff"
 				4: name: "punctuation.definition.escape.roff"
-				5: name: "punctuation.definition.brace.roff"
-				6: name: "variable.parameter.roff"
+				5: name: "keyword.operator.arithmetic.roff"
+				6: name: "punctuation.definition.brace.roff"
+				7: name: "keyword.operator.arithmetic.roff"
+				8: name: "variable.parameter.roff"
 		},{
 			
 			# \zC - Print "C" with zero width (without spacing)
