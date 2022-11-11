@@ -655,7 +655,7 @@ repository:
 		patterns: [{
 			
 			# .ul/.cu 0: Empty request/noop
-			name: "meta.request.$3.roff"
+			name: "meta.function.request.$3.roff"
 			match: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(ul|cu)\\s*(0+)(?:(?!\\\\E?\")\\D)*(?=\\s|$)(.*)$"
 			captures:
 				1: name: "punctuation.definition.function.request.roff"
@@ -667,10 +667,10 @@ repository:
 		}, {
 			
 			# Underline following line
-			name: "meta.request.$3.roff"
 			begin: "(?:^|\\G)([.'])[ \\t]*(?:(do)[ \\t]+)?(ul|cu)(?=\\s|$|\\\\)(.*?)$(?!R)\\R?"
 			end:   "(?!\\G)(?<!\\\\)$"
 			beginCaptures:
+				0: name: "meta.function.request.$3.roff"
 				1: name: "punctuation.definition.function.request.roff"
 				2: name: "entity.function.name.roff"
 				3: name: "entity.function.name.roff"
