@@ -986,9 +986,28 @@ repository:
 				1: name: "punctuation.section.end.bracket.square.roff"
 		},{
 			
+			# \s±'…' - Variable-length point-size adjustment (GNU)
+			name: "constant.character.escape.function.point-size.gnu.roff"
+			begin: "((?:((\\\\)E)|(\\\\))s([-+])?)((.))"
+			end:   "(\\6)|(?<!\\\\)(?=$)"
+			contentName: "variable.parameter.roff"
+			patterns: [include: "#escapes"]
+			beginCaptures:
+				1: name: "entity.name.function.roff"
+				2: name: "constant.character.escape.current-escape-char.gnu.roff"
+				3: name: "punctuation.definition.escape.roff"
+				4: name: "punctuation.definition.escape.roff"
+				5: name: "keyword.operator.arithmetic.roff"
+				6: name: "string.other.roff"
+				7: name: "punctuation.definition.begin.roff"
+			endCaptures:
+				0: name: "string.other.roff"
+				1: name: "punctuation.definition.end.roff"
+		},{
+			
 			# "Parametric" escape sequences supported in Groff (GNU)
 			name: "constant.character.escape.function.check-identifier.gnu.roff"
-			begin: "((?:((\\\\)E)|(\\\\))(?!s[-+]?\\(?[-+]?\\d)[ABRsZ])((.))"
+			begin: "((?:((\\\\)E)|(\\\\))(?!s[-+]?\\(?[-+]?\\d)[ABRZ])((.))"
 			end:   "(\\6)|(?<!\\\\)(?=$)"
 			contentName: "string.other.roff"
 			patterns: [include: "#escapes"]

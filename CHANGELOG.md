@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 [Staged]
 ------------------------------------------------------------------------
 * __Added:__ Support for SoftQuad Context (SQTroff intermediate output)
+* __Added:__ Highlighting for variable-length point-size adjustments
 * __Added:__ Highlighting for [OSC 8] terminal hyperlink device controls
 * __Added:__ Highlighting for [dpic] and [Pikchr] language extensions
 * __Added:__ Highlighting for new requests added in [Groff v1.23.0][2]
