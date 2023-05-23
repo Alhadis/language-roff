@@ -1,7 +1,7 @@
 name: "Ditroff (Troff Intermediate Output)"
 scopeName: "source.ditroff"
 fileTypes: ["ditroff"]
-firstLineMatch: "^x\\s*T\\s+(cat|dvi|html|lbp|lj4|ps|post|pdf|ascii|cp1047|latin1|utf8?|X75|X75-12|X100|X100-12)(?=\\s|$)"
+firstLineMatch: "^x\\s*T\\s+(ascii|cat|cp1047|cx|dp|dvi|html|ip|latin1|lbp|lj4|lps|lw|pdf|post|psc?|qms|ter|utf8?|va|vp|X(?:11|100|75)(?:-12)?)(?=\\s|$)"
 patterns: [include: "#main"]
 
 repository:
