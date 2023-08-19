@@ -59,6 +59,10 @@ firstLineMatch: """(?x)
 	| \\A\\.sp\\s\\d+[icPmnpuv]\\n\\.PS$
 	|
 	
+	# Documentation block
+	^\\.ig[ \\t]*$
+	|
+
 	# Modeline
 	(?:
 		# Emacs
