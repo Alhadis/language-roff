@@ -101,7 +101,7 @@ repository:
 		},{
 			# Pikchr extensions
 			name: "entity.other.attribute-name.$1.pikchr.pic"
-			match: "\\b(aligned|big|bold|fit|italic|small|(?:thickness|color|fill)(?!\\s*(?:[-:+/*%=!<>]?=|<|>))|thick|thin)\\b"
+			match: "\\b(aligned|big|bold|fit|italic|mono(?:space)?|small|(?:thickness|color|fill)(?!\\s*(?:[-:+/*%=!<>]?=|<|>))|thick|thin)\\b"
 		},{
 			# Dpic implements an attribute for scaling objects using multipliers: `box scaled 1.5`
 			name:  "entity.other.attribute-name.$1.dpic.pic"
