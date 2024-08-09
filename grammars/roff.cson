@@ -23,7 +23,7 @@ fileTypes: [
 	"mom"
 	"n", "nr"
 	"nroff"
-	"roff", "rof"
+	"roff", "rof", "ro"
 	"tmac", "tmac-u", "tmac.in"
 	"toc.entries"
 	"tr"
