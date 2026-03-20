@@ -65,8 +65,8 @@ repository:
 			# Standard attributes
 			name: "entity.other.attribute-name.$1.pic"
 			match: "(?x)\\b
-				(chop|cw|dashed|diameter|diam|dotted|down|height|ht|invisible
-				|invis|left|radius|rad|right|same|up|width|wid)\\b"
+				(chop|cw|dashed|diameter|diam|dotted|down|figname|height|ht
+				|invisible|invis|left|radius|rad|right|same|up|width|wid)\\b"
 		},{
 			# Colours (GNU/Pikchr extension)
 			name:  "entity.other.attribute-name.$1.pic"
@@ -393,7 +393,7 @@ repository:
 		},{
 			# Pikchr extensions
 			name: "variable.language.global.pikchr.pic"
-			match: "\\b((?:left|right|top|bottom)?margin|charht|charwid|color|fill|fontscale|thickness)\\b"
+			match: "\\b((?:left|right|top|bottom)?margin|charht|charwid|color|diamond(?:ht|wid)|fill|fontscale|thickness)\\b"
 		}]
 
 
@@ -607,11 +607,11 @@ repository:
 	primitives:
 		patterns: [{
 			name: "storage.type.primitive.$1.pic"
-			match: "\\b(box|line|arrow|circle|ellipse|arc|move|spline|print|command|plot)\\b"
+			match: "\\b(box|line|arrow|circle|ellipse|arc|move|spline|polygon|print|command|plot)\\b"
 		},{
 			# New object types (Pikchr extensions)
 			name: "storage.type.primitive.$1.pikchr.pic"
-			match: "\\b(oval|cylinder|file|dot|text)\\b"
+			match: "\\b(oval|diamond|cylinder|file|dot|text)\\b"
 		}]
 
 
