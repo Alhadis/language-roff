@@ -268,13 +268,13 @@ repository:
 			# GNU extensions
 			name: "meta.function.request.$3.gnu.roff"
 			begin: """(?x) (?:^|\\G)([.'])[ \\t]* (?:(do)[ \\t]+)?
-				(aln|als|asciify|backtrace|blm|boxa|box|brp|cflags|chop|close|composite|color
+				(aln|als|asciify|backtrace|blm|boxa?|brp|cflags|chop|close|composite|color
 				|cp|devicem|ecs|ecr|evc|fam|fchar|fcolor|fschar|fspecial|ftr|fzoom
-				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hym|hys|itc|kern|length|linetabs|lsm
-				|mso|m?soquiet|nroff|opena|open|pev|pnr|psbb|ptr|pvs|rchar|rfschar|rj
-				|rnn|schar|shc|shift|sizes|special|spreadwarn|stringdown|stringup|sty
-				|substring|tkf|tm1|tmc|trf|trin|trnt|troff|unformat|vpt|warnscale|warn
-				|writec|writem|write)
+				|gcolor|hcode|hla|hlm|hpfa|hpfcode|hpf|hydefault|hym|hys|itc|kern|length
+				|linetabs|lsm|mso|m?soquiet|nroff|opena|open|pchar|pcolor|pcomposite|pev|pfp
+				|pftr|phw|pline|pstream|pwh|pnr|psbb|ptr|pvs|rchar|rfschar|rj|rnn|schar|shc
+				|shift|sizes|special|spreadwarn|stringdown|stringup|sty|substring|taga?|tkf
+				|tm1|tmc|trf|trin|trnt|troff|unformat|vpt|warnscale|warn|writec|writem|write)
 				(?=\\s|\\\\E?["#])"""
 			end: "(?<!\\\\)(?=(?!R)\\R|$)|(?=\\\\E?\")"
 			beginCaptures:
