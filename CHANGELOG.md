@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org).
 * __Changed:__ Man page references now exclude leading `man:` prefixes
 * __Changed:__ Texinfo documents now exempted from man page hyperlinking
 * __Fixed:__ `{` not expanding into `\{\ … .\}` inside `.while` requests
+* __Fixed:__ Broken line continuations following arithmetical conditions
 * __Fixed:__ Inconsistent command highlighting in `.do` requests
 * __Fixed:__ Highlighting of `\s(±NN` inconsistent with `\s±(NN`
 * __Fixed:__ Conditional requests not highlighting the commands they run
