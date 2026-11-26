@@ -76,13 +76,7 @@ repository:
 			captures:
 				1: name: "entity.type.var.ditroff.desc"
 				2: name: "keyword.operator.ditroff.desc"
-		},{
-			name: "comment.line.double-dash.ditroff.desc"
-			begin: "(?<=\\s)--(?!-)"
-			end:   "(?=$)"
-			beginCaptures:
-				0: name: "punctuation.definition.comment.ditroff.desc"
-		}, include: "#comment"]
+		},{include: "#charset-comment"}, include: "#comment"]
 	
 	"charset-metrics":
 		patterns: [
@@ -109,23 +103,22 @@ repository:
 				match: """(?x)
 					\\G \\s+([-\\d]+(?:,[-\\d]+){0,5}) # Metrics
 					\\s+ (\\d)                         # Glyph type
-					(\\s+ -- \\s* [^\\r\\n]+?)?        # Comment
+					(\\s+ --+ \\s* [^\\r\\n]+?)?        # Comment
 					(?=\\s*$)
 				"""
 				captures:
 					1: patterns: [include: "#charset-metrics"]
 					2: name: "constant.numeric.integer.ditroff.desc"
-					3: patterns: [include: "#charset-range-comment"]
-			},{include: "#charset-range-comment"}, include: "#comment"]
+					3: patterns: [include: "#charset-comment"]
+			},{include: "#charset-comment"}, include: "#comment"]
 		}]
 
-	# Distinct from ordinary `charset` comments in that more than two dashes are legal(?)
-	"charset-range-comment":
-		name:  "comment.line.multi-dash.ditroff.desc"
-		begin: "\\s*(-{2,})[ \\t]*"
-		end:   "$"
+	"charset-comment":
+		name:  "comment.line.double-dash.ditroff.desc"
+		begin: "(?<=\\s)(?<!^)--+"
+		end:   "(?=$)"
 		beginCaptures:
-			1: name: "punctuation.definition.comment.ditroff.desc"
+			0: name: "punctuation.definition.comment.ditroff.desc"
 	
 	comment:
 		name: "comment.line.number-sign.ditroff.desc"
@@ -160,9 +153,16 @@ repository:
 				1: name: "entity.type.var.ditroff.desc"
 			patterns: [include: "#paperSizes"]
 		},{
+			# grolbp(1) DESC's “orientation” field
+			name: "meta.orientation.ditroff.desc"
+			match: "^\\s*(orientation)(?:\\s+(landscape|portrait))?(?=$|\\s|#)"
+			captures:
+				1: name: "entity.type.var.ditroff.desc"
+				2: name: "constant.language.orientation.$2.ditroff.desc"
+		},{
 			begin: """(?x)^\\s*
 				(afmfonts|allpunct|anysize|biggestfont|broken|checksum|designsize|encoding|family
-				|fonts|hor|image_generator|internalname|lc_ctype|name|orientation|paper(?:length|width)
+				|fonts|hor|image_generator|internalname|lc_ctype|name|paper(?:length|width)
 				|pass_filenames|postpro|prepro|print|res|sizescale|slant|spacewidth|spare\\d|special
 				|styles|tcommand|unicode|unitwidth|unscaled_charwidths|use_charnames_in_special|vert
 				|X11|(?:lbp|pcl)[a-z]+)
@@ -170,11 +170,16 @@ repository:
 			end: "(?=$|#)"
 			beginCaptures:
 				1: name: "entity.type.var.ditroff.desc"
-			patterns: [
-				{name: "constant.numeric.ditroff.desc",   match: "-?[\\d.]+(?=\\s|$)"}
-				{name: "variable.parameter.ditroff.desc", match: "\\S+"}
-			]
+			patterns: [include: "#fieldArgs"]
 		}]
+
+
+	# Stuff matched after a DESC field's name
+	fieldArgs:
+		patterns: [
+			{name: "constant.numeric.ditroff.desc",   match: "-?[\\d.]+(?=\\s|$)"}
+			{name: "variable.parameter.ditroff.desc", match: "\\S+"}
+		]
 
 
 	fontPath:
