@@ -40,6 +40,10 @@ firstLineMatch: """(?x)
 	^\\.(?:TH|Dd|Dt)[ \\t]+\\S
 	|
 	
+	# File with tbl(7) markup on first or second line
+	^(?:\\.(?!TS\\s)\\w[^\\n]*\\n)?\\.TS[ \\t]*$
+	|
+	
 	# $Mdocdate$ keyword in comment or .Dd macro
 	(?:^|\\s)"?\\$Mdocdate(?::.*?)?\\$
 	|
