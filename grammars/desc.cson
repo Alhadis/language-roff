@@ -42,6 +42,7 @@ repository:
 			{include: "#foundry"}
 			{include: "#comment"}
 			{include: "#charset"}
+			{include: "#charset-range"}
 			{include: "#fields"}
 			{include: "#kernpairs"}
 			{include: "#fontPath"}
@@ -50,7 +51,7 @@ repository:
 	charset:
 		name: "meta.charset.ditroff.desc"
 		begin: "^(charset)\\s*$"
-		end: "^(?=kernpairs|\\s*$)"
+		end: "^(?=(?:kernpairs|charset(?:-range)?)(?:$|\\s)|\\s*$)"
 		beginCaptures:
 			1: name: "keyword.control.section.ditroff.desc"
 		patterns: [{
@@ -65,10 +66,7 @@ repository:
 			captures:
 				1: name: "entity.name.glyph.ditroff.desc"
 				2: name: "punctuation.definition.unnamed.glyph.ditroff.desc"
-				3: patterns: [
-					{match: "-?\\d+", name: "constant.numeric.integer.ditroff.desc"}
-					{match: ",",      name: "punctuation.delimiter.comma.ditroff.desc"}
-				]
+				3: patterns: [include: "#charset-metrics"]
 				4: name: "constant.numeric.integer.ditroff.desc"
 				5: name: "constant.numeric.integer.ditroff.desc"
 				6: name: "variable.other.ditroff.desc"
@@ -85,6 +83,49 @@ repository:
 			beginCaptures:
 				0: name: "punctuation.definition.comment.ditroff.desc"
 		}, include: "#comment"]
+	
+	"charset-metrics":
+		patterns: [
+			{match: "-?\\d+", name: "constant.numeric.integer.ditroff.desc"}
+			{match: ",",      name: "punctuation.delimiter.comma.ditroff.desc"}
+		]
+	
+	"charset-range":
+		name: "meta.charset-range.ditroff.desc"
+		begin: "^(charset-range)\\s*$"
+		end:   "^(?=(?:charset(?:-range)?|kernpairs)(?:$|\\s)|\\s*$)"
+		beginCaptures:
+			1: name: "keyword.control.section.ditroff.desc"
+		patterns: [{
+			# u0000..uFEFF
+			name:  "meta.glyph-range.ditroff.desc"
+			begin: "^(u[0-9A-Fa-f]+)(\\.\\.)(u[0-9A-Fa-f]+)(?=[ \\t]|$)"
+			end:   "(?=\\s*$)"
+			beginCaptures:
+				1: name: "entity.other.glyph.range.begin.ditroff.desc"
+				2: name: "keyword.operator.punctuation.dots.splat.range.ditroff.desc"
+				3: name: "entity.other.glyph.range.end.ditroff.desc"
+			patterns: [{
+				match: """(?x)
+					\\G \\s+([-\\d]+(?:,[-\\d]+){0,5}) # Metrics
+					\\s+ (\\d)                         # Glyph type
+					(\\s+ -- \\s* [^\\r\\n]+?)?        # Comment
+					(?=\\s*$)
+				"""
+				captures:
+					1: patterns: [include: "#charset-metrics"]
+					2: name: "constant.numeric.integer.ditroff.desc"
+					3: patterns: [include: "#charset-range-comment"]
+			},{include: "#charset-range-comment"}, include: "#comment"]
+		}]
+
+	# Distinct from ordinary `charset` comments in that more than two dashes are legal(?)
+	"charset-range-comment":
+		name:  "comment.line.multi-dash.ditroff.desc"
+		begin: "\\s*(-{2,})[ \\t]*"
+		end:   "$"
+		beginCaptures:
+			1: name: "punctuation.definition.comment.ditroff.desc"
 	
 	comment:
 		name: "comment.line.number-sign.ditroff.desc"
