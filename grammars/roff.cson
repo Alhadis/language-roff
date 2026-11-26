@@ -442,9 +442,11 @@ repository:
 				# Condition
 				name:  "meta.condition.roff"
 				begin: "(?<=ie|if|while)\\G[ \\t]*(?>(!)[ \\t]*)?"
-				end:   "(?!\\G)"
+				end:   "(?:\\s+([.'][^\\r\\n]*))?(?=\\s*$)|(?!\\G)"
 				beginCaptures:
 					1: name: "keyword.operator.logical.not.roff"
+				endCaptures:
+					1: patterns: [include: "$self"]
 				patterns: [{
 					# One-character built-in comparison name
 					name: "constant.language.builtin-comparison.$1.roff"
@@ -477,8 +479,10 @@ repository:
 				}, include: "#escapes"]
 			},{
 				# Action
-				begin: "(?=[.'])"
-				end:   "(?!\\G)"
+				begin: "\\s*(\\\\+{)\\s*(?=[.'])"
+				end:   "(?<!\\\\)$"
+				beginCaptures:
+					1: patterns: [include: "#escapes"]
 				patterns: [
 					# Clamp requests that have a chance of spillage
 					match: "\\G([.'][ \\t]*(?:do[ \\t]+)?(?:ig|ul|(?:de|am)i?1?)(?=$|\\s).*)"
