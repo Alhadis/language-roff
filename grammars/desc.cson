@@ -67,8 +67,8 @@ repository:
 				1: name: "entity.name.glyph.ditroff.desc"
 				2: name: "punctuation.definition.unnamed.glyph.ditroff.desc"
 				3: patterns: [include: "#charset-metrics"]
-				4: name: "constant.numeric.integer.ditroff.desc"
-				5: name: "constant.numeric.integer.ditroff.desc"
+				4: patterns: [include: "#charset-glyph-type"]
+				5: name: "constant.numeric.integer.code.ditroff.desc"
 				6: name: "variable.other.ditroff.desc"
 		},{
 			name: "meta.glyph.alias.ditroff.desc"
@@ -77,6 +77,13 @@ repository:
 				1: name: "entity.type.var.ditroff.desc"
 				2: name: "keyword.operator.ditroff.desc"
 		},{include: "#charset-comment"}, include: "#comment"]
+	
+	
+	# Single-digit charset field that contains featural description of glyph
+	"charset-glyph-type":
+		name: "constant.numeric.integer.glyph-type.ditroff.desc"
+		match: "(?:^|\\G)\\d(?=$|\\s)"
+	
 	
 	"charset-metrics":
 		patterns: [
@@ -99,18 +106,22 @@ repository:
 				1: name: "entity.other.glyph.range.begin.ditroff.desc"
 				2: name: "keyword.operator.punctuation.dots.splat.range.ditroff.desc"
 				3: name: "entity.other.glyph.range.end.ditroff.desc"
-			patterns: [{
+			patterns: [
+				# Three-column fields following codepoint-range
 				match: """(?x)
 					\\G \\s+([-\\d]+(?:,[-\\d]+){0,5}) # Metrics
 					\\s+ (\\d)                         # Glyph type
-					(\\s+ --+ \\s* [^\\r\\n]+?)?        # Comment
+					(\\s+ --+ \\s* [^\\r\\n]+?)?       # Comment
 					(?=\\s*$)
 				"""
 				captures:
 					1: patterns: [include: "#charset-metrics"]
-					2: name: "constant.numeric.integer.ditroff.desc"
+					2: patterns: [include: "#charset-glyph-type"]
 					3: patterns: [include: "#charset-comment"]
-			},{include: "#charset-comment"}, include: "#comment"]
+			
+				{include: "#charset-comment"}
+				{include: "#comment"}
+			]
 		}]
 
 	"charset-comment":
